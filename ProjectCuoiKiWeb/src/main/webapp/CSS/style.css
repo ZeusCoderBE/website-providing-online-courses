@@ -240,7 +240,7 @@
 
 .branding-inner .site-logo {
     width: auto;
-    height: 40px;
+    height: 100px;
 }
 
 .main-nav {
@@ -336,7 +336,6 @@
 .card_deck {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
 }
 
@@ -372,7 +371,7 @@
 .card_item .card_img{
     height: 7rem;
     width: 100%;
-    background-image: url("https://utex.hcmute.edu.vn/pluginfile.php/1/theme_maker/defaultcourseimage/1692144561/course-banner.jpg");
+    background-image: url("https://i.imgur.com/lBLzWqn.jpg");
     background-size: cover;
 }
 
@@ -399,7 +398,7 @@
 }
 
 .card_group {
-    width: 280px;
+    width: 275px;
 }
 
 .card_setting {

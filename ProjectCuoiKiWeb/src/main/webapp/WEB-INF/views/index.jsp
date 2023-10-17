@@ -16,7 +16,7 @@
         <header class="header">
             <div class="top_bar">
                 <div class="drawer-toggle">
-                    <button class="btn btn-toggle">
+                    <button style="border: none;" class="btn btn-toggle">
                         <span class="fa-solid fa-bars"></span>
                     </button>
                 </div>
@@ -128,8 +128,8 @@
                     <div class="page">
                         <div class="branding">
                             <div class="branding-inner">
-                                <a href="#" class="site-name">
-                                    <img class="site-logo" src="https://utex.hcmute.edu.vn/pluginfile.php/1/theme_maker/logo/1692144561/logo-utex%20%281%29.png" alt="UTEX-HCMUTE">
+                                <a style="margin-top: -30px;" href="#" class="site-name">
+                                    <img class="site-logo" src="https://i.imgur.com/levs8I4.png" alt="UTEX-HCMUTE">
                                 </a>
 
                                 <ul class="main-nav">
@@ -170,7 +170,7 @@
                                                 </div>
                                             </div>
                                             <div class="card_deck">
-                                                <div class="card_text">
+                                                <div style="margin-right: 30px;" class="card_text">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
