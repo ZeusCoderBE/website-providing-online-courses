@@ -40,7 +40,9 @@
     margin: auto;
 }
 
+.flex-wrapper {
 
+}
 
 .flex-wrapper .intro {
     display: flex;
@@ -238,9 +240,13 @@
     justify-content: space-between;
 }
 
+.branding-inner .site-name {
+    margin-top: -30px;
+}
+
 .branding-inner .site-logo {
     width: auto;
-    height: 40px;
+    height: 100px;
 }
 
 .main-nav {
@@ -283,7 +289,7 @@
 
 .page_content {
     display: grid;
-    grid-template-columns: 78% 22.7%;
+    grid-template-columns: 77% 22.7%;
 }
 
 .region_main {
@@ -299,12 +305,13 @@
 .card_body {
     display: flex;
     flex-direction: column;
-    padding: 15px;
 }
 
 .card_history {
     display: flex;
     justify-content: space-between;
+    margin-left: 15px;
+    margin-top: 15px;
 }
 
 .card_history h5 {
@@ -315,6 +322,7 @@
     width: 84px;
     display: flex;
     align-items: center;
+    margin-right: 15px;
 }
 
 .show_detail .chevron-left,
@@ -336,14 +344,13 @@
 .card_deck {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
 }
 
 .card_text {
     width: 300px;
     height: 180px;
-    margin-top: 30px;
+    margin: 15px;
 }
 
 .view_content {
@@ -372,7 +379,7 @@
 .card_item .card_img{
     height: 7rem;
     width: 100%;
-    background-image: url("https://utex.hcmute.edu.vn/pluginfile.php/1/theme_maker/defaultcourseimage/1692144561/course-banner.jpg");
+    background-image: url("../Images/banner.png");
     background-size: cover;
 }
 
@@ -399,7 +406,7 @@
 }
 
 .card_group {
-    width: 280px;
+    width: 276px;
 }
 
 .card_setting {
@@ -407,6 +414,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .cb_all + .cb_all {
@@ -430,7 +438,7 @@
 .btn_view:hover {
     border: 1px solid var(--border-button);
     background-color: var(--border-button);
-    color: #6c757d;
+    color: white;
 }
 
 .btn_view i {
