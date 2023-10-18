@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="./templates/CSS/style.css" rel="stylesheet">
-    <link href="./templates/CSS/main.css" rel="stylesheet">
+	<link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
 <body>
     <div class="" id="app">
         <header class="header">
             <div class="top_bar">
                 <div class="drawer-toggle">
-                    <button class="btn btn-toggle">
+                    <button style="border :none;" class="btn btn-toggle">
                         <span class="fa-solid fa-bars"></span>
                     </button>
                 </div>
@@ -129,7 +129,7 @@
                         <div class="branding">
                             <div class="branding-inner">
                                 <a href="#" class="site-name">
-                                    <img class="site-logo" src="https://utex.hcmute.edu.vn/pluginfile.php/1/theme_maker/logo/1692144561/logo-utex%20%281%29.png" alt="UTEX-HCMUTE">
+                                    <img class="site-logo" src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
                                 </a>
 
                                 <ul class="main-nav">
@@ -169,7 +169,7 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="card_deck">
+                                            <div style="justify-content: center;" class="card_deck">
                                                 <div class="card_text">
                                                     <div class="view_content">
                                                         <div class="card_item">
@@ -208,7 +208,7 @@
                                             </div>
                                             <div class="card_setting">
                                                 <div class="cb_all">
-                                                    <button class="btn btn_view">
+                                                    <button style="margin-left: 15px;" class="btn btn_view">
                                                         <i class="fa-solid fa-filter"></i>
                                                         <span class="text-center">All (except removed from view)</span>
                                                         <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
@@ -224,7 +224,7 @@
                                                         </button>
                                                     </div>
 
-                                                    <div class="cb_all">
+                                                    <div style="margin-right: 15px;" class="cb_all">
                                                         <button class="btn btn_view">
                                                             <i class="icon fa fa-th fa-fw "></i>
                                                             <span class="text-center">Card</span>
@@ -234,20 +234,7 @@
                                                 </div>
                                             </div>
                                             <div class="card_deck">
-                                                <div style="margin-right: 30px;" class="card_text card_group">
-                                                    <div class="view_content">
-                                                        <div class="card_item">
-                                                            <a href="#">
-                                                                <div class="card_img"></div>
-                                                            </a>
-                                                            <div class="course_info">
-                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
-                                                            </div>
-                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div style="margin-right: 30px;" class="card_text card_group">
+                                                <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -273,7 +260,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div style="margin-right: 30px;" class="card_text card_group">
+                                                <div class="card_text card_group">
+                                                    <div class="view_content">
+                                                        <div class="card_item">
+                                                            <a href="#">
+                                                                <div class="card_img"></div>
+                                                            </a>
+                                                            <div class="course_info">
+                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+                                                            </div>
+                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -287,7 +287,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div style="margin-right: 30px;" class="card_text card_group">
+                                                <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -300,6 +300,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="card_text card_group">
+                                                    <div class="view_content">
+                                                        <div class="card_item">
+                                                            <a href="#">
+                                                                <div class="card_img"></div>
+                                                            </a>
+                                                            <div class="course_info">
+                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+                                                            </div>
+                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
