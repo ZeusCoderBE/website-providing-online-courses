@@ -8,6 +8,6 @@ public class LoginController {
 	@RequestMapping("/")
 	public String index()
 	{
-		return "DangNhap";
+		return "SignIn";
 	}
 }
