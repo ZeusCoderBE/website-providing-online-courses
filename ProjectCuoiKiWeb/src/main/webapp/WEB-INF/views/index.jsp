@@ -1,39 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trang Chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="./templates/CSS/style.css" rel="stylesheet">
-    <link href="./templates/CSS/main.css" rel="stylesheet">
+	<link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
 <body>
     <div class="" id="app">
         <header class="header">
             <div class="top_bar">
                 <div class="drawer-toggle">
-                    <button style="border: none;" class="btn btn-toggle">
+                    <button style="border :none;" class="btn btn-toggle">
                         <span class="fa-solid fa-bars"></span>
                     </button>
                 </div>
 
                 <div class="flex-wrapper">
                     <div class="intro">
-                        <a href="#" class="intro_toggle">
-                            <span>
-                                <img src="https://utex.hcmute.edu.vn/theme/image.php/maker/theme/1692144561/grid-icon-inverse" alt="#">
-                            </span>
-
-                            <span>
-                                <div class="intro-text">Hướng dẫn (dành cho Giảng viên)</div>
-                                <div class="border_bottom"></div>
-                            
-                            </span>
-                        </a>
+                        <div class="intro_item">
+                            <a href="#" class="intro_toggle">
+                                <span>
+                                    <img src="https://utex.hcmute.edu.vn/theme/image.php/maker/theme/1692144561/grid-icon-inverse" alt="#">
+                                </span>
+    
+                                <span>
+                                    <div class="intro-text">Hướng dẫn (dành cho Giảng viên)</div>
+                                    <div class="border_bottom"></div>
+                                </span>
+                            </a>
+                            <ul class="menu_list">
+                                <!-- <div ></div> -->
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                            </ul>
+                        </div>
                         <ul class="social-media-list list-inline">
                             <li class="list-inline-item">
                                 <a href="#">
@@ -128,8 +144,8 @@
                     <div class="page">
                         <div class="branding">
                             <div class="branding-inner">
-                                <a style="margin-top: -30px;" href="#" class="site-name">
-                                    <img class="site-logo" src="https://i.imgur.com/levs8I4.png" alt="UTEX-HCMUTE">
+                                <a href="#" class="site-name">
+                                    <img class="site-logo" src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
                                 </a>
 
                                 <ul class="main-nav">
@@ -169,8 +185,8 @@
                                                     </a>
                                                 </div>
                                             </div>
-                                            <div class="card_deck">
-                                                <div style="margin-right: 30px;" class="card_text">
+                                            <div style="justify-content: center;" class="card_deck">
+                                                <div class="card_text">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -208,11 +224,24 @@
                                             </div>
                                             <div class="card_setting">
                                                 <div class="cb_all">
-                                                    <button class="btn btn_view">
+                                                    <button style="margin-left: 15px;" class="btn btn_view">
                                                         <i class="fa-solid fa-filter"></i>
                                                         <span class="text-center">All (except removed from view)</span>
                                                         <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
                                                     </button>
+                                                    <ul class="menu_list cb_all__list">
+                                                        <!-- <div ></div> -->
+                                                        <li class="menu_list_item">
+                                                            <a href="#">All (except removed from view)</a>
+                                                        </li>
+                                                        <li class="menu_list_item">
+                                                            <a href="#">Starred</a>
+                                                        </li>
+                                                        <li class="menu_list_item">
+                                                            <a href="#">Removed from view</a>
+                                                        </li>
+                                                    </ul>
+
                                                 </div>
 
                                                 <div class="filter_access">
@@ -222,32 +251,42 @@
                                                             <span class="text-center">Last accessed</span>
                                                             <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
                                                         </button>
+
+                                                        <ul class="menu_list cb_all__list-two">
+                                                            <!-- <div ></div> -->
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Course name</a>
+                                                            </li>
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Last accessed</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
 
-                                                    <div class="cb_all">
+                                                    <div style="margin-right: 15px;" class="cb_all">
                                                         <button class="btn btn_view">
                                                             <i class="icon fa fa-th fa-fw "></i>
                                                             <span class="text-center">Card</span>
                                                             <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
                                                         </button>
+
+                                                        <ul class="menu_list cb_all__list-three">
+                                                            <!-- <div ></div> -->
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Card</a>
+                                                            </li>
+                                                            <li class="menu_list_item">
+                                                                <a href="#">List</a>
+                                                            </li>
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Summary</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card_deck">
-                                                <div style="margin-right: 30px;" class="card_text card_group">
-                                                    <div class="view_content">
-                                                        <div class="card_item">
-                                                            <a href="#">
-                                                                <div class="card_img"></div>
-                                                            </a>
-                                                            <div class="course_info">
-                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
-                                                            </div>
-                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div style="margin-right: 30px;" class="card_text card_group">
+                                                <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -273,7 +312,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div style="margin-right: 30px;" class="card_text card_group">
+                                                <div class="card_text card_group">
+                                                    <div class="view_content">
+                                                        <div class="card_item">
+                                                            <a href="#">
+                                                                <div class="card_img"></div>
+                                                            </a>
+                                                            <div class="course_info">
+                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+                                                            </div>
+                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -287,7 +339,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div style="margin-right: 30px;" class="card_text card_group">
+                                                <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">
                                                             <a href="#">
@@ -300,6 +352,20 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="card_text card_group">
+                                                    <div class="view_content">
+                                                        <div class="card_item">
+                                                            <a href="#">
+                                                                <div class="card_img"></div>
+                                                            </a>
+                                                            <div class="course_info">
+                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+                                                            </div>
+                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                                 <div class="card_text card_group">
                                                     <div class="view_content">
                                                         <div class="card_item">

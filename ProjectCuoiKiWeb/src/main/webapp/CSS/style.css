@@ -9,6 +9,7 @@
     box-sizing: border-box;
     background-color: var(--background-header);
     color: white;
+    z-index: 100;
 }
 
 .top_bar {
@@ -40,12 +41,18 @@
     margin: auto;
 }
 
+.flex-wrapper {
 
+}
 
 .flex-wrapper .intro {
     display: flex;
     align-items: center;
     padding: 10px 0;
+}
+
+.intro_item {
+    position: relative;
 }
 
 .intro_toggle {
@@ -77,6 +84,53 @@
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid #ffffff;
+}
+
+.menu_list {
+    display: none;
+    content: "";
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 500px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 19px 38px rgba(0,0,0,.3);
+    border-radius: 2px;
+    z-index: 10;
+}
+/* 
+.menu_list div {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: 10px;
+    width: 100%;
+    background-color: transparent;
+} */
+
+.menu_list .menu_list_item {
+    text-align: start;
+    margin-left: 10px;
+    padding: 8px;
+    list-style: none;
+}
+
+.menu_list_item a:hover,
+.menu_list_item a:focus {
+    color: #1d1e20;
+}
+
+.menu_list a {
+    text-decoration: none;
+    font-size: 1rem;
+    color: var(--text-color);
+
+}
+
+.intro_item:hover .menu_list,
+.intro_item:focus .menu_list{
+    display: block;
 }
 
 .intro_toggle span .intro-text {
@@ -165,6 +219,12 @@
 }
 
 /* Main body */
+
+.main {
+    position: relative;
+    top: 50px;
+}
+
 .nav_drawer {
     height: 46px;
     width: 100%;
@@ -238,9 +298,17 @@
     justify-content: space-between;
 }
 
-.branding-inner .site-logo {
+.branding-inner .site-name {
+    margin-top: -30px;
+}
+
+.site-logo {
     width: auto;
     height: 100px;
+}
+
+.main {
+    z-index: 1;
 }
 
 .main-nav {
@@ -283,7 +351,7 @@
 
 .page_content {
     display: grid;
-    grid-template-columns: 78% 22.7%;
+    grid-template-columns: 77% 22.7%;
 }
 
 .region_main {
@@ -299,12 +367,13 @@
 .card_body {
     display: flex;
     flex-direction: column;
-    padding: 15px;
 }
 
 .card_history {
     display: flex;
     justify-content: space-between;
+    margin-left: 15px;
+    margin-top: 15px;
 }
 
 .card_history h5 {
@@ -315,6 +384,7 @@
     width: 84px;
     display: flex;
     align-items: center;
+    margin-right: 15px;
 }
 
 .show_detail .chevron-left,
@@ -342,7 +412,7 @@
 .card_text {
     width: 300px;
     height: 180px;
-    margin-top: 30px;
+    margin: 15px;
 }
 
 .view_content {
@@ -371,7 +441,7 @@
 .card_item .card_img{
     height: 7rem;
     width: 100%;
-    background-image: url("https://i.imgur.com/lBLzWqn.jpg");
+    background-image: url("../Images/banner.jpg");
     background-size: cover;
 }
 
@@ -398,7 +468,7 @@
 }
 
 .card_group {
-    width: 275px;
+    width: 276px;
 }
 
 .card_setting {
@@ -406,6 +476,41 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.cb_all {
+    position: relative;
+}
+
+.cb_all__list,
+.cb_all__list-two,
+.cb_all__list-three {
+    left: 15px;
+    width: 315px;
+    padding: 15px;
+    font-size: 0.9rem;
+}
+
+.cb_all__list-two {
+    left: 0;
+    padding: 5px;
+    width: 135px;
+}
+
+.cb_all__list-three {
+    width: 150px;
+    left: -20px;
+}
+
+.cb_all:hover .cb_all__list,
+.cb_all:focus .cb_all__list,
+.cb_all:hover .cb_all__list-two,
+.cb_all:focus .cb_all__list-two,
+.cb_all:hover .cb_all__list-three,
+.cb_all:focus .cb_all__list-three
+ {
+    display: block;
 }
 
 .cb_all + .cb_all {
@@ -429,7 +534,7 @@
 .btn_view:hover {
     border: 1px solid var(--border-button);
     background-color: var(--border-button);
-    color: #6c757d;
+    color: white;
 }
 
 .btn_view i {
@@ -446,4 +551,71 @@
 .region_sidebar {
     background-color: white;
     margin-left: 20px;
+}
+
+
+
+
+/* Trang trủ  */
+#page_container {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url("https://howkteam.vn/Content/images/index/bg.jpg");
+}
+
+.navbar-brand {
+    pointer-events: none;
+    font-size: 1.9rem;
+}
+
+.navbar {
+    padding: 0;
+    /* background-color: var(--background-header); */
+    background-color: transparent;
+    height: 60px;
+}
+
+.navbar .nav-item {
+    padding: 0 10px;
+}
+
+.navbar .nav-item :hover {
+    color: #9b7dcf;
+    /* background-color: #196eb2; */
+}
+
+.nav-link {
+    font-size: 1.2rem;
+    color: white;
+    height: 100%;
+    padding: 14px;
+}
+
+
+
+.navbar-brand {
+    color: white;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.nav-item {
+    height: 100%;
+}
+
+.main_container {
+    display: flex;
+    align-items: center;
+    color: white;
+    height: 650px;
+    /* background-color: #999; */
+   
+}
+
+.content {
+    width: 300px;
+    margin-left: 200px;
+    margin-top: 100px;
 }
