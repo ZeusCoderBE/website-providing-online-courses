@@ -8,24 +8,27 @@
     <title>Login</title>
     <link rel="stylesheet" href="./templates/CSS/styledn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <%String loidangnhap=request.getAttribute("thongbaoloi") +"";
+	loidangnhap=(loidangnhap.equals("null"))?"":loidangnhap;%>
 </head>
 <body>
     <div class="container">
         <div id="form-login">
-            <form action="#" method="get">
+            <form action="dang-nhap" method="post">
                 <div class="form-list">
                     <div class="form-item">
                         <div class="form-item-login">
                             <div class="form-login-header"><h1>Login</h1></div>
                             <div class="form-login-input">
-                                <input type="text" placeholder="Email"/>
+                                <input type="text" placeholder="Email" id="username" name="username"/>
                             </div>
                             <div class="form-login-input">
-                                <input type="password" placeholder="Password"/>
+                                <input type="password" placeholder="Password" id="password" name="password"/>
                             </div>
                             <div class="form-notice">
                                 <a href="#">Forgot Password?</a>
                             </div>
+                            <p><%=loidangnhap %></p>
                             <button class="btn" type="submit">Login</button>
                             <div class="form-login-policy">
                                 <p>Don't have an account? </p>

@@ -19,5 +19,5 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	<mvc:resources mapping="/templates/**"
-		location="/,classpath://WEB-INF/templates/" cache-period="10000" />
+		location="/,classpath://WEB-INF/templates/" cache-period="5000" />
 </beans>
