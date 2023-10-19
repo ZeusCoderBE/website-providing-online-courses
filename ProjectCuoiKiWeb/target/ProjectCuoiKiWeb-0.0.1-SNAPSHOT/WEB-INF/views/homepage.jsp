@@ -7,12 +7,12 @@
 <title>Trang Chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link href="./templates/style.css" rel="stylesheet">
-	<link href="./templates/main.css" rel="stylesheet">
+    <link href="./styles/CSS/style.css" rel="stylesheet">
+	<link href="./styles/CSS/main.css" rel="stylesheet">
 </head>
 <body>
     <div id="page_container">
-        <header>
+        <header style="position: fixed; width: 100%; z-index: 100;">
             <nav class="navbar navbar-expand-lg">
                 <div style="margin-top: 0; height: 100%;" class="container-fluid">
                   <a class="navbar-brand" href="#">
@@ -59,7 +59,7 @@
                                 <li style="margin-left: 0;" class="d-flex">
                                     <div class="usermenu">
                                         <span>Tài Khoản</span>
-                                        <div class="icon_name">
+                                        <div style="width: 25px;" class="icon_name">
                                             <span>
                                                 <i class="fa-solid fa-user"></i>
                                             </span>
@@ -77,11 +77,11 @@
 
         <div class="main_container">
             <div class="content">
-                <div class="">KHÓA HỌC</div>
                 <h1>Thư viện khóa học lập trình từ cơ bản đến nâng cao</h1>
                 <p>Python ? C++? C# hay Java? </p>
                 <p>Bạn lựa chọn ngôn ngữ nào để bắt đầu chặng đường trở thành lập trình viên của mình?</p>
                 <a href="#">Học Ngay</a>
+                <img src="https://www.pluralsight.com/content/dam/pluralsight2/homepage/2023-updates/ai-home-hero.webp" alt="">
             </div>
         </div>
     </div>

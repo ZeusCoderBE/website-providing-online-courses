@@ -1,38 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="./templates/CSS/styledn.css">
+    <title>Signup</title>
+    <link rel="stylesheet" href="./styles/CSS/styledn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <%String loidangnhap=request.getAttribute("thongbaoloi") +"";
-	loidangnhap=(loidangnhap.equals("null"))?"":loidangnhap;%>
 </head>
 <body>
     <div class="container">
         <div id="form-login">
-            <form action="dang-nhap" method="post">
+            <form action="#" method="get">
                 <div class="form-list">
                     <div class="form-item">
                         <div class="form-item-login">
-                            <div class="form-login-header"><h1>Login</h1></div>
+                            <div class="form-login-header"><h1>Signup</h1></div>
                             <div class="form-login-input">
-                                <input type="text" placeholder="Email" id="username" name="username"/>
+                                <input type="text" placeholder="Email"/>
                             </div>
                             <div class="form-login-input">
-                                <input type="password" placeholder="Password" id="password" name="password"/>
+                                <input type="password" placeholder="Create password"/>
                             </div>
-                            <div class="form-notice">
-                                <a href="#">Forgot Password?</a>
+                            <div class="form-login-input">
+                                <input type="password" placeholder="Confirm password"/>
                             </div>
-                            <p><%=loidangnhap %></p>
-                            <button class="btn" type="submit">Login</button>
+                            <button class="btn" type="submit">Signup</button>
                             <div class="form-login-policy">
-                                <p>Don't have an account? </p>
-                                <a href="#">Signup</a>
+                                <p>Already have an account? </p>
+                                <a href="#">Login</a>
                             </div>
                             <div class="form-login-or">
                                 <h1>
@@ -47,6 +44,7 @@
                                     </div>
                                 </a>
                             </div>
+
                             <div class="header_login-nav logo_google">
                                 <a href="#">
                                     <i class="fa-brands fa-google"></i>
