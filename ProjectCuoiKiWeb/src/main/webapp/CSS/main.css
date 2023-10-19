@@ -5,6 +5,7 @@
     --text-header-color: #b9c7b8;
     --background-primary: #196eb2;
     --border-button: #6c757d;
+    --text-color: #6d727c;
 }
 /* // XX-Large devices (larger desktops, 1400px and up) */
 @media only screen and (min-device-width: 1400px) {
@@ -118,7 +119,6 @@ body {
 .col-10 {
     min-height: 500px;
     padding-left: 0;
-    margin-top: 50px;
 }
 
 .row {
@@ -132,6 +132,7 @@ body {
     top: 50px;
     min-height: 700px;
     box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
 .btn {

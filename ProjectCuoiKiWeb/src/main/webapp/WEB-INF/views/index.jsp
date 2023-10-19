@@ -23,17 +23,33 @@
 
                 <div class="flex-wrapper">
                     <div class="intro">
-                        <a href="#" class="intro_toggle">
-                            <span>
-                                <img src="https://utex.hcmute.edu.vn/theme/image.php/maker/theme/1692144561/grid-icon-inverse" alt="#">
-                            </span>
-
-                            <span>
-                                <div class="intro-text">Hướng dẫn (dành cho Giảng viên)</div>
-                                <div class="border_bottom"></div>
-                            
-                            </span>
-                        </a>
+                        <div class="intro_item">
+                            <a href="#" class="intro_toggle">
+                                <span>
+                                    <img src="https://utex.hcmute.edu.vn/theme/image.php/maker/theme/1692144561/grid-icon-inverse" alt="#">
+                                </span>
+    
+                                <span>
+                                    <div class="intro-text">Hướng dẫn (dành cho Giảng viên)</div>
+                                    <div class="border_bottom"></div>
+                                </span>
+                            </a>
+                            <ul class="menu_list">
+                                <!-- <div ></div> -->
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                                <li class="menu_list_item">
+                                    <a href="#">Hướng dẫn Backup và Restore khóa học</a>
+                                </li>
+                            </ul>
+                        </div>
                         <ul class="social-media-list list-inline">
                             <li class="list-inline-item">
                                 <a href="#">
@@ -213,6 +229,19 @@
                                                         <span class="text-center">All (except removed from view)</span>
                                                         <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
                                                     </button>
+                                                    <ul class="menu_list cb_all__list">
+                                                        <!-- <div ></div> -->
+                                                        <li class="menu_list_item">
+                                                            <a href="#">All (except removed from view)</a>
+                                                        </li>
+                                                        <li class="menu_list_item">
+                                                            <a href="#">Starred</a>
+                                                        </li>
+                                                        <li class="menu_list_item">
+                                                            <a href="#">Removed from view</a>
+                                                        </li>
+                                                    </ul>
+
                                                 </div>
 
                                                 <div class="filter_access">
@@ -222,6 +251,16 @@
                                                             <span class="text-center">Last accessed</span>
                                                             <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
                                                         </button>
+
+                                                        <ul class="menu_list cb_all__list-two">
+                                                            <!-- <div ></div> -->
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Course name</a>
+                                                            </li>
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Last accessed</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
 
                                                     <div style="margin-right: 15px;" class="cb_all">
@@ -230,6 +269,19 @@
                                                             <span class="text-center">Card</span>
                                                             <div style="border-top: 5px solid #6c757d;" class="border_bottom"></div>
                                                         </button>
+
+                                                        <ul class="menu_list cb_all__list-three">
+                                                            <!-- <div ></div> -->
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Card</a>
+                                                            </li>
+                                                            <li class="menu_list_item">
+                                                                <a href="#">List</a>
+                                                            </li>
+                                                            <li class="menu_list_item">
+                                                                <a href="#">Summary</a>
+                                                            </li>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
