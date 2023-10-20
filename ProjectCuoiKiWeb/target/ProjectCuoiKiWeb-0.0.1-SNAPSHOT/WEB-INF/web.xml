@@ -6,7 +6,11 @@
 	id="WebApp_ID" version="5.0">
 	<display-name>ProjectCuoiKiWeb</display-name>
 	<welcome-file-list>
+<<<<<<< HEAD
 		<welcome-file>/WEB-INF/views/DangNhap.jsp</welcome-file>
+=======
+		<welcome-file>hello.html</welcome-file>
+>>>>>>> 54463c1ba80401c925cb9a123a3c306d7e1c4f59
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>

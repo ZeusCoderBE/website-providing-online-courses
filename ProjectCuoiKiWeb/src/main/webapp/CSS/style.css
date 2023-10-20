@@ -559,10 +559,11 @@
 /* Trang trủ  */
 #page_container {
     height: 100%;
-    background-size: cover;
+    background-image: linear-gradient(to right, #242145 30%, #dd1874 70%, #8a2178);
+    /* background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url("https://howkteam.vn/Content/images/index/bg.jpg");
+    background-image: url("https://howkteam.vn/Content/images/index/bg.jpg"); */
 }
 
 .navbar-brand {
@@ -572,8 +573,9 @@
 
 .navbar {
     padding: 0;
+    width: 100%;
     /* background-color: var(--background-header); */
-    background-color: transparent;
+    background-color: #242145;
     height: 60px;
 }
 
@@ -608,14 +610,53 @@
 .main_container {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
-    height: 650px;
     /* background-color: #999; */
    
 }
 
 .content {
-    width: 300px;
-    margin-left: 200px;
-    margin-top: 100px;
+    position: relative;
+    top: 50px;
+    margin: 50px 0;
+    width: 90%;
+    background-color: rgba(19, 15, 37, 0.5);
+    border-radius: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 100px;
+}
+
+.content h1 {
+    font-size: 4rem;
+    color: white;
+    font-family: 'PS Commons Bold';
+    font-weight: normal;
+    margin: 70px 200px 30px;
+}
+
+.content p {
+    margin: 0 250px;
+    font-weight: 500;
+}
+
+.content a {
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-decoration: none;
+    background-color: #e7005e;
+    width: 200px;
+    padding: 10px;
+    padding-bottom: 14px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.3rem;
+    border-radius: 20px;
+}
+
+.content a:hover {
+    background-color: transparent;
+    border: 1px solid #585fa2;
 }
