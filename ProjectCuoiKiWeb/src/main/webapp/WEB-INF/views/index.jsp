@@ -140,86 +140,6 @@
                             </ul>
                         </div>
                     </div>
-
-                    <div class="sidebar sidebar_study">
-                        <div style="justify-content: center;" class="branding-inner">
-                            <a onclick="handleBlur()" style="margin-top: 0;" href="#" class="site-name">
-                                <img class="site-logo" src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
-                            </a>
-                        </div>
-    
-                        <div class="nav_drawer home_system">
-                            <div>React Basic</div>
-                        </div>
-                        <div class="nav_drawer calendar nav_drawer__course">
-                            <button class="btn btn_course">
-                                    <i style="padding-left: 10px;" class="fa-solid fa-chevron-down"></i>
-                                    <div style="margin:0;" class="btn_course__content">Course Material</div>
-                            </button>
-
-                            <ul class="list_timer">
-                                <li>
-                                    <a href="#">
-                                        <span>Week1</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Week2</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Week3</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Week4</span>
-                                    </a>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                        <!-- <div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                <span>lịch</span>
-                            </a>
-                        </div> -->
-                        <div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-regular fa-file"></i>
-                                <span>Grades</span>
-                            </a>
-                        </div>
-                        <div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-regular fa-file"></i>
-                                <span>Notes</span>
-                            </a>
-                        </div>
-                        <div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-regular fa-file"></i>
-                                <span>Discussion Forums</span>
-                            </a>
-                        </div>
-                        <div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-regular fa-file"></i>
-                                <span>Messages</span>
-                            </a>
-                        </div>
-                        <div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-regular fa-file"></i>
-                                <span>Resourses</span>
-                            </a>
-                        </div>
-                       
-                    </div>
-                    
                 </nav>
     
                 <article class="col-10">
@@ -271,7 +191,7 @@
                                                 <div class="card_text" tabindex="1">
                                                     <div class="view_content">
                                                         <div class="card_item">
-                                                            <a href="#" onclick="handleFocus()">
+                                                            <a href="course.jsp">
                                                                 <div class="card_img"></div>
                                                             </a>
                                                             <div class="course_info">
@@ -497,10 +417,6 @@
                                 <section class="region_sidebar"></section>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="page_study">
-
                     </div>
                 </article>
             </div>

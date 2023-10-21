@@ -365,10 +365,6 @@
     display: block;
 }
 
-.sidebar_study {
-    display: none;
-}
-
 .main-nav {
     display: flex;
     align-items: center;
@@ -493,7 +489,6 @@
 }
 
 .page_study {
-    display: none;
     background-color: #585fa2;
 }
 
