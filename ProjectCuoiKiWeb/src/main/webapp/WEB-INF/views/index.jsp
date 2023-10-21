@@ -91,53 +91,55 @@
         <section class="main">
             <div class="row">
                 <nav class="col-2">
-                    <div class="nav_drawer-primary nav_drawer home">
-                        <a href="#">
-                            <i class="fa-regular fa-clock"></i>
-                            <span>Nhà của tôi</span>
-                        </a>
-                    </div>
+                    <div class="sidebar sidebar_home">
+                        
+                        <div class="nav_drawer home_system">
+                            <a href="#" onclick="homePage()">
+                                <i class="fa-solid fa-house"></i>
+                                <span>Trang trủ hệ thống</span>
+                            </a>
+                        </div>
 
-                    <div class="nav_drawer home_system">
-                        <a href="#">
-                            <i class="fa-solid fa-house"></i>
-                            <span>Trang trủ hệ thống</span>
-                        </a>
+                        <div class=" nav_drawer home">
+                            <a href="#" onclick="myCourses()">
+                                <i class="fa-regular fa-clock"></i>
+                                <span>Khóa học của tôi</span>
+                            </a>
+                        </div>
+                        <div class="nav_drawer calendar">
+                            <a href="#">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>lịch</span>
+                            </a>
+                        </div>
+                        <div class="nav_drawer home_file">
+                            <a href="#">
+                                <i class="fa-regular fa-file"></i>
+                                <span>Tập tin riêng tư</span>
+                            </a>
+                        </div>
+                        <div class="nav_drawer home_course">
+                            <a href="#">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                                <span>Các khóa học của tôi</span>
+                                
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                        <span>SHDK_23_24_01</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-solid fa-graduation-cap"></i>
+                                        <span>SHDK_23_24_01</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="nav_drawer calendar">
-                        <a href="#">
-                            <i class="fa-solid fa-calendar-days"></i>
-                            <span>lịch</span>
-                        </a>
-                    </div>
-                    <div class="nav_drawer home_file">
-                        <a href="#">
-                            <i class="fa-regular fa-file"></i>
-                            <span>Tập tin riêng tư</span>
-                        </a>
-                    </div>
-                    <div class="nav_drawer home_course">
-                        <a href="#">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                            <span>Các khóa học của tôi</span>
-                            
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-graduation-cap"></i>
-                                    <span>SHDK_23_24_01</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa-solid fa-graduation-cap"></i>
-                                    <span>SHDK_23_24_01</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    
                 </nav>
     
                 <article class="col-10">
@@ -151,7 +153,7 @@
                                 <ul class="main-nav">
                                     <li class="nav-item">
                                         <a href="#">
-                                            Đại học Sư Phạm Kỹ Thuật 
+                                            Online Course
                                         </a>
                                     </li >
                                     <li class="nav-item">
@@ -186,10 +188,10 @@
                                                 </div>
                                             </div>
                                             <div style="justify-content: center;" class="card_deck">
-                                                <div class="card_text">
+                                                <div class="card_text" tabindex="1">
                                                     <div class="view_content">
                                                         <div class="card_item">
-                                                            <a href="#">
+                                                            <a href="course.jsp">
                                                                 <div class="card_img"></div>
                                                             </a>
                                                             <div class="course_info">
@@ -338,6 +340,32 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="card_text card_group">
+                                                    <div class="view_content">
+                                                        <div class="card_item">
+                                                            <a href="#">
+                                                                <div class="card_img"></div>
+                                                            </a>
+                                                            <div class="course_info">
+                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+                                                            </div>
+                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card_text card_group">
+                                                    <div class="view_content">
+                                                        <div class="card_item">
+                                                            <a href="#">
+                                                                <div class="card_img"></div>
+                                                            </a>
+                                                            <div class="course_info">
+                                                                <span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+                                                            </div>
+                                                            <a href="#" class="course_name">An toan thong tin_ Nhom 11</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <div class="card_text card_group">
                                                     <div class="view_content">
@@ -398,7 +426,7 @@
 
         </footer>
     </div>
-
+    <script src="./templates/JavaScript/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
 </body>
 </html>
