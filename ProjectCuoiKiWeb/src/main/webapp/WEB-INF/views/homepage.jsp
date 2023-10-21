@@ -21,20 +21,12 @@
                   <div style="height: 100%;" class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul style="height: 100%;" class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a sty class="nav-link" aria-current="page" href="#">Giới thiệu</a>
+                        <a class="nav-link" aria-current="page" href="#">Giới thiệu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./index.html">Khóa học</a>
                       </li>
                       
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Khóa học
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Hỏi đáp</a>
                       </li>
@@ -66,6 +58,7 @@
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
+                                    <button onclick="goToNewPage()" class="btn btn-success login_taikhoan">Đăng Nhập</button>
                                 </li>
                             </ul>
                         </div>
@@ -86,6 +79,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>    
-
+    <script src="./templates/JavaScript/script.js">
+  </script>
 </body>
 </html>

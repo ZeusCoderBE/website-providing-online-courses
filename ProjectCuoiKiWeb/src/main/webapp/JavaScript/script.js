@@ -33,3 +33,7 @@ function homePage(){
     page.style.gridTemplateColumns = 'auto';
     homecourse.style.display = 'none';
 }
+
+function goToNewPage() {
+    window.location.href = "./signin.html";
+}

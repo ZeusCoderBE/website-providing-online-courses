@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="./templates/CSS/style.css" rel="stylesheet">
 	<link href="./templates/CSS/main.css" rel="stylesheet">
+	<link href="./templates/CSS/course.css" rel="stylesheet">
 </head>
 <body>
     <div class="" id="app">
@@ -73,7 +74,7 @@
                                     </div>
                                 </li>
                                 <li class="d-flex">
-                                    <div class="usermenu">
+                                    <div class="usermenu" style="display: flex;">
                                         <span>Tran Van Luan</span>
                                         <div class="icon_name">
                                             <span>T</span>
@@ -174,7 +175,48 @@
     
                 <article class="col-10">
                     <div class="page_study">
+                        <div class="branding-inner">
+                            <div class="course_name">SSRF là gì? Cách phát hiện và ngăn chặn tấn công yêu cầu giả mạo từ phía máy chủ</div>
+                            <div class="date_course">
+                                <span>Đã đăng vào :</span>
+                                <span> thg 11 29, 2018 3:12</span>
+                            </div>
+                        </div>
 
+                        <div class="content">
+                            <div class="content_text">
+                                <div class="content_item">
+                                    <div class="content_header">
+                                        <div>Nội dung bài học</div>
+                                        <div class="content_progress">
+                                            <i class="fa-solid fa-check"></i>
+                                            <span>Complete</span>
+                                        </div>
+                                    </div>
+                                    <div class="content_main">
+                                        <div class="container_content">
+                                            <p>Hôm nay chúng ta cùng đi tìm hiểu SSRF (Server Side Request Forgery) là gì, cách phát hiện và ngăn chặn tấn công yêu cầu giả mạo từ phía máy chủ qua bài viết dưới đây.</p>
+                                            <h6 style="font-weight: bold;">SSRF là gì?</h6>
+                                            <p>SSRF (Server Side Request Forgery) hay còn gọi là tấn công yêu cầu giả mạo từ phía máy chủ cho phép kẻ tấn công thay đổi tham số được sử dụng trên ứng dụng web để tạo hoặc kiểm soát các yêu cầu từ máy chủ dễ bị tấn công.</p>
+                                            <img src="https://images.viblo.asia/f327c4f3-5fb4-4eef-b72a-45b43026d8b7.jpg" alt="hacker">
+                                            <p>Khi thông tin trong một ứng dụng web phải được lấy từ một tài nguyên bên ngoài, chẳng hạn như nguồn cấp dữ liệu RSS từ một trang web khác, các yêu cầu phía máy chủ được sử dụng để tìm nạp tài nguyên và đưa nó vào ứng dụng web.
+                                                <br>
+                                                Ví dụ, một nhà phát triển có thể sử dụng một URL như https://example.com/feed.php?url=externalsite.com/feed/ để lấy nguồn cấp dữ liệu từ xa. Nếu kẻ tấn công có thể thay đổi tham số url thành localhost, thì anh ta có thể xem các tài nguyên cục bộ được lưu trữ trên máy chủ, làm cho nó dễ bị tấn công bởi yêu cầu giả mạo từ phía máy chủ.</p>
+                                            <h6 style="font-weight: bold;">Nếu kẻ tấn công có thể kiểm soát đích của các yêu cầu phía máy chủ, chúng có thể thực hiện các hành động sau:</h6>    
+                                            <ul>
+                                                <li>Lạm dụng mối quan hệ tin cậy giữa máy chủ dễ bị tổn thương và những người khác.</li>
+                                                <li>Bỏ qua danh sách trắng IP.</li>
+                                                <li>Bỏ qua dịch vụ xác thực dựa trên máy chủ.</li>
+                                                <li>Đọc tài nguyên mà công chúng không thể truy cập, chẳng hạn như trace.axd trong ASP.NET hoặc siêu dữ liệu API trong môi trường AWS.</li>
+                                                <li>Quét mạng nội bộ mà máy chủ được kết nối đến.</li>
+                                                <li>Đọc tệp từ máy chủ web.</li>
+                                                <li>Xem trang trạng thái và tương tác với các API như máy chủ web.</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </article>
             </div>

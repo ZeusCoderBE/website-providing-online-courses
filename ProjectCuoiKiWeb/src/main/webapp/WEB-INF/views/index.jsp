@@ -80,6 +80,7 @@
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
+                                    <button onclick="goToNewPage()" class="btn btn-success login_taikhoan">Đăng Nhập</button>
                                 </li>
                             </ul>
                         </div>
@@ -191,7 +192,7 @@
                                                 <div class="card_text" tabindex="1">
                                                     <div class="view_content">
                                                         <div class="card_item">
-                                                            <a href="course.jsp">
+                                                            <a href="./course.html">
                                                                 <div class="card_img"></div>
                                                             </a>
                                                             <div class="course_info">
