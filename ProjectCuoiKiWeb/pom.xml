@@ -8,28 +8,31 @@
 	<packaging>war</packaging>
 	<properties>
 		<spring.version>6.0.11</spring.version>
-		<servlet.version>4.0.1</servlet.version>
-		<jstl.version>1.2.2</jstl.version>
-		<jsp.version>2.3.3</jsp.version>
+		<servletapi.version>2.3.3</servletapi.version>
+		<servletjstl.version>1.2.2</servletjstl.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>jakarta.servlet.jsp.jstl</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
+		<dependency>
+			<groupId>org.glassfish.web</groupId>
+			<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+			<version>2.0.0</version>
+		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api -->
 		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>${jstl.version}</version>
+			<version>${servletjstl.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>${jsp.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
 
 		<!--
 		https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
@@ -37,16 +40,17 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
-		</dependency>	
+		</dependency>
+
 		<!--
 		https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.version}</version>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${servletapi.version}</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-annotations-api</artifactId>
