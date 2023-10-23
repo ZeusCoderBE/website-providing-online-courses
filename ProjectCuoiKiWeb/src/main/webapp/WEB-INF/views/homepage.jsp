@@ -162,24 +162,22 @@
 													</a>
 												</div>
 											</div>
-											<c:forEach var="khoahoc" items="${danhsachkh}">
-												<div style="justify-content: center;" class="card_deck">
-													<div class="card_text" tabindex="1">
-														<div class="view_content">
-															<div class="card_item">
-																<a href="./course.html">
-																	<div class="card_img"></div>
-																</a>
-																<div class="course_info">
-																	<span>${khoahoc.mota}</span>
-																</div>
-																<a href="courses?makhoahoc=${khoahoc.makhoahoc}"
-																	class="course_name">${khoahoc.tenkhoahoc}</a>
+
+											<div style="justify-content: center;" class="card_deck">
+												<div class="card_text" tabindex="1">
+													<div class="view_content">
+														<div class="card_item">
+															<a href="./course.html">
+																<div class="card_img"></div>
+															</a>
+															<div class="course_info">
+																<span></span>
 															</div>
+															<a href="#" class="course_name"></a>
 														</div>
 													</div>
 												</div>
-											</c:forEach>
+											</div>
 										</div>
 									</div>
 
@@ -243,18 +241,18 @@
 												</div>
 											</div>
 											<div class="card_deck">
-												<c:forEach var="khoahoc" items="${dskhoahoc}">
+												<c:forEach var="khoahoc" items="${danhsachkh}">
 													<div class="card_text card_group">
 														<div class="view_content">
 															<div class="card_item">
-																<a href="courses?makh=${khoahoc.makh}">
+																<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
 																	<div class="card_img"></div>
 																</a>
 																<div class="course_info">
-																	<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+																	<span>${khoahoc.mota}</span>
 																</div>
-																<a href="homepage?makh=${khoahoc.makh}"
-																	class="course_name">${khoahoc.tenkh}</a>
+																<a href="homepage?makhoahoc=${khoahoc.makhoahoc}"
+																	class="course_name">${khoahoc.tenkhoahoc}</a>
 															</div>
 														</div>
 													</div>
