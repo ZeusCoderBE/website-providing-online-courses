@@ -41,7 +41,7 @@ public class BaiHoc {
 	}
 
 	public BaiHoc(int mabaihoc, String tenbaihoc, Double thoigianhoanthanh, String noidungbaihoc, String muctieudaura,
-			Date ngaydang) 
+			Date ngaydang,int makhoahoc) 
 	{
 		this.mabaihoc = mabaihoc;
 		this.tenbaihoc = tenbaihoc;
@@ -49,6 +49,7 @@ public class BaiHoc {
 		this.noidungbaihoc = noidungbaihoc;
 		this.muctieudaura = muctieudaura;
 		this.ngaydang = ngaydang;
+		this.makhoahoc=makhoahoc;
 	}
 
 	public BaiHoc() {

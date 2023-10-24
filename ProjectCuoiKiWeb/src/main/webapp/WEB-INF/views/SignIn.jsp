@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Trang Đăng Nhập</title>
     <link rel="stylesheet" href="./templates/CSS/styledn.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -29,7 +29,7 @@
                             <button class="btn" type="submit">Login</button>
                             <div class="form-login-policy">
                                 <p>Don't have an account? </p>
-                                <a href="">Signup</a>
+                                <a href="./introduction/dang-ky">Signup</a>
                             </div>
                             <div class="form-login-or">
                                 <h1>

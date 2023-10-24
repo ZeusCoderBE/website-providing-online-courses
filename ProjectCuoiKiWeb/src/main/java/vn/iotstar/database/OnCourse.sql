@@ -5,41 +5,41 @@ Go
 --drop database OnCourse
 CREATE TABLE NGUOIDUNG(
 	MaNguoiDung INT IDENTITY PRIMARY KEY,
-	HoTen NVARCHAR(50) NOT NULL,
-	Email VARCHAR(64) NOT NULL,
-	Sdt VARCHAR(10) NOT NULL,
-	QuocGia VARCHAR(30) NOT NULL,
-	VungMien NVARCHAR(30) NOT NULL,
-	DiaChi NVARCHAR(30) NOT NULL,
-	TrinhDo NVARCHAR(30) NOT NULL
+	HoTen NVARCHAR(50) ,
+	Email VARCHAR(64) ,
+	Sdt VARCHAR(10) ,
+	QuocGia NVARCHAR(30) ,
+	VungMien NVARCHAR(30),
+	DiaChi NVARCHAR(30) ,
+	TrinhDo NVARCHAR(30) 
 );
 GO
 
 CREATE TABLE HOCVIEN (
 	MaHocVien INT PRIMARY KEY,
-	LoaiTaiKhoa VARCHAR(20) NOT NULL,
+	LoaiTaiKhoa NVARCHAR(20) ,
 	CONSTRAINT FK_HOCVIEN_NGUOIDUNG FOREIGN KEY(MaHocVien) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
 
 CREATE TABLE GIANGVIEN (
 	MaGiangVien INT PRIMARY KEY,
-	ChuyenNganh VARCHAR(20) NOT NULL,
+	ChuyenNganh NVARCHAR(20) ,
 	CONSTRAINT FK_GIANGVIEN_NGUOIDUNG FOREIGN KEY(MaGiangVien) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
 
 CREATE TABLE KHOAHOC (
 	MaKhoaHoc INT PRIMARY KEY,
-	TenKhoaHoc NVARCHAR(255) NOT NULL,
-	MaTacGia INT NOT NULL,
-	GiaTien DECIMAL(18, 2) NOT NULL,
-	NgonNgu NVARCHAR(50) NOT NULL, 
+	TenKhoaHoc NVARCHAR(255) ,
+	MaTacGia INT ,
+	GiaTien DECIMAL(18, 2) ,
+	NgonNgu NVARCHAR(50) , 
 	ThoiGianHoanThanh DECIMAL(4, 2),
-	TrinhDoDauVao NVARCHAR(50) NOT NULL,
-	NgayPhatHanh DATE NOT NULL,
-	MoTa NVARCHAR(255) NOT NULL,
-	DanhGia INT NOT NULL,
+	TrinhDoDauVao NVARCHAR(50) ,
+	NgayPhatHanh DATE ,
+	MoTa NVARCHAR(255) ,
+	DanhGia INT ,
 	CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien),
 	CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
 );
@@ -47,11 +47,11 @@ GO
 
 CREATE TABLE BAIHOC (
 	MaBaiHoc INT  PRIMARY KEY,
-	TenBaiHoc NVARCHAR(255) NOT NULL,
+	TenBaiHoc NVARCHAR(255) ,
 	ThoiGianHoanThanh real,
-	NoiDungBaiHoc TEXT NOT NULL,
-	MucTieuDauRa real NOT NULL,
-	NgayDang DATE NOT NULL,
+	NoiDungBaiHoc TEXT ,
+	MucTieuDauRa real ,
+	NgayDang DATE ,
 	AnhMinhHoa VARCHAR(255),
 	MaKhoaHoc INT,
 	CONSTRAINT FK_BAIHOC_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc),
@@ -62,7 +62,7 @@ GO
 CREATE TABLE BAITAP (
 	TenBaiTap NVARCHAR(50) NOT NULL,
 	MaBaiHoc INT NOT NULL,
-	HinhThuc NVARCHAR(20) NOT NULL,
+	HinhThuc NVARCHAR(20) ,
 	ThoiGianHoanThanh real,
 	FileDapAn VARCHAR(255),
 	PRIMARY KEY (TenBaiTap, MaBaiHoc),
@@ -74,7 +74,7 @@ CREATE TABLE TAILIEU (
 	MaTaiLieu INT  PRIMARY KEY,
 	TheLoai NVARCHAR(20),
 	DinhDangLuuTru NVARCHAR(20),
-	DuongDanLuuTru NVARCHAR(255) NOT NULL
+	DuongDanLuuTru NVARCHAR(255) 
 );
 GO
 
@@ -118,9 +118,9 @@ CREATE TABLE HOC (
 GO
 
 CREATE TABLE LAMBAITAP (
-	MaNguoiDung INT NOT NULL,
-	TenBaiTap NVARCHAR(50) NOT NULL,
-	MaBaiHoc INT NOT NULL,
+	MaNguoiDung INT ,
+	TenBaiTap NVARCHAR(50) ,
+	MaBaiHoc INT ,
 	DiemSo INT ,
 	PRIMARY KEY (MaNguoiDung, TenBaiTap, MaBaiHoc),
 	CONSTRAINT FK_LAMBAITAP_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
@@ -130,8 +130,8 @@ CREATE TABLE LAMBAITAP (
 GO
 
 CREATE TABLE DINHKEM (
-	MaBaiHoc INT NOT NULL,
-	MaTaiLieu INT NOT NULL,
+	MaBaiHoc INT ,
+	MaTaiLieu INT ,
 	PRIMARY KEY (MaBaiHoc, MaTaiLieu),
 	CONSTRAINT FK_DINHKEM_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc),
 	CONSTRAINT FK_DINHKEM_TAILIEU FOREIGN KEY (MaTaiLieu) REFERENCES TAILIEU(MaTaiLieu)
@@ -162,20 +162,20 @@ go
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo)
 VALUES
-    ('Nguyễn Văn A', 'nguyenvana@email.com', '1234567890', 'Việt Nam', 'Miền Nam', 'Địa chỉ 1', 'Cử nhân'),
-    ('Trần Thị B', 'tranthib@email.com', '9876543210', 'Việt Nam', 'Miền Trung', 'Địa chỉ 2', 'Thạc sĩ'),
-    ('Lê Văn C', 'levanc@email.com', '4567891230', 'Việt Nam', 'Miền Bắc', 'Địa chỉ 3', 'Tiến sĩ'),
-    ('Phạm Thị D', 'phamthid@email.com', '3216549870', 'Việt Nam', 'Miền Nam', 'Địa chỉ 4', 'Cử nhân'),
-    ('Hoàng Văn E', 'hoangvane@email.com', '9873216540', 'Việt Nam', 'Miền Trung', 'Địa chỉ 5', 'Thạc sĩ');
+    (N'Nguyễn Văn A', 'nguyenvana@email.com', '1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân'),
+    (N'Trần Thị B', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ'),
+    (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ'),
+    (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân'),
+    (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ');
 -- Chèn học viên
 INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoa)
-VALUES (1, 'Học viên chính thức'),
-    (2, 'Học viên chính thức'),
-    (3, 'Học viên chính thức')
+VALUES (1, N'Vàng'),
+    (2, N'Bạc'),
+    (3, N'Đồng')
 -- Chèn giảng viên
 INSERT INTO  GIANGVIEN (MaGiangVien, ChuyenNganh)
-VALUES (4, 'Toán học'),
-    (5, 'Văn học')
+VALUES (4, N'Công Nghệ Phần Mềm'),
+    (5, N'Mạng Và An Ninh Mạng')
 
 -- Chèn khóa học
 INSERT INTO KHOAHOC (MaKhoaHoc,TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia)

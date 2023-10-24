@@ -72,5 +72,9 @@ public class KhoaHoc {
 	public KhoaHoc() {
 
 	}
+	public KhoaHoc(int makhoahoc)
+	{
+		this.makhoahoc=makhoahoc;
+	}
 
 }

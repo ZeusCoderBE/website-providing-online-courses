@@ -8,7 +8,13 @@ function handleFocus() {
     pageStudy.style.display = 'block';
     sidebarStudy.style.display = 'block';
 }
-
+function handleCheckboxChange(checkbox) {
+    if (checkbox.id === "tkgiaovien" && checkbox.checked) {
+        document.getElementById("tkhocvien").checked = false;
+    } else if (checkbox.id === "tkhocvien" && checkbox.checked) {
+        document.getElementById("tkgiaovien").checked = false;
+    }
+}
 function handleBlur() {
     const page = document.querySelector('.page');
     const sidebarHome = document.querySelector('.sidebar_home');

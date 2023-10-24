@@ -5,11 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LoginController {
-	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String LogIn()
+public class SignInController {
+	@RequestMapping(value="/introduction/dang-nhap",method=RequestMethod.GET)
+	public String DangNhap()
 	{
-		return "SignIn";
+		return "/SignIn";
 	}
-		
 }
