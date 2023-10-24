@@ -1,3 +1,5 @@
+--DROP DATABASE ONCOURSE
+
 create database ONCOURSE
 go
 USE ONCOURSE;
@@ -7,6 +9,7 @@ CREATE TABLE NGUOIDUNG(
 	MaNguoiDung INT IDENTITY PRIMARY KEY,
 	HoTen NVARCHAR(50) ,
 	Email VARCHAR(64) ,
+	MatKhau VARCHAR(64),
 	Sdt VARCHAR(10) ,
 	QuocGia NVARCHAR(30) ,
 	VungMien NVARCHAR(30),
@@ -160,13 +163,13 @@ Create Table DinhKiemVanBan
 go
 
 -- Chèn người dùng
-INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo)
+INSERT INTO NGUOIDUNG (HoTen, Email, MatKhau, Sdt, QuocGia, VungMien, DiaChi, TrinhDo)
 VALUES
-    (N'Nguyễn Văn A', 'nguyenvana@email.com', '1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân'),
-    (N'Trần Thị B', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ'),
-    (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ'),
-    (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân'),
-    (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ');
+    (N'Nguyễn Văn A', 'nguyenvana@email.com', 'nguyenvana@email.com','1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân'),
+    (N'Trần Thị B', 'tranthib@email.com', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ'),
+    (N'Lê Văn C', 'levanc@email.com', 'levanc@email.com','4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ'),
+    (N'Phạm Thị D', 'phamthid@email.com', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân'),
+    (N'Hoàng Văn E', 'hoangvane@email.com', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ');
 -- Chèn học viên
 INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoa)
 VALUES (1, N'Vàng'),

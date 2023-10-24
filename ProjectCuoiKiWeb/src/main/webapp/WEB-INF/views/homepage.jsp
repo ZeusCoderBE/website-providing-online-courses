@@ -298,7 +298,7 @@
 												<div class="card_text">
 													<div class="view_content">
 														<div class="card_item">
-															<a href="describe.html">
+															<a href="describe.jsp">
 																<div class="card_img"></div>
 															</a>
 															<div class="course_info">

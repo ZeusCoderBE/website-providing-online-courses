@@ -4,6 +4,7 @@ public class NguoiDung {
 	private int manguoidung;
 	private String hoten;
 	private String email;
+	private String password;
 	private String sdt;
 	private String quocgia;
 	private String vungmien;
@@ -17,6 +18,9 @@ public class NguoiDung {
 	}
 	public String getEmail() {
 		return email;
+	}
+	public String getPassword() {
+		return password;
 	}
 	public String getSdt() {
 		return sdt;
@@ -33,11 +37,12 @@ public class NguoiDung {
 	public String getTrinhdo() {
 		return trinhdo;
 	}
-	public NguoiDung(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
+	public NguoiDung(int manguoidung, String hoten, String email, String password, String sdt, String quocgia, String vungmien,
 			String diachi, String trinhdo) {
 		this.manguoidung = manguoidung;
 		this.hoten = hoten;
 		this.email = email;
+		this.password = password;
 		this.sdt = sdt;
 		this.quocgia = quocgia;
 		this.vungmien = vungmien;
