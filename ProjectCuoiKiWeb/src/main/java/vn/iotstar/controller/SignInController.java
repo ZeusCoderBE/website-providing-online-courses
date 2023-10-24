@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SignInController {
-	@RequestMapping(value="/introduction/dang-nhap",method=RequestMethod.GET)
+	@RequestMapping(value="/dang-nhap",method=RequestMethod.GET)
 	public String DangNhap()
 	{
-		return "/SignIn";
+		return "SignIn";
 	}
 }

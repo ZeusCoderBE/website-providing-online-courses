@@ -154,7 +154,7 @@ GO
 Create Table DinhKiemVanBan
 (
 	MaBaiHoc int   FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc),
-	MaTaiLieu int FOREIGN KEY (MaTaiLieu) REFERENCES TAILIEU(MaTaiLieu),
+	MaTaiLieu int FOREIGN KEY (MaTaiLieu) REFERENCES TaiLieuVanBan(MaTaiLieu),
 	primary key (MaBaiHoc,MaTaiLieu)
 )
 go

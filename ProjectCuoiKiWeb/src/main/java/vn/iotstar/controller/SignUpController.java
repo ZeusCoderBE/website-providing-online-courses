@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SignUpController {
-	@RequestMapping(value="/introduction/dang-ky", method=RequestMethod.GET)
+	@RequestMapping(value="/dang-ky", method=RequestMethod.GET)
 	public String LogIn()
 	{
-		return "/introduction/DangKy";
+		return "/DangKy";
 	}
 		
 }
