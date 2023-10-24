@@ -29,7 +29,7 @@
                             <button class="btn" type="submit">Login</button>
                             <div class="form-login-policy">
                                 <p>Don't have an account? </p>
-                                <a href="#">Signup</a>
+                                <a href="">Signup</a>
                             </div>
                             <div class="form-login-or">
                                 <h1>

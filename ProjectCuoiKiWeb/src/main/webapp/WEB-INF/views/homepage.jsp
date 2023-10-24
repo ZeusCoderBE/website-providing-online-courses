@@ -251,7 +251,7 @@
 																<div class="course_info">
 																	<span>${khoahoc.mota}</span>
 																</div>
-																<a href="homepage?makhoahoc=${khoahoc.makhoahoc}"
+																<a href="courses?makhoahoc=${khoahoc.makhoahoc}"
 																	class="course_name">${khoahoc.tenkhoahoc}</a>
 															</div>
 														</div>
