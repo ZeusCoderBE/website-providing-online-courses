@@ -11,13 +11,14 @@ CREATE TABLE NGUOIDUNG(
 	QuocGia NVARCHAR(30) ,
 	VungMien NVARCHAR(30),
 	DiaChi NVARCHAR(30) ,
-	TrinhDo NVARCHAR(30) 
+	TrinhDo NVARCHAR(30) ,
+	MatKhau nvarchar(30),
 );
 GO
 
 CREATE TABLE HOCVIEN (
 	MaHocVien INT PRIMARY KEY,
-	LoaiTaiKhoa NVARCHAR(20) ,
+	LoaiTaiKhoan NVARCHAR(20) ,
 	CONSTRAINT FK_HOCVIEN_NGUOIDUNG FOREIGN KEY(MaHocVien) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
@@ -160,15 +161,15 @@ Create Table DinhKiemVanBan
 go
 
 -- Chèn người dùng
-INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo)
+INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
 VALUES
-    (N'Nguyễn Văn A', 'nguyenvana@email.com', '1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân'),
-    (N'Trần Thị B', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ'),
-    (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ'),
-    (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân'),
-    (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ');
+    (N'Nguyễn Văn A', 'nguyenvana@email.com', '1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân','1'),
+    (N'Trần Thị B', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ','2'),
+    (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ','3'),
+    (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân','4'),
+    (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ','5');
 -- Chèn học viên
-INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoa)
+INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoan)
 VALUES (1, N'Vàng'),
     (2, N'Bạc'),
     (3, N'Đồng')

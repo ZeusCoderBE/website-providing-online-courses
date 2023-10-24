@@ -34,5 +34,5 @@ public class KhoaHocDao {
 		}
 		return khoahoc;
 	}
-
+	
 }

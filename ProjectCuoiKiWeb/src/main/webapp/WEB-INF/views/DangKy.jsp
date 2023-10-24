@@ -16,43 +16,46 @@
 <body>
 	<div class="container">
 		<div id="form-login" style="margin-top: 20px;">
-			<form action="#" method="get">
+			<form action="dang-ky" method="post">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
-								<h1>Đăng Ký</h1>
+								<h1>Đăng Ký </h1>
 							</div>
-
+							<p>${thongbaodkdung}</p>
+							<br/>
 							<div class="form-login-input">
 								<label for="username">Họ và Tên</label> <input type="text"
-									id="username" placeholder="VD: Nguyễn Văn A" />
+									id="username" placeholder="VD: Nguyễn Văn A" name="username"
+									required />
 							</div>
 							<div class="form-login-input">
 								<label for="email">Email</label> <input type="text" id="email"
-									placeholder="VD: vana@gmail.com" />
+									placeholder="VD: vana@gmail.com" name="email" required />
 							</div>
 							<div class="form-login-input">
 								<label for="password">Mật Khẩu</label> <input type="password"
-									id="password" />
+									id="password" name="password" required />
 							</div>
 							<div class="form-login-input">
-								<label for="confirmpassword">Xác Nhận Mật Khẩu</label> <input
-									type="password" id="confirmpassword" />
+								<label for="confirmpassword">Xác Nhận Mật Khẩu: 
+									 ${xacnhanmksai}</label> <input type="password" id="confirmpassword"
+									name="confirmpassword" required />
 							</div>
 
 							<div class="form-login-input">
 								<label for="diachi">Quốc Gia</label> <input type="text"
-									id="diachi" placeholder="VD:Việt Nam" />
+									id="quocgia" name="quocgia" placeholder="VD:Việt Nam" required />
 							</div>
 							<div class="form-login-input">
-								<label for="loaitk">Loại Tài Khoản</label>
+								<label for="loaitk">Loại Tài Khoản :${thongbaoloi}</label>
 							</div>
 							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
-								name="tkgiaovien" id="tkgiaovien"
+								name="tkgiaovien" id="tkgiaovien" name="tkgiaovien"
 								onchange="handleCheckboxChange(this)"> <label
 								for="Tkhocvien">Học Viên</label> <input type="checkbox"
-								name="tkhocvien" id="tkhocvien"
+								name="tkhocvien" id="tkhocvien" name="tkhocvien"
 								onchange="handleCheckboxChange(this)">
 
 							<button class="btn" type="submit">Sign Up</button>
