@@ -35,7 +35,6 @@ public class NguoiDung {
 	}
 	public NguoiDung(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
 			String diachi, String trinhdo) {
-		super();
 		this.manguoidung = manguoidung;
 		this.hoten = hoten;
 		this.email = email;

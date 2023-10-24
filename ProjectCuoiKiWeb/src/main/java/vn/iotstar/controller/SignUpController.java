@@ -9,7 +9,7 @@ public class SignUpController {
 	@RequestMapping(value="/dang-ky", method=RequestMethod.GET)
 	public String LogIn()
 	{
-		return "/DangKy";
+		return "DangKy";
 	}
 		
 }
