@@ -13,28 +13,38 @@
 </head>
 <body>
     <div class="container">
-        <div id="form-login">
-            <form action="dang-nhap" method="post">
+        <div id="form-login" style="margin-top: 20px;">
+            <form action="#" method="get">
                 <div class="form-list">
                     <div class="form-item">
                         <div class="form-item-login">
                             <div class="form-login-header"><h1>Signup</h1></div>
+                            
                             <div class="form-login-input">
-                                <input type="text" placeholder="Email" id="username" name="username"/>
+                                <label for="username">Tên của bạn?</label>
+                                <input type="text" id="username" placeholder="Họ và Tên của bạn"/>
                             </div>
                             <div class="form-login-input">
-
-                                <input type="password" placeholder="Create password"/>
-
+                                <label for="email">Email</label>
+                                <input type="text" id="email" placeholder="Email"/>
                             </div>
                             <div class="form-login-input">
-                                <input type="password" placeholder="Confirm password"/>
+                                <label for="password">Password</label>
+                                <input type="password" id="password" placeholder="Create password"/>
+                            </div>
+                            <div class="form-login-input">
+                                <label for="confirmpassword">Confirm Password</label>
+                                <input type="password" id="confirmpassword" placeholder="Confirm password"/>
                             </div>
 
+                            <div class="form-login-input">
+                                <label for="diachi">Quốc Gia</label>
+                                <input type="text" id="diachi" placeholder="Quốc gia"/>
+                            </div>
                             <button class="btn" type="submit">Signup</button>
                             <div class="form-login-policy">
                                 <p>Already have an account? </p>
-                                <a href="#">Login</a>
+                                <a href="./signin.html">Login</a>
                             </div>
                             <div class="form-login-or">
                                 <h1>
@@ -49,10 +59,7 @@
                                     </div>
                                 </a>
                             </div>
-<<<<<<< HEAD
-=======
 
->>>>>>> d9f64dfbec42f96aa340f13b889dc2eba09b8df3
                             <div class="header_login-nav logo_google">
                                 <a href="#">
                                     <i class="fa-brands fa-google"></i>

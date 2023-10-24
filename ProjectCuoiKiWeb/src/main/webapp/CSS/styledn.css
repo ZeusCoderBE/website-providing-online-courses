@@ -72,6 +72,15 @@ body {
     border: 1px solid orange;
 }
 
+.form-login-input input{
+    margin-top: 4px;
+}
+
+.form-login-input label {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
 .form-notice {
     width: 100%;
     text-align: center;
@@ -206,3 +215,5 @@ body {
     background-color: #d8cece;
     color: #4d4d50;
 }
+
+

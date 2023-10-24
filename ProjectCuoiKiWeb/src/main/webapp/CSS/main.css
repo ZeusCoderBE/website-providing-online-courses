@@ -116,6 +116,18 @@ body {
     text-align: center;
 }
 
+ul {
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
 .col-10 {
     min-height: 500px;
     padding-left: 0;
