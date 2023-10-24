@@ -189,8 +189,9 @@
 
 .utilities .usermenu {
     height: 100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
+    display: none;
 }
 
 .utilities .usermenu span {
@@ -249,7 +250,8 @@
 }
 
 .nav_drawer a:hover {
-    background-color: #f5f5f5;
+    background-color: var(--background-primary);
+    color: white;
 }
 
 .nav_drawer-primary a{
@@ -259,7 +261,7 @@
 }
 
 .nav_drawer i {
-    margin: 0 10px;
+    margin-right: 10px;
     font-size: 1rem;
 }
 
@@ -300,12 +302,14 @@
     width: auto;
     margin: 0 20px;
     height: auto;
+    padding-left: 10px;
     border: 1px solid var(--border-button);
     border-radius: 6px;
 }
 
 .home_course {
     display: none;
+    height: auto;
 }
 
 .list_timer {
@@ -418,6 +422,10 @@
 
 }
 
+.nav-link:focus {
+    color: red;
+}
+
 .card_body {
     display: flex;
     flex-direction: column;
@@ -496,7 +504,7 @@
 .card_item .card_img{
     height: 7rem;
     width: 100%;
-        background-image: url("../Images/banner.jpg");
+    background-image: url("../Images/banner.jpg");
     background-size: cover;
 }
 
