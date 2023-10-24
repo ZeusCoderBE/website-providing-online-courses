@@ -8,8 +8,13 @@
     <title>Trang Chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<<<<<<< HEAD
+    <link href="./templates/CSS/style.css" rel="stylesheet">
+	<link href="./templates/CSS/main.css" rel="stylesheet">
+=======
     <link href="./style/CSS/style.css" rel="stylesheet">
 	<link href="./style/CSS/main.css" rel="stylesheet">
+>>>>>>> 54463c1ba80401c925cb9a123a3c306d7e1c4f59
 </head>
 <body>
     <div class="" id="app">
