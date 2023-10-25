@@ -183,7 +183,6 @@
 								</li>
 								<li class="d-flex">
 									<div class="usermenu">
-<<<<<<< HEAD
                                         <span>Tran Van Luan</span>
                                         <div class="icon_name">
                                             <span>T</span>
@@ -221,7 +220,7 @@
                                     </div>
 									<button onclick="goToNewPage()"
 										class="btn btn-success login_taikhoan">Đăng Nhập</button>
-=======
+<!--
 										<span>Tran Van Luan</span>
 										<div class="icon_name">
 											<span>T</span>
@@ -229,7 +228,7 @@
 										<div class="border_bottom"></div>
 									</div>
 									<a href="#" onclick=" testConfirmDialog()">Đăng Xuất</a>
->>>>>>> c2372b7ba35e60948e55cc54fae2a6c674398670
+  -->
 								</li>
 							</ul>
 						</div>
