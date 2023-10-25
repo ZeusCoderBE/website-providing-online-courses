@@ -211,7 +211,7 @@
                                                 </a>
                                             </li>
                                              <li class="setting__item">
-                                                <a href="testConfirmDialog()">
+                                                <a href="#" onclick="testConfirmDialog()">
                                                     <span>Đăng xuất</span>
                                                 </a>
                                             </li>
