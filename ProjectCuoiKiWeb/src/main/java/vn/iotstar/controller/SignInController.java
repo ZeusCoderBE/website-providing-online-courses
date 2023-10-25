@@ -6,9 +6,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class SignInController {
+	int check=0;
 	@RequestMapping(value="/dang-nhap",method=RequestMethod.GET)
 	public String DangNhap()
 	{
-		return "SignIn";
+		String url="";
+		if(check==0)
+		{
+			url="SignIn";
+		}
+		return url;
 	}
 }

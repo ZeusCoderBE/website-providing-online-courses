@@ -8,3 +8,15 @@ begin
 	on BAIHOC.MaBaiHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
+
+--Xem Danh Sach Khoá Học Của Tôi
+Create or ALter Procedure sp_XemKhoaHocCuaToi 
+@manguoidung int
+as
+begin
+	select Top 3 TenKhoaHoc,TrinhDoDauVao From KhoaHoc join
+	DANGKY on KHOAHOC.MaKhoaHoc=DANGKY.MaKhoaHoc
+	join HOCVIEN 
+	on HOCVIEN.MaHocVien=DANGKY.MaNguoiDung
+	where MaHocVien=@manguoidung
+end

@@ -234,6 +234,7 @@
 						</div>
 						<button class="btn btn-success btn_signin__course">Đăng
 							ký học</button>
+						<button class="btn btn-success btn_signin__course">Thêm Vào Giỏ Hàng</button>
 					</div>
 				</div>
 			</div>
