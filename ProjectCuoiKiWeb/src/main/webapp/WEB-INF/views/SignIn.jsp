@@ -12,19 +12,19 @@
 <body>
     <div class="container">
         <div id="form-login">
-            <form action="#" method="get">
+            <form action="login" method="post">
                 <div class="form-list">
                     <div class="form-item">
                         <div class="form-item-login">
                             <div class="form-login-header"><h1>Login</h1></div>
                             <div class="form-login-input">
-                                <input type="text" placeholder="Email"/>
+                                <input type="text" placeholder="Email" name="Email"/>
                             </div>
                             <div class="form-login-input">
-                                <input type="password" placeholder="Password"/>
+                                <input type="password" placeholder="Password" name="Password"/>
                             </div>
                             <div class="form-notice">
-                                <a href="#">Forgot Password?</a>
+                                <a href="forgetpassword">Forgot Password?</a>
                             </div>
                             <button class="btn" type="submit">Login</button>
                             <div class="form-login-policy">

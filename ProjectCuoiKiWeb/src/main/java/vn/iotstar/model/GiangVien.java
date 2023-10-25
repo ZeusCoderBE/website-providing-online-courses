@@ -7,7 +7,6 @@ public class GiangVien extends NguoiDung {
 			String diachi, String trinhdo,String matkhau,String chuyennganh)
 	{
 		super(manguoidung,hoten,email,sdt,quocgia,vungmien,diachi,trinhdo,matkhau);
-		this.chuyennganh=chuyennganh;
 	}
 	public String getChuyennganh()
 	{
