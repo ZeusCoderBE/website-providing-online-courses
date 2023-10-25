@@ -206,34 +206,34 @@
 			<div class="row">
 				<nav class="col-2">
 					<div class="sidebar sidebar_home">
-
 						<div class="nav_drawer home_system">
 							<a href="#" onclick="homePage()"> <i
 								class="fa-solid fa-house"></i> <span>Trang trủ hệ thống</span>
 							</a>
 						</div>
+						<c:if test="${sessionScope.manguoidung ne -1 &&  not empty sessionScope.manguoidung}" >
+							<div class=" nav_drawer home">
+								<a href="#" onclick="myCourses()"> <i
+									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
+								</a>
+							</div>
 
-						<div class=" nav_drawer home">
-							<a href="#" onclick="myCourses()"> <i
-								class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
-							</a>
-						</div>
+							<div class="nav_drawer home_course">
+								<a style="height: 46px;" href="#"> <i
+									class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+										học của tôi</span>
 
-						<div class="nav_drawer home_course">
-							<a style="height: 46px;" href="#"> <i
-								class="fa-solid fa-graduation-cap"></i> <span>Các khóa
-									học của tôi</span>
-
-							</a>
-							<ul>
-								<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-										<span>SHDK_23_24_01</span>
-								</a></li>
-								<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-										<span>SHDK_23_24_01</span>
-								</a></li>
-							</ul>
-						</div>
+								</a>
+								<ul>
+									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
+											<span>SHDK_23_24_01</span>
+									</a></li>
+									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
+											<span>SHDK_23_24_01</span>
+									</a></li>
+								</ul>
+							</div>
+						</c:if>
 
 						<div class="nav_drawer calendar">
 							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>

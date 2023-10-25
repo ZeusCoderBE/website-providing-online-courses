@@ -1,11 +1,15 @@
 package vn.iotstar.controller;
 
+import java.sql.SQLException;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import vn.iotstar.model.*;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class SignInController {
@@ -16,13 +20,21 @@ public class SignInController {
 		return "SignIn";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String SubmitDangNhap(ModelMap model, @RequestParam("Email") String email, @RequestParam("Password") String password)
+	public String SubmitDangNhap(HttpServletRequest rq,ModelMap model, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
 	{
+		HttpSession session = rq.getSession();
+
 		boolean check = ndd.checkDangNhap(email, password);
 		if (check == false) {
 			return "SignIn";
 		}
-		return "redirect:/homepage";
+		else
+		{
+			int manguoidung=ndd.TimMaNguoiDung(email);
+			session.setAttribute("manguoidung", manguoidung);
+			System.out.print(manguoidung);
+			return "redirect:/homepage";
+		}
 	}
 	@RequestMapping(value="forgetpassword", method=RequestMethod.GET)
 	public String ForgetPassword()
@@ -30,8 +42,9 @@ public class SignInController {
 		return "forget_password";
 	}
 	@RequestMapping(value="getpassword", method=RequestMethod.POST)
-	public String GetForgetPassword(ModelMap model, @RequestParam("Email") String email, @RequestParam("NewPassword") String newpass,  @RequestParam("CheckPassword") String checkpass)
+	public String GetForgetPassword(ModelMap model, @RequestParam("Email") String email, @RequestParam("NewPassword") String newpass,  @RequestParam("CheckPassword") String checkpass) 
 	{
+
 		int check = ndd.getForgetPass(email, newpass, checkpass);
 		if (check == 1) {
 			return "redirect:/login";
