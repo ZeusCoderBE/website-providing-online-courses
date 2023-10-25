@@ -21,9 +21,10 @@
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
-								<h1>Đăng Ký </h1>
+								<h1>Đăng Ký</h1>
 							</div>
-							<br/>
+							<br />
+							<p>${thongbaodksai}</p>
 							<div class="form-login-input">
 								<label for="username">Họ và Tên</label> <input type="text"
 									id="username" placeholder="VD: Nguyễn Văn A" name="username"
@@ -38,8 +39,8 @@
 									id="password" name="password" required />
 							</div>
 							<div class="form-login-input">
-								<label for="confirmpassword">Xác Nhận Mật Khẩu: 
-									 ${xacnhanmksai}</label> <input type="password" id="confirmpassword"
+								<label for="confirmpassword">Xác Nhận Mật Khẩu:
+									${xacnhanmksai}</label> <input type="password" id="confirmpassword"
 									name="confirmpassword" required />
 							</div>
 

@@ -15,6 +15,18 @@ function handleCheckboxChange(checkbox) {
         document.getElementById("tkgiaovien").checked = false;
     }
 }
+function testConfirmDialog()
+ {
+ 	var result=confirm("Bạn chắc chắc có muốn đăng xuất không");
+ 	if(result==true)
+ 	{
+ 		window.location.href="introduct";
+ 	}
+ 	else
+ 	{
+ 		return false;
+ 	}
+ }
 function handleBlur() {
     const page = document.querySelector('.page');
     const sidebarHome = document.querySelector('.sidebar_home');

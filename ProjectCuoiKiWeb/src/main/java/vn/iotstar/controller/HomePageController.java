@@ -25,7 +25,7 @@ public class HomePageController {
 			model.addAttribute("danhsachkh", ListKH);
 
 		} catch (Exception ex) {
-
+			
 		}
 
 		return "homepage";

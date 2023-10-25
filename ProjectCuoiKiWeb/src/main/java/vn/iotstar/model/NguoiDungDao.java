@@ -15,10 +15,25 @@ public class NguoiDungDao {
 		int ketqua=dbconn.ExecuteCommand(query);
 		return ketqua;
 	}
-
+	public int  TimMaNguoiDung(String email) throws ClassNotFoundException, SQLException
+	{
+		String sql="select MaNguoiDung From\r\n"
+				+ "NguoiDung\r\n"
+				+ "where email='"+email+"'";
+		ResultSet rs=dbconn.ExecuteQuery(sql);
+		if(rs.next())
+		{
+			return rs.getInt("MaNguoiDung");
+		}
+		else
+		{
+			return -1;
+		}
+	}
 	public boolean checkDangNhap(String email, String password) {
 		String sqlStr = "SELECT * FROM NGUOIDUNG WHERE Email='" + email + "'" + "AND MatKhau='" + password + "'";
 		boolean check = false;
+
 		try {
 			ResultSet rs = dbconn.ExecuteQuery(sqlStr);
 			if (rs.next()) {
