@@ -113,7 +113,7 @@ body {
     color: #6d727c;
     font-size: 14px;
     box-sizing: border-box;
-    text-align: center;
+    /* text-align: center; */
 }
 
 ul {

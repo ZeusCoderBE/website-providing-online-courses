@@ -4,21 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trang Chủ</title>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-<link href="./templates/CSS/cart.css" rel="stylesheet">
-<link href="./templates/CSS/style.css" rel="stylesheet">
-<link href="./templates/CSS/main.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Trang Chủ</title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+		rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+		crossorigin="anonymous">
+	<link href="./templates/CSS/cart.css" rel="stylesheet">
+	<link href="./templates/CSS/style.css" rel="stylesheet">
+	<link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
 <body>
 	<div class="" id="app">
@@ -68,12 +68,13 @@
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
 								<li class="mr-3">
 									<div class="show_info">
-										<span>Khóa học của tôi</span>
+										<i class="fa-solid fa-cart-shopping"></i>
+										<div class="show_info__figure">4</div>
 										<div class="my_course">
 											<div class="pseudo_class"></div>
 
 											<div class="my_course__header">
-												<h5>Khóa học của tôi</h5>
+												<h5>Giỏ hàng của tôi</h5>
 												<span>Xem tất cả</span>
 											</div>
 											<ul class="my_course__list">
@@ -85,19 +86,18 @@
 														</a>
 													</div>
 													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
+														<span> <a href="#">Xây Dựng Website với ReactJS ahdhdghdsg</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022
 														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="81" style="width: 81%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>81</strong>%
-																complete
-															</div>
+													</div>
+
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+	
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -110,18 +110,16 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
+														</span> <span class="info_time"> Xuất bản :21-3-2022
 														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="81" style="width: 81%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>81</strong>%
-																complete
-															</div>
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+	
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -134,18 +132,17 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
+														</span> <span class="info_time"> Xuất bản :21-3-2022
 														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="5" style="width: 5%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>5</strong>%
-																complete
-															</div>
+														
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+	
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -158,18 +155,18 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
+														</span> 
+														<span class="info_time"> Xuất bản :21-3-2022
 														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="50" style="width: 50%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>50</strong>%
-																complete
-															</div>
+														
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+	
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -186,13 +183,43 @@
 								</li>
 								<li class="d-flex">
 									<div class="usermenu">
-										<span>Tran Van Luan</span>
-										<div class="icon_name">
-											<span>T</span>
-										</div>
-										<div class="border_bottom"></div>
-									</div>
-									<a href="#" onclick=" testConfirmDialog()">Đăng Xuất</a>
+                                        <span>Tran Van Luan</span>
+                                        <div class="icon_name">
+                                            <span>T</span>
+                                        </div>
+                                        <div class="border_bottom"></div>
+                                        <ul class="setting my_course">
+                                             <div style="right: -20px; top:-10px;"  class="pseudo_class"></div>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Hồ sơ cá nhân</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Chứng chỉ</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Cần trợ giúp</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Đổi mật khẩu</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="testConfirmDialog()">
+                                                    <span>Đăng xuất</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+									<button onclick="goToNewPage()"
+										class="btn btn-success login_taikhoan">Đăng Nhập</button>
 								</li>
 							</ul>
 						</div>

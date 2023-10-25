@@ -1,5 +1,6 @@
 
 create database ONCOURSE
+
 go
 USE ONCOURSE
 Go
