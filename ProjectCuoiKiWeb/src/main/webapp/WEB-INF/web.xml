@@ -6,7 +6,7 @@
 	id="WebApp_ID" version="5.0">
 	<display-name>ProjectCuoiKiWeb</display-name>
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/homepage.jsp</welcome-file>
+		<welcome-file>/WEB-INF/views/create_course.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
