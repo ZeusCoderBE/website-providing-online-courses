@@ -35,7 +35,7 @@ public class KhoaHocDao {
 	}
 	public List<KhoaHoc> FindMyLearning(HocVien hv) throws ClassNotFoundException, SQLException
 	{
-		String thucthi="sp_XemKhoaHocCuaToi "+hv.getManguoidung()+"";
+		String thucthi="sp_XemKhoaHocCuaToi"+hv.getManguoidung()+"";
 		ResultSet rs= dbC.ExecuteQuery(thucthi);
 		KhoaHoc khoahoc=new KhoaHoc();
 		List<KhoaHoc> listkh=new ArrayList<KhoaHoc>();

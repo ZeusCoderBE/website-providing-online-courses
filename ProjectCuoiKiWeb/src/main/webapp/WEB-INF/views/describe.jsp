@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
 
 								<div class="my_course__header">
 									<h5>Khóa học của tôi</h5>
-									<span>Xem tất cả</span>
+									<span><a href="mycourse?manguoidung=${manguoidung}">Xem tất cả</a></span>
 								</div>
 								<ul class="my_course__list">
 									<div class="my_course__detail">
@@ -63,52 +64,6 @@
 												</div>
 												<div class="small">
 													<span class="sr-only">Course progress:</span> <strong>81</strong>%
-													complete
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="my_course__detail">
-										<div class="my_sourse__item">
-											<a href="#"> <img
-												src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-												alt="react">
-											</a>
-										</div>
-										<div class="my_course__info">
-											<span> <a href="#">Xây Dựng Website với ReactJS</a>
-											</span> <span class="info_time"> Học cách đây 2 ngày trước </span>
-											<div class="card-footer dashboard-card-footer border-0">
-												<div class="progress border">
-													<div class="progress-bar bar" role="progressbar"
-														aria-valuenow="81" style="width: 81%" aria-valuemin="0"
-														aria-valuemax="100"></div>
-												</div>
-												<div class="small">
-													<span class="sr-only">Course progress:</span> <strong>81</strong>%
-													complete
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="my_course__detail">
-										<div class="my_sourse__item">
-											<a href="#"> <img
-												src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-												alt="react">
-											</a>
-										</div>
-										<div class="my_course__info">
-											<span> <a href="#">Xây Dựng Website với ReactJS</a>
-											</span> <span class="info_time"> Học cách đây 2 ngày trước </span>
-											<div class="card-footer dashboard-card-footer border-0">
-												<div class="progress border">
-													<div class="progress-bar bar" role="progressbar"
-														aria-valuenow="5" style="width: 5%" aria-valuemin="0"
-														aria-valuemax="100"></div>
-												</div>
-												<div class="small">
-													<span class="sr-only">Course progress:</span> <strong>5</strong>%
 													complete
 												</div>
 											</div>
