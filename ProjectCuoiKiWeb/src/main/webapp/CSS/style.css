@@ -189,8 +189,9 @@
 
 .utilities .usermenu {
     height: 100%;
-    display: flex;
+    /* display: flex; */
     align-items: center;
+    display: none;
 }
 
 .utilities .usermenu span {
@@ -232,6 +233,7 @@
 
 .nav_drawer a {
     display: flex;
+    flex-wrap: wrap;
     height: 100%;
     width: 100%;
     padding-left: 20px;
@@ -248,7 +250,8 @@
 }
 
 .nav_drawer a:hover {
-    background-color: #f5f5f5;
+    background-color: var(--background-primary);
+    color: white;
 }
 
 .nav_drawer-primary a{
@@ -282,6 +285,57 @@
     width: 100%;
 }
 
+.nav_drawer__item {
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.nav_drawer div {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    text-align: start;
+    margin-left: 20px;
+}
+
+.nav_drawer__course {
+    width: auto;
+    margin: 0 20px;
+    height: auto;
+    padding-left: 10px;
+    border: 1px solid var(--border-button);
+    border-radius: 6px;
+}
+
+.home_course {
+    display: none;
+    height: auto;
+}
+
+.list_timer {
+    display: none;
+}
+
+/* .nav_drawer__course:focus-within .list_timer, */
+.nav_drawer__course:hover .list_timer {
+    display: block;
+}
+
+.btn_course {
+    border: none;
+    display: flex;
+    width: 100%;
+    padding: 0;
+    align-items: center;
+    height: 46px;
+    margin-right: 10px;
+}
+
+.btn_course__content {
+    text-align: center;
+    margin-left: 0;
+}
+
 /* Page main container content */
 .page {
     display: grid;
@@ -309,6 +363,10 @@
 
 .main {
     z-index: 1;
+}
+
+.sidebar_home {
+    display: block;
 }
 
 .main-nav {
@@ -351,7 +409,7 @@
 
 .page_content {
     display: grid;
-    grid-template-columns: 77% 22.7%;
+    /* grid-template-columns: 77% 22.7%; */
 }
 
 .region_main {
@@ -362,6 +420,10 @@
 .region_item {
     background-color: white;
 
+}
+
+.nav-link:focus {
+    color: red;
 }
 
 .card_body {
@@ -407,6 +469,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
 }
 
 .card_text {
@@ -559,10 +622,11 @@
 /* Trang trủ  */
 #page_container {
     height: 100%;
-    background-size: cover;
+    background-image: linear-gradient(to right, #242145 30%, #dd1874 70%, #8a2178);
+    /* background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url("https://howkteam.vn/Content/images/index/bg.jpg");
+    background-image: url("https://howkteam.vn/Content/images/index/bg.jpg"); */
 }
 
 .navbar-brand {
@@ -572,8 +636,9 @@
 
 .navbar {
     padding: 0;
+    width: 100%;
     /* background-color: var(--background-header); */
-    background-color: transparent;
+    background-color: #242145;
     height: 60px;
 }
 
@@ -608,14 +673,53 @@
 .main_container {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
-    height: 650px;
     /* background-color: #999; */
    
 }
 
 .content {
-    width: 300px;
-    margin-left: 200px;
-    margin-top: 100px;
+    position: relative;
+    top: 50px;
+    margin: 50px 0;
+    width: 90%;
+    background-color: rgba(19, 15, 37, 0.5);
+    border-radius: 10px;
+    font-size: 1.6rem;
+    margin-bottom: 100px;
+}
+
+.content h1 {
+    font-size: 4rem;
+    color: white;
+    font-family: 'PS Commons Bold';
+    font-weight: normal;
+    margin: 70px 200px 30px;
+}
+
+.content p {
+    margin: 0 250px;
+    font-weight: 500;
+}
+
+.content a {
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-decoration: none;
+    background-color: #e7005e;
+    width: 200px;
+    padding: 10px;
+    padding-bottom: 14px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.3rem;
+    border-radius: 20px;
+}
+
+.content a:hover {
+    background-color: transparent;
+    border: 1px solid #585fa2;
 }
