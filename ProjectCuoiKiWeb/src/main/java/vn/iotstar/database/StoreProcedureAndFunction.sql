@@ -10,6 +10,7 @@ begin
 end
 go
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản 
+GO
 Create Or Alter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
