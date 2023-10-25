@@ -26,7 +26,7 @@ public class SignUpController {
 			@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("confirmpassword") String confipass, @RequestParam("quocgia") String quocgia,
 			@RequestParam(value = "tkhocvien", required = false, defaultValue = "null") String tkhocvien) {
-		String url="";
+		String url = "";
 		if ("null".equals(tkhocvien)) {
 			map.addAttribute("thongbaoloi", "Bạn Chưa Chọn Loại Tài Khoản !");
 		} else if (!password.equals(confipass)) {
@@ -37,10 +37,10 @@ public class SignUpController {
 			if (themnd == 1) {
 				hvD.InsertHocVien();
 				map.addAttribute("thongbaodung", "Bạn Đã Đăng Ký Thành Công !");
-				url="SignIn";
+				url = "SignIn";
 			} else {
 				map.addAttribute("thongbaodksai", "Thất Bại !");
-				url="DangKy";
+				url = "DangKy";
 			}
 		}
 		return url;

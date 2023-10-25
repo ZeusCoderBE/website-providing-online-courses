@@ -36,6 +36,13 @@ public class SignInController {
 			return "redirect:/homepage";
 		}
 	}
+	@RequestMapping(value="introduct",method =RequestMethod.GET)
+	public String DangXuat(HttpServletRequest rq)
+	{
+		HttpSession session=rq.getSession();
+		session.invalidate();
+		return "introduction";
+	}
 	@RequestMapping(value="forgetpassword", method=RequestMethod.GET)
 	public String ForgetPassword()
 	{

@@ -192,8 +192,7 @@
 										</div>
 										<div class="border_bottom"></div>
 									</div>
-									<button onclick="goToNewPage()"
-										class="btn btn-success login_taikhoan">Đăng Nhập</button>
+									<a href="#" onclick=" testConfirmDialog()">Đăng Xuất</a>
 								</li>
 							</ul>
 						</div>
@@ -207,11 +206,11 @@
 				<nav class="col-2">
 					<div class="sidebar sidebar_home">
 						<div class="nav_drawer home_system">
-							<a href="#" onclick="homePage()"> <i
+							<a href="homepage" > <i
 								class="fa-solid fa-house"></i> <span>Trang trủ hệ thống</span>
 							</a>
 						</div>
-						<c:if test="${sessionScope.manguoidung ne -1 &&  not empty sessionScope.manguoidung}" >
+						<c:if test="${sessionScope.manguoidung ne -1 and  not empty sessionScope.manguoidung}" >
 							<div class=" nav_drawer home">
 								<a href="#" onclick="myCourses()"> <i
 									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
