@@ -4,7 +4,6 @@ public class NguoiDung {
 	private int manguoidung;
 	private String hoten;
 	private String email;
-	private String password;
 	private String sdt;
 	private String quocgia;
 	private String vungmien;
@@ -19,9 +18,6 @@ public class NguoiDung {
 	}
 	public String getEmail() {
 		return email;
-	}
-	public String getPassword() {
-		return password;
 	}
 	public String getSdt() {
 		return sdt;

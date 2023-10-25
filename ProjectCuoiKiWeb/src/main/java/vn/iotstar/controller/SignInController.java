@@ -9,7 +9,12 @@ import vn.iotstar.model.*;
 
 @Controller
 public class SignInController {
-	NguoiDungDao ndd =  new NguoiDungDao();
+	NguoiDungDao ndd = new NguoiDungDao();
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String DangNhap()
+	{
+		return "SignIn";
+	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String SubmitDangNhap(ModelMap model, @RequestParam("Email") String email, @RequestParam("Password") String password)
 	{
@@ -29,7 +34,7 @@ public class SignInController {
 	{
 		int check = ndd.getForgetPass(email, newpass, checkpass);
 		if (check == 1) {
-			return "redirect:/dang-nhap";
+			return "redirect:/login";
 		}
 		else if (check == 0) {
 			model.addAttribute("warning", "Tài khoản hoặc mật khẩu không khớp! Vui lòng nhập lại");

@@ -23,7 +23,6 @@
 							<div class="form-login-header">
 								<h1>Đăng Ký </h1>
 							</div>
-							<p>${thongbaodkdung}</p>
 							<br/>
 							<div class="form-login-input">
 								<label for="username">Họ và Tên</label> <input type="text"
@@ -61,7 +60,7 @@
 							<button class="btn" type="submit">Sign Up</button>
 							<div class="form-login-policy">
 								<p>Already have an account?</p>
-								<a href="dang-nhap">Login</a>
+								<a href="login">Login</a>
 							</div>
 							<div class="form-login-or">
 								<h1>

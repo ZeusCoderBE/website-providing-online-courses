@@ -13,7 +13,6 @@ public class HocVienDao {
 				+ "insert into HOCVIEN(MaHocVien,LoaiTaiKhoan)\r\n"
 				+ "values(@manguoidung,N'Dong')";
 		int ketqua = dbC.ExecuteCommand(sql);
-		System.out.print(sql);
 		return ketqua;
 	}
 }

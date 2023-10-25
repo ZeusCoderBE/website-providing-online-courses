@@ -18,13 +18,13 @@
                         <div class="form-item-login">
                             <div class="form-login-header"><h1>Login</h1></div>
                             <div class="form-login-input">
-                                <input type="text" placeholder="Email đăng ký" name="Email"/>
+                                <input type="text" placeholder="Email đăng ký" name="Email" required/>
                             </div>
                             <div class="form-login-input">
-                                <input type="password" placeholder="New Password" name="NewPassword"/>
+                                <input type="password" placeholder="New Password" name="NewPassword" required/>
                             </div>
                             <div class="form-login-input">
-                                <input type="checkpassword" placeholder="Check Password" name="CheckPassword"/>
+                                <input type="password" placeholder="Check Password" name="CheckPassword" required/>
                             </div>
                             <button class="btn" type="submit">Submit</button>
                         </div>

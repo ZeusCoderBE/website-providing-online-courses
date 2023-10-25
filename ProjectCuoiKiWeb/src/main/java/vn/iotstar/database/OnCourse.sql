@@ -1,15 +1,13 @@
---DROP DATABASE ONCOURSE
 
 create database ONCOURSE
 go
-USE ONCOURSE;
+USE ONCOURSE
 Go
 --drop database OnCourse
 CREATE TABLE NGUOIDUNG(
 	MaNguoiDung INT IDENTITY PRIMARY KEY,
 	HoTen NVARCHAR(50) ,
-	Email VARCHAR(64) ,
-	MatKhau VARCHAR(64),
+	Email VARCHAR(64) unique,
 	Sdt VARCHAR(10) ,
 	QuocGia NVARCHAR(30) ,
 	VungMien NVARCHAR(30),
