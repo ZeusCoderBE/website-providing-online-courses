@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomePageController {
 	KhoaHocDao khD = new KhoaHocDao();
+	BaiHocDao bhD = new BaiHocDao();
 
 	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
 	public String intro() {
@@ -36,14 +37,22 @@ public class HomePageController {
 	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "MaKhoaHoc")
 	public String XemMotKhoaHoc(ModelMap model, @RequestParam("MaKhoaHoc") int makhoahoc) {
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		try {
-			khoahoc = khD.FindCourseOfCustomer(khoahoc);
-			model.addAttribute("khoahoc", khoahoc);
 
+		List<BaiHoc> ListBH = new ArrayList<BaiHoc>();
+
+		try {
+			
+			khoahoc = khD.FindCourseOfCustomer(khoahoc); 
+			model.addAttribute("khoahoc", khoahoc);
+			
+			ListBH = bhD.GetScience(khoahoc);
+			model.addAttribute("listbaihoc", ListBH);
+			
 		} catch (Exception ex) {
 
 		}
 
 		return "describe";
 	}
+
 }
