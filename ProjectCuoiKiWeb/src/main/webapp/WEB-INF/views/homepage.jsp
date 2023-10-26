@@ -433,6 +433,19 @@
 
 								<section class="region_sidebar"></section>
 							</div>
+							<footer class="footer">
+                                <div class="footer_list">
+                                    <div class="footer_nav">
+                                        <p>Bạn đang đăng nhập với tên ,</p>
+                                        <a href="#">TRAN VAN LUAN(Thoát)</a>
+                                    </div>
+                                    <a href="#">Get the mobile app</a>
+                                </div>
+                                <div class="footer_info">
+                                    Copyright Oncourse © 2023
+                                </div>
+                               
+                            </footer>
 						</div>
 					</div>
 				</article>

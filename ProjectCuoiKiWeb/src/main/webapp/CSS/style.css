@@ -197,6 +197,7 @@
 	padding: 0 6px ;
 	border-radius: 50%;
 	background-color: red;
+	color: white;
 }
 
 .my_course__detail {
@@ -617,7 +618,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
+    padding-left: 20px;
 }
 
 .card_text {
@@ -679,7 +680,7 @@
 }
 
 .card_group {
-    width: 276px;
+    width: 30%;
 }
 
 .card_setting {
@@ -873,4 +874,39 @@
 }
 .content a:hover {
     background-color: #e7005e;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    color: var(--text-header-color);
+    align-items: center;
+    margin: -15px;
+    margin-top: 40px;
+
+}
+
+.footer_list {
+    padding: 20px 0;
+    width: 100%;
+    background-color: #353e4e;
+    font-size: 1rem;
+}
+
+.footer_list a {
+    color: var(--text-header-color);
+    text-decoration: underline;
+}
+
+.footer_nav{
+    display: flex;
+    justify-content: center;
+}
+
+.footer_info {
+    width: 100%;
+    background-color: #181b1f;
+    padding: 10px 0;
 }
