@@ -24,12 +24,12 @@ public class KhoaHocDao {
 	{
 		String query="select *From KhoaHoc where MaKhoaHoc="+khoahoc.getMakhoahoc()+"";
 		ResultSet rs = dbC.ExecuteQuery(query);
+
 		if(rs.next())
 		{
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),rs.getInt("DanhGia"));
-		 
 		}
 		return khoahoc;
 	}

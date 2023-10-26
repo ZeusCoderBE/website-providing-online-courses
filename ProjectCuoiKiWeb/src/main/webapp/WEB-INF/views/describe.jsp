@@ -134,7 +134,7 @@
 					</div>
 					<div class="course_des">${khoahoc.mota}</div>
 					<div class="course_detail">
-						<h2>Bạn sẽ học được gì?</h2>
+						<h5>Bạn sẽ học được gì?</h5><br>
 						<ul class="list">
 							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
 									chắc lý thuyết chung trong việc xây dựng web</span></li>
@@ -159,8 +159,14 @@
 					</div>
 
 					<div class="course__content">
-						<h3> Ngôn Ngữ :${khoahoc.ngonngu}</h3>
+						<h5> Ngôn Ngữ :${khoahoc.ngonngu}</h5>
+						<br>
+						<h5>Danh sách bài học: </h5>
+						<c:forEach var="baihoc" items="${listbaihoc}">
+							<li>${baihoc.tenbaihoc}</li>
+						</c:forEach>
 					</div>
+					
 
 				</div>
 
