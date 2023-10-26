@@ -393,13 +393,13 @@
 													<div class="card_text card_group">
 														<div class="view_content">
 															<div class="card_item">
-																<a href="describe?MaKhoaHoc=${khoahoc.makhoahoc}">
+																<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
 																	<div class="card_img"></div>
 																</a>
 																<div class="course_info">
 																	<span>${khoahoc.mota}</span>
 																</div>
-																<a href="describe?MaKhoaHoc=${khoahoc.makhoahoc}"
+																<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																	class="course_name">${khoahoc.tenkhoahoc}</a>
 															</div>
 														</div>

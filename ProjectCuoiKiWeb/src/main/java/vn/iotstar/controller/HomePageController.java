@@ -33,21 +33,21 @@ public class HomePageController {
 		return "homepage";
 	}
 
-	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "MaKhoaHoc")
-	public String XemMotKhoaHoc(ModelMap model, @RequestParam("MaKhoaHoc") int makhoahoc) {
+	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
+	public String XemMotKhoaHoc(ModelMap model, @RequestParam("makhoahoc") int makhoahoc) {
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		BaiHoc baihoc = new BaiHoc(makhoahoc);
 		List<BaiHoc> ListBH=new ArrayList<BaiHoc>();
 		System.out.print("hello");
 		try {
 			khoahoc = khD.FindCourseOfCustomer(khoahoc);
 			model.addAttribute("khoahoc", khoahoc);
-			ListBH = bhD.GetScience(baihoc);
+			ListBH = bhD.GetScience(khoahoc);
+			System.out.print("đã in ra");
 			System.out.print(ListBH.get(1).getMabaihoc());
 			model.addAttribute("listbaihoc", ListBH);
 
 		} catch (Exception ex) {
-
+			System.out.print(ex.getMessage());
 		}
 
 		return "describe";

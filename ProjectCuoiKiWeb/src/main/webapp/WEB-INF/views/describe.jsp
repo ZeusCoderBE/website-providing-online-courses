@@ -139,7 +139,7 @@
 						<ul class="list">
 							<c:forEach var="baihoc" items="${listbaihoc}">
 								<li class="list_item"><i class="fa-solid fa-check"></i> 
-								<span>${baihoc.tenbaihoc}</span></li>
+								<span>${baihoc.mabaihoc}</span></li>
 							</c:forEach>
 
 						</ul>
