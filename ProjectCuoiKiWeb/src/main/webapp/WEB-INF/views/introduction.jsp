@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,8 +50,10 @@
                         <div class="utilities-inner">
                             <ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
                                 <li style="margin-left: 0;" class="d-flex">
+                                <c:choose>
+                                <c:when test="${not empty hocvien.manguoidung}">
                                     <div class="usermenu">
-                                        <span>Tài Khoản</span>
+                                        <span>${hocvien.hoten}</span>
                                         <div style="width: 25px;" class="icon_name">
                                             <span>
                                                 <i class="fa-solid fa-user"></i>
@@ -58,8 +61,13 @@
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
+                                 </c:when>
+                                 <c:otherwise>
                                     <a href="login">Đăng Nhập</a>
+                                  </c:otherwise>
+                                 </c:choose>
                                 </li>
+                                
                             </ul>
                         </div>
                     </div>
