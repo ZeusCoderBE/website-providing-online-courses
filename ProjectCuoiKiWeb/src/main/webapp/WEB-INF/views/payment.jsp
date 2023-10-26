@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
 		<div id="form-login">
-			<form action="paycourse" method="post">
+			<form action="paid" method="post">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
@@ -35,6 +35,9 @@
 									type="bill" placeholder="số tiền cần thanh toán" name="bill" />
 							</div>
 							<button class="btn" type="submit">Thanh toán</button>
+							<div class="form-login-input">
+								<label for="loaitk">${warning}</label>
+							</div>
 						</div>
 					</div>
 				</div>

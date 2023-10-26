@@ -185,7 +185,7 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-						<a href="paycourse">
+						<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
 							<button class="btn btn-success btn_signin__course">Đăng ký học</button>
 						</a>
 						<button class="btn btn-success btn_signin__course">Thêm Vào Giỏ Hàng</button>
