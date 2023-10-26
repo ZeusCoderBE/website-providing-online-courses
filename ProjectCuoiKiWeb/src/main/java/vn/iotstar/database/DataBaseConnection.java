@@ -62,5 +62,4 @@ public class DataBaseConnection {
 			e.printStackTrace();
 		}
 	}
-
 }

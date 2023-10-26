@@ -5,17 +5,17 @@ import java.sql.Date;
 public class BaiHoc {
 
 	private int mabaihoc;
-	private int makhoahoc;
 	private String tenbaihoc;
 	private Double thoigianhoanthanh;
 	private String noidungbaihoc;
-	private Double muctieudaura;
+	private String muctieudaura;
 	private Date ngaydang;
-	
 	public int getMakhoahoc() {
 		return makhoahoc;
 	}
-	
+
+	private int makhoahoc;
+
 	public int getMabaihoc() {
 		return mabaihoc;
 	}
@@ -32,7 +32,7 @@ public class BaiHoc {
 		return noidungbaihoc;
 	}
 
-	public Double getMuctieudaura() {
+	public String getMuctieudaura() {
 		return muctieudaura;
 	}
 
@@ -40,7 +40,7 @@ public class BaiHoc {
 		return ngaydang;
 	}
 
-	public BaiHoc(int mabaihoc, String tenbaihoc, Double thoigianhoanthanh, String noidungbaihoc, Double muctieudaura,
+	public BaiHoc(int mabaihoc, String tenbaihoc, Double thoigianhoanthanh, String noidungbaihoc, String muctieudaura,
 			Date ngaydang,int makhoahoc) 
 	{
 		this.mabaihoc = mabaihoc;
