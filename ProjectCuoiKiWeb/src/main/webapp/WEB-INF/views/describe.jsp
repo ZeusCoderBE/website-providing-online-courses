@@ -163,7 +163,13 @@
 						<br>
 						<h5>Danh sách bài học: </h5>
 						<c:forEach var="baihoc" items="${listbaihoc}">
-							<li>${baihoc.tenbaihoc}</li>
+							<li class="list_item"><i class="fa-solid fa-check"></i> 
+								<span>${baihoc.tenbaihoc}:</span>
+							</li> 
+							<p style="text-indent: 20px;">Nội dung: ${baihoc.noidungbaihoc}</p>
+							<p style="text-indent: 20px;">Mục tiêu: ${baihoc.muctieudaura}</p>
+							<p style="text-indent: 20px;">Thời lượng: ${baihoc.thoigianhoanthanh}</p>
+							
 						</c:forEach>
 					</div>
 					
