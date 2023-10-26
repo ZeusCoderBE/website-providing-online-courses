@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Trang Giới Thiệu</title>
@@ -9,6 +9,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 	<link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
+	<script type="text/javascript">
+	     function redirectToLogin() {
+            window.location.href = 'login';
+         }
+	     </script>
 </head>
 <body>
     <div id="page_container">
@@ -49,7 +54,7 @@
                         <div class="utilities-inner">
                             <ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
                                 <li style="margin-left: 0;" class="d-flex">
-                                    <div class="usermenu">
+                                    <div style="display: none;" class="usermenu">
                                         <span>Tài Khoản</span>
                                         <div style="width: 25px;" class="icon_name">
                                             <span>
@@ -58,7 +63,8 @@
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
-                                    <a href="login">Đăng Nhập</a>
+                                    <button style="display: block;" onclick="redirectToLogin();" class="btn btn-success login_taikhoan">Đăng Nhập</button>
+                                  <!--    <a href="login">Đăng Nhập</a>-->
                                 </li>
                             </ul>
                         </div>
