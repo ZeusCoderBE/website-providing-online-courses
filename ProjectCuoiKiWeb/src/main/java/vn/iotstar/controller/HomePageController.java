@@ -44,7 +44,6 @@ public class HomePageController {
 			
 			ListBH = bhD.GetScience(khoahoc);
 			model.addAttribute("listbaihoc", ListBH);
-			
 		} catch (Exception ex) {
 
 		}
