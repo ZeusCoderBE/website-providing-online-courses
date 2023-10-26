@@ -47,9 +47,6 @@ function testConfirmDialog()
  		return false;
  	}
  }
-function redirectToLogin() {
-            window.location.href = 'login';
-         }
 function handleBlur() {
     const page = document.querySelector('.page');
     const sidebarHome = document.querySelector('.sidebar_home');
