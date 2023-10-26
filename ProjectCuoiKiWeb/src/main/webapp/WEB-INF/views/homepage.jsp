@@ -20,7 +20,6 @@
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
-<%int check=0; %>
 <body>
 	<div class="" id="app">
 		<header class="header">
@@ -180,8 +179,7 @@
 								</li>
 
 								<li class="d-flex"><c:choose>
-										<c:when
-											test="${ not empty hocvien.manguoidung}">
+										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
 												<span>${hocvien.hoten}</span>
 												<div class="icon_name">
@@ -206,14 +204,12 @@
 														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
 													</a></li>
 												</ul>
-
 											</div>
 										</c:when>
 										<c:otherwise>
 											<a href="login">Đăng Nhập</a>
 										</c:otherwise>
 									</c:choose></li>
-
 							</ul>
 						</div>
 					</div>
@@ -230,8 +226,7 @@
 									trủ hệ thống</span>
 							</a>
 						</div>
-						<c:if
-							test="${not empty hocvien.manguoidung}">
+						<c:if test="${not empty hocvien.manguoidung}">
 							<div class=" nav_drawer home">
 								<a href="#" onclick="myCourses()"> <i
 									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
@@ -244,7 +239,8 @@
 										học của tôi</span>
 								</a>
 								<ul>
-									<c:forEach var="khoahoctaikhoan" items="${sessionScope.danhsachkhoahoc}">
+									<c:forEach var="khoahoctaikhoan"
+										items="${sessionScope.danhsachkhoahoc}">
 										<li><a href="#"> <i
 												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
 										</a></li>

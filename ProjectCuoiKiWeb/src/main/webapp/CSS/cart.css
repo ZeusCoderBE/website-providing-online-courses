@@ -25,6 +25,9 @@
     padding-top: 10px;
     z-index: 99;
     box-shadow: 0 0 32px -8px rgb(0 0 0 / 90%);
+    transition: height 0.25s ease-in 0.1s;
+    transform-origin: top;
+    animation: headerNotifygrowth 0.3s ease-in;
 }
 
 .my_course__header {
