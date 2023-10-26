@@ -1,6 +1,7 @@
 package vn.iotstar.controller;
 
 import java.sql.SQLException;
+import java.util.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,26 +15,30 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class SignInController {
 	NguoiDungDao ndd = new NguoiDungDao();
+	KhoaHocDao khD=new KhoaHocDao();
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String DangNhap()
 	{
 		return "SignIn";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String SubmitDangNhap(HttpServletRequest rq,ModelMap model, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
+	public String SubmitDangNhap(HttpServletRequest rq, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
 	{
 		HttpSession session = rq.getSession();
-
+		HocVien hv=new HocVien();
+		List<KhoaHoc>dskhoahoccuatoi = new ArrayList<KhoaHoc>();
 		boolean check = ndd.checkDangNhap(email, password);
 		if (check == false) {
 			return "SignIn";
 		}
 		else
 		{
-			int manguoidung=ndd.TimMaNguoiDung(email);
-			session.setAttribute("manguoidung", manguoidung);
-			System.out.print(manguoidung);
-			return "redirect:/homepage";
+			hv=ndd.TimThongTinDN(email);
+			session.setAttribute("hocvien", hv);
+			HocVien hocvvien = new HocVien(hv.getManguoidung());
+			dskhoahoccuatoi = khD.FindMyLearning(hocvvien);
+			session.setAttribute("danhsachkhoahoc", dskhoahoccuatoi);
+			return "redirect:/homepages";
 		}
 	}
 	@RequestMapping(value="introduct",method =RequestMethod.GET)

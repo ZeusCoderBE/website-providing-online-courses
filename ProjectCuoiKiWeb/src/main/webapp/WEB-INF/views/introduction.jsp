@@ -24,7 +24,7 @@
                         <a class="nav-link" aria-current="page" href="#">Giới thiệu</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="homepage">Khóa học</a>
+                        <a class="nav-link" aria-current="page" href="homepages">Khóa học</a>
                       </li>
                       
                       <li class="nav-item">

@@ -51,6 +51,11 @@ public class NguoiDung {
 		this.trinhdo = trinhdo;
 		this.matkhau=matkhau;
 	}
+	public NguoiDung(int manguoidung,String hoten)
+	{
+		this.manguoidung=manguoidung;
+		this.hoten=hoten;
+	}
 	public NguoiDung(int manguoidung)
 	{
 		this.manguoidung=manguoidung;

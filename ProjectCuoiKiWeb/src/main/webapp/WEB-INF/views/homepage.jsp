@@ -4,22 +4,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Trang Chủ</title>
-	<link rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link
-		href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-		rel="stylesheet"
-		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-		crossorigin="anonymous">
-	<link href="./templates/CSS/cart.css" rel="stylesheet">
-	<link href="./templates/CSS/style.css" rel="stylesheet">
-	<link href="./templates/CSS/main.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trang Chủ</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+<link href="./templates/CSS/cart.css" rel="stylesheet">
+<link href="./templates/CSS/style.css" rel="stylesheet">
+<link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
+<%int check=0; %>
 <body>
 	<div class="" id="app">
 		<header class="header">
@@ -86,16 +87,16 @@
 														</a>
 													</div>
 													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS ahdhdghdsg</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022
-														</span>
+														<span> <a href="#">Xây Dựng Website với ReactJS
+																ahdhdghdsg</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
 													</div>
 
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a href="#">Buy</a>
 														</div>
-	
+
 														<div class="my_course__delete">
 															<a href="#">Delete</a>
 														</div>
@@ -110,14 +111,13 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022
-														</span>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
 													</div>
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a href="#">Buy</a>
 														</div>
-	
+
 														<div class="my_course__delete">
 															<a href="#">Delete</a>
 														</div>
@@ -132,15 +132,14 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022
-														</span>
-														
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+
 													</div>
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a href="#">Buy</a>
 														</div>
-	
+
 														<div class="my_course__delete">
 															<a href="#">Delete</a>
 														</div>
@@ -155,16 +154,14 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> 
-														<span class="info_time"> Xuất bản :21-3-2022
-														</span>
-														
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+
 													</div>
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a href="#">Buy</a>
 														</div>
-	
+
 														<div class="my_course__delete">
 															<a href="#">Delete</a>
 														</div>
@@ -181,46 +178,42 @@
 										<i class="fa-solid fa-bell"></i>
 									</div>
 								</li>
-								<li class="d-flex">
-									<div class="usermenu">
-                                        <span>Tran Van Luan</span>
-                                        <div class="icon_name">
-                                            <span>T</span>
-                                        </div>
-                                        <div class="border_bottom"></div>
-                                        <ul class="setting my_course">
-                                             <div style="right: -20px; top:-10px;"  class="pseudo_class"></div>
-                                             <li class="setting__item">
-                                                <a href="#">
-                                                    <span>Hồ sơ cá nhân</span>
-                                                </a>
-                                            </li>
-                                             <li class="setting__item">
-                                                <a href="#">
-                                                    <span>Chứng chỉ</span>
-                                                </a>
-                                            </li>
-                                             <li class="setting__item">
-                                                <a href="#">
-                                                    <span>Cần trợ giúp</span>
-                                                </a>
-                                            </li>
-                                             <li class="setting__item">
-                                                <a href="#">
-                                                    <span>Đổi mật khẩu</span>
-                                                </a>
-                                            </li>
-                                             <li class="setting__item">
-                                                <a href="#" onclick="testConfirmDialog()">
-                                                    <span>Đăng xuất</span>
-                                                </a>
-                                            </li>
-                                        </ul>
 
-                                    </div>
-									<button onclick="goToNewPage()"
-										class="btn btn-success login_taikhoan">Đăng Nhập</button>
-								</li>
+								<li class="d-flex"><c:choose>
+										<c:when
+											test="${ not empty hocvien.manguoidung}">
+											<div class="usermenu">
+												<span>${hocvien.hoten}</span>
+												<div class="icon_name">
+													<span>T</span>
+												</div>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="#"> <span>Hồ
+																sơ cá nhân</span>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Chứng
+																chỉ</span>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Cần
+																trợ giúp</span>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Đổi
+																mật khẩu</span>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+													</a></li>
+												</ul>
+
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="login">Đăng Nhập</a>
+										</c:otherwise>
+									</c:choose></li>
+
 							</ul>
 						</div>
 					</div>
@@ -233,11 +226,12 @@
 				<nav class="col-2">
 					<div class="sidebar sidebar_home">
 						<div class="nav_drawer home_system">
-							<a href="homepage" > <i
-								class="fa-solid fa-house"></i> <span>Trang trủ hệ thống</span>
+							<a href="homepages"> <i class="fa-solid fa-house"></i> <span>Trang
+									trủ hệ thống</span>
 							</a>
 						</div>
-						<c:if test="${sessionScope.manguoidung ne -1 and  not empty sessionScope.manguoidung}" >
+						<c:if
+							test="${not empty hocvien.manguoidung}">
 							<div class=" nav_drawer home">
 								<a href="#" onclick="myCourses()"> <i
 									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
@@ -248,15 +242,14 @@
 								<a style="height: 46px;" href="#"> <i
 									class="fa-solid fa-graduation-cap"></i> <span>Các khóa
 										học của tôi</span>
-
 								</a>
 								<ul>
-									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-											<span>SHDK_23_24_01</span>
-									</a></li>
-									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-											<span>SHDK_23_24_01</span>
-									</a></li>
+									<c:forEach var="khoahoctaikhoan" items="${sessionScope.danhsachkhoahoc}">
+										<li><a href="#"> <i
+												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
+										</a></li>
+									</c:forEach>
+
 								</ul>
 							</div>
 						</c:if>

@@ -20,7 +20,7 @@ public class KhoaHocDao {
 		}
 		return danhsachkh;
 	}
-	public KhoaHoc Find (KhoaHoc khoahoc) throws ClassNotFoundException, SQLException
+	public KhoaHoc FindCourseOfCustomer (KhoaHoc khoahoc) throws ClassNotFoundException, SQLException
 	{
 		String query="select *From KhoaHoc where MaKhoaHoc="+khoahoc.getMakhoahoc()+"";
 		ResultSet rs = dbC.ExecuteQuery(query);
@@ -35,7 +35,7 @@ public class KhoaHocDao {
 	}
 	public List<KhoaHoc> FindMyLearning(HocVien hv) throws ClassNotFoundException, SQLException
 	{
-		String thucthi="sp_XemKhoaHocCuaToi"+hv.getManguoidung()+"";
+		String thucthi="sp_XemKhoaHocCuaToi "+hv.getManguoidung()+"";
 		ResultSet rs= dbC.ExecuteQuery(thucthi);
 		KhoaHoc khoahoc=new KhoaHoc();
 		List<KhoaHoc> listkh=new ArrayList<KhoaHoc>();
@@ -46,5 +46,6 @@ public class KhoaHocDao {
 		}
 		return listkh;
 	}
+	
 	
 }
