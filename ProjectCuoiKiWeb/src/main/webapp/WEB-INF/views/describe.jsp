@@ -199,12 +199,10 @@
 									chắc lý thuyết chung trong việc xây dựng web</span></li>
 
 						</ul>
-
-
 					</div>
 
 					<div class="course__content">
-						<h3> Ngôn Ngữ :${khoahoc.ngonngu}</h3>
+						<h3>Ngôn Ngữ :${khoahoc.ngonngu}</h3>
 					</div>
 
 				</div>
@@ -213,13 +211,13 @@
 					<div class="course_action">
 						<div class="course_info">
 							<h3>Course</h3>
-							<div class="course_des course_des__main">
-							Giá Tiền: ${khoahoc.giatien}$</div>
+							<div class="course_des course_des__main">Giá Tiền:
+								${khoahoc.giatien}$</div>
 							<div class="road_line"></div>
 
 							<div class="evaluate">
-								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i> <span>(1.040
-									reviews)</span>
+								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i>
+								<span>(1.040 reviews)</span>
 								<div class="line_stand"></div>
 								<i class="fa-solid fa-thumbs-up"></i> <span>92%</span>
 							</div>
@@ -232,8 +230,9 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-						<button class="btn btn-success btn_signin__course">Đăng
-							ký học</button>
+						<a href="paycourse">
+							<button class="btn btn-success btn_signin__course">Đăng ký học</button>
+						</a>
 					</div>
 				</div>
 			</div>
