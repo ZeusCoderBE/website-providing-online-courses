@@ -10,11 +10,12 @@ public class BaiHoc {
 	private String noidungbaihoc;
 	private String muctieudaura;
 	private Date ngaydang;
+	private int makhoahoc;
+
+
 	public int getMakhoahoc() {
 		return makhoahoc;
 	}
-
-	private int makhoahoc;
 
 	public int getMabaihoc() {
 		return mabaihoc;
@@ -54,5 +55,9 @@ public class BaiHoc {
 
 	public BaiHoc() {
 
+	}
+	public BaiHoc(int makhoahoc)
+	{
+		this.makhoahoc=makhoahoc;
 	}
 }

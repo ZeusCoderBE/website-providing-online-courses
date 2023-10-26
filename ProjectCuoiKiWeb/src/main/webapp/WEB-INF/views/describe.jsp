@@ -43,7 +43,8 @@
 
 								<div class="my_course__header">
 									<h5>Khóa học của tôi</h5>
-									<span><a href="mycourse?manguoidung=${manguoidung}">Xem tất cả</a></span>
+									<span><a href="mycourse?manguoidung=${manguoidung}">Xem
+											tất cả</a></span>
 								</div>
 								<ul class="my_course__list">
 									<div class="my_course__detail">
@@ -136,22 +137,10 @@
 					<div class="course_detail">
 						<h2>Bạn sẽ học được gì?</h2>
 						<ul class="list">
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
-							<li class="list_item"><i class="fa-solid fa-check"></i> <span>Nắm
-									chắc lý thuyết chung trong việc xây dựng web</span></li>
+							<c:forEach var="baihoc" items="${listbaihoc}">
+								<li class="list_item"><i class="fa-solid fa-check"></i> 
+								<span>${baihoc.tenbaihoc}</span></li>
+							</c:forEach>
 
 						</ul>
 
@@ -159,7 +148,7 @@
 					</div>
 
 					<div class="course__content">
-						<h3> Ngôn Ngữ :${khoahoc.ngonngu}</h3>
+						<h3>Ngôn Ngữ :${khoahoc.ngonngu}</h3>
 					</div>
 
 				</div>
@@ -168,13 +157,13 @@
 					<div class="course_action">
 						<div class="course_info">
 							<h3>Course</h3>
-							<div class="course_des course_des__main">
-							Giá Tiền: ${khoahoc.giatien}$</div>
+							<div class="course_des course_des__main">Giá Tiền:
+								${khoahoc.giatien}$</div>
 							<div class="road_line"></div>
 
 							<div class="evaluate">
-								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i> <span>(1.040
-									reviews)</span>
+								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i>
+								<span>(1.040 reviews)</span>
 								<div class="line_stand"></div>
 								<i class="fa-solid fa-thumbs-up"></i> <span>92%</span>
 							</div>
@@ -189,7 +178,8 @@
 						</div>
 						<button class="btn btn-success btn_signin__course">Đăng
 							ký học</button>
-						<button class="btn btn-success btn_signin__course">Thêm Vào Giỏ Hàng</button>
+						<button class="btn btn-success btn_signin__course">Thêm
+							Vào Giỏ Hàng</button>
 					</div>
 				</div>
 			</div>
