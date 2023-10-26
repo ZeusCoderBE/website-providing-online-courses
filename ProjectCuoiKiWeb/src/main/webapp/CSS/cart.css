@@ -25,6 +25,9 @@
     padding-top: 10px;
     z-index: 99;
     box-shadow: 0 0 32px -8px rgb(0 0 0 / 90%);
+    transition: height 0.25s ease-in 0.1s;
+    transform-origin: top;
+    animation: headerNotifygrowth 0.3s ease-in;
 }
 
 .my_course__header {
@@ -51,6 +54,7 @@
 }
 
 .my_course__detail {
+    position: relative;
     display: flex;
     height: 80px;
     align-items: center;
@@ -91,10 +95,23 @@
     flex-direction: column;
 }
 
+.my_course__buy{
+    height: 100%;
+    background-color: brown;
+}
 
+.my_course__delete{
+    height: 100%;
+    background-color: red;
+}
 
 .my_course__info span {
     font-size: 0.8rem;
+    text-align: start;
+    width: 230px;
+    white-space: nowrap; /* Ngăn văn bản xuống dòng */
+    overflow: hidden; /* Ẩn phần văn bản vượt quá độ dài */
+    text-overflow: ellipsis;
 }
 
 .my_course__info .info_time {

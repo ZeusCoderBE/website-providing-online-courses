@@ -1,18 +1,35 @@
 package vn.iotstar.model;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.*;
 
 import vn.iotstar.database.DataBaseConnection;
 
 public class NguoiDungDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
-
+	public int SignUp(NguoiDung hv)
+	{
+		String query="Insert into NguoiDung(HoTen,Email,QuocGia,MatKhau)"
+				+ "values(N'"+hv.getHoten()+"',N'"+hv.getEmail()+"',N'"+hv.getQuocgia()+"',"
+						+ "N'"+hv.getMatkhau()+"')";
+		int ketqua=dbconn.ExecuteCommand(query);
+		return ketqua;
+	}
+	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException
+	{
+		String sql="sp_TimThongTinHocVien '"+email+"'";
+		ResultSet rs=dbconn.ExecuteQuery(sql);
+		HocVien hv= new HocVien();
+		while(rs.next())
+		{
+			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"));
+		}
+		return hv;
+	}
 	public boolean checkDangNhap(String email, String password) {
 		String sqlStr = "SELECT * FROM NGUOIDUNG WHERE Email='" + email + "'" + "AND MatKhau='" + password + "'";
 		boolean check = false;
+
 		try {
 			ResultSet rs = dbconn.ExecuteQuery(sqlStr);
 			if (rs.next()) {

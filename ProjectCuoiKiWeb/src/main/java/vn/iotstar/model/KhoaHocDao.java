@@ -1,5 +1,4 @@
 package vn.iotstar.model;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -21,7 +20,7 @@ public class KhoaHocDao {
 		}
 		return danhsachkh;
 	}
-	public KhoaHoc Find (KhoaHoc khoahoc) throws ClassNotFoundException, SQLException
+	public KhoaHoc FindCourseOfCustomer (KhoaHoc khoahoc) throws ClassNotFoundException, SQLException
 	{
 		String query="select *From KhoaHoc where MaKhoaHoc="+khoahoc.getMakhoahoc()+"";
 		ResultSet rs = dbC.ExecuteQuery(query);
@@ -34,5 +33,19 @@ public class KhoaHocDao {
 		}
 		return khoahoc;
 	}
-
+	public List<KhoaHoc> FindMyLearning(HocVien hv) throws ClassNotFoundException, SQLException
+	{
+		String thucthi="sp_XemKhoaHocCuaToi "+hv.getManguoidung()+"";
+		ResultSet rs= dbC.ExecuteQuery(thucthi);
+		KhoaHoc khoahoc=new KhoaHoc();
+		List<KhoaHoc> listkh=new ArrayList<KhoaHoc>();
+		while(rs.next())
+		{
+			khoahoc = new KhoaHoc(rs.getNString("TenKhoaHoc"),rs.getNString("TrinhDoDauVao"));
+			listkh.add(khoahoc);
+		}
+		return listkh;
+	}
+	
+	
 }

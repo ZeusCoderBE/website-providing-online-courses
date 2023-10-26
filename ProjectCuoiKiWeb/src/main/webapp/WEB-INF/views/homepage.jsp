@@ -68,12 +68,13 @@
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
 								<li class="mr-3">
 									<div class="show_info">
-										<span>Khóa học của tôi</span>
+										<i class="fa-solid fa-cart-shopping"></i>
+										<div class="show_info__figure">4</div>
 										<div class="my_course">
 											<div class="pseudo_class"></div>
 
 											<div class="my_course__header">
-												<h5>Khóa học của tôi</h5>
+												<h5>Giỏ hàng của tôi</h5>
 												<span>Xem tất cả</span>
 											</div>
 											<ul class="my_course__list">
@@ -85,19 +86,18 @@
 														</a>
 													</div>
 													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
-														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="81" style="width: 81%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>81</strong>%
-																complete
-															</div>
+														<span> <a href="#">Xây Dựng Website với ReactJS
+																ahdhdghdsg</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+													</div>
+
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -110,18 +110,15 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
-														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="81" style="width: 81%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>81</strong>%
-																complete
-															</div>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -134,18 +131,16 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
-														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="5" style="width: 5%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>5</strong>%
-																complete
-															</div>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -158,18 +153,16 @@
 													</div>
 													<div class="my_course__info">
 														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Học cách đây 2 ngày trước
-														</span>
-														<div class="card-footer dashboard-card-footer border-0">
-															<div class="progress border">
-																<div class="progress-bar bar" role="progressbar"
-																	aria-valuenow="50" style="width: 50%" aria-valuemin="0"
-																	aria-valuemax="100"></div>
-															</div>
-															<div class="small">
-																<span class="sr-only">Course progress:</span> <strong>50</strong>%
-																complete
-															</div>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
 														</div>
 													</div>
 												</div>
@@ -184,17 +177,39 @@
 										<i class="fa-solid fa-bell"></i>
 									</div>
 								</li>
-								<li class="d-flex">
-									<div class="usermenu">
-										<span>Tran Van Luan</span>
-										<div class="icon_name">
-											<span>T</span>
-										</div>
-										<div class="border_bottom"></div>
-									</div>
-									<button onclick="goToNewPage()"
-										class="btn btn-success login_taikhoan">Đăng Nhập</button>
-								</li>
+
+								<li class="d-flex"><c:choose>
+										<c:when test="${ not empty hocvien.manguoidung}">
+											<div class="usermenu">
+												<span>${hocvien.hoten}</span>
+												<div class="icon_name">
+													<span>T</span>
+												</div>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="#"> <span>Hồ
+																sơ cá nhân</span>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Chứng
+																chỉ</span>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Cần
+																trợ giúp</span>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Đổi
+																mật khẩu</span>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="login">Đăng Nhập</a>
+										</c:otherwise>
+									</c:choose></li>
 							</ul>
 						</div>
 					</div>
@@ -206,34 +221,34 @@
 			<div class="row">
 				<nav class="col-2">
 					<div class="sidebar sidebar_home">
-
 						<div class="nav_drawer home_system">
-							<a href="#" onclick="homePage()"> <i
-								class="fa-solid fa-house"></i> <span>Trang trủ hệ thống</span>
+							<a href="homepages"> <i class="fa-solid fa-house"></i> <span>Trang
+									trủ hệ thống</span>
 							</a>
 						</div>
+						<c:if test="${not empty hocvien.manguoidung}">
+							<div class=" nav_drawer home">
+								<a href="#" onclick="myCourses()"> <i
+									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
+								</a>
+							</div>
 
-						<div class=" nav_drawer home">
-							<a href="#" onclick="myCourses()"> <i
-								class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
-							</a>
-						</div>
+							<div class="nav_drawer home_course">
+								<a style="height: 46px;" href="#"> <i
+									class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+										học của tôi</span>
+								</a>
+								<ul>
+									<c:forEach var="khoahoctaikhoan"
+										items="${sessionScope.danhsachkhoahoc}">
+										<li><a href="#"> <i
+												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
+										</a></li>
+									</c:forEach>
 
-						<div class="nav_drawer home_course">
-							<a style="height: 46px;" href="#"> <i
-								class="fa-solid fa-graduation-cap"></i> <span>Các khóa
-									học của tôi</span>
-
-							</a>
-							<ul>
-								<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-										<span>SHDK_23_24_01</span>
-								</a></li>
-								<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-										<span>SHDK_23_24_01</span>
-								</a></li>
-							</ul>
-						</div>
+								</ul>
+							</div>
+						</c:if>
 
 						<div class="nav_drawer calendar">
 							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>

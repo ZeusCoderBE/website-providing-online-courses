@@ -1,26 +1,26 @@
---DROP DATABASE ONCOURSE
 
 create database ONCOURSE
+
 go
-USE ONCOURSE;
+USE ONCOURSE
 Go
 --drop database OnCourse
 CREATE TABLE NGUOIDUNG(
 	MaNguoiDung INT IDENTITY PRIMARY KEY,
 	HoTen NVARCHAR(50) ,
-	Email VARCHAR(64) ,
-	MatKhau VARCHAR(64),
+	Email VARCHAR(64) unique,
 	Sdt VARCHAR(10) ,
 	QuocGia NVARCHAR(30) ,
 	VungMien NVARCHAR(30),
 	DiaChi NVARCHAR(30) ,
-	TrinhDo NVARCHAR(30) 
+	TrinhDo NVARCHAR(30) ,
+	MatKhau nvarchar(30),
 );
 GO
 
 CREATE TABLE HOCVIEN (
 	MaHocVien INT PRIMARY KEY,
-	LoaiTaiKhoa NVARCHAR(20) ,
+	LoaiTaiKhoan NVARCHAR(20) ,
 	CONSTRAINT FK_HOCVIEN_NGUOIDUNG FOREIGN KEY(MaHocVien) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
@@ -43,6 +43,8 @@ CREATE TABLE KHOAHOC (
 	NgayPhatHanh DATE ,
 	MoTa NVARCHAR(255) ,
 	DanhGia INT ,
+	TheLoai nvarchar(50),
+	LinhVuc nvarchar(30),
 	CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien),
 	CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
 );
@@ -163,15 +165,15 @@ Create Table DinhKiemVanBan
 go
 
 -- Chèn người dùng
-INSERT INTO NGUOIDUNG (HoTen, Email, MatKhau, Sdt, QuocGia, VungMien, DiaChi, TrinhDo)
+INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
 VALUES
-    (N'Nguyễn Văn A', 'nguyenvana@email.com', 'nguyenvana@email.com','1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân'),
-    (N'Trần Thị B', 'tranthib@email.com', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ'),
-    (N'Lê Văn C', 'levanc@email.com', 'levanc@email.com','4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ'),
-    (N'Phạm Thị D', 'phamthid@email.com', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân'),
-    (N'Hoàng Văn E', 'hoangvane@email.com', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ');
+    (N'Nguyễn Văn A', 'nguyenvana@email.com', '1234567890', N'Việt Nam', N'Miền Nam', N'Địa chỉ 1', N'Cử nhân','1'),
+    (N'Trần Thị B', 'tranthib@email.com', '9876543210', N'Việt Nam', N'Miền Trung', N'Địa chỉ 2', N'Thạc sĩ','2'),
+    (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ','3'),
+    (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân','4'),
+    (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ','5');
 -- Chèn học viên
-INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoa)
+INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoan)
 VALUES (1, N'Vàng'),
     (2, N'Bạc'),
     (3, N'Đồng')
@@ -181,12 +183,12 @@ VALUES (4, N'Công Nghệ Phần Mềm'),
     (5, N'Mạng Và An Ninh Mạng')
 
 -- Chèn khóa học
-INSERT INTO KHOAHOC (MaKhoaHoc,TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia)
+INSERT INTO KHOAHOC (MaKhoaHoc,TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia,TheLoai,LinhVuc)
 VALUES
-    (1,N'Khóa học Toán cơ bản', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4),
-    (2,N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng', 5),
-    (3,N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4),
-    (4,N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế', 5);
+    (1,N'Khóa học Toán cơ bản', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
+    (2,N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
+    (3,N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
+    (4,N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
 INSERT INTO BAIHOC (MaBaiHoc,TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
 VALUES
     (1,N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
