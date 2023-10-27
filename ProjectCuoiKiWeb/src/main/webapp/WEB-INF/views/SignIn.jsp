@@ -24,7 +24,6 @@
 							</div>
 							<br />
 							<p>${thongbaodung}</p>
-							<p>${thongbaodkdung}</p>
 							<div class="form-login-input">
 								<input type="text" placeholder="Email" name="Email" />
 							</div>

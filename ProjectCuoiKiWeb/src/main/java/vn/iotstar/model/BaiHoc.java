@@ -8,14 +8,13 @@ public class BaiHoc {
 	private String tenbaihoc;
 	private Double thoigianhoanthanh;
 	private String noidungbaihoc;
-	private double muctieudaura;
+	private String muctieudaura;
 	private Date ngaydang;
-	private int makhoahoc;
-
-
 	public int getMakhoahoc() {
 		return makhoahoc;
 	}
+
+	private int makhoahoc;
 
 	public int getMabaihoc() {
 		return mabaihoc;
@@ -33,7 +32,7 @@ public class BaiHoc {
 		return noidungbaihoc;
 	}
 
-	public double getMuctieudaura() {
+	public String getMuctieudaura() {
 		return muctieudaura;
 	}
 
@@ -41,7 +40,7 @@ public class BaiHoc {
 		return ngaydang;
 	}
 
-	public BaiHoc(int mabaihoc, String tenbaihoc, Double thoigianhoanthanh, String noidungbaihoc, double muctieudaura,
+	public BaiHoc(int mabaihoc, String tenbaihoc, Double thoigianhoanthanh, String noidungbaihoc, String muctieudaura,
 			Date ngaydang,int makhoahoc) 
 	{
 		this.mabaihoc = mabaihoc;
@@ -55,9 +54,5 @@ public class BaiHoc {
 
 	public BaiHoc() {
 
-	}
-	public BaiHoc(int makhoahoc)
-	{
-		this.makhoahoc=makhoahoc;
 	}
 }

@@ -1,25 +1,3 @@
---Tìm và Cập Nhật Tài Khoản Giảng Viên
-CREATE OR ALTER PROCEDURE sp_TimTaiKhoanGiangVien
-as
-begin
-	declare @manguoidung int
-	set @manguoidung=(SELECT  Top 1 MaNguoiDung FROM NGUOIDUNG
-	ORDER BY MaNguoiDung desc)
-	insert into GIANGVIEN(MaGiangVien)
-	values(@manguoidung)
-end
-
---Tìm Và Cập Nhật Tài Khoản Học Viên
-Create OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
-as
-begin
-	declare @manguoidung int
-	set @manguoidung=(SELECT  Top 1 MaNguoiDung FROM NGUOIDUNG
-	ORDER BY MaNguoiDung desc)
-	insert into HOCVIEN(MaHocVien,LoaiTaiKhoan)
-	values(@manguoidung,N'Dong')
-end
-
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
 CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
 @makhoahoc int 

@@ -16,6 +16,8 @@ tinymce.init({
     menubar: 'favs file edit view insert format tools table',
     content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
 });
+
+
 function handleFocus() {
     const page = document.querySelector('.page');
     const sidebarHome = document.querySelector('.sidebar_home');
@@ -27,27 +29,12 @@ function handleFocus() {
     sidebarStudy.style.display = 'block';
 }
 function handleCheckboxChange(checkbox) {
-    var tkhocvienCheckbox = document.getElementById("tkhocvien");
-    var tkgiaovienCheckbox = document.getElementById("tkgiaovien");
-    
     if (checkbox.id === "tkgiaovien" && checkbox.checked) {
-        tkhocvienCheckbox.checked = false;
+        document.getElementById("tkhocvien").checked = false;
     } else if (checkbox.id === "tkhocvien" && checkbox.checked) {
-        tkgiaovienCheckbox.checked = false;
+        document.getElementById("tkgiaovien").checked = false;
     }
 }
-function validateForm() {
-    var tkhocvienCheckbox = document.getElementById("tkhocvien");
-    var tkgiaovienCheckbox = document.getElementById("tkgiaovien");
-    
-    if (!tkhocvienCheckbox.checked && !tkgiaovienCheckbox.checked) {
-        alert("Bạn phải chọn ít nhất một tùy chọn (Học viên hoặc Giáo viên) trước khi gửi biểu mẫu.");
-        return false; 
-    }
-    return true; 
-}
-
-
 function testConfirmDialog()
  {
  	var result=confirm("Bạn chắc chắc có muốn đăng xuất không");
