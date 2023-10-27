@@ -20,6 +20,9 @@
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
+<%
+int check = 0;
+%>
 <body>
 	<div class="" id="app">
 		<header class="header">
@@ -389,22 +392,47 @@
 												</div>
 											</div>
 											<div class="card_deck">
-												<c:forEach var="khoahoc" items="${danhsachkh}">
-													<div class="card_text card_group">
-														<div class="view_content">
-															<div class="card_item">
-																<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
-																	<div class="card_img"></div>
-																</a>
-																<div class="course_info">
-																	<span>${khoahoc.mota}</span>
+												<c:choose>
+													<c:when
+														test="${check eq 1 }">
+														<c:forEach var="khoahoc" items="${danhsachkhoahoc}">
+															<div class="card_text card_group">
+																<div class="view_content">
+																	<div class="card_item">
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
+																			<div class="card_img"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.mota}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																	</div>
 																</div>
-																<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
-																	class="course_name">${khoahoc.tenkhoahoc}</a>
 															</div>
-														</div>
-													</div>
-												</c:forEach>
+														</c:forEach>
+														<c:set var="check" value="${0}"></c:set>
+													</c:when>
+													<c:when test="${check eq 0}">
+														<c:forEach var="khoahoc" items="${danhsachkh}">
+															<div class="card_text card_group">
+																<div class="view_content">
+																	<div class="card_item">
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
+																			<div class="card_img"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.mota}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																	</div>
+																</div>
+															</div>
+														</c:forEach>
+														<c:set var="check" value="${null}"></c:set>
+													</c:when>
+												</c:choose>
 
 											</div>
 										</div>

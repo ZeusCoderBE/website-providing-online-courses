@@ -41,7 +41,7 @@ function validateForm() {
     var tkgiaovienCheckbox = document.getElementById("tkgiaovien");
     
     if (!tkhocvienCheckbox.checked && !tkgiaovienCheckbox.checked) {
-        alert("Bạn phải chọn ít nhất một tùy chọn (Học viên hoặc Giáo viên) trước khi gửi biểu mẫu.");
+        alert("Bạn phải chọn ít nhất một tùy chọn (Học viên hoặc Giáo viên) trước khi đăng ký.");
         return false; 
     }
     return true; 

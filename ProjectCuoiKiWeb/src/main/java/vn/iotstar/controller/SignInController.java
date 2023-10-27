@@ -38,6 +38,7 @@ public class SignInController {
 			HocVien hocvvien = new HocVien(hv.getManguoidung());
 			dskhoahoccuatoi = khD.FindMyLearning(hocvvien);
 			session.setAttribute("danhsachkhoahoc", dskhoahoccuatoi);
+			session.setAttribute("check", 1);
 			return "redirect:/homepages";
 		}
 	}

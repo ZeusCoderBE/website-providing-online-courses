@@ -36,8 +36,7 @@ public class HomePageController {
 	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
 	public String XemMotKhoaHoc(ModelMap model, @RequestParam("makhoahoc") int makhoahoc) {
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		List<BaiHoc> ListBH=new ArrayList<BaiHoc>();
-		System.out.print("hello");
+		List<BaiHoc> ListBH = new ArrayList<BaiHoc>();
 		try {
 			khoahoc = khD.FindCourseOfCustomer(khoahoc);
 			model.addAttribute("khoahoc", khoahoc);
