@@ -137,18 +137,13 @@
 					<div class="course_detail">
 						<h2>Bạn sẽ học được gì?</h2>
 						<ul class="list">
-							<div class="course__content">
-						<br>
-						<h5>Danh sách bài học: </h5>
-						<c:forEach var="baihoc" items="${listbaihoc}">
-							<li class="list_item"><i class="fa-solid fa-check"></i> 
-								<span>${baihoc.tenbaihoc}:</span>
-							</li> 
-							<p style="text-indent: 20px;">Nội dung: ${baihoc.noidungbaihoc}</p>
-							<p style="text-indent: 20px;">Mục tiêu: ${baihoc.muctieudaura}</p>
-							<p style="text-indent: 20px;">Thời lượng: ${baihoc.thoigianhoanthanh}</p>
-						</c:forEach>
-					</div>
+							<c:forEach var="baihoc" items="${listbaihoc}">
+								<li class="list_item"><i class="fa-solid fa-check"></i> 
+								    <span>Tên Bài Học: ${baihoc.tenbaihoc}</span> <br/>
+									<span>Nội Dung Bài Học: ${baihoc.noidungbaihoc}</span> <br/>
+									<span>Thời Gian Hoàn Thành: ${baihoc.thoigianhoanthanh}h</span>
+								</li>
+							</c:forEach>
 
 						</ul>
 
