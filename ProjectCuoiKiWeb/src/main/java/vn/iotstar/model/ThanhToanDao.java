@@ -14,8 +14,9 @@ public class ThanhToanDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
 
 	public void thanhToan(ThanhToan tt) throws ClassNotFoundException, SQLException {
-		String sqlStr = String.format("INSERT INTO THANHTOAN VALUES(%d, %d, GETDATE(), %f)", tt.getMaNguoiDung(),
+		String sqlStr = String.format("INSERT INTO THANHTOAN VALUES(%d, %d, GETDATE(), %f,NULL,NULL,NULL)", tt.getMaNguoiDung(),
 				tt.getMaKhoaHoc(), tt.getTienThanhToan());
+		System.out.print(sqlStr);
 		dbconn.ExecuteCommand(sqlStr);
 	}
 

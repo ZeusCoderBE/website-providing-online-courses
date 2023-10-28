@@ -69,9 +69,10 @@ public class KhoaHoc {
 		this.danhgia = danhgia;
 	}
 
-	public KhoaHoc(String tenkhoahoc, String trinhdodauvao) {
+	public KhoaHoc(int makhoahoc,String tenkhoahoc, String trinhdodauvao) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.trinhdodauvao = trinhdodauvao;
+		this.makhoahoc=makhoahoc;
 	}
 
 	public KhoaHoc()

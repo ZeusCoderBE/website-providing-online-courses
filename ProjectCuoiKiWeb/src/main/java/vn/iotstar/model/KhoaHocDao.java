@@ -33,15 +33,15 @@ public class KhoaHocDao {
 		}
 		return khoahoc;
 	}
-	public List<KhoaHoc> FindMyLearning(HocVien hv) throws ClassNotFoundException, SQLException
+	public List<KhoaHoc> FindMyLearning(int manguoidung) throws ClassNotFoundException, SQLException
 	{
-		String thucthi="sp_XemKhoaHocCuaToi "+hv.getManguoidung()+"";
+		String thucthi="sp_XemKhoaHocCuaToi "+manguoidung+"";
 		ResultSet rs= dbC.ExecuteQuery(thucthi);
 		KhoaHoc khoahoc=new KhoaHoc();
 		List<KhoaHoc> listkh=new ArrayList<KhoaHoc>();
 		while(rs.next())
 		{
-			khoahoc = new KhoaHoc(rs.getNString("TenKhoaHoc"),rs.getNString("TrinhDoDauVao"));
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getNString("TenKhoaHoc"),rs.getNString("TrinhDoDauVao"));
 			listkh.add(khoahoc);
 		}
 		return listkh;

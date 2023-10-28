@@ -231,19 +231,16 @@ int check = 0;
 						</div>
 						<c:if test="${not empty hocvien.manguoidung}">
 							<div class=" nav_drawer home">
-								<a href="#" onclick="myCourses()"> <i
+								<a href="myhomepage" > <i
 									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
 								</a>
 							</div>
 
 							<div class="nav_drawer home_course">
-								<a style="height: 46px;" href="#"> <i
-									class="fa-solid fa-graduation-cap"></i> <span>Các khóa
-										học của tôi</span>
-								</a>
+								
 								<ul>
 									<c:forEach var="khoahoctaikhoan"
-										items="${sessionScope.danhsachkhoahoc}">
+										items="${requestScope.danhsachkhoahoc}">
 										<li><a href="#"> <i
 												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
 										</a></li>
@@ -393,8 +390,7 @@ int check = 0;
 											</div>
 											<div class="card_deck">
 												<c:choose>
-													<c:when
-														test="${check eq 1 }">
+													<c:when test="${check eq 0}">
 														<c:forEach var="khoahoc" items="${danhsachkhoahoc}">
 															<div class="card_text card_group">
 																<div class="view_content">
@@ -411,9 +407,9 @@ int check = 0;
 																</div>
 															</div>
 														</c:forEach>
-														<c:set var="check" value="${0}"></c:set>
+														<c:set var="check" value="${1}"></c:set>
 													</c:when>
-													<c:when test="${check eq 0}">
+													<c:otherwise>
 														<c:forEach var="khoahoc" items="${danhsachkh}">
 															<div class="card_text card_group">
 																<div class="view_content">
@@ -430,10 +426,8 @@ int check = 0;
 																</div>
 															</div>
 														</c:forEach>
-														<c:set var="check" value="${null}"></c:set>
-													</c:when>
+													</c:otherwise>
 												</c:choose>
-
 											</div>
 										</div>
 									</div>
@@ -442,18 +436,29 @@ int check = 0;
 								<section class="region_sidebar"></section>
 							</div>
 							<footer class="footer">
-                                <div class="footer_list">
-                                    <div class="footer_nav">
-                                        <p>Bạn đang đăng nhập với tên ,</p>
-                                        <a href="#">TRAN VAN LUAN(Thoát)</a>
-                                    </div>
-                                    <a href="#">Get the mobile app</a>
-                                </div>
-                                <div class="footer_info">
-                                    Copyright Oncourse © 2023
-                                </div>
-                               
-                            </footer>
+								<c:choose>
+									<c:when test="${not empty hocvien.manguoidung}">
+										<div class="footer_list">
+											<div class="footer_nav">
+												<p>Bạn đang đăng nhập với tên ,</p>
+												<a href="#">${hocvien.hoten}</a>
+											</div>
+											<a href="introduct">Get the mobile app</a>
+										</div>
+										<div class="footer_info">Copyright Oncourse © 2023</div>
+									</c:when>
+									<c:otherwise>
+										<div class="footer_list">
+											<div class="footer_nav">
+												<p class="p-thongbao">Bạn vẫn chưa đăng nhập</p>
+												<a href="login">Đăng Nhập Tại Đây</a>
+											</div>
+											<a href="introduct">Get the mobile app</a>
+										</div>
+										<div class="footer_info">Copyright Oncourse © 2023</div>
+									</c:otherwise>
+								</c:choose>
+							</footer>
 						</div>
 					</div>
 				</article>

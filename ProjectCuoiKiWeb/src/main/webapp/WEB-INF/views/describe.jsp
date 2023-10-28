@@ -177,17 +177,10 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-<<<<<<< HEAD
 						<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
 							<button class="btn btn-success btn_signin__course">Đăng ký học</button>
 						</a>
 						<button class="btn btn-success btn_signin__course">Thêm Vào Giỏ Hàng</button>
-=======
-						<div class="btn_action">
-                            <button class="btn btn-success btn_signin__course">Đăng ký học</button>
-                            <button class="btn btn-primary btn_signin__course">Thêm giỏ hàng</button>
-                        </div>
->>>>>>> 73b0d7f09b480d73c8d9015076ed5f2d493d6b6e
 					</div>
 				</div>
 			</div>

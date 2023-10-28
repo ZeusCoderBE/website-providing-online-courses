@@ -7,14 +7,22 @@ Go
 --drop database OnCourse
 CREATE TABLE NGUOIDUNG(
 	MaNguoiDung INT IDENTITY PRIMARY KEY,
-	HoTen NVARCHAR(50) ,
+	HoTen NVARCHAR(50),
 	Email VARCHAR(64) unique,
-	Sdt VARCHAR(10) ,
-	QuocGia NVARCHAR(30) ,
+	Sdt VARCHAR(10),
+	QuocGia NVARCHAR(30),
 	VungMien NVARCHAR(30),
-	DiaChi NVARCHAR(30) ,
-	TrinhDo NVARCHAR(30) ,
-	MatKhau nvarchar(30),
+	DiaChi NVARCHAR(30),
+	TrinhDo NVARCHAR(30),
+	MatKhau NVARCHAR(30)
+);
+GO
+
+CREATE TABLE THE (
+	MaThe INT IDENTITY PRIMARY KEY,
+	SoDu DECIMAL(18, 2),
+	MaNguoiDung INT,
+	FOREIGN KEY(MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
 
@@ -106,6 +114,9 @@ CREATE TABLE THANHTOAN (
 	MaKhoaHoc INT,
 	NgayThanhToan DATE NOT NULL,
 	TienThanhToan DECIMAL(18, 2),
+	PTthanhToan NVARCHAR(30), --(Visa, chuyển khoản)
+	TenNganHang NVARCHAR(30),
+	MaTheNH VARCHAR(30),
 	PRIMARY KEY (MaNguoiDung, MaKhoaHoc),
 	CONSTRAINT FK_THANHTOAN_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_THANHTOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc)
@@ -172,6 +183,13 @@ VALUES
     (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ','3'),
     (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân','4'),
     (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ','5');
+-- Chèn thẻ tài khoản
+INSERT INTO THE(SoDu, MaNguoiDung) VALUES
+(100, 1),
+(200, 2),
+(125, 3),
+(50, 4),
+(234, 5)
 -- Chèn học viên
 INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoan)
 VALUES (1, N'Vàng'),

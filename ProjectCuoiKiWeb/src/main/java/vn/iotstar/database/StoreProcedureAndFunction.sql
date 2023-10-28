@@ -36,7 +36,7 @@ Create Or Alter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  TenKhoaHoc,TrinhDoDauVao From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung

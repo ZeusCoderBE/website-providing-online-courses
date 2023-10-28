@@ -26,7 +26,6 @@ public class SignInController {
 	{
 		HttpSession session = rq.getSession();
 		HocVien hv=new HocVien();
-		List<KhoaHoc>dskhoahoccuatoi = new ArrayList<KhoaHoc>();
 		boolean check = ndd.checkDangNhap(email, password);
 		if (check == false) {
 			return "SignIn";
@@ -35,10 +34,6 @@ public class SignInController {
 		{
 			hv=ndd.TimThongTinDN(email);
 			session.setAttribute("hocvien", hv);
-			HocVien hocvvien = new HocVien(hv.getManguoidung());
-			dskhoahoccuatoi = khD.FindMyLearning(hocvvien);
-			session.setAttribute("danhsachkhoahoc", dskhoahoccuatoi);
-			session.setAttribute("check", 1);
 			return "redirect:/homepages";
 		}
 	}
