@@ -15,6 +15,10 @@ public class HocVien extends NguoiDung {
 	public String getLoaitaikhoan() {
 		return loaitaikhoan;
 	}
+	public HocVien (int manguoidung,String hoten)
+	{
+		super(manguoidung,hoten);
+	}
 	public HocVien(int manguoidung)
 	{
 		super(manguoidung);

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,7 @@
                         <a class="nav-link" aria-current="page" href="#">Giới thiệu</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="homepage">Khóa học</a>
+                        <a class="nav-link" aria-current="page" href="homepages">Khóa học</a>
                       </li>
                       
                       <li class="nav-item">
@@ -54,6 +55,10 @@
                         <div class="utilities-inner">
                             <ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
                                 <li style="margin-left: 0;" class="d-flex">
+                                <c:choose>
+                                <c:when test="${not empty hocvien.manguoidung}">
+                                    <div class="usermenu">
+                                        <span>${hocvien.hoten}</span>
                                     <div style="display: none;" class="usermenu">
                                         <span>Tài Khoản</span>
                                         <div style="width: 25px;" class="icon_name">
@@ -63,9 +68,14 @@
                                         </div>
                                         <div class="border_bottom"></div>
                                     </div>
-                                    <button style="display: block;" onclick="redirectToLogin();" class="btn btn-success login_taikhoan">Đăng Nhập</button>
-                                  <!--    <a href="login">Đăng Nhập</a>-->
+                                    </div>
+                                 </c:when>
+                                 <c:otherwise>
+                                     <button style="display: block;" onclick="redirectToLogin();" class="btn btn-success login_taikhoan">Đăng Nhập</button>
+                                  </c:otherwise>
+                                 </c:choose>
                                 </li>
+                                
                             </ul>
                         </div>
                     </div>
