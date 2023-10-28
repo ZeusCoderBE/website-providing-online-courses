@@ -16,7 +16,6 @@ public class TheDao {
 			the = new The(rs.getString("MaThe"), rs.getFloat(2), rs.getInt(3));
 		}
 		
-		System.out.println(the.getMaThe());
 		return the;
 	}
 }

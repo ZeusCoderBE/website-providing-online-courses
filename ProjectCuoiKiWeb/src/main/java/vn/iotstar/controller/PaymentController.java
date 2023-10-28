@@ -12,20 +12,20 @@ import vn.iotstar.model.*;
 
 @Controller
 public class PaymentController {
-	private int makhoahoc;
+
+	private KhoaHoc khoahoc;
 	private The the;
 
 	@RequestMapping(value = "paycourse", method = RequestMethod.GET, params = "makhoahoc")
-	public String payment(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makh) 
+	public String payment(ModelMap model, HttpSession session, @RequestParam("makhoahoc") String makh) 
 	{
 		KhoaHocDao khd = new KhoaHocDao();
 		TheDao td = new TheDao();
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		KhoaHoc khoahoc =new KhoaHoc(makh);
-		makhoahoc=makh;
+
 		try {
 			// Lấy tên khóa học
-			khoahoc = khd. FindCourseOfCustomer(khoahoc);
+			khoahoc = khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh)));
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("khoahoc", khoahoc);
 			model.addAttribute("the", the);
@@ -47,9 +47,10 @@ public class PaymentController {
 			@RequestParam("noidungtt") String noidungtt) 
 	{
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		ThanhToan tt = new ThanhToan(hv.getManguoidung(), makhoahoc, Float.parseFloat(thanhtoan), noidungtt);
-
+		ThanhToan tt = new ThanhToan(hv.getManguoidung(), khoahoc.getMakhoahoc(), Float.parseFloat(thanhtoan), noidungtt);
 		ThanhToanDao ttd = new ThanhToanDao();
+		System.out.println(khoahoc.getMakhoahoc());
+		
 		try {
 			ttd.thanhToan(tt, the);
 			model.addAttribute("warning", "Thanh toán thành công!");

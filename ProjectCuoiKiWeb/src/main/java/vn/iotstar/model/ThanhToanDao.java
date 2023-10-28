@@ -9,8 +9,9 @@ public class ThanhToanDao {
 
 	public void thanhToan(ThanhToan tt, The the) throws ClassNotFoundException, SQLException {
 		// Thanh toán khóa học
-		String sqlStr = String.format("INSERT INTO THANHTOAN VALUES(%d, %d, GETDATE(),%f,'%s')", tt.getMaNguoiDung(),
-				tt.getMaKhoaHoc(),tt.getTienthanhtoan(), tt.getNdThanhToan());
+
+		String sqlStr = String.format("INSERT INTO THANHTOAN VALUES(%d, %d, GETDATE(), %f,'%s')", tt.getMaNguoiDung(),
+				tt.getMaKhoaHoc(), tt.getTienthanhtoan(), tt.getNdThanhToan());
 		dbconn.ExecuteCommand(sqlStr);
 		
 		// Trừ tiền thẻ tài khoản
