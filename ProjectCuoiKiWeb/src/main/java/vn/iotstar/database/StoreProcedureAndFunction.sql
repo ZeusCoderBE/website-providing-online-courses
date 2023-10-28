@@ -36,11 +36,12 @@ Create Or Alter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
+
 GO
 
 --Lấy Thông Tin của người dùng 
@@ -48,7 +49,8 @@ CREATE OR ALTER PROCEDURE sp_TimThongTinHocVien
 @email varchar(64) 
 as 
 begin
-	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen From NGUOIDUNG join  HOCVIEN
+	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
+	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan  From NGUOIDUNG join  HOCVIEN
 	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
 	where NGUOIDUNG.Email=@email
 end

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
+<link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
 </head>
@@ -71,23 +72,21 @@
 								</li>
 								<li class="d-flex">
 									<div class="usermenu" style="display: flex;">
-										<span>Tran Van Luan</span>
+										<span>${hocvien.hoten}</span>
 										<div class="icon_name">
-											<span>T</span>
+											<span>${fn:substring(hocvien.hoten,0,1)}</span>
 										</div>
 										<div class="border_bottom"></div>
 										<ul class="setting my_course">
 											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-											<li class="setting__item"><a href="#"> <span>Hồ
+											<li class="setting__item"><a href="myprofiles"> <span>Hồ
 														sơ cá nhân</span>
 											</a></li>
-											<li class="setting__item"><a href="#"> <span>Chứng
-														chỉ</span>
-											</a></li>
+
 											<li class="setting__item"><a href="#"> <span>Cần
 														trợ giúp</span>
 											</a></li>
-											<li class="setting__item"><a href="#"> <span>Đổi
+											<li class="setting__item"><a href="myprofiles"> <span>Đổi
 														mật khẩu</span>
 											</a></li>
 											<li class="setting__item"><a href="#"> <span>Đăng
@@ -109,9 +108,9 @@
 					<div class="profile_avata">
 						<div class="personal_detail">Personal details</div>
 						<div class="profile_icon">
-							<span>T</span>
+							<span>${fn:substring(hocvien.hoten,0,1)}</span>
 						</div>
-						<div class="profile_name">Trần Văn Luân</div>
+						<div class="profile_name">${hocvien.hoten}</div>
 						<button class="btn btn_main">
 							<i class="fa-solid fa-link"></i> Share profile link
 						</button>
@@ -149,21 +148,35 @@
 						<div class="profile_account">
 							<h6>Account</h6>
 							<ul class="profile_account-list">
-								<li class="account-list_item"><label for="username">Full
-										name</label> <input type="text" id="username"
-									placeholder="TRẦN VĂN LUÂN" /></li>
-								<li class="account-list_item"><label for="username">Email
-										address</label> <input type="email" id="username"
-									placeholder="tranluan074@gmail.com" /></li>
-								<li class="account-list_item"><label for="username">Timezone</label>
-									<input type="text" id="username" placeholder="HO CHI MINH" /></li>
+								<li class="account-list_item"><label for="username">Họ và Tên:</label> <input type="text" id="username" name="username"
+									value="${hocvien.hoten}" /></li>
+								<li class="account-list_item"><label for="username">Email:</label>
+									<input type="email" id="email" name="email"
+									value="${hocvien.email}" /></li>
+								<li class="account-list_item"><label for="quocgia">Quốc Gia</label>
+									<input type="text" id="quocgia" name="quocgia"
+									value="${hocvien.quocgia}" /></li>
 								<li class="account-list_item"><label for="username">Language</label>
 									<select class="form-select" aria-label="Default select example">
 										<option selected>Language</option>
 										<option value="English">English</option>
 										<option value="VietNamese">VietNamese</option>
-										<option value="ThaiLan">ThaiLan</option>
 								</select></li>
+							   <li class="account-list_item"><label for="sdt">Số Điện Thoại:</label>
+									<input type="text" id="sdt" name="sdt"
+									value="${hocvien.sdt}" /></li>
+							   <li class="account-list_item"><label for="vungmien">Vùng Miền:</label>
+									<input type="text" id="vungmien" name="vungmien"
+									value="${hocvien.vungmien}" /></li>
+								<li class="account-list_item"><label for="diachi">Địa Chỉ:</label>
+									<input type="text" id="diachi" name="diachi"
+									value="${hocvien.diachi}" /></li>
+								<li class="account-list_item"><label for="loaitaikhoan">Loại Tài Khoản</label>
+									<input type="text" id="loaitaikhoan" name="loaitaikhoan"
+									value="${hocvien.loaitaikhoan}" /></li>
+								<li class="account-list_item"><label for="trinhdo">Trình Độ</label>
+									<input type="text" id="trinhdo" name="trinhdo"
+									value="${hocvien.trinhdo}" /></li>
 							</ul>
 							<button class="btn btn_main btn-save">Save</button>
 						</div>

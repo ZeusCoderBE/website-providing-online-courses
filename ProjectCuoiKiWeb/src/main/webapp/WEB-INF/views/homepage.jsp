@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -186,21 +187,18 @@ int check = 0;
 											<div class="usermenu">
 												<span>${hocvien.hoten}</span>
 												<div class="icon_name">
-													<span>T</span>
+													<span>${fn:substring(hocvien.hoten,0,1)}</span>
 												</div>
 												<div class="border_bottom"></div>
 												<ul class="setting my_course">
 													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-													<li class="setting__item"><a href="#"> <span>Hồ
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
 																sơ cá nhân</span>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Chứng
-																chỉ</span>
-													</a></li>
-													<li class="setting__item"><a href="#"> <span>Cần
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
 																trợ giúp</span>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Đổi
+													<li class="setting__item"><a href="myprofiles"> <span>Đổi
 																mật khẩu</span>
 													</a></li>
 													<li class="setting__item"><a href="#"

@@ -4,9 +4,10 @@ public class HocVien extends NguoiDung {
 	
 	private String loaitaikhoan;
 	public HocVien(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
-			String diachi, String trinhdo,String matkhau,String loaitaikhoan )
+			String diachi, String trinhdo,String loaitaikhoan )
 	{
-		super(manguoidung,hoten,email,sdt,quocgia,vungmien,diachi,trinhdo,matkhau);
+		super(manguoidung,hoten,email,sdt,quocgia,vungmien,diachi,trinhdo);
+		this.loaitaikhoan=loaitaikhoan;
 	}
 	public HocVien(String hoten,String email,String matkhau,String quocgia)
 	{

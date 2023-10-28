@@ -114,7 +114,7 @@
 						<span>+</span>
 					</div>
 					<ul class="sidebar_icon">
-						<li class="sidebar_link"><a href="homepage"
+						<li class="sidebar_link"><a href="homepages"
 							class="sidebar_link__icon"> <i class="fa-solid fa-house"></i>
 								<span>Trang chủ</span>
 						</a></li>

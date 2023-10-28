@@ -41,7 +41,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh=new ArrayList<KhoaHoc>();
 		while(rs.next())
 		{
-			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getNString("TenKhoaHoc"),rs.getNString("TrinhDoDauVao"));
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getNString("TenKhoaHoc"),rs.getNString("TrinhDoDauVao"),rs.getNString("MoTa"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
