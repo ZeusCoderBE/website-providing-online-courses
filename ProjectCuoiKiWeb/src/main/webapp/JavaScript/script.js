@@ -88,3 +88,8 @@ function homePage(){
 function goToNewPage() {
     window.location.href = "./signin.html";
 }
+
+function scrollToElement(elementId) {
+    window.location.href = "myprofiles"; // Thay đổi URL tới trang bạn muốn chuyển đến
+    localStorage.setItem('scrollToElement', elementId);
+  }

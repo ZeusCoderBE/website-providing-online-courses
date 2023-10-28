@@ -8,7 +8,7 @@ begin
 	insert into GIANGVIEN(MaGiangVien)
 	values(@manguoidung)
 end
-
+go
 --Tìm Và Cập Nhật Tài Khoản Học Viên
 CREATE OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
 as
@@ -21,6 +21,7 @@ begin
 end
 Go
 
+go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
 CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
