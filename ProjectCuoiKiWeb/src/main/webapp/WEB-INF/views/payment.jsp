@@ -20,15 +20,19 @@
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
-								<h1>Thanh toán Visa</h1>
+								<h1>Thanh toán khóa học</h1>
 							</div>
 							<div class="form-login-input">
-								<label for="Card number">Card number </label> <input type="text"
+								<label for="methodPay">Phương thức thanh toán </label> <input
+									type="methodPay" placeholder="phương thức" name="methodPay" />
+							</div>
+							<div class="form-login-input">
+								<label for="TenNgHang">Tên ngân hàng </label> <input type="text"
+									placeholder="Ngân hàng" name="TenNgHang" />
+							</div>
+							<div class="form-login-input">
+								<label for="CardNumber">Card number </label> <input type="text"
 									placeholder="Số thể" name="CardNumber" />
-							</div>
-							<div class="form-login-input">
-								<label for="CVV">Số CVV </label> <input
-									type="CVV" placeholder="số cvv" name="CVV" />
 							</div>
 							<div class="form-login-input">
 								<label for="bill">Số tiến cần thanh toán </label> <input
