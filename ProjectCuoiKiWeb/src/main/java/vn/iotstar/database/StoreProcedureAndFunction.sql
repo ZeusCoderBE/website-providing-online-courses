@@ -1,6 +1,8 @@
+
+
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
 CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
-@makhoahoc int 
+@makhoahoc INT
 as
 begin
 	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc From KHOAHOC
@@ -8,9 +10,10 @@ begin
 	on BAIHOC.MaBaiHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
---Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
 GO
-Create Or Alter Procedure sp_XemKhoaHocCuaToi
+
+--Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
+Create or Alter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -58,8 +61,3 @@ BEGIN
 	END
 END
 GO
-
-DECLARE @sosanh INT, @diff DECIMAL
-EXEC sp_thanhtoanKH @tienThanhToan=60.00, @maKhoaHoc=3, @soSanh=@sosanh OUTPUT, @diff=@diff OUTPUT
-PRINT @sosanh
-PRINT @diff
