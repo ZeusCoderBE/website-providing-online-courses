@@ -16,41 +16,26 @@
                 <div class="form-list">
                     <div class="form-item">
                         <div class="form-item-login">
-                            <div class="form-login-header"><h1 >COURSE</h1></div>
+                            <div class="form-login-header"><h1 >TẠO BÀI HỌC</h1></div>
                             
                             <div class="form-login-input">
-                                <label for="name_course">Tên khóa học:</label>
-                                <input type="text" id="name_course" placeholder="Tên Khóa học"/>
-                                <label for="makh">Thể lọai</label>
-                                <input type="text" id="makh" placeholder="Thể loại"/>
-                            </div>
-                            <div class="form-login-input">
-                                <label for="gv">Giảng viên</label>
-                                <input type="text" id="gv" placeholder="Tên giảng viên"/>
-                                <label for="price">Gía tiền:</label>
-                                <input type="text" id="price" placeholder="vd: $9999"/>
-                            </div>
-                            <div class="form-login-input">
-                                <label for="makh">Ngôn ngữ</label>
-                                <input type="text" id="makh" placeholder="vd: C#"/>
-                                <label for="gv">Thời lượng</label>
-                                <input type="text" id="gv" placeholder="vd: 1:00:00"/>
-                            </div>
-                            <div class="form-login-input">
-                                <label for="makh">Lĩnh Vực</label>
-                                <input type="text" id="makh" placeholder="Lĩnh vực"/>
-                                <label for="gv">Ngày phát hành</label>
+                                <label for="name_course">Tên bài học:</label>
+                                <input type="text" id="name_lesson" placeholder="Tên bài học"/>
+                                <label for="gv">Thời gian hoàn thành</label>
                                 <input type="date" id="gv" placeholder="vd: 1:00:00"/>
                             </div>
-                          
+                            <div class="form-login-input">
+                                <label for="makh">Mục tiêu đầu ra</label>
+                                <input type="text" id="makh" />
+                            </div>
                             <div class="content">
-                                <h3>Mô tả khóa học</h3>
+                                <h3>Nội dung bài học</h3>
                                 <form action="" method="post">
                                     <textarea name="textarea" id="default"></textarea>
                                 </form>
                                 
                             </div>
-                            <button class="btn btn-primary" type="submit">Tạo khóa học</button>
+                            <button class="btn btn-primary" type="submit">Tạo bài học</button>
                         </div>
                         
                     </div>

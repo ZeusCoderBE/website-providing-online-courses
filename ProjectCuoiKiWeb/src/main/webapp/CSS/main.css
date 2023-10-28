@@ -1,4 +1,3 @@
-
 /* Var */
 :root {
     --background-header : #0a426e;
@@ -185,4 +184,3 @@ a {
 .btn {
     border: 1px solid var(--border-button);
 }
-

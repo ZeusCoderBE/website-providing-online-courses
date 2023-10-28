@@ -909,3 +909,225 @@
     background-color: #181b1f;
     padding: 10px 0;
 }
+
+
+/* PROFILE */
+.profile-container {
+    margin: 0 6%;
+}
+
+.row_profile {
+    min-height: 100vh;
+}
+
+.profile_info {
+    margin-top: 6%;
+    position: static;
+    height: 100vh;
+    background-color: transparent;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_avata {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: black;
+    text-align: start;
+}
+
+.profile_avata + .profile_avata {
+    margin-top: 20px;
+}
+
+.profile_avata span {
+    font-size: 0.9rem;
+    line-height: 0;
+    text-align: start;
+    color: var(--text-color);
+}
+
+.profile_icon {
+    width: 50%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #003584;
+    margin: 10px 0;
+    border: 2px solid rgba(214, 212, 212, 0.8);
+
+}
+
+.profile_icon span{
+    color: white;
+    font-size: 1.9rem;
+
+}
+
+.btn_main {
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+    background-color: transparent;
+    color: #0d6efd;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid blue;
+}
+
+.btn_signin__profile i {
+    margin-right: 10px;
+}
+
+.profile_update::before {
+    position: absolute;
+    content: "";
+    background-color: #e5e7e8;
+    width: 90%;
+    margin-left: 5%;
+    height: 1px;
+    top: -10px;
+    left: 0;
+}
+
+.btn_main:hover {
+    background-color: #f5f7f8;
+    color: #0d6efd;
+    border: 1px solid blue;
+}
+
+.profile_update {
+    position: relative;
+    font-size: 1.1rem;
+    margin: 6px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.profile_update:hover {
+    background-color: #f5f7f8;
+
+}
+
+/* PROFILE ITEM */
+
+.col-9 {
+    margin-top: 6%;
+    text-align: start;
+}
+
+.profile_content {
+    padding: 50px 90px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.profile_account-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.account-list_item {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-right: 5%;
+}
+
+.account-list_item label {
+    font-weight: bold;
+}
+
+.account-list_item input {
+    flex: 1;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.form-select {
+    flex: 1;
+    margin-top: 10px;
+    padding: 10px;
+    border-color: #767676;
+    border-radius: 1px;
+}
+
+.form-select:focus {
+    border: none;
+}
+
+.btn-save {
+    padding: 10px 30px;
+    width: auto;
+}
+
+.the_line {
+    height: 0.5px;
+    width: 100%;
+    background-color: #e0e0e0;
+    margin: 20px 0;
+}
+
+.personal_email {
+    display: flex;
+    flex-direction: column;
+}
+
+.personal_email input {
+    flex: 1;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.profile_content h6 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #1f1f1f;
+}
+
+.profile_content label {
+    margin-top: 6px;
+}
+
+.personal_password-list {
+    display: flex;
+}
+
+.profile_my-course {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 10px;
+}
+
+.profile_my-course__info {
+    margin-left: 15px;
+}
+
+.profile_my-course__info a {
+    color: #0d6efd;
+    font-size: 1.1rem;
+}
+
+.profile_my-course__info span {
+    font-size: 1rem;
+
+}
+
+.profile_my-course__info p {
+    margin: 0;
+}

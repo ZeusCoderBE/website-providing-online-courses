@@ -15,6 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
     <link href="./templates/CSS/main.css" type="text/css" rel="stylesheet">
     <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
     <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
@@ -87,6 +88,34 @@
                                             <span>T</span>
                                         </div>
                                         <div class="border_bottom"></div>
+                                        <ul class="setting my_course">
+                                             <div style="right: -20px; top:-10px;"  class="pseudo_class"></div>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Hồ sơ cá nhân</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Chứng chỉ</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Cần trợ giúp</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Đổi mật khẩu</span>
+                                                </a>
+                                            </li>
+                                             <li class="setting__item">
+                                                <a href="#">
+                                                    <span>Đăng xuất</span>
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
