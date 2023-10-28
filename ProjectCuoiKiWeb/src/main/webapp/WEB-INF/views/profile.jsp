@@ -17,6 +17,21 @@
 	<link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
+<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() {
+		var elementId = localStorage.getItem('scrollToElement');
+		console.log(elementId)
+		if (elementId) {
+			var element = document.querySelector(elementId);
+			if (element) {
+				element.scrollIntoView({
+					behavior : 'smooth'
+				});
+				localStorage.removeItem('scrollToElement'); // Xóa tham số khi đã sử dụng
+			}
+		}
+	});
+</script>
 </head>
 <body>
 	<div class="" id="app">

@@ -25,7 +25,7 @@
 			<nav class="nav">
 				<ul class="nav_item">
 					<li class="nav_link"><a class="nav_item_link"
-						href="index.html">
+						href="homepages">
 							<div>OnCourse</div>
 					</a></li>
 					<li class="nav_link nav_input">

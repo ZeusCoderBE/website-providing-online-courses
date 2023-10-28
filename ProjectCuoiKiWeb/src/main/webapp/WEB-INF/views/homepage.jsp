@@ -200,7 +200,7 @@ int check = 0;
 													<li class="setting__item"><a href="#"> <span>Cần
 																trợ giúp</span>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Đổi
+													<li class="setting__item"><a href="myprofiles" onclick="scrollToElement('.personal_email')"> <span>Đổi
 																mật khẩu</span>
 													</a></li>
 													<li class="setting__item"><a href="#"
@@ -210,7 +210,7 @@ int check = 0;
 											</div>
 										</c:when>
 										<c:otherwise>
-											<a href="login">Đăng Nhập</a>
+											<a href="login"><button style="display: block;" class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
 										</c:otherwise>
 									</c:choose></li>
 							</ul>
