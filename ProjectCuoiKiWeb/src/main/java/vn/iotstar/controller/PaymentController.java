@@ -13,27 +13,29 @@ import vn.iotstar.model.*;
 @Controller
 public class PaymentController {
 	private int makhoahoc;
-	private KhoaHoc khoahoc;
 	private The the;
 
 	@RequestMapping(value = "paycourse", method = RequestMethod.GET, params = "makhoahoc")
-	public String payment(ModelMap model, HttpSession session, @RequestParam("makhoahoc") String makh) 
+	public String payment(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makh) 
 	{
 		KhoaHocDao khd = new KhoaHocDao();
 		TheDao td = new TheDao();
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		makhoahoc = Integer.parseInt(makh);
+		KhoaHoc khoahoc =new KhoaHoc(makh);
+		makhoahoc=makh;
 		try {
 			// Lấy tên khóa học
-			khoahoc = khd.getACourse(makhoahoc);
+			khoahoc = khd. FindCourseOfCustomer(khoahoc);
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("khoahoc", khoahoc);
 			model.addAttribute("the", the);
 			model.addAttribute("noidungtt", String.format("THANH TOAN KHOA HOC %s", khoahoc.getTenkhoahoc().toUpperCase()));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.print(e.getMessage());
 			e.printStackTrace();
 		} catch (SQLException e) {
+			System.out.print(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

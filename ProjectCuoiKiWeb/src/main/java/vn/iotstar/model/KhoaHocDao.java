@@ -34,6 +34,7 @@ public class KhoaHocDao {
 					rs.getInt("DanhGia"));
 
 		}
+		System.out.print(query);
 		return khoahoc;
 	}
 	public List<KhoaHoc> FindMyLearning(int manguoidung) throws ClassNotFoundException, SQLException
@@ -50,18 +51,4 @@ public class KhoaHocDao {
 		return listkh;
 	}
 
-	public KhoaHoc getACourse(int makhoahoc) throws ClassNotFoundException, SQLException {
-		String sqlStr = String.format("SELECT * FROM KHOAHOC WHERE MaKhoaHoc=%d", makhoahoc);
-		ResultSet rs = dbC.ExecuteQuery(sqlStr);
-		KhoaHoc khoahoc = null;
-		if (rs.next()) {
-			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
-					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
-					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
-					rs.getInt("DanhGia"));
-		}
-
-		System.out.println(khoahoc.getTenkhoahoc());
-		return khoahoc;
-	}
 }
