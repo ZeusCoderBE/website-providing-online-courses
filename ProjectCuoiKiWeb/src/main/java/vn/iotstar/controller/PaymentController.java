@@ -17,7 +17,6 @@ import vn.iotstar.model.*;
 
 @Controller
 public class PaymentController {
-	private int makhoahoc;
 	private KhoaHoc khoahoc;
 	private ThanhToan thanhtoan;
 	private The the;
@@ -28,10 +27,10 @@ public class PaymentController {
 		KhoaHocDao khd = new KhoaHocDao();
 		TheDao td = new TheDao();
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		makhoahoc = Integer.parseInt(makh);
+
 		try {
 			// Lấy tên khóa học
-			khoahoc = khd.getACourse(makhoahoc);
+			khoahoc = khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh)));
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("khoahoc", khoahoc);
 			model.addAttribute("the", the);
@@ -51,9 +50,10 @@ public class PaymentController {
 			@RequestParam("noidungtt") String noidungtt) 
 	{
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		ThanhToan tt = new ThanhToan(hv.getManguoidung(), makhoahoc, Float.parseFloat(thanhtoan), noidungtt);
-
+		ThanhToan tt = new ThanhToan(hv.getManguoidung(), khoahoc.getMakhoahoc(), Float.parseFloat(thanhtoan), noidungtt);
 		ThanhToanDao ttd = new ThanhToanDao();
+		System.out.println(khoahoc.getMakhoahoc());
+		
 		try {
 			ttd.thanhToan(tt, the);
 			model.addAttribute("warning", "Thanh toán thành công!");

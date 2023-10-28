@@ -8,4 +8,3 @@ BEGIN
 	INSERT INTO DANGKY VALUES(@mand, @makh)
 END
 GO
-

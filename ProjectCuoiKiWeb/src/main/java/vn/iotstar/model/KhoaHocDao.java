@@ -60,7 +60,6 @@ public class KhoaHocDao {
 					rs.getInt("DanhGia"));
 		}
 
-		System.out.println(khoahoc.getTenkhoahoc());
 		return khoahoc;
 	}
 }
