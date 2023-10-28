@@ -10,7 +10,7 @@ begin
 end
 
 --Tìm Và Cập Nhật Tài Khoản Học Viên
-Create OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
+CREATE OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
 as
 begin
 	declare @manguoidung int
@@ -19,10 +19,11 @@ begin
 	insert into HOCVIEN(MaHocVien,LoaiTaiKhoan)
 	values(@manguoidung,N'Dong')
 end
+Go
 
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
 CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
-@makhoahoc int 
+@makhoahoc INT
 as
 begin
 	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc From KHOAHOC
@@ -30,9 +31,10 @@ begin
 	on BAIHOC.MaBaiHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
---Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
 GO
-Create Or Alter Procedure sp_XemKhoaHocCuaToi
+
+--Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
+CREATE or ALTER Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -81,4 +83,3 @@ BEGIN
 		SET @diff = 0
 	END
 END
-GO

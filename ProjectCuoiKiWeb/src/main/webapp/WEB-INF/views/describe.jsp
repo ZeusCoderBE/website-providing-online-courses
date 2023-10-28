@@ -138,11 +138,10 @@
 						<h2>Bạn sẽ học được gì?</h2>
 						<ul class="list">
 							<c:forEach var="baihoc" items="${listbaihoc}">
-								<li class="list_item"><i class="fa-solid fa-check"></i> 
-								    <span>Tên Bài Học: ${baihoc.tenbaihoc}</span> <br/>
-									<span>Nội Dung Bài Học: ${baihoc.noidungbaihoc}</span> <br/>
-									<span>Thời Gian Hoàn Thành: ${baihoc.thoigianhoanthanh}h</span>
-								</li>
+								<li class="list_item"><i class="fa-solid fa-check"></i> <span>Tên
+										Bài Học: ${baihoc.tenbaihoc}</span> <br /> <span>Nội Dung Bài
+										Học: ${baihoc.noidungbaihoc}</span> <br /> <span>Thời Gian
+										Hoàn Thành: ${baihoc.thoigianhoanthanh}h</span></li>
 							</c:forEach>
 
 						</ul>
@@ -177,11 +176,20 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-						
+
 						<div class="btn_action">
 							<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
-							<button class="btn btn-success btn_signin__course">Đăng
-								ký học</button></a>
+								<button class="btn btn-success btn_signin__course">Đăng
+									ký học</button>
+							</a>
+							<button class="btn btn-primary btn_signin__course">Thêm
+								giỏ hàng</button>
+						</div>
+						<div class="btn_action">
+							<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
+								<button class="btn btn-success btn_signin__course">Đăng
+									ký học</button>
+							</a>
 							<button class="btn btn-primary btn_signin__course">Thêm
 								giỏ hàng</button>
 						</div>
@@ -190,120 +198,91 @@
 			</div>
 		</div>
 		<footer class="footer">
-            <section class="footer_list">
-                <section class="footer_item">
-                    <div class="footer_column">
-                        <div class="footer_header">
-                            <a class="nav_item_link" href="#">
-                                <div>OnCourse</div>
-                            </a>
-                            <h5>Dạy lập trình</h5>
-                        </div>
-                        <p class="footer_contact">Điện thoại: 0246.329.1102
-                            Email: contact@fullstack.edu.vn
-                            Số 11D, lô A10, khu đô thị Nam Trung Yên, Phường Yên Hòa, Quận Cầu Giấy, TP. Hà Nội</p>
-                    </div>
-                </section>
-                <section class="footer_item">
-                    <div class="footer_column">
-                        <div class="footer_header">
-                            <h5>Về Oncourse</h5>
-                        </div>
-                        <ul class="footer_info">
-                            <li>
-                                <a href="#">Giới thiệu</a>
-                            </li>
-                            <li>
-                                <a href="#">Liên hệ</a>
-                            </li>
-                            <li>
-                                <a href="#">Điều khoản</a>
-                            </li>
-                            <li>
-                                <a href="#">Bảo mật</a>
-                            </li>
-                            <li>
-                                <a href="#">Cơ hội việc làm</a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section class="footer_item">
-                    <div class="footer_column">
-                        <div class="footer_header">
-                            <h5>Sản phẩm</h5>
-                        </div>
-                        <ul class="footer_info">
-                            <li>
-                                <a href="#">Trang dạy học số</a>
-                            </li>
-                            <li>
-                                <a href="#">Trang đăng ký tài khoản</a>
-                            </li>
-                            <li>
-                                <a href="#">Trang giới thiệu khóa học</a>
-                            </li>
-                            <li>
-                                <a href="#">Trang thanh toán</a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                <section class="footer_item">
-                    <div class="footer_column">
-                        <div class="footer_header">
-                            <h5>Công cụ</h5>
-                        </div>
-                        <ul class="footer_info">
-                            <li>
-                                <a href="#">Github</a>
-                            </li>
-                            <li>
-                                <a href="#">VSCODE</a>
-                            </li>
-                            <li>
-                                <a href="#">Tomcat</a>
-                            </li>
-                            <li>
-                                <a href="#">Eclipse</a>
-                            </li>
-                            <li>
-                                <a href="#">Libary</a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-                <section class="footer_item">
-                    <div class="footer_column">
-                        <div class="footer_header">
-                            <h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
-                        </div>
-                        <ul class="footer_info">
-                            <li>
-                                <a href="#">Mã số thuế: 0109922901</a>
-                            </li>
-                            <li>
-                                <a href="#">Ngày thành lập: 04/03/2022</a>
-                            </li>
-                            <li>
-                                <p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây dựng và phát triển những sản phẩm mang lại giá trị cho cộng đồng.</p>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
-                
-            </section>
-            <section class="footer_nav">
-                <div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng học lập trình hàng đầu Việt Nam</div>
-                <div class="footer_nav__icon">
-                    <i class="fa-brands fa-square-youtube"></i>
-                    <i class="fa-brands fa-square-facebook"></i>
-                    <i class="fa-brands fa-tiktok"></i>
-                </div>
-            </section>
-            </footer>
+			<section class="footer_list">
+				<section class="footer_item">
+					<div class="footer_column">
+						<div class="footer_header">
+							<a class="nav_item_link" href="#">
+								<div>OnCourse</div>
+							</a>
+							<h5>Dạy lập trình</h5>
+						</div>
+						<p class="footer_contact">Điện thoại: 0246.329.1102 Email:
+							contact@fullstack.edu.vn Số 11D, lô A10, khu đô thị Nam Trung
+							Yên, Phường Yên Hòa, Quận Cầu Giấy, TP. Hà Nội</p>
+					</div>
+				</section>
+				<section class="footer_item">
+					<div class="footer_column">
+						<div class="footer_header">
+							<h5>Về Oncourse</h5>
+						</div>
+						<ul class="footer_info">
+							<li><a href="#">Giới thiệu</a></li>
+							<li><a href="#">Liên hệ</a></li>
+							<li><a href="#">Điều khoản</a></li>
+							<li><a href="#">Bảo mật</a></li>
+							<li><a href="#">Cơ hội việc làm</a></li>
+						</ul>
+					</div>
+				</section>
+				<section class="footer_item">
+					<div class="footer_column">
+						<div class="footer_header">
+							<h5>Sản phẩm</h5>
+						</div>
+						<ul class="footer_info">
+							<li><a href="#">Trang dạy học số</a></li>
+							<li><a href="#">Trang đăng ký tài khoản</a></li>
+							<li><a href="#">Trang giới thiệu khóa học</a></li>
+							<li><a href="#">Trang thanh toán</a></li>
+
+						</ul>
+					</div>
+				</section>
+				<section class="footer_item">
+					<div class="footer_column">
+						<div class="footer_header">
+							<h5>Công cụ</h5>
+						</div>
+						<ul class="footer_info">
+							<li><a href="#">Github</a></li>
+							<li><a href="#">VSCODE</a></li>
+							<li><a href="#">Tomcat</a></li>
+							<li><a href="#">Eclipse</a></li>
+							<li><a href="#">Libary</a></li>
+						</ul>
+					</div>
+				</section>
+				<section class="footer_item">
+					<div class="footer_column">
+						<div class="footer_header">
+							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+						</div>
+						<ul class="footer_info">
+							<li><a href="#">Mã số thuế: 0109922901</a></li>
+							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
+							<li>
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây
+									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
+									đồng.</p>
+							</li>
+
+						</ul>
+					</div>
+				</section>
+
+			</section>
+			<section class="footer_nav">
+				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
+					học lập trình hàng đầu Việt Nam</div>
+				<div class="footer_nav__icon">
+					<i class="fa-brands fa-square-youtube"></i> <i
+						class="fa-brands fa-square-facebook"></i> <i
+						class="fa-brands fa-tiktok"></i>
+				</div>
+			</section>
+		</footer>
 	</div>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
