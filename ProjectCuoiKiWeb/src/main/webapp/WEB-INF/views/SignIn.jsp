@@ -23,8 +23,7 @@
 								<h1>Login</h1>
 							</div>
 							<br />
-							<p>${thongbaodung}</p>
-							<p>${thongbaodkdung}</p>
+							<p>${loidangnhap}</p>
 							<div class="form-login-input">
 								<input type="text" placeholder="Email" name="Email" />
 							</div>
