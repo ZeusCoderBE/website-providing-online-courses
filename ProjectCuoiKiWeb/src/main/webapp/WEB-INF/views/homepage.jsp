@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +17,13 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
+<link href="./templates/CSS/cart.css" rel="stylesheet">
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
+<%
+int check = 0;
+%>
 <body>
 	<div class="" id="app">
 		<header class="header">
@@ -66,21 +71,156 @@
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
 								<li class="mr-3">
+									<div class="show_info">
+										<i class="fa-solid fa-cart-shopping"></i>
+										<div class="show_info__figure">4</div>
+										<div class="my_course">
+											<div class="pseudo_class"></div>
+
+											<div class="my_course__header">
+												<h5>Giỏ hàng của tôi</h5>
+												<span>Xem tất cả</span>
+											</div>
+											<ul class="my_course__list">
+												<div class="my_course__detail">
+													<div class="my_sourse__item">
+														<a href="#"> <img
+															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+															alt="react">
+														</a>
+													</div>
+													<div class="my_course__info">
+														<span> <a href="#">Xây Dựng Website với ReactJS
+																ahdhdghdsg</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+													</div>
+
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
+														</div>
+													</div>
+												</div>
+												<div class="my_course__detail">
+													<div class="my_sourse__item">
+														<a href="#"> <img
+															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
+															alt="react">
+														</a>
+													</div>
+													<div class="my_course__info">
+														<span> <a href="#">Xây Dựng Website với ReactJS</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
+														</div>
+													</div>
+												</div>
+												<div class="my_course__detail">
+													<div class="my_sourse__item">
+														<a href="#"> <img
+															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+															alt="react">
+														</a>
+													</div>
+													<div class="my_course__info">
+														<span> <a href="#">Xây Dựng Website với ReactJS</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
+														</div>
+													</div>
+												</div>
+												<div class="my_course__detail">
+													<div class="my_sourse__item">
+														<a href="#"> <img
+															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
+															alt="react">
+														</a>
+													</div>
+													<div class="my_course__info">
+														<span> <a href="#">Xây Dựng Website với ReactJS</a>
+														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a href="#">Buy</a>
+														</div>
+
+														<div class="my_course__delete">
+															<a href="#">Delete</a>
+														</div>
+													</div>
+												</div>
+											</ul>
+
+										</div>
+									</div>
+								</li>
+
+								<li class="mr-3">
 									<div class="">
 										<i class="fa-solid fa-bell"></i>
 									</div>
 								</li>
-								<li class="d-flex">
-									<div class="usermenu">
-										<span>Tran Van Luan</span>
-										<div class="icon_name">
-											<span>T</span>
-										</div>
-										<div class="border_bottom"></div>
-									</div>
-									<button onclick="goToNewPage()"
-										class="btn btn-success login_taikhoan">Đăng Nhập</button>
-								</li>
+
+								<li class="d-flex"><c:choose>
+										<c:when test="${ not empty hocvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose >
+												<c:when test="${not empty thongtin}">
+												<span>${thongtin.hoten}</span>
+												<div class="icon_name">
+													<span>${fn:substring(thongtin.hoten,0,1)}</span>
+												</div>
+												</c:when>
+												<c:otherwise>
+													<span>${hocvien.hoten}</span>
+												<div class="icon_name">
+													<span>${fn:substring(hocvien.hoten,0,1)}</span>
+												</div>
+												</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
+																trợ giúp</span>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles" onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="login"><button style="display: block;" class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
+										</c:otherwise>
+									</c:choose></li>
 							</ul>
 						</div>
 					</div>
@@ -92,18 +232,20 @@
 			<div class="row">
 				<nav class="col-2">
 					<div class="sidebar sidebar_home">
-
 						<div class="nav_drawer home_system">
-							<a href="#" onclick="homePage()"> <i
-								class="fa-solid fa-house"></i> <span>Trang trủ hệ thống</span>
+							<a href="homepages"> <i class="fa-solid fa-house"></i> <span>Trang
+									trủ hệ thống</span>
 							</a>
 						</div>
+						<c:if test="${not empty hocvien.manguoidung}">
+							<div class=" nav_drawer home">
+								<a href="myhomepage"> <i class="fa-regular fa-clock"></i> <span>Khóa
+										học của tôi</span>
+								</a>
+							</div>
 
-						<div class=" nav_drawer home">
-							<a href="#" onclick="myCourses()"> <i
-								class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
-							</a>
-						</div>
+						</c:if>
+
 						<div class="nav_drawer calendar">
 							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
 							</a>
@@ -113,20 +255,23 @@
 									tin riêng tư</span>
 							</a>
 						</div>
+						<c:if test="${not empty hocvien.manguoidung}">
 						<div class="nav_drawer home_course">
-							<a href="#"> <i class="fa-solid fa-graduation-cap"></i> <span>Các
-									khóa học của tôi</span>
-
+							<a style="height: 46px;" href="#"> <i
+								class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+									học của tôi</span>
 							</a>
 							<ul>
-								<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-										<span>SHDK_23_24_01</span>
-								</a></li>
-								<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
-										<span>SHDK_23_24_01</span>
-								</a></li>
+								<c:forEach var="khoahoctaikhoan"
+									items="${requestScope.danhsachkhoahoc}">
+									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
+											<span>${khoahoctaikhoan.tenkhoahoc}</span>
+									</a></li>
+								</c:forEach>
+
 							</ul>
 						</div>
+						</c:if>
 					</div>
 				</nav>
 
@@ -137,7 +282,7 @@
 								<a href="#" class="site-name"> <img class="site-logo"
 									src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
 								</a>
-
+				
 								<ul class="main-nav">
 									<li class="nav-item"><a href="#"> Online Course </a></li>
 									<li class="nav-item"><a href="#"> Các khóa học </a></li>
@@ -163,21 +308,35 @@
 												</div>
 											</div>
 											<div style="justify-content: center;" class="card_deck">
-												<c:forEach var="khoahoc" items="${dskhoahoc}">
-													<div class="card_text" tabindex="1">
-														<div class="view_content">
-															<div class="card_item">
-																<a href="./course.html">
-																	<div class="card_img"></div>
-																</a>
-																<div class="course_info">
-																	<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
-																</div>
-																<a href="courses?makh=${khoahoc.makh}" class="course_name">${khoahoc.tenkh}</a>
+												<div class="card_text" tabindex="1">
+													<div class="view_content">
+														<div class="card_item">
+															<a href="./course.html">
+																<div class="card_img"></div>
+															</a>
+															<div class="course_info">
+																<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
 															</div>
+															<a href="#" class="course_name">An toan thong tin_
+																Nhom 11</a>
 														</div>
 													</div>
-												</c:forEach>
+												</div>
+												<div class="card_text">
+													<div class="view_content">
+														<div class="card_item">
+															<a href="describe.jsp">
+																<div class="card_img"></div>
+															</a>
+															<div class="course_info">
+																<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+															</div>
+															<a href="#" class="course_name">An toan thong tin_
+																Nhom 11</a>
+														</div>
+													</div>
+												</div>
+
 											</div>
 										</div>
 									</div>
@@ -242,22 +401,45 @@
 												</div>
 											</div>
 											<div class="card_deck">
-												<c:forEach var="khoahoc" items="${dskhoahoc}">
-													<div class="card_text card_group">
-														<div class="view_content">
-															<div class="card_item">
-																<a href="courses?makh=${khoahoc.makh}">
-																	<div class="card_img"></div>
-																</a>
-																<div class="course_info">
-																	<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+												<c:choose>
+													<c:when test="${check eq 0}">
+														<c:forEach var="khoahoc" items="${danhsachkhoahoc}">
+															<div class="card_text card_group">
+																<div class="view_content">
+																	<div class="card_item">
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
+																			<div class="card_img"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.mota}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																	</div>
 																</div>
-																<a href="homepage?makh=${khoahoc.makh}" class="course_name">${khoahoc.tenkh}</a>
 															</div>
-														</div>
-													</div>
-												</c:forEach>
-
+														</c:forEach>
+														<c:set var="check" value="${1}"></c:set>
+													</c:when>
+													<c:otherwise>
+														<c:forEach var="khoahoc" items="${danhsachkh}">
+															<div class="card_text card_group">
+																<div class="view_content">
+																	<div class="card_item">
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
+																			<div class="card_img"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.mota}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																	</div>
+																</div>
+															</div>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 									</div>
@@ -265,6 +447,37 @@
 
 								<section class="region_sidebar"></section>
 							</div>
+							<footer class="footer">
+								<c:choose>
+									<c:when test="${not empty hocvien.manguoidung}">
+										<div class="footer_list">
+											<div class="footer_nav">
+												<p>Bạn đang đăng nhập với tên ,</p>
+												<c:choose>
+												<c:when test="${not empty thongtin}">
+												<a href="#">${thongtin.hoten}</a>
+												</c:when>
+												<c:otherwise>
+													<a href="#">${hocvien.hoten}</a>
+												</c:otherwise>
+												</c:choose>
+											</div>
+											<a href="#">Get the mobile app</a>
+										</div>
+										<div class="footer_info">Copyright Oncourse © 2023</div>
+									</c:when>
+									<c:otherwise>
+										<div class="footer_list">
+											<div class="footer_nav">
+												<p class="p-thongbao">Bạn vẫn chưa đăng nhập</p>
+												<a href="login">Đăng Nhập Tại Đây</a>
+											</div>
+											<a href="#">Get the mobile app</a>
+										</div>
+										<div class="footer_info">Copyright Oncourse © 2023</div>
+									</c:otherwise>
+								</c:choose>
+							</footer>
 						</div>
 					</div>
 				</article>
