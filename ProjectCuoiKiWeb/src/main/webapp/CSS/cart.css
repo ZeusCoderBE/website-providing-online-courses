@@ -147,13 +147,13 @@
 }
 
 .cart-container {
-
-    background-color: #f0f2f5;
-    min-height: 100vh;
+    min-height: 90vh;
+    background-color: white;
 }
 
 .cart-row {
     margin: 0 8%;
+    min-height: 100vh;
 
 }
 
