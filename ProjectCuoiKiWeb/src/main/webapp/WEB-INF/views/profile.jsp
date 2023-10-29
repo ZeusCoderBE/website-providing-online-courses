@@ -106,7 +106,7 @@
 											<li class="setting__item"><a href="myprofiles"> <span>Đổi
 														mật khẩu</span>
 											</a></li>
-											<li class="setting__item"><a href="#"> <span>Đăng
+											<li class="setting__item"><a onclick="testConfirmDialog()" href="#"> <span>Đăng
 														xuất</span>
 											</a></li>
 										</ul>
