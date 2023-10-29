@@ -60,6 +60,7 @@ function testConfirmDialog()
  		return false;
  	}
  }
+ 
 function handleBlur() {
     const page = document.querySelector('.page');
     const sidebarHome = document.querySelector('.sidebar_home');
@@ -109,3 +110,14 @@ function scrollToElement(elementId) {
     window.location.href = "myprofiles"; // Thay đổi URL tới trang bạn muốn chuyển đến
     localStorage.setItem('scrollToElement', elementId);
   }
+  
+function confirmPayment()
+{
+	var result = confirm("Bạn sẽ thanh toán khóa học này chứ ?");
+	if (result == true) {
+		window.location.href = "paid";
+	}
+	else {
+		return false;
+	}
+}
