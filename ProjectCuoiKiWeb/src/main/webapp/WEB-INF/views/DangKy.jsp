@@ -16,15 +16,16 @@
 <body>
 	<div class="container">
 		<div id="form-login" style="margin-top: 20px;">
-			<form action="dang-ky" method="post">
+			<form action="dang-ky" method="post" onsubmit="return validateForm()">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
 								<h1>Đăng Ký</h1>
 							</div>
-							<br />
 							<p>${thongbaodksai}</p>
+							<p>${thongbaodkgvsai}</p>
+							<br />
 							<div class="form-login-input">
 								<label for="username">Họ và Tên</label> <input type="text"
 									id="username" placeholder="VD: Nguyễn Văn A" name="username"
@@ -49,7 +50,7 @@
 									id="quocgia" name="quocgia" placeholder="VD:Việt Nam" required />
 							</div>
 							<div class="form-login-input">
-								<label for="loaitk">Loại Tài Khoản :${thongbaoloi}</label>
+								<label for="loaitk">Loại Tài Khoản :${thongbaoloi} :${thongbaoloigv}</label>
 							</div>
 							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
 								name="tkgiaovien" id="tkgiaovien" name="tkgiaovien"

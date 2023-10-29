@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +21,9 @@
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
 </head>
+<%
+int check = 0;
+%>
 <body>
 	<div class="" id="app">
 		<header class="header">
@@ -181,23 +185,30 @@
 								<li class="d-flex"><c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
-												<span>${hocvien.hoten}</span>
+												<c:choose >
+												<c:when test="${not empty thongtin}">
+												<span>${thongtin.hoten}</span>
 												<div class="icon_name">
-													<span>T</span>
+													<span>${fn:substring(thongtin.hoten,0,1)}</span>
 												</div>
+												</c:when>
+												<c:otherwise>
+													<span>${hocvien.hoten}</span>
+												<div class="icon_name">
+													<span>${fn:substring(hocvien.hoten,0,1)}</span>
+												</div>
+												</c:otherwise>
+												</c:choose>
 												<div class="border_bottom"></div>
 												<ul class="setting my_course">
 													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-													<li class="setting__item"><a href="#"> <span>Hồ
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
 																sơ cá nhân</span>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Chứng
-																chỉ</span>
-													</a></li>
-													<li class="setting__item"><a href="#"> <span>Cần
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
 																trợ giúp</span>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Đổi
+													<li class="setting__item"><a href="myprofiles" onclick="scrollToElement('.personal_email')"> <span>Đổi
 																mật khẩu</span>
 													</a></li>
 													<li class="setting__item"><a href="#"
@@ -207,7 +218,7 @@
 											</div>
 										</c:when>
 										<c:otherwise>
-											<a href="login">Đăng Nhập</a>
+											<a href="login"><button style="display: block;" class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
 										</c:otherwise>
 									</c:choose></li>
 							</ul>
@@ -228,26 +239,11 @@
 						</div>
 						<c:if test="${not empty hocvien.manguoidung}">
 							<div class=" nav_drawer home">
-								<a href="#" onclick="myCourses()"> <i
-									class="fa-regular fa-clock"></i> <span>Khóa học của tôi</span>
-								</a>
-							</div>
-
-							<div class="nav_drawer home_course">
-								<a style="height: 46px;" href="#"> <i
-									class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+								<a href="myhomepage"> <i class="fa-regular fa-clock"></i> <span>Khóa
 										học của tôi</span>
 								</a>
-								<ul>
-									<c:forEach var="khoahoctaikhoan"
-										items="${sessionScope.danhsachkhoahoc}">
-										<li><a href="#"> <i
-												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
-										</a></li>
-									</c:forEach>
-
-								</ul>
 							</div>
+
 						</c:if>
 
 						<div class="nav_drawer calendar">
@@ -259,7 +255,23 @@
 									tin riêng tư</span>
 							</a>
 						</div>
+						<c:if test="${not empty hocvien.manguoidung}">
+						<div class="nav_drawer home_course">
+							<a style="height: 46px;" href="#"> <i
+								class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+									học của tôi</span>
+							</a>
+							<ul>
+								<c:forEach var="khoahoctaikhoan"
+									items="${requestScope.danhsachkhoahoc}">
+									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
+											<span>${khoahoctaikhoan.tenkhoahoc}</span>
+									</a></li>
+								</c:forEach>
 
+							</ul>
+						</div>
+						</c:if>
 					</div>
 				</nav>
 
@@ -270,7 +282,7 @@
 								<a href="#" class="site-name"> <img class="site-logo"
 									src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
 								</a>
-
+				
 								<ul class="main-nav">
 									<li class="nav-item"><a href="#"> Online Course </a></li>
 									<li class="nav-item"><a href="#"> Các khóa học </a></li>
@@ -389,23 +401,45 @@
 												</div>
 											</div>
 											<div class="card_deck">
-												<c:forEach var="khoahoc" items="${danhsachkh}">
-													<div class="card_text card_group">
-														<div class="view_content">
-															<div class="card_item">
-																<a href="describe?MaKhoaHoc=${khoahoc.makhoahoc}">
-																	<div class="card_img"></div>
-																</a>
-																<div class="course_info">
-																	<span>${khoahoc.mota}</span>
+												<c:choose>
+													<c:when test="${check eq 0}">
+														<c:forEach var="khoahoc" items="${danhsachkhoahoc}">
+															<div class="card_text card_group">
+																<div class="view_content">
+																	<div class="card_item">
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
+																			<div class="card_img"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.mota}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																	</div>
 																</div>
-																<a href="describe?MaKhoaHoc=${khoahoc.makhoahoc}"
-																	class="course_name">${khoahoc.tenkhoahoc}</a>
 															</div>
-														</div>
-													</div>
-												</c:forEach>
-
+														</c:forEach>
+														<c:set var="check" value="${1}"></c:set>
+													</c:when>
+													<c:otherwise>
+														<c:forEach var="khoahoc" items="${danhsachkh}">
+															<div class="card_text card_group">
+																<div class="view_content">
+																	<div class="card_item">
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
+																			<div class="card_img"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.mota}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																	</div>
+																</div>
+															</div>
+														</c:forEach>
+													</c:otherwise>
+												</c:choose>
 											</div>
 										</div>
 									</div>
@@ -414,18 +448,36 @@
 								<section class="region_sidebar"></section>
 							</div>
 							<footer class="footer">
-                                <div class="footer_list">
-                                    <div class="footer_nav">
-                                        <p>Bạn đang đăng nhập với tên ,</p>
-                                        <a href="#">TRAN VAN LUAN(Thoát)</a>
-                                    </div>
-                                    <a href="#">Get the mobile app</a>
-                                </div>
-                                <div class="footer_info">
-                                    Copyright Oncourse © 2023
-                                </div>
-                               
-                            </footer>
+								<c:choose>
+									<c:when test="${not empty hocvien.manguoidung}">
+										<div class="footer_list">
+											<div class="footer_nav">
+												<p>Bạn đang đăng nhập với tên ,</p>
+												<c:choose>
+												<c:when test="${not empty thongtin}">
+												<a href="#">${thongtin.hoten}</a>
+												</c:when>
+												<c:otherwise>
+													<a href="#">${hocvien.hoten}</a>
+												</c:otherwise>
+												</c:choose>
+											</div>
+											<a href="#">Get the mobile app</a>
+										</div>
+										<div class="footer_info">Copyright Oncourse © 2023</div>
+									</c:when>
+									<c:otherwise>
+										<div class="footer_list">
+											<div class="footer_nav">
+												<p class="p-thongbao">Bạn vẫn chưa đăng nhập</p>
+												<a href="login">Đăng Nhập Tại Đây</a>
+											</div>
+											<a href="#">Get the mobile app</a>
+										</div>
+										<div class="footer_info">Copyright Oncourse © 2023</div>
+									</c:otherwise>
+								</c:choose>
+							</footer>
 						</div>
 					</div>
 				</article>

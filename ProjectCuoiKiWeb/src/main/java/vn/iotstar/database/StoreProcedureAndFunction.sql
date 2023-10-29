@@ -1,5 +1,27 @@
+--Tìm và Cập Nhật Tài Khoản Giảng Viên
+CREATE PROCEDURE sp_TimTaiKhoanGiangVien
+as
+begin
+	declare @manguoidung int
+	set @manguoidung=(SELECT  Top 1 MaNguoiDung FROM NGUOIDUNG
+	ORDER BY MaNguoiDung desc)
+	insert into GIANGVIEN(MaGiangVien)
+	values(@manguoidung)
+end
+go
+--Tìm Và Cập Nhật Tài Khoản Học Viên
+CREATE PROCEDURE sp_TimTaiKhoanHocVien
+as
+begin
+	declare @manguoidung int
+	set @manguoidung=(SELECT  Top 1 MaNguoiDung FROM NGUOIDUNG
+	ORDER BY MaNguoiDung desc)
+	insert into HOCVIEN(MaHocVien,LoaiTaiKhoan)
+	values(@manguoidung,N'Dong')
+end
+Go
 
-
+go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
 CREATE PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
@@ -13,15 +35,16 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-Create Procedure sp_XemKhoaHocCuaToi
+CREATE Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  TenKhoaHoc,TrinhDoDauVao From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
+
 GO
 
 --Lấy Thông Tin của người dùng 
@@ -29,7 +52,8 @@ CREATE PROCEDURE sp_TimThongTinHocVien
 @email varchar(64) 
 as 
 begin
-	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen From NGUOIDUNG join  HOCVIEN
+	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
+	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN
 	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
 	where NGUOIDUNG.Email=@email
 end
@@ -60,4 +84,3 @@ BEGIN
 		SET @diff = 0
 	END
 END
-GO

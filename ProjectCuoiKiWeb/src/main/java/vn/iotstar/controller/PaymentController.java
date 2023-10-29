@@ -1,24 +1,19 @@
 package vn.iotstar.controller;
 
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import vn.iotstar.model.*;
 
 @Controller
 public class PaymentController {
+
 	private KhoaHoc khoahoc;
-	private ThanhToan thanhtoan;
 	private The the;
 
 	@RequestMapping(value = "paycourse", method = RequestMethod.GET, params = "makhoahoc")
@@ -37,8 +32,10 @@ public class PaymentController {
 			model.addAttribute("noidungtt", String.format("THANH TOAN KHOA HOC %s", khoahoc.getTenkhoahoc().toUpperCase()));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
+			System.out.print(e.getMessage());
 			e.printStackTrace();
 		} catch (SQLException e) {
+			System.out.print(e.getMessage());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -57,7 +54,6 @@ public class PaymentController {
 		try {
 			ttd.thanhToan(tt, the);
 			model.addAttribute("warning", "Thanh toán thành công!");
-
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());

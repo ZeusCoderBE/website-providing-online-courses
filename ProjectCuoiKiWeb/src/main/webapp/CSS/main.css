@@ -1,4 +1,3 @@
-
 /* Var */
 :root {
     --background-header : #0a426e;
@@ -31,6 +30,11 @@
         margin-left: 25%;
 
     }
+    
+    .card_group {
+    width: 300px;
+    margin: 15px;
+    }
 }
 
 /* // Large devices (desktops, 992px and up) */
@@ -53,6 +57,11 @@
         justify-content: center;
     }
     
+    .card_group {
+    width: 300px;
+    margin: 15px;
+    }
+    
  }
   
  /* // Medium devices (tablets, 768px and up) */
@@ -72,6 +81,11 @@
     }
     .card_deck {
         justify-content: center;
+    }
+    
+    .card_group {
+    width: 300px;
+    margin: 15px;
     }
 
  }
@@ -93,6 +107,11 @@
     }
     .card_deck {
         justify-content: center;
+    }
+    
+   .card_group {
+    width: 300px;
+    margin: 15px;
     }
  }
  
@@ -148,7 +167,10 @@ a {
 .row {
     min-height: 500px;
 }
-
+.p-thongbao
+{
+  margin-right:15px
+}
 .col-2 {
     padding-right: 0;
     background-color: white;
@@ -162,4 +184,3 @@ a {
 .btn {
     border: 1px solid var(--border-button);
 }
-

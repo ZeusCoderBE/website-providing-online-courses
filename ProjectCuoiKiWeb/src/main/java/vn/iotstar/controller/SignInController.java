@@ -1,7 +1,6 @@
 package vn.iotstar.controller;
 
 import java.sql.SQLException;
-import java.util.*;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,26 +21,25 @@ public class SignInController {
 		return "SignIn";
 	}
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String SubmitDangNhap(HttpServletRequest rq, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
+	public String SubmitDangNhap(ModelMap model,HttpServletRequest rq, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
 	{
 		HttpSession session = rq.getSession();
 		HocVien hv=new HocVien();
-		List<KhoaHoc>dskhoahoccuatoi = new ArrayList<KhoaHoc>();
 		boolean check = ndd.checkDangNhap(email, password);
 		if (check == false) {
+			model.addAttribute("loidangnhap","Bạn Nhập Tài Khoản Hoặc Mật Khẩu Chưa Đúng");
+			System.out.println("Da dang nhap");
 			return "SignIn";
 		}
 		else
 		{
 			hv=ndd.TimThongTinDN(email);
 			session.setAttribute("hocvien", hv);
-			HocVien hocvvien = new HocVien(hv.getManguoidung());
-			dskhoahoccuatoi = khD.FindMyLearning(hocvvien);
-			session.setAttribute("danhsachkhoahoc", dskhoahoccuatoi);
+			System.out.println("Da dang nhap");
 			return "redirect:/homepages";
 		}
 	}
-	@RequestMapping(value="introduct",method =RequestMethod.GET)
+	@RequestMapping(value="dang-xuat",method =RequestMethod.GET)
 	public String DangXuat(HttpServletRequest rq)
 	{
 		HttpSession session=rq.getSession();
