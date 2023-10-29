@@ -44,10 +44,14 @@ public class ProfileController {
 		HocVien hocvien = new HocVien();
 		hocvien = ndD.TimThongTinDN(hv.getEmail());
 		HocVien hovVien = new HocVien(newpass, hocvien.getManguoidung());
-		System.out.print(hocvien.getMatkhau());
 		String url = "";
 		if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
 			session.setAttribute("thongtinsai", "Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
+			url = "redirect:/myprofiles";
+		}
+		else if(hocvien.getMatkhau().equals(newpass))
+		{
+			session.setAttribute("thongtinsai", "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
 			url = "redirect:/myprofiles";
 		}
 		else if (!hocvien.getMatkhau().equals(password)) {
@@ -84,7 +88,7 @@ public class ProfileController {
 			url = "homepage";
 		} else {
 			url = "redirect:/myprofiles";
-			session.setAttribute("thongbao", "Quá Trình Cập Nhật Bị Thất Bại");
+			session.setAttribute("thongbao", "Quá Trình Cập Nhật Bị Thất Bại Số Điện Thoại Đã tồn tại");
 		}
 		return url;
 	}
