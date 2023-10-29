@@ -53,7 +53,7 @@ function testConfirmDialog()
  	var result=confirm("Bạn chắc chắc có muốn đăng xuất không");
  	if(result==true)
  	{
- 		window.location.href="introduct";
+ 		window.location.href="dang-xuat";
  	}
  	else
  	{

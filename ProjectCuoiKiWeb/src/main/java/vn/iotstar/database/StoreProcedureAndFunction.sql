@@ -48,12 +48,12 @@ end
 GO
 
 --Lấy Thông Tin của người dùng 
-CREATE PROCEDURE sp_TimThongTinHocVien
+CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
 @email varchar(64) 
 as 
 begin
 	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
-	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan  From NGUOIDUNG join  HOCVIEN
+	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN
 	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
 	where NGUOIDUNG.Email=@email
 end

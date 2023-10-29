@@ -34,22 +34,37 @@ public class ProfileController {
 		model.addAttribute("danhsachkh", ListKH);
 	}
 
-	@RequestMapping(value="changepass",method=RequestMethod.GET)
-	public String ChangePassWord(ModelMap model,HttpSession session,
-			@RequestParam("password") String password,
-			@RequestParam("newpass") String newpass,
-			@RequestParam("repass") String repass) throws ClassNotFoundException, SQLException
-	{
+	@RequestMapping(value = "changepass", method = RequestMethod.POST)
+	public String ChangePassWord(ModelMap model, HttpSession session,
+			@RequestParam(value = "password", required = false, defaultValue = "null") String password,
+			@RequestParam(value = "newpass", required = false, defaultValue = "null") String newpass,
+			@RequestParam(value = "repass", required = false, defaultValue = "null") String repass)
+			throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
 		hocvien = ndD.TimThongTinDN(hv.getEmail());
-		String url="";
-		if(hocvien.getMatkhau().equals(password))
-		{
-			model.addAttribute("thongtinsai","Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
+		HocVien hovVien = new HocVien(newpass, hocvien.getManguoidung());
+		System.out.print(hocvien.getMatkhau());
+		String url = "";
+		if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
+			session.setAttribute("thongtinsai", "Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
 			url = "redirect:/myprofiles";
 		}
-		return "";
+		else if (!hocvien.getMatkhau().equals(password)) {
+			session.setAttribute("thongtinsai", "Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
+			url = "redirect:/myprofiles";
+		} else if (!newpass.equals(repass)) {
+			session.setAttribute("thongtinsai", "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng");
+			url = "redirect:/myprofiles";
+		} else if (hvD.UpdateMatKhauHocVien(hovVien) == 1) {
+			RealoadKhoaHoc(model);
+			url = "homepage";
+		} else {
+			session.setAttribute("thongtinsai", "Quá Trình Cập Nhật Thất Bại");
+			url = "redirect:/myprofiles";
+		}
+
+		return url;
 	}
 
 	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
@@ -61,7 +76,8 @@ public class ProfileController {
 	{
 		String url = "";
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		HocVien hocvien = new HocVien(hv.getManguoidung(), username, "", sdt, quocgia, vungmien, diachi, trinhdo, "");
+		HocVien hocvien = new HocVien(hv.getManguoidung(), username, "", sdt, quocgia, vungmien, diachi, trinhdo, "",
+				"");
 		if (hvD.UpdateHocVien(hocvien) == 1) {
 			RealoadKhoaHoc(model);
 			model.addAttribute("thongtin", hocvien);

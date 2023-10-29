@@ -24,7 +24,7 @@ public class NguoiDungDao {
 		{
 			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"),rs.getString("Email")
 					,rs.getString("Sdt"),rs.getNString("QuocGia"),rs.getNString("VungMien"),
-					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getNString("loaitaikhoan"));
+					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getString("MatKhau"),rs.getNString("loaitaikhoan"));
 		}
 		return hv;
 	}

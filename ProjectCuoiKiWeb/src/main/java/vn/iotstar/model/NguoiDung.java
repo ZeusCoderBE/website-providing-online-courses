@@ -39,7 +39,7 @@ public class NguoiDung {
 		return trinhdo;
 	}
 	public NguoiDung(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
-			String diachi, String trinhdo) {
+			String diachi, String trinhdo,String matkhau) {
 
 		this.manguoidung = manguoidung;
 		this.hoten = hoten;
@@ -49,6 +49,12 @@ public class NguoiDung {
 		this.vungmien = vungmien;
 		this.diachi = diachi;
 		this.trinhdo = trinhdo;
+		this.matkhau=matkhau;
+	}
+	public NguoiDung(String matkhau,int manguoidung)
+	{
+		this.matkhau=matkhau;
+		this.manguoidung=manguoidung;
 	}
 	public NguoiDung(int manguoidung,String hoten)
 	{

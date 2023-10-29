@@ -211,18 +211,24 @@
 							</div>
 						</form>
 						<div class="the_line"></div>
+						<form action="changepass" method="post">
 						<div class="personal_password">
 							<h6>Password</h6>
+							<c:if test="${not empty thongtinsai}">
+							 <h5>${thongtinsai}</h5>
+							 <c:remove var="thongtinsai" scope="session"></c:remove>
+							</c:if>
 							<ul class="personal_password-list">
 								<li class="account-list_item"><label for="username">Current
-										password</label> <input type="password" id="password" /></li>
+										password</label> <input type="password" id="password" name="password" /></li>
 								<li class="account-list_item"><label for="username">New
-										password</label> <input type="password" id="newpass" /></li>
+										password</label> <input type="password" id="newpass"  name="newpass"/></li>
 								<li class="account-list_item"><label for="username">Retype
-										password</label> <input type="password" id="repass" /></li>
+										password</label> <input type="password" id="repass" name="repass" /></li>
 							</ul>
-							<button class="btn btn_main btn-save">Change password</button>
+							<input type="submit" class="btn btn_main btn-save" value="Change password">
 						</div>
+					  </form>
 						<div class="the_line"></div>
 
 						<div class="profile_course">

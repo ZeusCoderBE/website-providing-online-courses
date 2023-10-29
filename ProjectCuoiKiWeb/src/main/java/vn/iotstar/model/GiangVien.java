@@ -4,9 +4,9 @@ public class GiangVien extends NguoiDung {
 
 	private String chuyennganh;
 	public GiangVien(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
-			String diachi, String trinhdo,String chuyennganh)
+			String diachi, String trinhdo,String matkhau,String chuyennganh)
 	{
-		super(manguoidung,hoten,email,sdt,quocgia,vungmien,diachi,trinhdo);
+		super(manguoidung,hoten,email,sdt,quocgia,vungmien,diachi,trinhdo,matkhau);
 		this.chuyennganh=chuyennganh;
 	}
 	public String getChuyennganh()
