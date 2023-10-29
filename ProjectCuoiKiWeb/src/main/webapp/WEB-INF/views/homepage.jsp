@@ -185,10 +185,20 @@ int check = 0;
 								<li class="d-flex"><c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
-												<span>${hocvien.hoten}</span>
+												<c:choose >
+												<c:when test="${not empty thongtin}">
+												<span>${thongtin.hoten}</span>
+												<div class="icon_name">
+													<span>${fn:substring(thongtin.hoten,0,1)}</span>
+												</div>
+												</c:when>
+												<c:otherwise>
+													<span>${hocvien.hoten}</span>
 												<div class="icon_name">
 													<span>${fn:substring(hocvien.hoten,0,1)}</span>
 												</div>
+												</c:otherwise>
+												</c:choose>
 												<div class="border_bottom"></div>
 												<ul class="setting my_course">
 													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
@@ -272,7 +282,7 @@ int check = 0;
 								<a href="#" class="site-name"> <img class="site-logo"
 									src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
 								</a>
-
+				
 								<ul class="main-nav">
 									<li class="nav-item"><a href="#"> Online Course </a></li>
 									<li class="nav-item"><a href="#"> Các khóa học </a></li>
@@ -443,9 +453,16 @@ int check = 0;
 										<div class="footer_list">
 											<div class="footer_nav">
 												<p>Bạn đang đăng nhập với tên ,</p>
-												<a href="#">${hocvien.hoten}</a>
+												<c:choose>
+												<c:when test="${not empty thongtin}">
+												<a href="#">${thongtin.hoten}</a>
+												</c:when>
+												<c:otherwise>
+													<a href="#">${hocvien.hoten}</a>
+												</c:otherwise>
+												</c:choose>
 											</div>
-											<a href="introduct">Get the mobile app</a>
+											<a href="#">Get the mobile app</a>
 										</div>
 										<div class="footer_info">Copyright Oncourse © 2023</div>
 									</c:when>
@@ -455,7 +472,7 @@ int check = 0;
 												<p class="p-thongbao">Bạn vẫn chưa đăng nhập</p>
 												<a href="login">Đăng Nhập Tại Đây</a>
 											</div>
-											<a href="introduct">Get the mobile app</a>
+											<a href="#">Get the mobile app</a>
 										</div>
 										<div class="footer_info">Copyright Oncourse © 2023</div>
 									</c:otherwise>

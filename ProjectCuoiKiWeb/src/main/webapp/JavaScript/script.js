@@ -70,7 +70,23 @@ function handleBlur() {
     pageStudy.style.display = 'none';
     sidebarStudy.style.display = 'none';
 }
-
+function enableField()
+{
+	const username=document.getElementById("username");
+	const quocgia=document.getElementById("quocgia");
+	const sdt=document.getElementById("sdt");
+	const vungmien=document.getElementById("vungmien");
+	const trinhdo=document.getElementById("trinhdo");
+	const diachi=document.getElementById("diachi");
+	const save=document.getElementById("save");
+	username.removeAttribute("disabled");
+	quocgia.removeAttribute("disabled");
+	sdt.removeAttribute("disabled");
+	vungmien.removeAttribute("disabled");
+	trinhdo.removeAttribute("disabled");
+	diachi.removeAttribute("disabled");
+	save.disabled = false;
+}
 function myCourses(){
     const page = document.querySelector('.page_content');
     const homecourse = document.querySelector('.home_course');

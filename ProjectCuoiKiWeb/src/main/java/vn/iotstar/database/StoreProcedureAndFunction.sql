@@ -35,11 +35,7 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-<<<<<<< HEAD
 CREATE or ALTER Procedure sp_XemKhoaHocCuaToi
-=======
-Create Procedure sp_XemKhoaHocCuaToi
->>>>>>> d4b8b8295b515443a42e68e12d4e28b2ae19ed89
 @manguoidung int 
 as
 begin

@@ -50,7 +50,7 @@ public class SignUpController {
 	public String XuLiSignUpGiaoVien(Model map, @RequestParam("username") String username,
 			@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("confirmpassword") String confipass, @RequestParam("quocgia") String quocgia,
-			@RequestParam(value = "tkgiaovien", required = false, defaultValue = "null") String tkgiaovien) {
+			@RequestParam(value = "tkgiaovien", required =false , defaultValue = "null") String tkgiaovien) {
 		String url = "";
 		if ("null".equals(tkgiaovien)) {
 			map.addAttribute("thongbaoloi", "Bạn Chưa Chọn Loại Tài Khoản !");
