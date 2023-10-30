@@ -136,7 +136,24 @@
 						</button>
 						<a href="#" class="profile_update">Update profile visibility</a>
 					</div>
+					<div class="profile_avata">
+						<div>
+							<h4>Wallet</h4>
+						</div>
+						<div class="id-card">
+							<h6>Mã ví:</h6>
+							<span>0385028108</span>
+						</div>
 
+						<div class="id-card price-card">
+							<h6>Số dư khả dụng:</h6>
+							<span>9999$</span>
+						</div>
+						<button class="btn btn_main">
+							<i class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
+							tiền
+						</button>
+					</div>
 					<div class="profile_avata">
 						<div>
 							<span>Let recruiters know what role you’re looking for to
