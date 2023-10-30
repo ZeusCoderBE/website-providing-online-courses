@@ -13,7 +13,6 @@ public class NguoiDungDao {
 				+ "values(N'"+hv.getHoten()+"',N'"+hv.getEmail()+"',N'"+hv.getQuocgia()+"',"
 						+ "N'"+hv.getMatkhau()+"','"+hv.getSdt()+"')";
 		int ketqua=dbconn.ExecuteCommand(query);
-		System.out.print(query);
 		return ketqua;
 	}
 	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException

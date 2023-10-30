@@ -85,7 +85,8 @@ public class ProfileController {
 		if (hvD.UpdateHocVien(hocvien) == 1) {
 			RealoadKhoaHoc(model);
 			model.addAttribute("thongtin", hocvien);
-			url = "homepage";
+			session.setAttribute("thongbaothanhcong","Bạn đã thay đổi thông tin thành công");
+			url = "redirect:/homepages";
 		} else {
 			url = "redirect:/myprofiles";
 			session.setAttribute("thongbao", "Quá Trình Cập Nhật Bị Thất Bại Số Điện Thoại Đã tồn tại");
