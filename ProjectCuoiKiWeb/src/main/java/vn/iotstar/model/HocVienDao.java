@@ -16,6 +16,7 @@ public class HocVienDao {
 				+ hv.getQuocgia() + "'," + "VungMien=N'" + hv.getVungmien() + "',DiaChi=N'" + hv.getDiachi()
 				+ "',TrinhDo=N'" + hv.getTrinhdo() + "'" + " where NguoiDung.MaNguoiDung=" + hv.getManguoidung() + "";
 		int ketqua = dbC.ExecuteCommand(sql);
+		System.out.print(sql);
 		return ketqua;
 	}
 

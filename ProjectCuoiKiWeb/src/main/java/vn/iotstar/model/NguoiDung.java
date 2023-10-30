@@ -65,12 +65,13 @@ public class NguoiDung {
 	{
 		this.manguoidung=manguoidung;
 	}
-	public NguoiDung(String hoten,String email,String quocgia,String matkhau)
+	public NguoiDung(String hoten,String email,String quocgia,String matkhau,String sdt)
 	{
 		this.hoten=hoten;
 		this.email=email;
 		this.matkhau=matkhau;
 		this.quocgia=quocgia;
+		this.sdt=sdt;
 		
 	}
 	public NguoiDung()

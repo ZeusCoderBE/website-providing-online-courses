@@ -97,17 +97,21 @@
 										<ul class="setting my_course">
 											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
 											<li class="setting__item"><a href="myprofiles"> <span>Hồ
-														sơ cá nhân</span>
+														sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+											</a></li>
+											<li class="setting__item"><a href="#"> <span>Chứng
+														chỉ</span> <i class="fa-solid fa-award"></i>
+											</a></li>
+											<li class="setting__item"><a href="#"> <span>Cần
+														trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+											</a></li>
+											<li class="setting__item"><a href="myprofiles"
+												onclick="scrollToElement('.personal_email')"> <span>Đổi
+														mật khẩu</span> <i class="fa-solid fa-lock"></i>
 											</a></li>
 
-											<li class="setting__item"><a href="#"> <span>Cần
-														trợ giúp</span>
-											</a></li>
-											<li class="setting__item"><a href="myprofiles"> <span>Đổi
-														mật khẩu</span>
-											</a></li>
-											<li class="setting__item"><a onclick="testConfirmDialog()" href="#"> <span>Đăng
-														xuất</span>
+											<li class="setting__item"><a href="#" onclick="testConfirmDialog()"> <span>Đăng
+														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
 											</a></li>
 										</ul>
 									</div>
@@ -165,12 +169,6 @@
 						<form action="myprofile" method="post">
 							<div class="profile_account">
 								<h6>Account</h6>
-								<c:choose>
-									<c:when test="${not empty thongbao}">
-										<h5>${thongbao}</h5>
-										<c:remove var="thongbao" scope="session" />
-									</c:when>
-								</c:choose>
 								<ul class="profile_account-list">
 									<li class="account-list_item"><label for="username">Họ
 											và Tên:</label> <input type="text" id="username" name="username"
@@ -212,23 +210,20 @@
 						</form>
 						<div class="the_line"></div>
 						<form action="changepass" method="post">
-						<div class="personal_password">
-							<h6>Password</h6>
-							<c:if test="${not empty thongtinsai}">
-							 <h5>${thongtinsai}</h5>
-							 <c:remove var="thongtinsai" scope="session"></c:remove>
-							</c:if>
-							<ul class="personal_password-list">
-								<li class="account-list_item"><label for="username">Current
-										password</label> <input type="password" id="password" name="password" /></li>
-								<li class="account-list_item"><label for="username">New
-										password</label> <input type="password" id="newpass"  name="newpass"/></li>
-								<li class="account-list_item"><label for="username">Retype
-										password</label> <input type="password" id="repass" name="repass" /></li>
-							</ul>
-							<input type="submit" class="btn btn_main btn-save" value="Change password">
-						</div>
-					  </form>
+							<div class="personal_password">
+								<h6>Password</h6>
+								<ul class="personal_password-list">
+									<li class="account-list_item"><label for="username">Current
+											password</label> <input type="password" id="password" name="password" /></li>
+									<li class="account-list_item"><label for="username">New
+											password</label> <input type="password" id="newpass" name="newpass" /></li>
+									<li class="account-list_item"><label for="username">Retype
+											password</label> <input type="password" id="repass" name="repass" /></li>
+								</ul>
+								<input type="submit" class="btn btn_main btn-save"
+									value="Change password">
+							</div>
+						</form>
 						<div class="the_line"></div>
 
 						<div class="profile_course">
@@ -280,15 +275,15 @@
 			</div>
 		</section>
 
-		<footer class="footer">
-			<div class="footer_list">
-				<div class="footer_nav">
+		<footer class="footer_main">
+			<div class="footer_main_list">
+				<div class="footer_main_nav">
 					<p>Bạn đang đăng nhập với tên ,</p>
 					<a href="#">${thongtin.hoten}</a>
 				</div>
 				<a href="#">Get the mobile app</a>
 			</div>
-			<div class="footer_info">Copyright Oncourse © 2023</div>
+			<div class="footer_main_info">Copyright Oncourse © 2023</div>
 
 		</footer>
 	</div>
@@ -296,6 +291,14 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+	<script>
+		window.onload = function() {
+			ReloadAlert("${thongbao}");
+			ReloadAlert("${thongtinsai}")
+		}
+	</script>
+	<c:set var="thongbao" value="${null}"></c:set>
+	<c:set var="thongtinsai" value="${null}"></c:set>
 
 </body>
 </html>

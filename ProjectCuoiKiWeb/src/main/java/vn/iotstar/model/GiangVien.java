@@ -22,8 +22,8 @@ public class GiangVien extends NguoiDung {
 		super(manguoidung);
 		this.chuyennganh=chuyennganh;
 	}
-	public GiangVien(String hoten,String email,String matkhau,String quocgia)
+	public GiangVien(String hoten,String email,String matkhau,String quocgia,String sdt)
 	{
-		super(hoten,email,matkhau,quocgia);
+		super(hoten,email,matkhau,quocgia,sdt);
 	}
 }
