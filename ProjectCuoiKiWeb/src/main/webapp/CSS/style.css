@@ -875,8 +875,8 @@
     background-color: #e7005e;
 }
 
-/* FOOTER */
-.footer {
+/* footer_main */
+.footer_main {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -887,24 +887,24 @@
 
 }
 
-.footer_list {
+.footer_main_list {
     padding: 20px 0;
     width: 100%;
     background-color: #353e4e;
     font-size: 1rem;
 }
 
-.footer_list a {
+.footer_main_list a {
     color: var(--text-header-color);
     text-decoration: underline;
 }
 
-.footer_nav{
+.footer_main_nav{
     display: flex;
     justify-content: center;
 }
 
-.footer_info {
+.footer_main_info {
     width: 100%;
     background-color: #181b1f;
     padding: 10px 0;

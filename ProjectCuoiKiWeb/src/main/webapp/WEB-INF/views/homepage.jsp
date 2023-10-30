@@ -439,27 +439,27 @@ int check = 0;
 
 								<section class="region_sidebar"></section>
 							</div>
-							<footer class="footer">
+							<footer class="footer_main">
 								<c:choose>
 									<c:when test="${not empty hocvien.manguoidung}">
-										<div class="footer_list">
-											<div class="footer_nav">
+										<div class="footer_main_list">
+											<div class="footer_main_nav">
 												<p>Bạn đang đăng nhập với tên ,</p>
 												<a href="#">${hocvien.hoten}</a>
 											</div>
 											<a href="introduct">Get the mobile app</a>
 										</div>
-										<div class="footer_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright Oncourse © 2023</div>
 									</c:when>
 									<c:otherwise>
-										<div class="footer_list">
-											<div class="footer_nav">
+										<div class="footer_main_list">
+											<div class="footer_main_nav">
 												<p class="p-thongbao">Bạn vẫn chưa đăng nhập</p>
 												<a href="login">Đăng Nhập Tại Đây</a>
 											</div>
 											<a href="introduct">Get the mobile app</a>
 										</div>
-										<div class="footer_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright Oncourse © 2023</div>
 									</c:otherwise>
 								</c:choose>
 							</footer>
@@ -468,8 +468,6 @@ int check = 0;
 				</article>
 			</div>
 		</section>
-
-		<footer class="footer"> </footer>
 	</div>
 	<script src="./templates/JavaScript/script.js"></script>
 	<script
