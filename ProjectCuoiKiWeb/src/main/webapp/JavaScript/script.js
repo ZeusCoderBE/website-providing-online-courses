@@ -16,9 +16,6 @@ tinymce.init({
 	menubar: 'favs file edit view insert format tools table',
 	content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
 });
-function thongbao(Error) {
-	alert(Error);
-}
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -78,12 +75,14 @@ function enableField() {
 	const trinhdo = document.getElementById("trinhdo");
 	const diachi = document.getElementById("diachi");
 	const save = document.getElementById("save");
+	const email = document.getElementById("email");
 	username.removeAttribute("disabled");
 	quocgia.removeAttribute("disabled");
 	sdt.removeAttribute("disabled");
 	vungmien.removeAttribute("disabled");
 	trinhdo.removeAttribute("disabled");
 	diachi.removeAttribute("disabled");
+	email.removeAttribute("disabled");
 	save.disabled = false;
 }
 function myCourses() {

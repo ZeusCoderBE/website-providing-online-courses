@@ -48,6 +48,7 @@ end
 GO
 
 --Lấy Thông Tin của người dùng 
+--Theo Email
 CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
 @email varchar(64) 
 as 
