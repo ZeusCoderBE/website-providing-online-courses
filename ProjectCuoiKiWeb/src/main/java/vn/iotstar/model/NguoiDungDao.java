@@ -18,7 +18,7 @@ public class NguoiDungDao {
 	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException
 	{
 		String sql="SELECT * FROM vThongTinHocVien AS vtt"
-				+ "WHERE vtt.Email = '" + email + "'";
+				+ "\t WHERE vtt.Email = '" + email + "'";
 		ResultSet rs=dbconn.ExecuteQuery(sql);
 		HocVien hv= new HocVien();
 		while(rs.next())

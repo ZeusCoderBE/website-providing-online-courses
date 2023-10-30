@@ -22,8 +22,8 @@ public class ProfileController {
 	public String ShowProfile(HttpSession session, ModelMap model) throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
-		hocvien = ndD.TimThongTinDN(hv.getEmail());
 		if (!hocvien.getEmail().equals(null)) {
+			hocvien = ndD.TimThongTinDN(hv.getEmail());
 			model.addAttribute("thongtin", hocvien);
 		}
 		else {
