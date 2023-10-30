@@ -170,7 +170,6 @@
 
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
 							<div class="course_des">No previous experience necessary</div>
-
 							<h5>Thời Gian Hoàn Thành: ${khoahoc.thoigian}</h5>
 
 							<div class="road_line"></div>

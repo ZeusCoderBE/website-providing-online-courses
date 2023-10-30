@@ -316,25 +316,46 @@
     width: 250px;
     padding: 20px;
     padding-top: 0;
-    text-align: center;
 }
 
 .setting__item {
     width: 100%;
-
 }
 
 .setting__item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: black;
-    padding: 10px 0;
+    padding: 10px 24px;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     border-radius: 10px;
 }
 
+.setting__item i {
+    font-size: 1.4rem;
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+    margin-left: 10px;
+}
+
+.setting__item:nth-child(3) i{
+    color: rgb(154, 154, 9);
+}
+.setting__item:nth-child(4) i{
+    color: rgb(154, 57, 9);
+}
+.setting__item:nth-child(5) i{
+    color: rgb(11, 11, 11);
+}
+.setting__item:nth-child(6) i{
+    color: rgb(84, 4, 4);
+}
+
 .setting__item a:hover {
-    background-color: var(--text-header-color);
+    background-color: #efe8e8;
 }
 
 .login_taikhoan {

@@ -97,17 +97,20 @@
 										<ul class="setting my_course">
 											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
 											<li class="setting__item"><a href="myprofiles"> <span>Hồ
-														sơ cá nhân</span>
+														sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
 											</a></li>
-
+											<li class="setting__item"><a href="#"> <span>Chứng
+														chỉ</span> <i class="fa-solid fa-award"></i>
+											</a></li>
 											<li class="setting__item"><a href="#"> <span>Cần
-														trợ giúp</span>
+														trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
 											</a></li>
-											<li class="setting__item"><a href="myprofiles"> <span>Đổi
-														mật khẩu</span>
+											<li class="setting__item"><a href="myprofiles"
+												onclick="scrollToElement('.personal_email')"> <span>Đổi
+														mật khẩu</span> <i class="fa-solid fa-lock"></i>
 											</a></li>
-											<li class="setting__item"><a onclick="testConfirmDialog()" href="#"> <span>Đăng
-														xuất</span>
+											<li class="setting__item"><a href="#"> <span>Đăng
+														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
 											</a></li>
 										</ul>
 									</div>
