@@ -62,7 +62,7 @@ public class ProfileController {
 			url = "redirect:/myprofiles";
 		} else if (hvD.UpdateMatKhauHocVien(hovVien) == 1) {
 			RealoadKhoaHoc(model);
-			url = "homepage";
+			url = "SignIn";
 		} else {
 			session.setAttribute("thongtinsai", "Quá Trình Cập Nhật Thất Bại");
 			url = "redirect:/myprofiles";
