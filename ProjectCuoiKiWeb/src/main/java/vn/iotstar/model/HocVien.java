@@ -7,6 +7,11 @@ public class HocVien extends NguoiDung {
 			String diachi, String trinhdo,String matkhau,String loaitaikhoan )
 	{
 		super(manguoidung,hoten,email,sdt,quocgia,vungmien,diachi,trinhdo,matkhau);
+		this.loaitaikhoan=loaitaikhoan;
+	}
+	public HocVien(String matkhau,int manguoidung)
+	{
+		super(matkhau,manguoidung);
 	}
 	public HocVien(String hoten,String email,String matkhau,String quocgia)
 	{
@@ -21,7 +26,7 @@ public class HocVien extends NguoiDung {
 	}
 	public HocVien(int manguoidung)
 	{
-		super(manguoidung);
+		super(manguoidung);	
 	}
 	public HocVien()
 	{

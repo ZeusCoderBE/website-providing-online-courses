@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,19 +22,27 @@
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
-								<h1>Thanh toán Visa</h1>
+								<h1>Thanh toán khóa học</h1>
 							</div>
 							<div class="form-login-input">
-								<label for="Card number">Card number </label> <input type="text"
-									placeholder="Số thể" name="CardNumber" />
+								<label for="tenKhoaHoc">Tên khóa học </label> <input
+									type="tenKhoaHoc" placeholder="khóa học" name="tenKhoaHoc" value="${khoahoc.getTenkhoahoc()}"/>
 							</div>
 							<div class="form-login-input">
-								<label for="CVV">Số CVV </label> <input
-									type="CVV" placeholder="số cvv" name="CVV" />
+								<label for="ngayThanhToan">Ngày thanh toán </label> <input type="date"
+									placeholder="yyyy/mmm/dd" name="ngayThanhToan" value="${now}"/>
+							</div>
+							<div class="form-login-input">
+								<label for="CardNumber">Card number </label> <input type="text"
+									placeholder="Số thể" name="CardNumber" value="${the.getMaThe()}"/>
 							</div>
 							<div class="form-login-input">
 								<label for="bill">Số tiến cần thanh toán </label> <input
-									type="bill" placeholder="số tiền cần thanh toán" name="bill" />
+									type="bill" placeholder="số tiền cần thanh toán" name="bill" value="${khoahoc.getGiatien()}"/>
+							</div>
+							<div class="form-login-input">
+								<label for="noidungtt">Nội dung thanh toán </label> <input
+									type="noidungtt" placeholder="số tiền cần thanh toán" name="noidungtt" value="${noidungtt}"/>
 							</div>
 							<button class="btn" type="submit">Thanh toán</button>
 							<div class="form-login-input">

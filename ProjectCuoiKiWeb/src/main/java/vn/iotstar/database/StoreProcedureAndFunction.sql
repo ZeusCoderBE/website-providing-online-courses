@@ -10,7 +10,7 @@ begin
 end
 go
 --Tìm Và Cập Nhật Tài Khoản Học Viên
-Create OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
+CREATE OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
 as
 begin
 	declare @manguoidung int
@@ -19,11 +19,12 @@ begin
 	insert into HOCVIEN(MaHocVien,LoaiTaiKhoan)
 	values(@manguoidung,N'Dong')
 end
+Go
 
 go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
-@makhoahoc int 
+CREATE PROC sp_XemDanhSachBaiHoc
+@makhoahoc INT
 as
 begin
 	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc From KHOAHOC
@@ -31,32 +32,35 @@ begin
 	on BAIHOC.MaBaiHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
---Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
 GO
-Create Or Alter Procedure sp_XemKhoaHocCuaToi
+
+--Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
+CREATE or ALTER Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
+
 GO
 
 --Lấy Thông Tin của người dùng 
-CREATE OR ALTER PROCEDURE sp_TimThongTinHocVien
+CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
 @email varchar(64) 
 as 
 begin
-	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen From NGUOIDUNG join  HOCVIEN
+	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
+	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN
 	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
 	where NGUOIDUNG.Email=@email
 end
 GO
 
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE OR ALTER PROCEDURE sp_thanhtoanKH
+CREATE PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -80,4 +84,3 @@ BEGIN
 		SET @diff = 0
 	END
 END
-GO

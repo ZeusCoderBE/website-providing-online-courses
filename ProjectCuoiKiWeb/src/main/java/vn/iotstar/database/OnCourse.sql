@@ -6,10 +6,10 @@ USE ONCOURSE
 Go
 --drop database OnCourse
 CREATE TABLE NGUOIDUNG(
-	MaNguoiDung INT IDENTITY PRIMARY KEY,
+	MaNguoiDung INT PRIMARY KEY IDENTITY,
 	HoTen NVARCHAR(50),
 	Email VARCHAR(64) unique,
-	Sdt VARCHAR(10),
+	Sdt VARCHAR(10) UNIQUE,
 	QuocGia NVARCHAR(30),
 	VungMien NVARCHAR(30),
 	DiaChi NVARCHAR(30),
@@ -19,7 +19,7 @@ CREATE TABLE NGUOIDUNG(
 GO
 
 CREATE TABLE THE (
-	MaThe INT IDENTITY PRIMARY KEY,
+	MaThe VARCHAR(10) PRIMARY KEY, --(Số điện thoại người dùng)
 	SoDu DECIMAL(18, 2),
 	MaNguoiDung INT,
 	FOREIGN KEY(MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung)
@@ -28,7 +28,7 @@ GO
 
 CREATE TABLE HOCVIEN (
 	MaHocVien INT PRIMARY KEY,
-	LoaiTaiKhoan NVARCHAR(20) ,
+	LoaiTaiKhoan NVARCHAR(20),
 	CONSTRAINT FK_HOCVIEN_NGUOIDUNG FOREIGN KEY(MaHocVien) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
@@ -114,9 +114,7 @@ CREATE TABLE THANHTOAN (
 	MaKhoaHoc INT,
 	NgayThanhToan DATE NOT NULL,
 	TienThanhToan DECIMAL(18, 2),
-	PTthanhToan NVARCHAR(30), --(Visa, chuyển khoản)
-	TenNganHang NVARCHAR(30),
-	MaTheNH VARCHAR(30),
+	NoiDungThanhToan NVARCHAR(255),
 	PRIMARY KEY (MaNguoiDung, MaKhoaHoc),
 	CONSTRAINT FK_THANHTOAN_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_THANHTOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc)
@@ -153,7 +151,8 @@ CREATE TABLE DINHKEM (
 	CONSTRAINT FK_DINHKEM_TAILIEU FOREIGN KEY (MaTaiLieu) REFERENCES TAILIEU(MaTaiLieu)
 
 );
-go
+GO
+
 Create TABLE BIENSOAN
 (
 	MaNguoiDung int foreign key references NguoiDung(MaNguoiDung),
@@ -183,13 +182,7 @@ VALUES
     (N'Lê Văn C', 'levanc@email.com', '4567891230', N'Việt Nam', N'Miền Bắc', N'Địa chỉ 3', N'Tiến sĩ','3'),
     (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân','4'),
     (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ','5');
--- Chèn thẻ tài khoản
-INSERT INTO THE(SoDu, MaNguoiDung) VALUES
-(100, 1),
-(200, 2),
-(125, 3),
-(50, 4),
-(234, 5)
+
 -- Chèn học viên
 INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoan)
 VALUES (1, N'Vàng'),
@@ -241,11 +234,19 @@ VALUES
     (1, 1),
     (2, 1),
     (3, 2)
-INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan)
+-- Chèn thẻ tài khoản
+INSERT INTO THE 
 VALUES
-    (1, 1, '2023-01-10', 50.00),
-    (2, 1, '2023-01-11', 50.00),
-    (3, 2, '2023-01-12', 75.00)
+	('1234567890', 150.00, 1),
+	('9876543210', 200.00, 2),
+	('4567891230', 151.00, 3),
+	('3216549870', 230.00, 4),
+	('9873216540', 135.00, 5)
+INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan, NoiDungThanhToan)
+VALUES
+    (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
+    (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
+    (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
 INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
 VALUES
     (1, 1, '2023-01-10'),
