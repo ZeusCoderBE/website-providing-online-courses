@@ -225,128 +225,82 @@
             </div>
         </header>
         
-        <section class="cart-container">
-            <div class="row cart-row">
-                <div class="cart-col-9 col-9">
-                    <div class="cart-content">
-                        <h3 class="cart-header">
-                            Giỏ hàng
-                        </h3>
-                        <div class="cart-info">
-                            <h5>1 khóa học trong giỏ hàng</h5>
-                            <ul class="cart-list">
-                                <li class="cart-item">
-                                    <div class="cart-item-container">
-                                        <div class="cart-item-info">
-                                            <div class="cart-item-img">
-                                                <a href="#"><img
-                                                    src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-                                                    alt="react"></a>
+        <section class="pay-container">
+            <div class="pay-header">
+                <img src="./templates/Images/logo.png" alt="logo" height="100" width="100">
+                <h2>Cổng Thanh Toán Trực Tuyến</h2>
+            </div>
+            <div class="content-pay">
+                <form action="#" method="get">
+                    <div class="row">
+                        <div class="col-6">
+                                <div class="form-list">
+                                    <div class="form-item">
+                                        <div class="form-item-pay">
+                                            <div class="form-pay-header"><h2>Thông tin học viên</h2></div>
+                                            <div class="form-pay-input">
+                                                <label for="namekh">Tên khóa học</label>
+                                                <input type="text" id="namekh" disabled value="Trần Văn Luân "/>
                                             </div>
-                                            <a href="#" class="cart-item-content">
-                                                <h6>ReactJS</h6>
-                                                <span>Bởi giáo viện: Minh Châu</span>
-                                                <div class="cart-item-evaluate">
-                                                    <div>Bán chạy nhất</div>
-                                                    <div>Đã cập nhật gần đây</div>
-                                                    <span>4,8</span>
-                                                    <div class="cart-item-icon__start">
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <ul class="cart-item-time">
-                                                    <li style="list-style:none;">Tổng số giờ</li>
-                                                    <li>340 bài giảng</li>
-                                                    <li>Sơ cấp</li>
-                                                </ul>
-                                            </a>
+                                            <div class="form-pay-input">
+                                                <label for="date">Ngày thanh toán</label>
+                                                <input type="date" id="date" disabled/>
+                                            </div>
+                                            <div class="form-pay-input">
+                                                <label for="cardNumber">Card Number</label>
+                                                <input type="text" id="cardNumber" disabled/>
+                                            </div>
+                                            <div class="form-pay-input">
+                                                <label for="price">Số tiền cần thanh toán</label>
+                                                <input type="text" id="price" disabled/>
+                                            </div>
+                                            <div class="form-pay-input">
+                                                <label for="contentPay">Nội dung thanh toán</label>
+                                                <input type="text" id="contentPay" />
+                                            </div>
+                                            <!-- <button class="btn" type="submit">pay</button> -->
                                         </div>
-
-                                        <div class="cart-item-action">
-                                            <div class="cart-item-delete">
-                                                <a href="#">Xóa</a>
-                                                <a href="#">Lưu để sau</a>
-                                            </div>
-                                            <div class="cart-item-price">
-                                                <div class="cart-price-current">
-                                                    <p>9999$</p>
-                                                </div>
-                                                <div class="cart-price-old">
-                                                    <p>10000$</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
-                                </li>
-                                <li class="cart-item">
-                                    <div class="cart-item-container">
-                                        <div class="cart-item-info">
-                                            <div class="cart-item-img">
-                                                <a href="#"><img
-                                                    src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-                                                    alt="react"></a>
-                                            </div>
-                                            <a href="#" class="cart-item-content">
-                                                <h6>ReactJS</h6>
-                                                <span>Bởi giáo viện: Minh Châu</span>
-                                                <div class="cart-item-evaluate">
-                                                    <div>Bán chạy nhất</div>
-                                                    <div>Đã cập nhật gần đây</div>
-                                                    <span>4,8</span>
-                                                    <div class="cart-item-icon__start">
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                        <i class="fa-solid fa-star start-primary"></i>
-                                                    </div>
-                                                </div>
-                                                <ul class="cart-item-time">
-                                                    <li style="list-style:none;">Tổng số giờ</li>
-                                                    <li>340 bài giảng</li>
-                                                    <li>Sơ cấp</li>
-                                                </ul>
-                                            </a>
+                                </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-list">
+                                <div class="form-item">
+                                    <div class="form-item-pay">
+                                        <div class="form-pay-header"><h2>chọn hình thức thanh toán</h2></div>
+                                        <div class="category-pay">
+                                            <ul class="category-list">
+                                                <li class="category-item">
+                                                    <a href="#">
+                                                        <img src="https://e-bills.vn/assets/img/VCB.png" height="60" width="110">
+                                                    </a>
+                                                </li>
+                                                <li class="category-item">
+                                                    <a href="#">
+                                                        <img src="https://e-bills.vn/assets/img/BIDV.png" height="60" width="110">
+                                                    </a>
+                                                </li>
+                                                <li class="category-item">
+                                                    <a href="#">
+                                                        <img src="https://pscinvoice.blob.core.windows.net/assets/VNPayATM.png" height="60" width="110">
+                                                    </a>
+                                                </li>
+                                                
+                                                <li class="category-item">
+                                                    <a href="#">
+                                                        <img src="	https://e-bills.vn/assets/img/CreateInvoiceCode.png" height="60" width="110">
+                                                    </a>
+                                                </li>
+                                            </ul>
                                         </div>
-
-                                        <div class="cart-item-action">
-                                            <div class="cart-item-delete">
-                                                <a href="#">Xóa</a>
-                                                <a href="#">Lưu để sau</a>
-                                            </div>
-                                            <div class="cart-item-price">
-                                                <div class="cart-price-current">
-                                                    <p>9999$</p>
-                                                </div>
-                                                <div class="cart-price-old">
-                                                    <p>10000$</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <button class="btn btn-primary btn-pay" type="submit">Thanh toán</button>
                                     </div>
-                                </li>
-                            </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="cart-col-3 col-3">
-                    <div class="cart-pay">
-                        <span>Tổng:</span>
-                        <h2>9999$</h2>
-                        <button class="btn btn-primary btn-pay">Thanh Toán</button>
-                        <p>Khuyến mãi</p>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Áp dụng</button>
-                        </div>
-
-                    </div>
-                </div>
+                </form>
             </div>
         </section>
         <footer class="footer">
