@@ -13,9 +13,8 @@ public class TheDao {
 		ResultSet rs = dbconn.ExecuteQuery(sqlStr);
 		The the = null;
 		if (rs.next()) {
-			the = new The(rs.getString("MaThe"), rs.getFloat(2), rs.getInt(3));
+			the = new The(rs.getString(1), rs.getFloat(2), rs.getInt(3));
 		}
-		
 		return the;
 	}
 }

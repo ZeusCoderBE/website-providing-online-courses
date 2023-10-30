@@ -15,12 +15,12 @@ import jakarta.servlet.http.HttpSession;
 public class SignInController {
 	NguoiDungDao ndd = new NguoiDungDao();
 	KhoaHocDao khD=new KhoaHocDao();
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String DangNhap()
 	{
 		return "SignIn";
 	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="login", method=RequestMethod.POST)
 	public String SubmitDangNhap(ModelMap model,HttpServletRequest rq, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
 	{
 		HttpSession session = rq.getSession();

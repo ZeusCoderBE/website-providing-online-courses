@@ -54,7 +54,8 @@ public class HomePageController {
 		return "homepage";
 	}
 	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
-	public String XemMotKhoaHoc(ModelMap model, @RequestParam("makhoahoc") int makhoahoc) {
+	public String XemMotKhoaHoc(ModelMap model, HttpSession session,@RequestParam("makhoahoc") int makhoahoc) {
+		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
 		List<BaiHoc> ListBH = new ArrayList<BaiHoc>();
 		try {
@@ -62,6 +63,7 @@ public class HomePageController {
 			model.addAttribute("khoahoc", khoahoc);
 			ListBH = bhD.GetScience(khoahoc);
 			model.addAttribute("listbaihoc", ListBH);
+			model.addAttribute("isdangky", khD.khoahocDangKy(hv.getManguoidung(), khoahoc.getMakhoahoc()));
 
 		} catch (Exception ex) {
 			System.out.print(ex.getMessage());

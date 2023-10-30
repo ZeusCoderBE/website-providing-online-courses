@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
+import vn.iotstar.exception.*;
 import vn.iotstar.model.*;
 
 @Controller
 public class PaymentController {
-
 	private KhoaHoc khoahoc;
 	private The the;
 
@@ -29,7 +29,7 @@ public class PaymentController {
 			model.addAttribute("khoahoc", khoahoc);
 			model.addAttribute("the", the);
 			model.addAttribute("noidungtt",
-					String.format("THANH TOAN KHOA HOC %s", khoahoc.getTenkhoahoc().toUpperCase()));
+					String.format("THANH TOÁN KHÓA HỌC %s", khoahoc.getTenkhoahoc().toUpperCase()));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.print(e.getMessage());
@@ -40,28 +40,36 @@ public class PaymentController {
 			e.printStackTrace();
 		}
 		
-		
 		return "payment";
 	}
 
 	@RequestMapping(value = "paid", method = RequestMethod.POST)
-	public String payCourse(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) {		
+	public String payCourse(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) throws Exception {		
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		ThanhToan tt = new ThanhToan(hv.getManguoidung(), khoahoc.getMakhoahoc(), khoahoc.getGiatien(), noidungtt);
 		ThanhToanDao ttd = new ThanhToanDao();
-		System.out.println(khoahoc.getGiatien());
 		
 		try {
+			if (!ttd.isEnoughMoney(tt, the)) {
+				throw new OutOfMoney("Không đủ tiền để thanh toán");
+			}
 			ttd.thanhToan(tt, the);
 			model.addAttribute("warning", "Thanh toán thành công!");
-			return "redirect:/homepages";
-		} catch (NumberFormatException e) {
+			return "redirect:/describe?makhoahoc="+khoahoc.getMakhoahoc();
+		} 
+		catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());
-		} catch (ClassNotFoundException e) {
+		} 
+		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());
-		} catch (SQLException e) {
+		} 
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			model.addAttribute("warning", e.getMessage());
+		} 
+		catch(OutOfMoney e) {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());
 		}

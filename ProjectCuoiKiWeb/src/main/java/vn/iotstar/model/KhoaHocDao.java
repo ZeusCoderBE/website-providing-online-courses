@@ -64,4 +64,13 @@ public class KhoaHocDao {
 
 		return khoahoc;
 	}
+	
+	public boolean khoahocDangKy(int mand, int makh) throws SQLException, ClassNotFoundException {
+		String sqlStr = "SELECT * FROM DANGKY WHERE MaNguoiDung=" + mand + "AND MaKhoaHoc=" + makh;
+		ResultSet rs = dbC.ExecuteQuery(sqlStr);
+		if (rs.next()) {
+			return true;
+		}
+		return false;
+	}
 }
