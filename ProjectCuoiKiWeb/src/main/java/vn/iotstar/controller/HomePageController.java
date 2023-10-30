@@ -17,7 +17,7 @@ public class HomePageController {
 	KhoaHocDao khD = new KhoaHocDao();
 	BaiHocDao bhD = new BaiHocDao();
 
-	@RequestMapping(value = "/introduction", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
 		return "introduction";
 	}

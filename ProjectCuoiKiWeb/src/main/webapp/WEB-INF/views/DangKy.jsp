@@ -36,6 +36,10 @@
 									placeholder="VD: vana@gmail.com" name="email" required />
 							</div>
 							<div class="form-login-input">
+								<label for="sdt">Số Điện Thoại:</label> <input type="text"
+									id="sdt" name="sdt" placeholder="VD:0123456789" required />
+							</div>
+							<div class="form-login-input">
 								<label for="password">Mật Khẩu</label> <input type="password"
 									id="password" name="password" required />
 							</div>
@@ -50,7 +54,8 @@
 									id="quocgia" name="quocgia" placeholder="VD:Việt Nam" required />
 							</div>
 							<div class="form-login-input">
-								<label for="loaitk">Loại Tài Khoản :${thongbaoloi} :${thongbaoloigv}</label>
+								<label for="loaitk">Loại Tài Khoản :${thongbaoloi}
+									:${thongbaoloigv}</label>
 							</div>
 							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
 								name="tkgiaovien" id="tkgiaovien" name="tkgiaovien"

@@ -16,6 +16,10 @@ tinymce.init({
     menubar: 'favs file edit view insert format tools table',
     content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
 });
+function thongbao(Error)
+{
+	alert(Error);
+}
 function handleFocus() {
     const page = document.querySelector('.page');
     const sidebarHome = document.querySelector('.sidebar_home');

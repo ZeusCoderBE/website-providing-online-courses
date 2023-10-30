@@ -9,10 +9,11 @@ public class NguoiDungDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
 	public int SignUp(NguoiDung hv)
 	{
-		String query="Insert into NguoiDung(HoTen,Email,QuocGia,MatKhau)"
+		String query="Insert into NguoiDung(HoTen,Email,QuocGia,MatKhau,Sdt)"
 				+ "values(N'"+hv.getHoten()+"',N'"+hv.getEmail()+"',N'"+hv.getQuocgia()+"',"
-						+ "N'"+hv.getMatkhau()+"')";
+						+ "N'"+hv.getMatkhau()+"','"+hv.getSdt()+"')";
 		int ketqua=dbconn.ExecuteCommand(query);
+		System.out.print(query);
 		return ketqua;
 	}
 	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException

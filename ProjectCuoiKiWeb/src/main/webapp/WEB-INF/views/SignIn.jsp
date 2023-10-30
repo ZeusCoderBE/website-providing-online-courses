@@ -12,6 +12,8 @@
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
+
 <body>
 	<div class="container">
 		<div id="form-login">
@@ -24,7 +26,7 @@
 							</div>
 							<br />
 							<p>${loidangnhap}</p>
-							<p>${thongbaodkdung}</p>
+							<p></p>
 							<div class="form-login-input">
 								<input type="text" placeholder="Email" name="Email" />
 							</div>
@@ -66,5 +68,11 @@
 			</form>
 		</div>
 	</div>
+	<script>
+	  var thongBao = "${thongbaodung}";
+	  if (thongBao !== null && thongBao !== "") {
+	    alert(thongBao);
+  }
+</script>
 </body>
 </html>
