@@ -23,7 +23,7 @@ public class ProfileController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
 		hocvien = ndD.TimThongTinDN(hv.getEmail());
-		if (!hocvien.getEmail().equals(null)) {
+		if (hocvien.getEmail()!=null) {
 			model.addAttribute("thongtin", hocvien);
 		}
 		else {
