@@ -32,7 +32,7 @@ public class NguoiDungDao {
 	public HocVien TimThongTinDN_Id(int manguoidung) throws ClassNotFoundException, SQLException
 	{
 		String sql="SELECT * FROM vThongTinHocVien AS vtt"
-				+ "WHERE vtt.MaHocVien = '" + manguoidung + "'";
+				+ "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
 		ResultSet rs=dbconn.ExecuteQuery(sql);
 		HocVien hv= new HocVien();
 		while(rs.next())
