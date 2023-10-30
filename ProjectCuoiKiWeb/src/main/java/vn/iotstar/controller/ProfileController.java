@@ -18,13 +18,18 @@ public class ProfileController {
 	NguoiDungDao ndD = new NguoiDungDao();
 	HocVienDao hvD = new HocVienDao();
 	KhoaHocDao khD = new KhoaHocDao();
-
 	@RequestMapping(value = "myprofiles", method = RequestMethod.GET)
 	public String ShowProfile(HttpSession session, ModelMap model) throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
 		hocvien = ndD.TimThongTinDN(hv.getEmail());
-		model.addAttribute("thongtin", hocvien);
+		if (!hocvien.getEmail().equals(null)) {
+			model.addAttribute("thongtin", hocvien);
+		}
+		else {
+			hocvien = ndD.TimThongTinDN_Id(hv.getManguoidung());
+			model.addAttribute("thongtin", hocvien);
+		}
 		return "profile";
 	}
 	
@@ -75,13 +80,15 @@ public class ProfileController {
 	public String ChangeProfie(ModelMap model, HttpSession session, @RequestParam("username") String username,
 			@RequestParam("quocgia") String quocgia, @RequestParam("sdt") String sdt,
 			@RequestParam("trinhdo") String trinhdo, @RequestParam("diachi") String diachi,
-			@RequestParam("vungmien") String vungmien) throws ClassNotFoundException, SQLException
+			@RequestParam("vungmien") String vungmien,
+			@RequestParam("email") String email) throws ClassNotFoundException, SQLException
 
 	{
 		String url = "";
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		HocVien hocvien = new HocVien(hv.getManguoidung(), username, "", sdt, quocgia, vungmien, diachi, trinhdo, "",
+		HocVien hocvien = new HocVien(hv.getManguoidung(), username, email, sdt, quocgia, vungmien, diachi, trinhdo, "",
 				"");
+		email = hocvien.getEmail();
 		if (hvD.UpdateHocVien(hocvien) == 1) {
 			RealoadKhoaHoc(model);
 			model.addAttribute("thongtin", hocvien);
