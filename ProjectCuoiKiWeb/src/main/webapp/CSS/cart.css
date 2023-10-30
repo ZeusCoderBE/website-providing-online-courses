@@ -147,8 +147,8 @@
 }
 
 .cart-container {
-    min-height: 90vh;
-    background-color: white;
+
+    background-color: #f0f2f5;
 }
 
 .cart-row {
@@ -400,4 +400,124 @@
     background-color: #0d6efd;
     color: white;
 }
+
+/* PAY */
+.pay-container {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pay-header {
+    display: flex;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pay-header h2 {
+    margin-left: 20px;
+    font-size: 2rem;
+    color: #07416d;
+}
+
+.content-pay{
+    background-image: url("../Images/BACKGROUND.jpg");
+    background-size: cover;
+}
+
+.pay-container .row {
+    display: flex;
+    padding: 50px 15%;
+    background: rgba(0,0,0, 0.67);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.col-6 {
+    padding: 15px 30px 15px 30px;
+    background-color: rgba(17,17,17,.67);
+    color: #c0bebe;
+    width: calc(50% - 20px);
+    text-align: start;
+    border-radius: 2px;
+    position: relative;
+
+}
+
+.col-6 + .col-6 {
+    margin-left: 40px;
+}
+
+.form-item-pay {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-pay-header {
+    margin: 20px 0;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+}
+
+.form-pay-header h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
+.form-pay-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-pay-input label {
+    font-size: 1.1rem;
+    color: white;
+}
+
+.form-pay-input input {
+    padding: 6px 10px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    background-color: white;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-item {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.category-item img {
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px 6px 0;
+}
+
+.btn-pay {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 6px 60px;
+    width: auto;
+    margin-right: 40px;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 6px;
+}
+
+.btn-pay::before{
+    display: none;
+}
+
+
 
