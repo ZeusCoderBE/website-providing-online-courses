@@ -1152,3 +1152,29 @@
 .profile_my-course__info p {
     margin: 0;
 }
+
+
+.id-card {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 10px;
+}
+
+.id-card h6 {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.id-card span {
+    font-size: 1.2rem;
+}
+
+.price-card {
+    margin-top: 10px;
+}
+
+.price-card span {
+    color: #0d6efd;
+}
