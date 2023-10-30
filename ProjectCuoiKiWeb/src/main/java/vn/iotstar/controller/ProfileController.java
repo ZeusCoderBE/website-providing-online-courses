@@ -27,7 +27,7 @@ public class ProfileController {
 		model.addAttribute("thongtin", hocvien);
 		return "profile";
 	}
-
+	
 	public void RealoadKhoaHoc(ModelMap model) throws ClassNotFoundException, SQLException {
 		List<KhoaHoc> ListKH = null;
 		ListKH = khD.GetListCourses();
