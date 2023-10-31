@@ -52,7 +52,7 @@
 							<button class="btn" type="submit" onclick="confirmPayment('${the.getSoDu()-khoahoc.getGiatien()}')">Thanh
 								toán</button>
 							<div class="form-login-input">
-								<label for="loaitk">${warning}</label>
+								<label for="loaitk"></label>
 							</div>
 						</div>
 					</div>

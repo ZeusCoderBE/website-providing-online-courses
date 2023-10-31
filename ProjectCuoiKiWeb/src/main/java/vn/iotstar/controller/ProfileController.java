@@ -18,21 +18,21 @@ public class ProfileController {
 	NguoiDungDao ndD = new NguoiDungDao();
 	HocVienDao hvD = new HocVienDao();
 	KhoaHocDao khD = new KhoaHocDao();
+
 	@RequestMapping(value = "myprofiles", method = RequestMethod.GET)
 	public String ShowProfile(HttpSession session, ModelMap model) throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
 		hocvien = ndD.TimThongTinDN(hv.getEmail());
-		if (hocvien.getEmail()!=null) {
+		if (hocvien.getEmail() != null) {
 			model.addAttribute("thongtin", hocvien);
-		}
-		else {
+		} else {
 			hocvien = ndD.TimThongTinDN_Id(hv.getManguoidung());
 			model.addAttribute("thongtin", hocvien);
 		}
 		return "profile";
 	}
-	
+
 	public void RealoadKhoaHoc(ModelMap model) throws ClassNotFoundException, SQLException {
 		List<KhoaHoc> ListKH = null;
 		ListKH = khD.GetListCourses();
@@ -53,13 +53,11 @@ public class ProfileController {
 		if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
 			session.setAttribute("thongtinsai", "Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
 			url = "redirect:/myprofiles";
-		}
-		else if(hocvien.getMatkhau().equals(newpass))
-		{
-			session.setAttribute("thongtinsai", "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
+		} else if (hocvien.getMatkhau().equals(newpass)) {
+			session.setAttribute("thongtinsai",
+					"Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
 			url = "redirect:/myprofiles";
-		}
-		else if (!hocvien.getMatkhau().equals(password)) {
+		} else if (!hocvien.getMatkhau().equals(password)) {
 			session.setAttribute("thongtinsai", "Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
 			url = "redirect:/myprofiles";
 		} else if (!newpass.equals(repass)) {
@@ -80,8 +78,8 @@ public class ProfileController {
 	public String ChangeProfie(ModelMap model, HttpSession session, @RequestParam("username") String username,
 			@RequestParam("quocgia") String quocgia, @RequestParam("sdt") String sdt,
 			@RequestParam("trinhdo") String trinhdo, @RequestParam("diachi") String diachi,
-			@RequestParam("vungmien") String vungmien,
-			@RequestParam("email") String email) throws ClassNotFoundException, SQLException
+			@RequestParam("vungmien") String vungmien, @RequestParam("email") String email)
+			throws ClassNotFoundException, SQLException
 
 	{
 		String url = "";
@@ -89,14 +87,18 @@ public class ProfileController {
 		HocVien hocvien = new HocVien(hv.getManguoidung(), username, email, sdt, quocgia, vungmien, diachi, trinhdo, "",
 				"");
 		email = hocvien.getEmail();
-		if (hvD.UpdateHocVien(hocvien) == 1) {
-			RealoadKhoaHoc(model);
-			model.addAttribute("thongtin", hocvien);
-			session.setAttribute("thongbaothanhcong","Bạn đã thay đổi thông tin thành công");
-			url = "redirect:/homepages";
-		} else {
-			url = "redirect:/myprofiles";
-			session.setAttribute("thongbao", "Quá Trình Cập Nhật Bị Thất Bại Số Điện Thoại Đã tồn tại");
+		try {
+			if (hvD.UpdateHocVien(hocvien) == 1) {
+				RealoadKhoaHoc(model);
+				model.addAttribute("thongtin", hocvien);
+				session.setAttribute("thongbaothanhcong", "Bạn đã thay đổi thông tin thành công");
+				url = "redirect:/homepages";
+			} else {
+				url = "redirect:/myprofiles";
+				throw new SQLException("Quá Trình Cập Nhật Bị Thất Bại Số Điện Thoại Đã tồn tại");
+			}
+		} catch (SQLException e) {
+			session.setAttribute("thongbao", e.getMessage());
 		}
 		return url;
 	}
