@@ -15,25 +15,27 @@ import jakarta.servlet.http.HttpSession;
 public class SignInController {
 	NguoiDungDao ndd = new NguoiDungDao();
 	KhoaHocDao khD=new KhoaHocDao();
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+	@RequestMapping(value="login", method=RequestMethod.GET)
 	public String DangNhap()
 	{
 		return "SignIn";
 	}
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="login", method=RequestMethod.POST)
 	public String SubmitDangNhap(ModelMap model,HttpServletRequest rq, @RequestParam("Email") String email, @RequestParam("Password") String password) throws ClassNotFoundException, SQLException
 	{
 		HttpSession session = rq.getSession();
 		HocVien hv=new HocVien();
 		boolean check = ndd.checkDangNhap(email, password);
 		if (check == false) {
-			model.addAttribute("loidangnhap","Bạn Nhập Tài Khoản Hoặc Mật Khẩu chưa đúng");
+			model.addAttribute("loidangnhap","Bạn Nhập Tài Khoản Hoặc Mật Khẩu Chưa Đúng");
+			System.out.println("Da dang nhap");
 			return "SignIn";
 		}
 		else
 		{
 			hv=ndd.TimThongTinDN(email);
 			session.setAttribute("hocvien", hv);
+			System.out.println("Da dang nhap");
 			return "redirect:/homepages";
 		}
 	}

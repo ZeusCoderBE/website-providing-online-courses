@@ -1,5 +1,5 @@
 --Tìm và Cập Nhật Tài Khoản Giảng Viên
-CREATE OR ALTER PROCEDURE sp_TimTaiKhoanGiangVien
+CREATE PROCEDURE sp_TimTaiKhoanGiangVien
 as
 begin
 	declare @manguoidung int
@@ -10,7 +10,7 @@ begin
 end
 go
 --Tìm Và Cập Nhật Tài Khoản Học Viên
-CREATE OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
+CREATE PROCEDURE sp_TimTaiKhoanHocVien
 as
 begin
 	declare @manguoidung int
@@ -35,7 +35,7 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE or ALTER Procedure sp_XemKhoaHocCuaToi
+CREATE Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -48,8 +48,12 @@ end
 GO
 
 --Lấy Thông Tin của người dùng 
+<<<<<<< HEAD
 --Theo Email
 CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
+=======
+CREATE PROCEDURE sp_TimThongTinHocVien
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 @email varchar(64) 
 as 
 begin

@@ -24,8 +24,7 @@
 		<div class="header">
 			<nav class="nav">
 				<ul class="nav_item">
-					<li class="nav_link"><a class="nav_item_link"
-						href="homepages">
+					<li class="nav_link"><a class="nav_item_link" href="homepages">
 							<div>OnCourse</div>
 					</a></li>
 					<li class="nav_link nav_input">
@@ -143,7 +142,6 @@
 										Học: ${baihoc.noidungbaihoc}</span> <br /> <span>Thời Gian
 										Hoàn Thành: ${baihoc.thoigianhoanthanh}h</span></li>
 							</c:forEach>
-
 						</ul>
 					</div>
 
@@ -175,14 +173,25 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-						<div class="btn_action">
-							<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
-								<button class="btn btn-success btn_signin__course">Đăng
-									ký học</button>
-							</a>
-							<button class="btn btn-primary btn_signin__course">Thêm
-								giỏ hàng</button>
-						</div>
+						<c:choose>
+							<c:when test="${isdangky != true}">
+								<div class="btn_action">
+									<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
+										<button class="btn btn-success btn_signin__course">Đăng
+											ký học</button>
+									</a>
+									<button class="btn btn-primary btn_signin__course">Thêm
+										giỏ hàng</button>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="btn_action">
+									<a href="#">
+										<button class="btn btn-success btn_signin__course">Vào học</button>
+									</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>

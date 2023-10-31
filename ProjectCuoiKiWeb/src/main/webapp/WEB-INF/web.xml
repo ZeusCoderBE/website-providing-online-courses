@@ -6,7 +6,11 @@
 	id="WebApp_ID" version="5.0">
 	<display-name>ProjectCuoiKiWeb</display-name>
 	<welcome-file-list>
+<<<<<<< HEAD
 		<welcome-file></welcome-file>
+=======
+		<welcome-file>/WEB-INF/views/introduction.jsp</welcome-file>
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>

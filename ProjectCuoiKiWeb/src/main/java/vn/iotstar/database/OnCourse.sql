@@ -244,11 +244,19 @@ VALUES
 	('4567891230', 151.00, 3),
 	('3216549870', 230.00, 4),
 	('9873216540', 135.00, 5)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan, NoiDungThanhToan)
 VALUES
     (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
 VALUES
     (1, 1, '2023-01-10'),

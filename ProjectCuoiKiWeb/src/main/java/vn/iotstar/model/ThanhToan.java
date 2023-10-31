@@ -6,7 +6,7 @@ public class ThanhToan {
 	private int maNguoiDung;
 	private int maKhoaHoc;
 	private Date ngayThanhToan;
-	private float tienthanhtoan;
+	private double tienthanhtoan;
 	private String ndThanhToan;
 	
 	public int getMaNguoiDung() {
@@ -15,7 +15,7 @@ public class ThanhToan {
 	public int getMaKhoaHoc() {
 		return maKhoaHoc;
 	}
-	public float getTienthanhtoan() {
+	public double getTienthanhtoan() {
 		return tienthanhtoan;
 	}
 	public Date getNgayThanhToan() {
@@ -24,7 +24,7 @@ public class ThanhToan {
 	public String getNdThanhToan() {
 		return ndThanhToan;
 	}
-	public ThanhToan(int maNguoiDung, int maKhoaHoc, float tienthanhtoan, String ndThanhToan) {
+	public ThanhToan(int maNguoiDung, int maKhoaHoc, double tienthanhtoan, String ndThanhToan) {
 		super();
 		this.maNguoiDung = maNguoiDung;
 		this.maKhoaHoc = maKhoaHoc;

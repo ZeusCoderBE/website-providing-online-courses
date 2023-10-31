@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 tinymce.init({
+=======
+/*tinymce.init({
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 	selector: 'textarea#default',
 	width: 1100,
 	height: 800,
@@ -15,7 +19,11 @@ tinymce.init({
 	},
 	menubar: 'favs file edit view insert format tools table',
 	content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
+<<<<<<< HEAD
 });
+=======
+});*/
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -57,6 +65,10 @@ function testConfirmDialog() {
 		return false;
 	}
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 function handleBlur() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -75,7 +87,10 @@ function enableField() {
 	const trinhdo = document.getElementById("trinhdo");
 	const diachi = document.getElementById("diachi");
 	const save = document.getElementById("save");
+<<<<<<< HEAD
 	const email = document.getElementById("email");
+=======
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 	username.removeAttribute("disabled");
 	quocgia.removeAttribute("disabled");
 	sdt.removeAttribute("disabled");
@@ -97,11 +112,14 @@ function homePage() {
 	const homecourse = document.querySelector('.home_course');
 	page.style.gridTemplateColumns = 'auto';
 	homecourse.style.display = 'none';
+<<<<<<< HEAD
 }
 function ReloadAlert(thongBao) {
 	if (thongBao !== null && thongBao !== "") {
 		alert(thongBao);
 	}
+=======
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 }
 
 function goToNewPage() {
@@ -111,4 +129,22 @@ function goToNewPage() {
 function scrollToElement(elementId) {
 	window.location.href = "myprofiles"; // Thay đổi URL tới trang bạn muốn chuyển đến
 	localStorage.setItem('scrollToElement', elementId);
+<<<<<<< HEAD
+=======
+}
+
+function confirmPayment(diff) {
+	if (diff < 0) {
+		var money = alert("Tiền trong thẻ không đủ thanh toán khóa học!");
+		return "paycourse";
+	} else {
+		var result = confirm("Bạn sẽ thanh toán khóa học này chứ ?");
+		if (result == true) {
+			window.location.href = "paid";
+		}
+		else {
+			return "paycourse";
+		}
+	}
+>>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 }

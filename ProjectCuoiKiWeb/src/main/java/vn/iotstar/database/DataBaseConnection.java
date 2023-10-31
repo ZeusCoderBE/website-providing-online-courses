@@ -33,7 +33,7 @@ public class DataBaseConnection {
 			return null;
 		}
 	}
-
+	
 	public int ExecuteCommand(String sql) {
 		Connection conn = null;
 		try {
@@ -50,7 +50,7 @@ public class DataBaseConnection {
 			CloseConnection(conn);
 		}
 	}
-
+	
 	public void CloseConnection(Connection c) {
 		try {
 			if (c != null) {
