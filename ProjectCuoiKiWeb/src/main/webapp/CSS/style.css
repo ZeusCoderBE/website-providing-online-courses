@@ -316,25 +316,46 @@
     width: 250px;
     padding: 20px;
     padding-top: 0;
-    text-align: center;
 }
 
 .setting__item {
     width: 100%;
-
 }
 
 .setting__item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: black;
-    padding: 10px 0;
+    padding: 10px 24px;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     border-radius: 10px;
 }
 
+.setting__item i {
+    font-size: 1.4rem;
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+    margin-left: 10px;
+}
+
+.setting__item:nth-child(3) i{
+    color: rgb(154, 154, 9);
+}
+.setting__item:nth-child(4) i{
+    color: rgb(154, 57, 9);
+}
+.setting__item:nth-child(5) i{
+    color: rgb(11, 11, 11);
+}
+.setting__item:nth-child(6) i{
+    color: rgb(84, 4, 4);
+}
+
 .setting__item a:hover {
-    background-color: var(--text-header-color);
+    background-color: #efe8e8;
 }
 
 .login_taikhoan {
@@ -875,8 +896,8 @@
     background-color: #e7005e;
 }
 
-/* FOOTER */
-.footer {
+/* footer_main */
+.footer_main {
     display: flex;
     position: relative;
     flex-direction: column;
@@ -887,24 +908,24 @@
 
 }
 
-.footer_list {
+.footer_main_list {
     padding: 20px 0;
     width: 100%;
     background-color: #353e4e;
     font-size: 1rem;
 }
 
-.footer_list a {
+.footer_main_list a {
     color: var(--text-header-color);
     text-decoration: underline;
 }
 
-.footer_nav{
+.footer_main_nav{
     display: flex;
     justify-content: center;
 }
 
-.footer_info {
+.footer_main_info {
     width: 100%;
     background-color: #181b1f;
     padding: 10px 0;
@@ -1130,4 +1151,30 @@
 
 .profile_my-course__info p {
     margin: 0;
+}
+
+
+.id-card {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 10px;
+}
+
+.id-card h6 {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.id-card span {
+    font-size: 1.2rem;
+}
+
+.price-card {
+    margin-top: 10px;
+}
+
+.price-card span {
+    color: #0d6efd;
 }

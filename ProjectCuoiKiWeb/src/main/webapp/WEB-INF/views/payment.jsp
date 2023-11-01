@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<div id="form-login">
-			<form action="paid" method="post">
+			<form action="#" method="post">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
@@ -32,7 +32,7 @@
 							<div class="form-login-input">
 								<label for="ngayThanhToan">Ngày thanh toán </label> <input
 									type="date" placeholder="yyyy/mmm/dd" name="ngayThanhToan"
-									value="${now}" />
+									value="${now}"/>
 							</div>
 							<div class="form-login-input">
 								<label for="CardNumber">Card number </label> <input type="text"

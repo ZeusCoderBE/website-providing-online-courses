@@ -16,7 +16,7 @@ public class PaymentController {
 	private KhoaHoc khoahoc;
 	private The the;
 
-	@RequestMapping(value = "paycourse", method = RequestMethod.GET, params = "makhoahoc")
+	@RequestMapping(value = "/paycourse", method = RequestMethod.GET, params = "makhoahoc")
 	public String payment(ModelMap model, HttpSession session, @RequestParam("makhoahoc") String makh) {
 		KhoaHocDao khd = new KhoaHocDao();
 		TheDao td = new TheDao();
@@ -28,8 +28,7 @@ public class PaymentController {
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("khoahoc", khoahoc);
 			model.addAttribute("the", the);
-			model.addAttribute("noidungtt",
-					String.format("THANH TOÁN KHÓA HỌC %s", khoahoc.getTenkhoahoc().toUpperCase()));
+			model.addAttribute("noidungtt", String.format("THANH TOÁN KHÓA HỌC %s", khoahoc.getTenkhoahoc().toUpperCase()));
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.print(e.getMessage());
@@ -40,7 +39,7 @@ public class PaymentController {
 			e.printStackTrace();
 		}
 		
-		return "payment";
+		return "pay";
 	}
 
 	@RequestMapping(value = "paid", method = RequestMethod.POST)
@@ -73,6 +72,6 @@ public class PaymentController {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());
 		}
-		return "payment";
+		return "redirect:/paycourse?makhoahoc=" + khoahoc.getMakhoahoc();
 	}
 }

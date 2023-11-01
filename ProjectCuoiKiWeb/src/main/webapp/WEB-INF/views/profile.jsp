@@ -97,17 +97,20 @@
 										<ul class="setting my_course">
 											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
 											<li class="setting__item"><a href="myprofiles"> <span>Hồ
-														sơ cá nhân</span>
+														sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
 											</a></li>
-
+											<li class="setting__item"><a href="#"> <span>Chứng
+														chỉ</span> <i class="fa-solid fa-award"></i>
+											</a></li>
 											<li class="setting__item"><a href="#"> <span>Cần
-														trợ giúp</span>
+														trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
 											</a></li>
-											<li class="setting__item"><a href="myprofiles"> <span>Đổi
-														mật khẩu</span>
+											<li class="setting__item"><a href="myprofiles"
+												onclick="scrollToElement('.personal_email')"> <span>Đổi
+														mật khẩu</span> <i class="fa-solid fa-lock"></i>
 											</a></li>
 											<li class="setting__item"><a href="#"> <span>Đăng
-														xuất</span>
+														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
 											</a></li>
 										</ul>
 									</div>
@@ -133,7 +136,24 @@
 						</button>
 						<a href="#" class="profile_update">Update profile visibility</a>
 					</div>
+					<div class="profile_avata">
+						<div>
+							<h4>Wallet</h4>
+						</div>
+						<div class="id-card">
+							<h6>Mã ví:</h6>
+							<span>0385028108</span>
+						</div>
 
+						<div class="id-card price-card">
+							<h6>Số dư khả dụng:</h6>
+							<span>9999$</span>
+						</div>
+						<button class="btn btn_main">
+							<i class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
+							tiền
+						</button>
+					</div>
 					<div class="profile_avata">
 						<div>
 							<span>Let recruiters know what role you’re looking for to
@@ -280,15 +300,15 @@
 			</div>
 		</section>
 
-		<footer class="footer">
-			<div class="footer_list">
-				<div class="footer_nav">
+		<footer class="footer_main">
+			<div class="footer_main_list">
+				<div class="footer_main_nav">
 					<p>Bạn đang đăng nhập với tên ,</p>
 					<a href="#">${thongtin.hoten}</a>
 				</div>
 				<a href="#">Get the mobile app</a>
 			</div>
-			<div class="footer_info">Copyright Oncourse © 2023</div>
+			<div class="footer_main_info">Copyright Oncourse © 2023</div>
 
 		</footer>
 	</div>

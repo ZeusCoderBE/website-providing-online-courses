@@ -37,6 +37,7 @@ public class KhoaHocDao {
 		System.out.print(query);
 		return khoahoc;
 	}
+	
 	public List<KhoaHoc> FindMyLearning(int manguoidung) throws ClassNotFoundException, SQLException
 	{
 		String thucthi="sp_XemKhoaHocCuaToi "+manguoidung+"";

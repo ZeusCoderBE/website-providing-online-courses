@@ -200,6 +200,7 @@ VALUES
     (2,N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
     (3,N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
     (4,N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
+    
 INSERT INTO BAIHOC (MaBaiHoc,TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
 VALUES
     (1,N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
@@ -229,11 +230,13 @@ VALUES
     (1, 1),
     (2, 1),
     (3, 2)
+    
 INSERT INTO DANGKY (MaNguoiDung, MaKhoaHoc)
 VALUES
     (1, 1),
     (2, 1),
     (3, 2)
+    
 -- Chèn thẻ tài khoản
 INSERT INTO THE 
 VALUES
@@ -248,27 +251,31 @@ VALUES
     (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
-
+    
 INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
 VALUES
     (1, 1, '2023-01-10'),
     (2, 2, '2023-01-11'),
     (3, 3, '2023-01-12')
+    
 INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
 VALUES
     (1, N'Bài tập 1', 1, 9),
     (2, N'Bài tập 2', 2, 8),
     (3, N'Bài tập 1', 3, 7)
+    
 INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
 VALUES
     (1, 1),
     (2, 2),
     (3, 3)
+    
 INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES
     (1, 1),
     (2, 1),
     (3, 2)
+    
 -- Insert into TaiLieuVanBan
 INSERT INTO TaiLieuVanBan (MaTaiLieu, NoiDung)
 VALUES

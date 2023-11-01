@@ -168,7 +168,6 @@
 
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
 							<div class="course_des">No previous experience necessary</div>
-
 							<h5>Thời Gian Hoàn Thành: ${khoahoc.thoigian}</h5>
 
 							<div class="road_line"></div>
@@ -187,7 +186,7 @@
 							</c:when>
 							<c:otherwise>
 								<div class="btn_action">
-									<a href="#">
+									<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
 										<button class="btn btn-success btn_signin__course">Vào học</button>
 									</a>
 								</div>
