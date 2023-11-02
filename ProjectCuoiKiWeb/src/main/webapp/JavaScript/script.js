@@ -1,5 +1,4 @@
 tinymce.init({
-
 	selector: 'textarea#default',
 	width: 1100,
 	height: 800,
@@ -110,11 +109,11 @@ function goToNewPage() {
 }
 
 function scrollToElement(elementId) {
-	window.location.href = "myprofiles"; // Thay đổi URL tới trang bạn muốn chuyển đến
+	window.location.href = "profile"; // Thay đổi URL tới trang bạn muốn chuyển đến
 	localStorage.setItem('scrollToElement', elementId);
 }
 
-function confirmPayment(diff) {
+function confirmPayment(diff, makh) {
 	if (diff < 0) {
 		var money = alert("Tiền trong thẻ không đủ thanh toán khóa học!");
 		return "paycourse";
@@ -124,7 +123,7 @@ function confirmPayment(diff) {
 			window.location.href = "paid";
 		}
 		else {
-			return "paycourse";
+			return "paycourse?makhoahoc=" + makh;
 		}
 	}
 }

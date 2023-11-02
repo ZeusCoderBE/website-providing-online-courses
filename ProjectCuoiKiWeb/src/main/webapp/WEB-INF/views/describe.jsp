@@ -186,7 +186,7 @@
 							</c:when>
 							<c:otherwise>
 								<div class="btn_action">
-									<a href="#">
+									<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
 										<button class="btn btn-success btn_signin__course">Vào học</button>
 									</a>
 								</div>

@@ -17,5 +17,5 @@ public class CourseController {
 
 		return "course";
 	}
-
+	
 }

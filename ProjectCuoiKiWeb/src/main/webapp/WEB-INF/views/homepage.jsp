@@ -150,7 +150,7 @@ int check = 0;
 													<li class="setting__item"><a href="#"> <span>Cần
 																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
 													</a></li>
-													<li class="setting__item"><a href="myprofiles"
+													<li class="setting__item"><a href="#"
 														onclick="scrollToElement('.personal_email')"> <span>Đổi
 																mật khẩu</span> <i class="fa-solid fa-lock"></i>
 													</a></li>
