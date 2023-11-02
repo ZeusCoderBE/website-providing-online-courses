@@ -1,0 +1,26 @@
+package vn.iotstar.model;
+
+public class GioHang {
+	private HocVien hocvien;
+	private KhoaHoc khoahoc;
+
+	public HocVien getHocvien() {
+		return hocvien;
+	}
+
+	public KhoaHoc getKhoahoc() {
+		return khoahoc;
+	}
+
+	public GioHang(String hoten, String email, String tenkhoahoc, int danhgia, 
+			int matacgia, String trinhdodauvao,double GiaTien,double thoigianhoanthanh,String linhvuc) {
+		hocvien = new HocVien(hoten, email);
+		khoahoc = new KhoaHoc(tenkhoahoc, danhgia, matacgia,
+				trinhdodauvao,GiaTien,thoigianhoanthanh,linhvuc);
+	}
+
+	public GioHang() {
+
+	}
+
+}

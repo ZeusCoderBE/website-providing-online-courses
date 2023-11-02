@@ -14,6 +14,11 @@ public class KhoaHoc {
 	private Date ngayphathanh;
 	private String mota;
 	private int danhgia;
+	private String linhvuc;
+
+	public String getLinhvuc() {
+		return linhvuc;
+	}
 
 	public int getMakhoahoc() {
 		return makhoahoc;
@@ -68,7 +73,17 @@ public class KhoaHoc {
 		this.mota = mota;
 		this.danhgia = danhgia;
 	}
-
+	public KhoaHoc(String tenkhoahoc,int danhgia,int matacgia,
+			String trinhdodauvao,Double giatien,Double thoigian,String linhvuc)
+	{
+		this.tenkhoahoc=tenkhoahoc;
+		this.danhgia=danhgia;
+		this.matacgia=matacgia;
+		this.trinhdodauvao=trinhdodauvao;
+		this.giatien=giatien;
+		this.thoigian=thoigian;
+		this.linhvuc=linhvuc;
+	}
 	public KhoaHoc(int makhoahoc,String tenkhoahoc, String trinhdodauvao,String mota) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.trinhdodauvao = trinhdodauvao;

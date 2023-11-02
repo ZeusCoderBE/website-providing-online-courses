@@ -17,6 +17,10 @@ public class HocVien extends NguoiDung {
 	{
 		super(hoten,email,matkhau,quocgia,sdt);
 	}
+	public HocVien(String hoten,String email)
+	{
+		super(hoten,email);
+	}
 	public String getLoaitaikhoan() {
 		return loaitaikhoan;
 	}

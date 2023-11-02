@@ -77,10 +77,10 @@ int check = 0;
 										<div class="show_info__figure">4</div>
 										<div class="my_course">
 											<div class="pseudo_class"></div>
-
 											<div class="my_course__header">
 												<h5>Giỏ hàng của tôi</h5>
-												<span>Xem tất cả</span>
+												<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem
+													tất cả</a>
 											</div>
 											<ul class="my_course__list">
 												<div class="my_course__detail">
@@ -90,89 +90,28 @@ int check = 0;
 															alt="react">
 														</a>
 													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS
-																ahdhdghdsg</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
+													<c:choose>
+														<c:when test="${not empty dsgiohang}">
+															<c:forEach var="giohangcuatoi" items="dsgiohang">
+																<div class="my_course__info">
+																	<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
+																	</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
+																</div>
 
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
+																<div class="my_course__action">
+																	<div class="my_course__buy">
+																		<a href="#">Buy</a>
+																	</div>
 
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
+																	<div class="my_course__delete">
+																		<a href="#">Delete</a>
+																	</div>
+																</div>
+															</c:forEach>
+														</c:when>
+													</c:choose>
 												</div>
 											</ul>
-
 										</div>
 									</div>
 								</li>
@@ -217,8 +156,9 @@ int check = 0;
 														onclick="scrollToElement('.personal_email')"> <span>Đổi
 																mật khẩu</span> <i class="fa-solid fa-lock"></i>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Đăng
-																xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
 													</a></li>
 												</ul>
 											</div>

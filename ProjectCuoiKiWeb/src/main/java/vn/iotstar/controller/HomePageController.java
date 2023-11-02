@@ -16,21 +16,27 @@ import jakarta.servlet.http.HttpSession;
 public class HomePageController {
 	KhoaHocDao khD = new KhoaHocDao();
 	BaiHocDao bhD = new BaiHocDao();
-
+	GioHangDao ghD=new GioHangDao();
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
 		return "introduction";
 	}
 
 	@RequestMapping(value = "/homepages", method = RequestMethod.GET)
-	public String homePage(ModelMap model) {
+	public String homePage(ModelMap model,HttpSession session) {
 		List<KhoaHoc> ListKH = null;
+		HocVien hv=(HocVien)session.getAttribute("hocvien");
 		try {
 			ListKH = khD.GetListCourses();
 			model.addAttribute("danhsachkh", ListKH);
+			List<GioHang> dsgiohang=new ArrayList<GioHang>();
+			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
+			model.addAttribute("dsgiohang", dsgiohang);
+			System.out.print(dsgiohang.get(0).getKhoahoc().getTenkhoahoc());
+			
 
 		} catch (Exception ex) {
-
+			System.out.print(ex.getMessage());
 		}
 
 		return "homepage";

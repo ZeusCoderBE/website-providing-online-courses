@@ -38,6 +38,11 @@ public class NguoiDung {
 	public String getTrinhdo() {
 		return trinhdo;
 	}
+	public NguoiDung(String hoten,String email)
+	{
+		this.hoten=hoten;
+		this.email=email;
+	}
 	public NguoiDung(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
 			String diachi, String trinhdo,String matkhau) {
 
