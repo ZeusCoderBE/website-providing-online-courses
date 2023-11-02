@@ -180,8 +180,8 @@
 										<button class="btn btn-success btn_signin__course">Đăng
 											ký học</button>
 									</a>
-									<button class="btn btn-primary btn_signin__course">Thêm
-										giỏ hàng</button>
+									<a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}" class="btn btn-primary btn_signin__course">Thêm
+										giỏ hàng</a>
 								</div>
 							</c:when>
 							<c:otherwise>

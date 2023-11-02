@@ -9,7 +9,7 @@ Create Or Alter View v_XemGioHang
 as 
 select NGUOIDUNG.HoTen,NGUOIDUNG.Email,KHOAHOC.TenKhoaHoc,KHOAHOC.DanhGia,KHOAHOC.MaTacGia
 ,KHOAHOC.TrinhDoDauVao,KHOAHOC.GiaTien,KHOAHOC.ThoiGianHoanThanh,
-KHOAHOC.LinhVuc,NGUOIDUNG.MaNguoiDung From NGUOIDUNG
+KHOAHOC.LinhVuc,KhoaHoc.NgayPhatHanh,NGUOIDUNG.MaNguoiDung From NGUOIDUNG
 join GIOHANG
 on  GIOHANG.MaNguoiDung=NGUOIDUNG.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc= GIOHANG.MaKhoaHoc

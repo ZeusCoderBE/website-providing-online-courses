@@ -71,56 +71,54 @@ int check = 0;
 					<div class="utilities">
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
-								<li class="mr-3">
-									<div class="show_info">
-										<i class="fa-solid fa-cart-shopping"></i>
-										<div class="show_info__figure">4</div>
-										<div class="my_course">
-											<div class="pseudo_class"></div>
-											<div class="my_course__header">
-												<h5>Giỏ hàng của tôi</h5>
-												<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem
-													tất cả</a>
-											</div>
-											<ul class="my_course__list">
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<c:choose>
-														<c:when test="${not empty dsgiohang}">
-															<c:forEach var="giohangcuatoi" items="dsgiohang">
-																<div class="my_course__info">
-																	<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
-																	</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-																</div>
-
-																<div class="my_course__action">
-																	<div class="my_course__buy">
-																		<a href="#">Buy</a>
-																	</div>
-
-																	<div class="my_course__delete">
-																		<a href="#">Delete</a>
-																	</div>
-																</div>
-															</c:forEach>
-														</c:when>
-													</c:choose>
+								<c:if test="${not empty hocvien.manguoidung}">
+									<li class="mr-3">
+										<div class="show_info">
+											<i class="fa-solid fa-cart-shopping"></i>
+											<div class="show_info__figure">4</div>
+											<div class="my_course">
+												<div class="pseudo_class"></div>
+												<div class="my_course__header">
+													<h5>Giỏ hàng của tôi</h5>
+													<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem
+														tất cả</a>
 												</div>
-											</ul>
-										</div>
-									</div>
-								</li>
+												<ul class="my_course__list">
+													<c:forEach var="giohangcuatoi" items="${dsgiohang}">
+														<div class="my_course__detail">
+															<div class="my_sourse__item">
+																<a href="#"> <img
+																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+																	alt="react">
+																</a>
+															</div>
+															<div class="my_course__info">
+																<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
+																</span> <span class="info_time"> Xuất bản
+																	:${giohangcuatoi.getKhoahoc().getNgayphathanh()}</span>
+															</div>
+															<div class="my_course__action">
+																<div class="my_course__buy">
+																	<a href="#">Buy</a>
+																</div>
 
-								<li class="mr-3">
-									<div class="">
-										<i class="fa-solid fa-bell"></i>
-									</div>
-								</li>
+																<div class="my_course__delete">
+																	<a
+																		href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
+																</div>
+															</div>
+														</div>
+													</c:forEach>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li class="mr-3">
+										<div class="">
+											<i class="fa-solid fa-bell"></i>
+										</div>
+									</li>
+								</c:if>
 
 								<li class="d-flex"><c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
@@ -438,8 +436,14 @@ int check = 0;
 	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaothanhcong}");
+			ReloadAlert("${thongbaokhach}");
+			ReloadAlert("${thongbaothemtc}");
+			ReloadAlert("${thongbaoxoa}");
 		}
 	</script>
 	<c:set var="thongbaothanhcong" value="${null}"></c:set>
+	<c:set var="thongbaokhach" value="${null}"></c:set>
+	<c:set var="thongbaothemtc" value="${null}"></c:set>
+	<c:set var="thongbaoxoa" value="${null}"></c:set>
 </body>
 </html>

@@ -74,7 +74,7 @@ public class KhoaHoc {
 		this.danhgia = danhgia;
 	}
 	public KhoaHoc(String tenkhoahoc,int danhgia,int matacgia,
-			String trinhdodauvao,Double giatien,Double thoigian,String linhvuc)
+			String trinhdodauvao,Double giatien,Double thoigian,String linhvuc,Date ngayphathanh,int makhoahoc)
 	{
 		this.tenkhoahoc=tenkhoahoc;
 		this.danhgia=danhgia;
@@ -83,6 +83,8 @@ public class KhoaHoc {
 		this.giatien=giatien;
 		this.thoigian=thoigian;
 		this.linhvuc=linhvuc;
+		this.ngayphathanh=ngayphathanh;
+		this.makhoahoc=makhoahoc;
 	}
 	public KhoaHoc(int makhoahoc,String tenkhoahoc, String trinhdodauvao,String mota) {
 		this.tenkhoahoc = tenkhoahoc;

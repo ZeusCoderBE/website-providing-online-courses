@@ -23,20 +23,25 @@ public class HomePageController {
 	}
 
 	@RequestMapping(value = "/homepages", method = RequestMethod.GET)
-	public String homePage(ModelMap model,HttpSession session) {
+	public String homePage(ModelMap model,HttpSession session) throws Exception {
 		List<KhoaHoc> ListKH = null;
 		HocVien hv=(HocVien)session.getAttribute("hocvien");
 		try {
+			if(hv==null)
+			{
+				ListKH = khD.GetListCourses();
+				model.addAttribute("danhsachkh", ListKH);
+				throw new Exception("Bạn đang vào trang web này với vai trò là khách nếu bạn muốn đăng ký khóa học vui lòng tạo tài khoản !");
+			}
 			ListKH = khD.GetListCourses();
 			model.addAttribute("danhsachkh", ListKH);
 			List<GioHang> dsgiohang=new ArrayList<GioHang>();
 			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
 			model.addAttribute("dsgiohang", dsgiohang);
-			System.out.print(dsgiohang.get(0).getKhoahoc().getTenkhoahoc());
 			
 
 		} catch (Exception ex) {
-			System.out.print(ex.getMessage());
+			model.addAttribute("thongbaokhach",ex.getMessage());
 		}
 
 		return "homepage";
@@ -51,6 +56,9 @@ public class HomePageController {
 			dskhoahoccuatoi = khD.FindMyLearning(hv.getManguoidung());
 			map.addAttribute("danhsachkhoahoc", dskhoahoccuatoi);
 			map.addAttribute("check",0);
+			List<GioHang> dsgiohang=new ArrayList<GioHang>();
+			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
+			map.addAttribute("dsgiohang", dsgiohang);
 			
 		}
 		catch(Exception ex)

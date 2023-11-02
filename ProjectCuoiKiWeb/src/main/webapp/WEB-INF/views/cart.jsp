@@ -69,116 +69,6 @@
 					<div class="utilities">
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
-								<li class="mr-3">
-									<div class="show_info">
-										<i class="fa-solid fa-cart-shopping"></i>
-										<div class="show_info__figure">4</div>
-										<div class="my_course">
-											<div class="pseudo_class"></div>
-
-											<div class="my_course__header">
-												<h5>Giỏ hàng của tôi</h5>
-												<span>Xem tất cả</span>
-											</div>
-											<ul class="my_course__list">
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS
-																ahdhdghdsg</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-											</ul>
-
-										</div>
-									</div>
-								</li>
-								<li class="mr-3">
-									<div class="">
-										<i class="fa-solid fa-bell"></i>
-									</div>
-								</li>
 								<li class="d-flex"><c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
@@ -274,7 +164,8 @@
 
 											<div class="cart-item-action">
 												<div class="cart-item-delete">
-													<a href="#">Xóa</a> <a href="#">Lưu để sau</a>
+													<a href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
+													<a href="#">Lưu để sau</a>
 												</div>
 												<div class="cart-item-price">
 													<div class="cart-price-current">
@@ -403,5 +294,13 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+   <script>
+		window.onload = function() {
+			ReloadAlert("${thongbaothemgiohang}");
+			ReloadAlert("${thongbaoxoa}");
+		}
+	</script>
+	<c:set var="thongbaothemgiohang" value="${null}" scope="request"></c:set>
+	<c:set var="thongbaoxoa" value="${null}" scope="request"></c:set>
 </body>
 </html>
