@@ -130,7 +130,7 @@
                 <nav class="col-2">
                     <div class="sidebar sidebar_study">
                         <div style="justify-content: center;" class="branding-inner">
-                            <a style="margin-top: 0;" href="./index.html" class="site-name">
+                            <a style="margin-top: 0;" href="homepages" class="site-name">
                                 <img class="site-logo" src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
                             </a>
                         </div>

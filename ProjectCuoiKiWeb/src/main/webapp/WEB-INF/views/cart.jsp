@@ -188,7 +188,7 @@
 					<div class="cart-pay">
 						<span>Tổng:</span>
 						<h2>9999$</h2>
-						<button class="btn btn-primary btn-pay">Thanh Toán</button>
+						<button class="btn btn-primary btn-buy">Thanh Toán</button>
 						<p>Khuyến mãi</p>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control"

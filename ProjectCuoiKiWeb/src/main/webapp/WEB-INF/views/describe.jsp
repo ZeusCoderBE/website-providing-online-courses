@@ -35,6 +35,39 @@
 						</form>
 					</li>
 					<li class="nav_link">
+					<div class="show_info">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <div class="show_info__figure">4</div>
+                            <div class="my_course my_course__cart">
+                                <div class="pseudo_class"></div>
+
+                                <div class="my_course__header">
+                                    <h5>Khóa học của tôi</h5>
+                                    <span>Xem tất cả</span>
+                                </div>
+                                <ul class="my_course__list">
+                                    <div class="my_course__detail">
+                                        <div class="my_sourse__item">
+                                            <a href="#">
+                                                <img src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png" alt="react">
+                                            </a>
+                                        </div>
+                                        <div class="my_course__info">
+                                            <span>
+                                                <a href="#">Xây Dựng Website với ReactJS</a>
+                                            </span>
+                                            <span class="info_time">
+                                                Học cách đây
+                                                2 ngày trước
+                                            </span>
+                                           
+                                        </div>
+                                    </div>
+                                    
+                                </ul>
+                                
+                            </div>
+                        </div>
 						<div class="show_info">
 							<span>Khóa học của tôi</span>
 							<div class="my_course">
