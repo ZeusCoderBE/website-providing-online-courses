@@ -208,7 +208,7 @@ int check = 0;
 								</a>
 								<ul>
 									<c:forEach var="khoahoctaikhoan"
-										items="${requestScope.danhsachkhoahoc}">
+										items="${danhsachkhoahoc}">
 										<li><a href="#"> <i
 												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
 										</a></li>
