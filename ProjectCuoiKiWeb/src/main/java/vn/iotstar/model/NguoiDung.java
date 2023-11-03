@@ -38,6 +38,11 @@ public class NguoiDung {
 	public String getTrinhdo() {
 		return trinhdo;
 	}
+	public NguoiDung(String hoten,String email)
+	{
+		this.hoten=hoten;
+		this.email=email;
+	}
 	public NguoiDung(int manguoidung, String hoten, String email, String sdt, String quocgia, String vungmien,
 			String diachi, String trinhdo,String matkhau) {
 
@@ -65,12 +70,13 @@ public class NguoiDung {
 	{
 		this.manguoidung=manguoidung;
 	}
-	public NguoiDung(String hoten,String email,String quocgia,String matkhau)
+	public NguoiDung(String hoten,String email,String quocgia,String matkhau,String sdt)
 	{
 		this.hoten=hoten;
 		this.email=email;
 		this.matkhau=matkhau;
 		this.quocgia=quocgia;
+		this.sdt=sdt;
 		
 	}
 	public NguoiDung()

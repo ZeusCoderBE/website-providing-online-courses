@@ -109,7 +109,8 @@
 												onclick="scrollToElement('.personal_email')"> <span>Đổi
 														mật khẩu</span> <i class="fa-solid fa-lock"></i>
 											</a></li>
-											<li class="setting__item"><a href="#"> <span>Đăng
+
+											<li class="setting__item"><a href="#" onclick="testConfirmDialog()"> <span>Đăng
 														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
 											</a></li>
 										</ul>
@@ -141,18 +142,18 @@
 							<h4>Wallet</h4>
 						</div>
 						<div class="id-card">
-							<h6>Mã ví:</h6>
-							<span>0385028108</span>
+							<h6>Mã thẻ: </h6>
+							<span>${the.getMaThe()}</span>
 						</div>
 
 						<div class="id-card price-card">
-							<h6>Số dư khả dụng:</h6>
-							<span>9999$</span>
+							<h6 >Số dư khả dụng:</h6>
+							<span>${the.getSoDu()}$</span>
 						</div>
-						<button class="btn btn_main">
+						<a href="deposit" class="btn btn_main">
 							<i class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
 							tiền
-						</button>
+						</a>
 					</div>
 					<div class="profile_avata">
 						<div>
@@ -185,12 +186,6 @@
 						<form action="myprofile" method="post">
 							<div class="profile_account">
 								<h6>Account</h6>
-								<c:choose>
-									<c:when test="${not empty thongbao}">
-										<h5>${thongbao}</h5>
-										<c:remove var="thongbao" scope="session" />
-									</c:when>
-								</c:choose>
 								<ul class="profile_account-list">
 									<li class="account-list_item"><label for="username">Họ
 											và Tên:</label> <input type="text" id="username" name="username"
@@ -232,23 +227,20 @@
 						</form>
 						<div class="the_line"></div>
 						<form action="changepass" method="post">
-						<div class="personal_password">
-							<h6>Password</h6>
-							<c:if test="${not empty thongtinsai}">
-							 <h5>${thongtinsai}</h5>
-							 <c:remove var="thongtinsai" scope="session"></c:remove>
-							</c:if>
-							<ul class="personal_password-list">
-								<li class="account-list_item"><label for="username">Current
-										password</label> <input type="password" id="password" name="password" /></li>
-								<li class="account-list_item"><label for="username">New
-										password</label> <input type="password" id="newpass"  name="newpass"/></li>
-								<li class="account-list_item"><label for="username">Retype
-										password</label> <input type="password" id="repass" name="repass" /></li>
-							</ul>
-							<input type="submit" class="btn btn_main btn-save" value="Change password">
-						</div>
-					  </form>
+							<div class="personal_password">
+								<h6>Password</h6>
+								<ul class="personal_password-list">
+									<li class="account-list_item"><label for="username">Current
+											password</label> <input type="password" id="password" name="password" /></li>
+									<li class="account-list_item"><label for="username">New
+											password</label> <input type="password" id="newpass" name="newpass" /></li>
+									<li class="account-list_item"><label for="username">Retype
+											password</label> <input type="password" id="repass" name="repass" /></li>
+								</ul>
+								<input type="submit" class="btn btn_main btn-save"
+									value="Change password">
+							</div>
+						</form>
 						<div class="the_line"></div>
 
 						<div class="profile_course">
@@ -316,6 +308,16 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+	<script>
+		window.onload = function() {
+			ReloadAlert("${thongbao}");
+			ReloadAlert("${thongtinsai}")
+			ReloadAlert("${thongbaotien}")
+		}
+	</script>
+	<c:set var="thongbao" value="${null}"></c:set>
+	<c:set var="thongtinsai" value="${null}"></c:set>
+	<c:set var="thongbaotien" value="${null}"></c:set>
 
 </body>
 </html>

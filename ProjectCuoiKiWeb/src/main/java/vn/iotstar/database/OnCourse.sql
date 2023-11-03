@@ -1,4 +1,5 @@
 
+--DROP DATABASE ONCOURSE
 create database ONCOURSE
 
 go
@@ -183,6 +184,7 @@ VALUES
     (N'Phạm Thị D', 'phamthid@email.com', '3216549870', N'Việt Nam', N'Miền Nam', N'Địa chỉ 4', N'Cử nhân','4'),
     (N'Hoàng Văn E', 'hoangvane@email.com', '9873216540', N'Việt Nam', N'Miền Trung', N'Địa chỉ 5', N'Thạc sĩ','5');
 
+
 -- Chèn học viên
 INSERT INTO HOCVIEN (MaHocVien, LoaiTaiKhoan)
 VALUES (1, N'Vàng'),
@@ -245,13 +247,11 @@ VALUES
 	('4567891230', 151.00, 3),
 	('3216549870', 230.00, 4),
 	('9873216540', 135.00, 5)
-
 INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan, NoiDungThanhToan)
 VALUES
     (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
-    
 INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
 VALUES
     (1, 1, '2023-01-10'),

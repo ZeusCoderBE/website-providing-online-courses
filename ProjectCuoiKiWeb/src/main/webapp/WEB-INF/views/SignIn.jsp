@@ -11,7 +11,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 </head>
+
+
 <body>
 	<div class="container">
 		<div id="form-login">
@@ -23,8 +26,7 @@
 								<h1>Login</h1>
 							</div>
 							<br />
-							<p>${loidangnhap}</p>
-							<p>${thongbaodkdung}</p>
+							<p></p>
 							<div class="form-login-input">
 								<input type="text" placeholder="Email" name="Email" />
 							</div>
@@ -66,5 +68,12 @@
 			</form>
 		</div>
 	</div>
+	<script>
+		window.onload = function() {
+			ReloadAlert("${thongbaodung}");
+			ReloadAlert("${loidangnhap}")
+		}
+	</script>
+
 </body>
 </html>

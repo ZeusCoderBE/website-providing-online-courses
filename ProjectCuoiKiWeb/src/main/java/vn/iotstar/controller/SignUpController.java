@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
 import vn.iotstar.model.*;
 
 @Controller
@@ -23,6 +22,7 @@ public class SignUpController {
 	@RequestMapping(value = "/dang-ky", method = RequestMethod.POST, params = "tkhocvien")
 	public String XuLiSignUpHocVien(Model map, @RequestParam("username") String username,
 			@RequestParam("email") String email, @RequestParam("password") String password,
+			@RequestParam("sdt") String sdt,
 			@RequestParam("confirmpassword") String confipass, @RequestParam("quocgia") String quocgia,
 			@RequestParam(value = "tkhocvien", required = false, defaultValue = "null") String tkhocvien) {
 		String url = "";
@@ -30,16 +30,15 @@ public class SignUpController {
 			map.addAttribute("thongbaoloi", "Bạn Chưa Chọn Loại Tài Khoản !");
 		} else if (!password.equals(confipass)) {
 			map.addAttribute("xacnhanmksai", "Xác Nhận Mật Khẩu Không Đúng !");
-			url="DangKy";
+			url = "DangKy";
 		} else {
-			HocVien hv = new HocVien(username, email, quocgia, password);
-			int themnd = ndD.SignUp(hv);
-			if (themnd == 1) {
+			HocVien hv = new HocVien(username, email, quocgia, password,sdt);
+			if (ndD.SignUp(hv) == 1) {
 				hvD.InsertHocVien();
 				map.addAttribute("thongbaodung", " Chúc Mừng Bạn Đã Đăng Ký Thành Công !");
 				url = "SignIn";
 			} else {
-				map.addAttribute("thongbaodksai", "Thất Bại !");
+				map.addAttribute("thongbaodksai", "Email Và Số Điện Thoại Đã Tồn Tại !");
 				url = "DangKy";
 			}
 		}
@@ -50,15 +49,16 @@ public class SignUpController {
 	public String XuLiSignUpGiaoVien(Model map, @RequestParam("username") String username,
 			@RequestParam("email") String email, @RequestParam("password") String password,
 			@RequestParam("confirmpassword") String confipass, @RequestParam("quocgia") String quocgia,
-			@RequestParam(value = "tkgiaovien", required =false , defaultValue = "null") String tkgiaovien) {
+			@RequestParam("sdt") String sdt,
+			@RequestParam(value = "tkgiaovien", required = false, defaultValue = "null") String tkgiaovien) {
 		String url = "";
 		if ("null".equals(tkgiaovien)) {
 			map.addAttribute("thongbaoloi", "Bạn Chưa Chọn Loại Tài Khoản !");
 		} else if (!password.equals(confipass)) {
 			map.addAttribute("xacnhanmksai", "Xác Nhận Mật Khẩu Không Đúng !");
-			url="DangKy";
+			url = "DangKy";
 		} else {
-			GiangVien gv = new GiangVien(username, email, quocgia, password);
+			GiangVien gv = new GiangVien(username, email, quocgia, password,sdt);
 			int ketqua = ndD.SignUp(gv);
 			if (ketqua == 1) {
 				gvD.InsertGiangVien();

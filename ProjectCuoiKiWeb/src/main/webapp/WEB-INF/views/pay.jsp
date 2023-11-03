@@ -229,7 +229,7 @@
 										</div>
 										<div class="form-pay-input">
 											<label for="namekh">Tên khóa học</label> <input type="text"
-												id="namekh" value="${khoahoc.getTenkhoahoc()}" />
+												id="namekh" value="${dskhoahoc}" />
 										</div>
 										<div class="form-pay-input">
 											<label for="date">Ngày thanh toán</label> <input type="date"
@@ -244,7 +244,7 @@
 										<div class="form-pay-input">
 											<label for="price">Số tiền cần thanh toán</label> <input
 												type="text" id="price" name="price"
-												value="${khoahoc.getGiatien()}" />
+												value="${tonggiatien}" />
 										</div>
 										<div class="form-pay-input">
 											<label for="noidungtt">Nội dung thanh toán</label> <input
@@ -286,7 +286,7 @@
 											</ul>
 										</div>
 										<button class="btn btn-primary btn-pay" type="submit"
-											onclick="confirmPayment('${the.getSoDu()-khoahoc.getGiatien()}', '${khoahoc.getMakhoahoc()}')">Thanh
+											onclick="confirmPayCourse('${the.getSoDu()-khoahoc.getGiatien()}', '${khoahoc.getMakhoahoc()}')">Thanh
 											toán</button>
 									</div>
 								</div>

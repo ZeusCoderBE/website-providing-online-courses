@@ -48,7 +48,8 @@ end
 GO
 
 --Lấy Thông Tin của người dùng 
-CREATE PROCEDURE sp_TimThongTinHocVien
+--Theo Email
+CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
 @email varchar(64) 
 as 
 begin
@@ -83,4 +84,14 @@ BEGIN
 		SET @soSanh=2
 		SET @diff = 0
 	END
+END
+
+--Update số dư thẻ
+GO
+CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)
+AS
+BEGIN
+	DECLARE @sodu DECIMAL(18, 2)
+	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
+	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END

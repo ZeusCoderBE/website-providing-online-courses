@@ -2,11 +2,14 @@ package vn.iotstar.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import vn.iotstar.database.DataBaseConnection;
 
 public class ThanhToanDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
-
+	
 	public void thanhToan(ThanhToan tt, The the) throws ClassNotFoundException, SQLException {
 		int check;
 		// Thanh toán khóa học
@@ -24,7 +27,27 @@ public class ThanhToanDao {
 			throw new SQLException("Cập nhật số dư thẻ gặp lỗi");
 		}
 	}
-
+	public String DanhSachTenKH(List<KhoaHoc> dskhoahoc) {
+		String tenkh = "";
+		for (KhoaHoc kh: dskhoahoc) {
+			tenkh += kh.getTenkhoahoc() + '\n';
+		}
+		return tenkh;
+	}
+	public String NoiDungThanhToan(List<KhoaHoc> dskhoahoc) {
+		String ndthanhtoan = "";
+		for (KhoaHoc kh: dskhoahoc) {
+			ndthanhtoan += "Thanh Toan" + kh.getTenkhoahoc() + '\n';
+		}
+		return ndthanhtoan;
+	}
+	public double SumCostOfCourse(List<KhoaHoc> dskhoahoc) throws ClassNotFoundException, SQLException {
+		double sumCost = 0;
+		for (KhoaHoc kh: dskhoahoc) {
+			sumCost += kh.getGiatien();
+		}
+		return sumCost;
+	}
 	public boolean isEnoughMoney(ThanhToan tt, The the) {
 		if (the.getSoDu() < tt.getTienthanhtoan()) {
 			return false;

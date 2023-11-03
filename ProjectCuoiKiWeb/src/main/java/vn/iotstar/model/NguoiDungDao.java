@@ -9,16 +9,31 @@ public class NguoiDungDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
 	public int SignUp(NguoiDung hv)
 	{
-		String query="Insert into NguoiDung(HoTen,Email,QuocGia,MatKhau)"
+		String query="Insert into NguoiDung(HoTen,Email,QuocGia,MatKhau,Sdt)"
 				+ "values(N'"+hv.getHoten()+"',N'"+hv.getEmail()+"',N'"+hv.getQuocgia()+"',"
-						+ "N'"+hv.getMatkhau()+"')";
+						+ "N'"+hv.getMatkhau()+"','"+hv.getSdt()+"')";
 		int ketqua=dbconn.ExecuteCommand(query);
 		return ketqua;
 	}
 	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException
 	{
-		String sql="sp_TimThongTinHocVien '"+email+"'";
-		ResultSet rs = dbconn.ExecuteQuery(sql);
+		String sql="SELECT * FROM vThongTinHocVien AS vtt"
+				+ "\t WHERE vtt.Email = '" + email + "'";
+		ResultSet rs=dbconn.ExecuteQuery(sql);
+		HocVien hv= new HocVien();
+		while(rs.next())
+		{
+			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"),rs.getString("Email")
+					,rs.getString("Sdt"),rs.getNString("QuocGia"),rs.getNString("VungMien"),
+					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getString("MatKhau"),rs.getNString("loaitaikhoan"));
+		}
+		return hv;
+	}
+	public HocVien TimThongTinDN_Id(int manguoidung) throws ClassNotFoundException, SQLException
+	{
+		String sql="SELECT * FROM vThongTinHocVien AS vtt"
+				+ "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
+		ResultSet rs=dbconn.ExecuteQuery(sql);
 		HocVien hv= new HocVien();
 		while(rs.next())
 		{

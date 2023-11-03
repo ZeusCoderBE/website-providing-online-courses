@@ -57,7 +57,6 @@ function testConfirmDialog() {
 		return false;
 	}
 }
-
 function handleBlur() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -76,12 +75,14 @@ function enableField() {
 	const trinhdo = document.getElementById("trinhdo");
 	const diachi = document.getElementById("diachi");
 	const save = document.getElementById("save");
+	const email = document.getElementById("email");
 	username.removeAttribute("disabled");
 	quocgia.removeAttribute("disabled");
 	sdt.removeAttribute("disabled");
 	vungmien.removeAttribute("disabled");
 	trinhdo.removeAttribute("disabled");
 	diachi.removeAttribute("disabled");
+	email.removeAttribute("disabled");
 	save.disabled = false;
 }
 function myCourses() {
@@ -97,6 +98,11 @@ function homePage() {
 	page.style.gridTemplateColumns = 'auto';
 	homecourse.style.display = 'none';
 }
+function ReloadAlert(thongBao) {
+	if (thongBao !== null && thongBao !== "") {
+		alert(thongBao);
+	}
+}
 
 function goToNewPage() {
 	window.location.href = "./signin.html";
@@ -107,7 +113,7 @@ function scrollToElement(elementId) {
 	localStorage.setItem('scrollToElement', elementId);
 }
 
-function confirmPayment(diff, makh) {
+function confirmPayCourse(diff, makh) {
 	if (diff < 0) {
 		var money = alert("Tiền trong thẻ không đủ thanh toán khóa học!");
 		return "paycourse";
@@ -118,6 +124,20 @@ function confirmPayment(diff, makh) {
 		}
 		else {
 			return "paycourse?makhoahoc=" + makh;
+		}
+	}
+}
+function confirmPayCart(diff, dsgiohang) {
+	if (diff < 0) {
+		var money = alert("Tiền trong thẻ không đủ thanh toán khóa học!");
+		return "paycourse";
+	} else {
+		var result = confirm("Bạn sẽ thanh toán các khóa học này chứ ?");
+		if (result == true) {
+			window.location.href = "paid";
+		}
+		else {
+			return "redirect:/ShowInforCart";
 		}
 	}
 }

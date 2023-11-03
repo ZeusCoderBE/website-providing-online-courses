@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import vn.iotstar.model.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-
 @Controller
 public class SignInController {
 	NguoiDungDao ndd = new NguoiDungDao();
@@ -35,7 +34,6 @@ public class SignInController {
 		{
 			hv=ndd.TimThongTinDN(email);
 			session.setAttribute("hocvien", hv);
-			System.out.println("Da dang nhap");
 			return "redirect:/homepages";
 		}
 	}
