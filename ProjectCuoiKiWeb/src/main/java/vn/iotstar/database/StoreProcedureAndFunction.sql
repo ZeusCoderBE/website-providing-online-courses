@@ -48,12 +48,8 @@ end
 GO
 
 --Lấy Thông Tin của người dùng 
-<<<<<<< HEAD
 --Theo Email
 CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
-=======
-CREATE PROCEDURE sp_TimThongTinHocVien
->>>>>>> 02b639caba3838dbd5fa41e4e087992af38e72ce
 @email varchar(64) 
 as 
 begin

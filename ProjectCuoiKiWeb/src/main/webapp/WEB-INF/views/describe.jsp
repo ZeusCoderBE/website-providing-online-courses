@@ -76,12 +76,16 @@
 										</ul>
 									</div>
 								</div>
+							</li >
+							<li class="mr-3 icon ">
+							   <i class="fa-solid fa-bell"></i>
 							</li>
-							<li class="mr-3">
-								<div class="">
-									<i class="fa-solid fa-bell"></i>
-								</div>
-							</li>
+
+							<div class="site_img">
+								<img
+									src="https://files.fullstack.edu.vn/f8-prod/user_photos/284558/63c4c5f97e0c5.jpg"
+									alt="Trần Văn Luân">
+							</div>
 						</c:if>
 		</div>
 		<div class="main">

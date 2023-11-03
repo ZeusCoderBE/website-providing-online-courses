@@ -41,6 +41,17 @@
     }
 }
 
+.show_info__figure {
+	position: absolute;
+	top: -10px;
+	right: -8px;
+	font-size: 0.8rem;
+	padding: 0 6px ;
+	border-radius: 50%;
+    color: white;
+	background-color: red;
+}
+
 .my_course__header {
     display: flex;
     justify-content: space-between;
@@ -57,21 +68,21 @@
 
 .pseudo_class {
     height: 10px;
-    width: 100px;
+    width: 100%;
     background-color: transparent;
-    float: right;
-    position: relative;
-    top: -20px;
+    position: absolute;
+    top: -10px;
+    right: 0;
 }
 
 
 .my_course__detail {
     position: relative;
     display: flex;
-    height: 80px;
+    height: auto;
+	padding: 5px;
     align-items: center;
-    padding-left: 10px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     /* margin-top: 30px; */
     border-radius: 10px;
     box-sizing: content-box;
@@ -86,13 +97,12 @@
 }
 
 .my_sourse__item {
-    width: 35%;
+    width: 20%;
     margin-right: 10px;
-    height: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
 }
-
 .my_course__list img{
     width: 100%;
     height: 80%;
@@ -105,16 +115,9 @@
     height: 100%;
     padding-top: 5px;
     flex-direction: column;
-}
+    margin-top: 0;
+    padding-right: 10px;
 
-.my_course__buy{
-    height: 100%;
-    background-color: brown;
-}
-
-.my_course__delete{
-    height: 100%;
-    background-color: red;
 }
 
 .my_course__info span {
@@ -126,9 +129,71 @@
     text-overflow: ellipsis;
 }
 
+.my_course__action {
+    position: absolute;
+    content: "";
+    display: none;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    height: 54px;
+    text-align: center;
+    border-top-right-radius: 10px;
+	 border-bottom-right-radius: 10px;
+	 font-size: 0.8rem;
+}
+
+.my_course__buy:hover {
+	background-color: rgb(177, 36, 29);
+}
+
+.my_course__delete:hover {
+	background-color: rgb(243, 40, 12);;
+}
+
+.my_course__buy,
+.my_course__delete{
+	width: 50px;
+	display: flex;
+	margin: auto;
+    height: 100%;
+	align-items: center;
+	justify-content: center;
+	background-color: #dc3545;
+}
+
+.my_course__buy {
+	background-color:#6c757d;
+}
+
+ .my_course__delete {
+	 border-top-right-radius: 10px;
+	 border-bottom-right-radius: 10px;
+ }
+
+.my_course__action a {
+	color: white;
+}
+
+.my_course__info a {
+    font-size: 0.9rem;
+    color: black;
+}
+
+.my_course__detail:focus-within .my_course__action {
+	display: flex;
+}
+
+.my_course__detail:focus-within .my_course__info span{
+	width: 150px;
+}
+
 .my_course__info .info_time {
     font-size: 0.7rem;
+    color: #888;
 }
+
 
 .card-footer {
     margin-top: 4px;
@@ -363,7 +428,7 @@
     padding: 10px 0;
     font-size: 1.1rem;
     margin-bottom: 20px;
-    font-weight: bold;
+    font-weight: bold;  
 }
 
 .btn-pay::before {
@@ -423,14 +488,14 @@
 }
 
 .content-pay{
-    background-image: url("../Images/BACKGROUND.jpg");
+    background-image: url(/assets/img/BACKGROUND.jpg);
     background-size: cover;
 }
 
 .pay-container .row {
     display: flex;
     padding: 50px 15%;
-    background: rgba(0,0,0, 0.77);
+    background: rgba(0,0,0, 0.67);
     width: 100%;
     height: 100%;
     margin: 0;
@@ -438,7 +503,7 @@
 
 .col-6 {
     padding: 15px 30px 15px 30px;
-    background-color: rgba(17,17,17,.8);
+    background-color: rgba(17,17,17,.67);
     color: #c0bebe;
     width: calc(50% - 20px);
     text-align: start;
@@ -466,7 +531,6 @@
 .form-pay-header h2 {
     font-size: 1.8rem;
     font-weight: 500;
-    color: whitesmoke;
 }
 
 .form-pay-input {
