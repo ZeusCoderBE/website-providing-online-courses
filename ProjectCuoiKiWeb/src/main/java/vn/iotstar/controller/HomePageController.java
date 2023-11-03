@@ -17,6 +17,7 @@ public class HomePageController {
 	KhoaHocDao khD = new KhoaHocDao();
 	BaiHocDao bhD = new BaiHocDao();
 	GioHangDao ghD=new GioHangDao();
+	NguoiDungDao ndD=new NguoiDungDao();
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String intro() {
 		return "introduction";
@@ -38,6 +39,8 @@ public class HomePageController {
 			List<GioHang> dsgiohang=new ArrayList<GioHang>();
 			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
 			GioHang gh=ghD.CountCourse(hv.getManguoidung());
+			HocVien hocvien = ndD.TimThongTinDN_Id(hv.getManguoidung());
+			model.addAttribute("thongtin", hocvien);
 			model.addAttribute("countkhoahoc",gh);
 			model.addAttribute("dsgiohang", dsgiohang);
 			
