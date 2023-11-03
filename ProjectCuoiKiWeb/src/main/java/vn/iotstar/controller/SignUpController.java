@@ -33,8 +33,7 @@ public class SignUpController {
 			url = "DangKy";
 		} else {
 			HocVien hv = new HocVien(username, email, quocgia, password,sdt);
-			int themnd = ndD.SignUp(hv);
-			if (themnd == 1) {
+			if (ndD.SignUp(hv) == 1) {
 				hvD.InsertHocVien();
 				map.addAttribute("thongbaodung", " Chúc Mừng Bạn Đã Đăng Ký Thành Công !");
 				url = "SignIn";

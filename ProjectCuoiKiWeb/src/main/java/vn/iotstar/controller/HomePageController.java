@@ -52,20 +52,20 @@ public class HomePageController {
 		return "homepage";
 	}
 	@RequestMapping(value="/myhomepage",method=RequestMethod.GET)
-	public String FindMyLearning(HttpSession session,Model map)
+	public String FindMyLearning(HttpSession session,ModelMap model)
 	{
 		HocVien hv=(HocVien)session.getAttribute("hocvien");
 		List<KhoaHoc> dskhoahoccuatoi=new ArrayList<KhoaHoc>();
 		try		
 		{
 			dskhoahoccuatoi = khD.FindMyLearning(hv.getManguoidung());
-			map.addAttribute("danhsachkhoahoc", dskhoahoccuatoi);
-			map.addAttribute("check",0);
+			model.addAttribute("danhsachkhoahoc", dskhoahoccuatoi);
+			model.addAttribute("check",0);
 			List<GioHang> dsgiohang=new ArrayList<GioHang>();
 			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
 			GioHang gh=ghD.CountCourse(hv.getManguoidung());
-			map.addAttribute("countkhoahoc",gh);
-			map.addAttribute("dsgiohang", dsgiohang);
+			model.addAttribute("countkhoahoc",gh);
+			model.addAttribute("dsgiohang", dsgiohang);
 			
 		}
 		catch(Exception ex)
