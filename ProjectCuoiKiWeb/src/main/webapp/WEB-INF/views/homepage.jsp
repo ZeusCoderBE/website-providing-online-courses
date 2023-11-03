@@ -75,7 +75,7 @@ int check = 0;
 									<li class="mr-3">
 										<div class="show_info">
 											<i class="fa-solid fa-cart-shopping"></i>
-											<div class="show_info__figure">4</div>
+											<div class="show_info__figure">${countkhoahoc.numberofcourse}</div>
 											<div class="my_course">
 												<div class="pseudo_class"></div>
 												<div class="my_course__header">
@@ -104,7 +104,7 @@ int check = 0;
 
 																<div class="my_course__delete">
 																	<a
-																		href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
+																		href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
 																</div>
 															</div>
 														</div>
@@ -360,6 +360,7 @@ int check = 0;
 																		</div>
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a>
+																		<a href="ShowInforCart"></a>
 																	</div>
 																</div>
 															</div>

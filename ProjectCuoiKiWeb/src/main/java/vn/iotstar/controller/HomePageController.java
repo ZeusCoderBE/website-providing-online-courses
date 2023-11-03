@@ -37,6 +37,8 @@ public class HomePageController {
 			model.addAttribute("danhsachkh", ListKH);
 			List<GioHang> dsgiohang=new ArrayList<GioHang>();
 			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
+			GioHang gh=ghD.CountCourse(hv.getManguoidung());
+			model.addAttribute("countkhoahoc",gh);
 			model.addAttribute("dsgiohang", dsgiohang);
 			
 
@@ -58,6 +60,8 @@ public class HomePageController {
 			map.addAttribute("check",0);
 			List<GioHang> dsgiohang=new ArrayList<GioHang>();
 			dsgiohang=ghD.GetTopMyCart(hv.getManguoidung());
+			GioHang gh=ghD.CountCourse(hv.getManguoidung());
+			map.addAttribute("countkhoahoc",gh);
 			map.addAttribute("dsgiohang", dsgiohang);
 			
 		}
@@ -77,6 +81,11 @@ public class HomePageController {
 			model.addAttribute("khoahoc", khoahoc);
 			ListBH = bhD.GetScience(khoahoc);
 			model.addAttribute("listbaihoc", ListBH);
+			List<GioHang> dsgiohang = new ArrayList<GioHang>();
+			dsgiohang = ghD.GetMyCart(hv.getManguoidung());
+			GioHang gh=ghD.CountCourse(hv.getManguoidung());
+			model.addAttribute("countkhoahoc",gh);
+			model.addAttribute("dsgiohang", dsgiohang);
 			model.addAttribute("isdangky", khD.khoahocDangKy(hv.getManguoidung(), khoahoc.getMakhoahoc()));
 
 		} catch (Exception ex) {

@@ -23,7 +23,19 @@ public class GioHangDao {
 		}
 		return dsgiohang;
 	}
-
+	public GioHang CountCourse (int manguoidung) throws ClassNotFoundException, SQLException {
+		GioHang giohang = new GioHang();
+		String query = "select Count(*) as Num From v_XemGioHang where MaNguoiDung=" + manguoidung + "";
+		ResultSet rs = dbC.ExecuteQuery(query);
+		if (rs.next()) {
+			giohang = new GioHang(rs.getInt("Num"));
+			return giohang;
+		}
+		else
+		{
+			return null;
+		}
+	}
 	public List<GioHang> GetTopMyCart(int manguoidung) throws ClassNotFoundException, SQLException {
 		GioHang giohang = new GioHang();
 		String query = "select Top 3 * From v_XemGioHang where MaNguoiDung=" + manguoidung + "";

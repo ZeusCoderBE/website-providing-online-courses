@@ -88,10 +88,14 @@ public class CartController {
 			if (ghD.DeleteCourseCart(giohang) == 1) {
 				dsgiohang = ghD.GetMyCart(manguoidung);
 				model.addAttribute("dsgiohang", dsgiohang);
+				GioHang gh=ghD.CountCourse(manguoidung);
+				model.addAttribute("countkhoahoc",gh);
 				model.addAttribute("thongbaoxoa", "Bạn đã xóa thành công ");
 				
 			} else {
 				dsgiohang = ghD.GetMyCart(manguoidung);
+				GioHang gh=ghD.CountCourse(manguoidung);
+				model.addAttribute("countkhoahoc",gh);
 				model.addAttribute("dsgiohang", dsgiohang);
 				model.addAttribute("thongbaoxoa", "Bạn đã xóa thất bại");
 			}
