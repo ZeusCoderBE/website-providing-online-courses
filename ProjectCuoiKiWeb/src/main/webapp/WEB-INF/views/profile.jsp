@@ -142,18 +142,18 @@
 							<h4>Wallet</h4>
 						</div>
 						<div class="id-card">
-							<h6>Mã ví:</h6>
-							<span>0385028108</span>
+							<h6>Mã thẻ: </h6>
+							<span>${the.getMaThe()}</span>
 						</div>
 
 						<div class="id-card price-card">
-							<h6>Số dư khả dụng:</h6>
-							<span>9999$</span>
+							<h6 >Số dư khả dụng:</h6>
+							<span>${the.getSoDu()}$</span>
 						</div>
-						<button class="btn btn_main">
+						<a href="deposit" class="btn btn_main">
 							<i class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
 							tiền
-						</button>
+						</a>
 					</div>
 					<div class="profile_avata">
 						<div>
@@ -312,10 +312,12 @@
 		window.onload = function() {
 			ReloadAlert("${thongbao}");
 			ReloadAlert("${thongtinsai}")
+			ReloadAlert("${thongbaotien}")
 		}
 	</script>
 	<c:set var="thongbao" value="${null}"></c:set>
 	<c:set var="thongtinsai" value="${null}"></c:set>
+	<c:set var="thongbaotien" value="${null}"></c:set>
 
 </body>
 </html>

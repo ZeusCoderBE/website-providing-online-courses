@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,8 @@
 <link rel="stylesheet" href="./templates/CSS/main.css">
 <link rel="stylesheet" href="./templates/CSS/descride.css">
 <link rel="stylesheet" href="./templates/CSS/style.css">
+<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
+
 </head>
 <body>
 	<div class="" id="app">
@@ -231,7 +234,7 @@
                 <h2>Cổng Thanh Toán Trực Tuyến</h2>
             </div>
             <div class="content-pay">
-                <form action="#" method="get">
+                <form action="deposit" method="post">
                     <div class="row">
                         <div class="col-6">
                                 <div class="form-list">
@@ -240,23 +243,19 @@
                                             <div class="form-pay-header"><h2>Thông tin học viên</h2></div>
                                             <div class="form-pay-input">
                                                 <label for="namekh">Tên học viên</label>
-                                                <input type="text" id="namehv" disabled value="Trần Văn Luân "/>
-                                            </div>
-                                            <div class="form-pay-input">
-                                                <label for="date">Ngày thanh toán</label>
-                                                <input type="date" id="date" disabled/>
+                                                <input type="text" id="namehv" name="namehv" disabled value="${hocvien.hoten}"/>
                                             </div>
                                             <div class="form-pay-input">
                                                 <label for="cardNumber">Card Number</label>
-                                                <input type="text" id="cardNumber" disabled/>
+                                                <input type="text" id="cardNumber" name="card" value="${the.getMaThe()}"/>
                                             </div>
                                             <div class="form-pay-input">
                                                 <label for="price">Số tiền cần nạp</label>
-                                                <input type="text" id="price" disabled/>
+                                                <input type="text" id="price " name="price"/>
                                             </div>
                                             <div class="form-pay-input">
                                                 <label for="contentPay">Nội dung</label>
-                                                <input type="text" id="contentPay" />
+                                                <input type="text" id="contentPay" name="noidung"/>
                                             </div>
                                             <!-- <button class="btn" type="submit">pay</button> -->
                                         </div>
@@ -294,7 +293,7 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <button class="btn btn-primary btn-pay" type="submit">Thanh toán</button>
+                                        <input class="btn btn-primary btn-pay" type="submit" value="Nạp Tiền">
                                     </div>
                                 </div>
                             </div>
@@ -423,5 +422,11 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+	<script>
+		window.onload = function() {
+			ReloadAlert("${thongbaotienloi}")
+		}
+	</script>
+	<c:set var="thongbaotienloi" value="${null}"></c:set>
 </body>
 </html>

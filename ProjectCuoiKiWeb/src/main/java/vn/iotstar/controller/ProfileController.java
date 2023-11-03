@@ -18,13 +18,16 @@ public class ProfileController {
 	NguoiDungDao ndD = new NguoiDungDao();
 	HocVienDao hvD = new HocVienDao();
 	KhoaHocDao khD = new KhoaHocDao();
+	TheDao tD = new TheDao();
 	@RequestMapping(value = "myprofiles", method = RequestMethod.GET)
 	public String ShowProfile(HttpSession session, ModelMap model) throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
+		The the = tD.getAThe(hv.getManguoidung());
 		hocvien = ndD.TimThongTinDN(hv.getEmail());
 		if (hocvien.getEmail()!=null) {
 			model.addAttribute("thongtin", hocvien);
+			model.addAttribute("the", the);
 		}
 		else {
 			hocvien = ndD.TimThongTinDN_Id(hv.getManguoidung());

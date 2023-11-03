@@ -15,7 +15,14 @@ public class TheDao {
 		if (rs.next()) {
 			the = new The(rs.getString("MaThe"), rs.getFloat(2), rs.getInt(3));
 		}
-		
+		System.out.print(sqlStr);
 		return the;
+	}
+	
+	public int UpdateThe(String mathe, double sotien) {
+		String sqlStr = String.format("sp_UpdateThe '%s', %f", mathe, sotien);
+		System.out.print(sqlStr);
+		int ketqua = dbconn.ExecuteCommand(sqlStr);
+		return ketqua;
 	}
 }

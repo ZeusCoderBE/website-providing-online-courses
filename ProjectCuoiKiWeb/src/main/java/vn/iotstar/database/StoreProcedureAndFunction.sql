@@ -85,3 +85,13 @@ BEGIN
 		SET @diff = 0
 	END
 END
+
+--Update số dư thẻ
+GO
+CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)
+AS
+BEGIN
+	DECLARE @sodu DECIMAL(18, 2)
+	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
+	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
+END
