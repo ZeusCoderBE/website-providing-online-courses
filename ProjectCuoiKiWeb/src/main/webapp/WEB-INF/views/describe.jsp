@@ -158,7 +158,7 @@
 						<c:choose>
 							<c:when test="${isdangky != true}">
 								<div class="btn_action">
-									<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
+									<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
 										<button class="btn btn-success btn_signin__course">Đăng
 											ký học</button>
 									</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"

@@ -5,8 +5,8 @@ import java.sql.Date;
 public class GioHang {
 	private HocVien hocvien;
 	private KhoaHoc khoahoc;
-	private int numberofcourse;
-
+	private int numberofcourse; 
+	
 	public HocVien getHocvien() {
 		return hocvien;
 	}

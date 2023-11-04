@@ -1,6 +1,10 @@
 package vn.iotstar.controller;
 
 import vn.iotstar.model.*;
+
+import java.sql.SQLException;
+import java.util.Date;
+//import java.sql.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,7 @@ public class CourseController {
 		}
 		return "course";
 	}
+<<<<<<< HEAD
 
 	@RequestMapping(value = "/FindLessons", method = RequestMethod.GET, params = "mabaihoc")
 	public String ShowDocumennt (ModelMap model, @RequestParam("mabaihoc") int mabaihoc) throws ClassNotFoundException, SQLException {
@@ -50,5 +55,28 @@ public class CourseController {
 		}
 
 		return url;
+=======
+	@RequestMapping(value = "/createlesson", method = RequestMethod.GET)
+	public String Lesson(ModelMap model) {
+		return "create_lesson";
+	}
+	@RequestMapping(value = "/createlesson", method = RequestMethod.POST)
+	public String CreateLesson(ModelMap model, @RequestParam("namelesson") String name, @RequestParam("trinhdo") String muctieu,
+			@RequestParam("textarea") String content) {
+
+		BaiHoc bh = new BaiHoc(6, name, 30.0, content, Double.parseDouble(muctieu), null, 1);
+		try {
+			if (bhD.ThemBaiHoc(bh) == 0) {
+				System.out.println("Them bai hoc that bai");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "homepage";
+>>>>>>> 819f5f740df16dc47281e345d2fa57b18f3881d3
 	}
 }
