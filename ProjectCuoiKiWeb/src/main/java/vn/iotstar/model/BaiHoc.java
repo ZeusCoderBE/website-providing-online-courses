@@ -1,6 +1,6 @@
 package vn.iotstar.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class BaiHoc {
 
@@ -11,7 +11,6 @@ public class BaiHoc {
 	private Double muctieudaura;
 	private Date ngaydang;
 	private int makhoahoc;
-
 
 	public int getMakhoahoc() {
 		return makhoahoc;
@@ -42,22 +41,21 @@ public class BaiHoc {
 	}
 
 	public BaiHoc(int mabaihoc, String tenbaihoc, Double thoigianhoanthanh, String noidungbaihoc, Double muctieudaura,
-			Date ngaydang,int makhoahoc) 
-	{
+			Date date, int makhoahoc) {
 		this.mabaihoc = mabaihoc;
 		this.tenbaihoc = tenbaihoc;
 		this.thoigianhoanthanh = thoigianhoanthanh;
 		this.noidungbaihoc = noidungbaihoc;
 		this.muctieudaura = muctieudaura;
-		this.ngaydang = ngaydang;
-		this.makhoahoc=makhoahoc;
+		this.ngaydang = date;
+		this.makhoahoc = makhoahoc;
 	}
 
 	public BaiHoc() {
 
 	}
-	public BaiHoc(int makhoahoc)
-	{
-		this.makhoahoc=makhoahoc;
+
+	public BaiHoc(int makhoahoc) {
+		this.makhoahoc = makhoahoc;
 	}
 }

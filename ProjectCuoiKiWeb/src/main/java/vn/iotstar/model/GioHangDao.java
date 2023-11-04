@@ -1,10 +1,11 @@
 package vn.iotstar.model;
 
-import java.sql.ResultSet;
+import java.sql.*;
 import java.sql.SQLException;
 import java.util.*;
 
 import vn.iotstar.database.DataBaseConnection;
+import vn.iotstar.model.KhoaHoc;
 
 public class GioHangDao {
 	DataBaseConnection dbC = new DataBaseConnection();
@@ -57,7 +58,13 @@ public class GioHangDao {
 		}
 		return dsgiohang;
 	}
-
+	public List<KhoaHoc> GetCourseList(List<GioHang> dsgiohang) {
+		List<KhoaHoc> dskhoahoc = new ArrayList<KhoaHoc>();
+		for (GioHang gh: dsgiohang) {
+			dskhoahoc.add(gh.getKhoahoc());
+		}
+		return dskhoahoc;
+	}
 	public int InsertCourseCart(GioHang gh) {
 		String dml = "insert into GioHang(MaNguoiDung,MaKhoaHoc)\r\n" + "values(" + gh.getHocvien().getManguoidung()
 				+ "," + gh.getKhoahoc().getMakhoahoc() + ")";

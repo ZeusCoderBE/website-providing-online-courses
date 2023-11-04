@@ -218,7 +218,7 @@
 				<h2>Cổng Thanh Toán Trực Tuyến</h2>
 			</div>
 			<div class="content-pay">
-				<form action="paid" method="post">
+				<form action="paycourses" method="post">
 					<div class="row">
 						<div class="col-6">
 							<div class="form-list">
@@ -248,7 +248,7 @@
 										</div>
 										<div class="form-pay-input">
 											<label for="noidungtt">Nội dung thanh toán</label> <input
-												type="text" id="noidungtt" name="noidungtt"
+												type="textarea" id="noidungtt" name="noidungtt"
 												value="${noidungtt}" />
 										</div>
 										<!-- <button class="btn" type="submit">pay</button> -->
@@ -286,7 +286,7 @@
 											</ul>
 										</div>
 										<button class="btn btn-primary btn-pay" type="submit"
-											onclick="confirmPayCourse('${the.getSoDu()-khoahoc.getGiatien()}', '${khoahoc.getMakhoahoc()}')">Thanh
+											onclick="confirmPay('${the.getSoDu()-tonggiatien}')">Thanh
 											toán</button>
 									</div>
 								</div>

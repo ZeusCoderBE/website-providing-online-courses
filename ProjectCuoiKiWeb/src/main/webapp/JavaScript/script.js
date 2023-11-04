@@ -113,31 +113,17 @@ function scrollToElement(elementId) {
 	localStorage.setItem('scrollToElement', elementId);
 }
 
-function confirmPayCourse(diff, makh) {
+function confirmPay(diff) {
 	if (diff < 0) {
-		var money = alert("Tiền trong thẻ không đủ thanh toán khóa học!");
-		return "paycourse";
-	} else {
-		var result = confirm("Bạn sẽ thanh toán khóa học này chứ ?");
-		if (result == true) {
-			window.location.href = "paid";
-		}
-		else {
-			return "paycourse?makhoahoc=" + makh;
-		}
-	}
-}
-function confirmPayCart(diff, dsgiohang) {
-	if (diff < 0) {
-		var money = alert("Tiền trong thẻ không đủ thanh toán khóa học!");
-		return "paycourse";
+		var money = alert("Tiền trong thẻ không đủ thanh toán các khóa học!");
+		return "paycartinfo";
 	} else {
 		var result = confirm("Bạn sẽ thanh toán các khóa học này chứ ?");
 		if (result == true) {
-			window.location.href = "paid";
+			window.location.href = "paycourses";
 		}
 		else {
-			return "redirect:/ShowInforCart";
+			return "redirect:/homepage";
 		}
 	}
 }

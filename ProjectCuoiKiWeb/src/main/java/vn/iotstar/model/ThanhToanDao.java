@@ -30,14 +30,14 @@ public class ThanhToanDao {
 	public String DanhSachTenKH(List<KhoaHoc> dskhoahoc) {
 		String tenkh = "";
 		for (KhoaHoc kh: dskhoahoc) {
-			tenkh += kh.getTenkhoahoc() + '\n';
+			tenkh += kh.getTenkhoahoc() + " " + "<br>";
 		}
 		return tenkh;
 	}
 	public String NoiDungThanhToan(List<KhoaHoc> dskhoahoc) {
 		String ndthanhtoan = "";
 		for (KhoaHoc kh: dskhoahoc) {
-			ndthanhtoan += "Thanh Toan" + kh.getTenkhoahoc() + '\n';
+			ndthanhtoan += "Thanh Toán " + kh.getTenkhoahoc() + " " + "<br>";
 		}
 		return ndthanhtoan;
 	}

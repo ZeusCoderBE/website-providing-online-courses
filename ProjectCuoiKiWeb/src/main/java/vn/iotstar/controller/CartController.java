@@ -20,13 +20,14 @@ import vn.iotstar.model.HocVien;
 public class CartController {
 
 	GioHangDao ghD = new GioHangDao();
+	List<GioHang> dsgiohang;
 
 	@RequestMapping(value = "/ShowInforCart", method = RequestMethod.GET, params = "Id")
-	public String MyCart(@RequestParam("Id") int manguoidung, ModelMap model) {
+	public String MyCart(@RequestParam("Id") int manguoidung, ModelMap model, HttpSession session) {
 		try {
-			List<GioHang> dsgiohang = new ArrayList<GioHang>();
+			dsgiohang = new ArrayList<GioHang>();
 			dsgiohang = ghD.GetMyCart(manguoidung);
-			model.addAttribute("dsgiohang", dsgiohang);
+			session.setAttribute("dsgiohang", dsgiohang);
 			//Tổng số tiền cần thanh toán
 			model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
 
@@ -104,12 +105,5 @@ public class CartController {
 		} catch (Exception ex) {
 		}
 		return "cart";
-	}
-	@RequestMapping(value="PayCart", method=RequestMethod.POST)
-	public void ThanhToanGioHang(ModelMap model, HttpSession session) {
-		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		//ThanhToan
-		//Trừ tiền trong thẻ theo danh sách khóa học
-		//Đăng ký khóa học theo danh sách khóa học
 	}
 }
