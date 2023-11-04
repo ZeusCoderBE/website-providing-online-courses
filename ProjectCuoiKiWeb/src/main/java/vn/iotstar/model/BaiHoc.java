@@ -12,14 +12,10 @@ public class BaiHoc {
 	private Date ngaydang;
 	private int makhoahoc;
 	private String duongdan;
-
-<<<<<<< HEAD
 	public String getDuongdan()
 	{
 		return duongdan;
 	}
-=======
->>>>>>> 819f5f740df16dc47281e345d2fa57b18f3881d3
 	public int getMakhoahoc() {
 		return makhoahoc;
 	}
@@ -62,7 +58,6 @@ public class BaiHoc {
 	public BaiHoc() {
 
 	}
-<<<<<<< HEAD
 	public BaiHoc(int mabaihoc,String tenbaihoc,int makhoahoc,String duongdan)
 	{
 		this.mabaihoc=mabaihoc;
@@ -73,10 +68,5 @@ public class BaiHoc {
 	public BaiHoc(int makhoahoc)
 	{
 		this.makhoahoc=makhoahoc;
-=======
-
-	public BaiHoc(int makhoahoc) {
-		this.makhoahoc = makhoahoc;
->>>>>>> 819f5f740df16dc47281e345d2fa57b18f3881d3
 	}
 }

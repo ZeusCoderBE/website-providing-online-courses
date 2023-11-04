@@ -65,7 +65,7 @@ public class HomePageController {
 
 		} catch (Exception ex) {
 			model.addAttribute("thongbaokhach",ex.getMessage());
-			System.out.print(ex.getMessage());
+			
 		}
 
 		return "homepage";

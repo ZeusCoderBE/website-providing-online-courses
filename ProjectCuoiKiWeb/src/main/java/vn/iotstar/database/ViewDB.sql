@@ -11,7 +11,6 @@ Create Or Alter View v_XemGioHang
 as 
 select NGUOIDUNG.HoTen,NGUOIDUNG.Email,KHOAHOC.TenKhoaHoc,KHOAHOC.DanhGia,KHOAHOC.MaTacGia
 ,KHOAHOC.TrinhDoDauVao,KHOAHOC.GiaTien,KHOAHOC.ThoiGianHoanThanh,
-<<<<<<< HEAD
 KHOAHOC.LinhVuc,KhoaHoc.NgayPhatHanh,KhoaHoc.MaKhoaHoc,NGUOIDUNG.MaNguoiDung From NGUOIDUNG
 join GIOHANG
 on  GIOHANG.MaNguoiDung=NGUOIDUNG.MaNguoiDung
@@ -31,11 +30,9 @@ join BAIHOC
 on BAIHOC.MaBaiHoc=DINHKEM.MaBaiHoc
 join KHOAHOC
 on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
-=======
 KHOAHOC.LinhVuc,KhoaHoc.NgayPhatHanh,NGUOIDUNG.MaNguoiDung, KHOAHOC.MaKhoaHoc
 From NGUOIDUNG
 join GIOHANG
 on  GIOHANG.MaNguoiDung=NGUOIDUNG.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc= GIOHANG.MaKhoaHoc
 GO
->>>>>>> 819f5f740df16dc47281e345d2fa57b18f3881d3

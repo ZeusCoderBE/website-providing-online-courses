@@ -3,14 +3,11 @@ package vn.iotstar.controller;
 import vn.iotstar.model.*;
 
 import java.sql.SQLException;
-import java.util.Date;
-//import java.sql.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.sql.SQLException;
 import java.util.*;
 
 @Controller
@@ -31,8 +28,6 @@ public class CourseController {
 		}
 		return "course";
 	}
-<<<<<<< HEAD
-
 	@RequestMapping(value = "/FindLessons", method = RequestMethod.GET, params = "mabaihoc")
 	public String ShowDocumennt (ModelMap model, @RequestParam("mabaihoc") int mabaihoc) throws ClassNotFoundException, SQLException {
 		String url="";
@@ -55,7 +50,7 @@ public class CourseController {
 		}
 
 		return url;
-=======
+}
 	@RequestMapping(value = "/createlesson", method = RequestMethod.GET)
 	public String Lesson(ModelMap model) {
 		return "create_lesson";
@@ -77,6 +72,5 @@ public class CourseController {
 			e.printStackTrace();
 		}
 		return "homepage";
->>>>>>> 819f5f740df16dc47281e345d2fa57b18f3881d3
 	}
 }
