@@ -1,5 +1,5 @@
 --Tìm và Cập Nhật Tài Khoản Giảng Viên
-CREATE PROCEDURE sp_TimTaiKhoanGiangVien
+CREATE Or ALter PROCEDURE sp_TimTaiKhoanGiangVien
 as
 begin
 	declare @manguoidung int
@@ -10,7 +10,7 @@ begin
 end
 go
 --Tìm Và Cập Nhật Tài Khoản Học Viên
-CREATE PROCEDURE sp_TimTaiKhoanHocVien
+CREATE Or ALTER PROCEDURE sp_TimTaiKhoanHocVien
 as
 begin
 	declare @manguoidung int
@@ -23,19 +23,19 @@ Go
 
 go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE PROC sp_XemDanhSachBaiHoc
+CREATE Or Alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
 	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc From KHOAHOC
 	join BAIHOC 
-	on BAIHOC.MaBaiHoc=KHOAHOC.MaKhoaHoc
+	on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Procedure sp_XemKhoaHocCuaToi
+CREATE Or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -61,7 +61,7 @@ end
 GO
 
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE PROCEDURE sp_thanhtoanKH
+CREATE Or ALter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -85,7 +85,30 @@ BEGIN
 		SET @diff = 0
 	END
 END
-
+-- Check Đăng Đăng Nhập với vai trò là học viên
+Create or Alter Procedure sp_CheckLoginHV
+@email varchar(64),@matkhau nvarchar(30), @check int output
+as
+begin
+	if exists (select 1 From NGUOIDUNG join HOCVIEN on 
+	HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung where NGUOIDUNG.Email=@email and NGUOIDUNG.MatKhau=@matkhau)
+		set @check=1
+	else
+		set @check=0
+	print @check
+end 
+--Check Đăng Nhập Giảng viên
+Create or Alter Procedure sp_CheckLoginGV
+@email varchar(64),@matkhau nvarchar(30), @check int output
+as
+begin
+	if exists (select 1 From NGUOIDUNG join GIANGVIEN on 
+	GIANGVIEN.MaGiangVien=NGUOIDUNG.MaNguoiDung where NGUOIDUNG.Email=@email and NGUOIDUNG.MatKhau=@matkhau)
+		set @check=1
+	else
+		set @check=0
+	print @check
+end 
 --Update số dư thẻ
 GO
 CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)

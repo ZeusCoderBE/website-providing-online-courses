@@ -11,8 +11,12 @@ public class BaiHoc {
 	private Double muctieudaura;
 	private Date ngaydang;
 	private int makhoahoc;
+	private String duongdan;
 
-
+	public String getDuongdan()
+	{
+		return duongdan;
+	}
 	public int getMakhoahoc() {
 		return makhoahoc;
 	}
@@ -55,6 +59,13 @@ public class BaiHoc {
 
 	public BaiHoc() {
 
+	}
+	public BaiHoc(int mabaihoc,String tenbaihoc,int makhoahoc,String duongdan)
+	{
+		this.mabaihoc=mabaihoc;
+		this.tenbaihoc=tenbaihoc;
+		this.makhoahoc=makhoahoc;
+		this.duongdan=duongdan;
 	}
 	public BaiHoc(int makhoahoc)
 	{

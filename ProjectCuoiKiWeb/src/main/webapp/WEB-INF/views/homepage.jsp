@@ -22,9 +22,6 @@
 <link href="./templates/CSS/main.css" rel="stylesheet">
 <script src="./templates/JavaScript/script.js"></script>
 </head>
-<%
-int check = 0;
-%>
 <body>
 	<div class="" id="app">
 		<header class="header">
@@ -120,7 +117,8 @@ int check = 0;
 									</li>
 								</c:if>
 
-								<li class="d-flex"><c:choose>
+								<li class="d-flex">
+								<c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
 												<c:choose>
@@ -161,11 +159,52 @@ int check = 0;
 												</ul>
 											</div>
 										</c:when>
+										<c:when test="${ not empty giangvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<span>${thongtin.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(thongtin.hoten,0,1)}</span>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<span>${giangvien.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(giangvien.hoten,0,1)}</span>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"> <span>Chứng
+																chỉ</span> <i class="fa-solid fa-award"></i>
+													</a></li>
+
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
+																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"
+														onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span> <i class="fa-solid fa-lock"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
 										<c:otherwise>
 											<a href="login"><button style="display: block;"
 													class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
 										</c:otherwise>
-									</c:choose></li>
+									</c:choose>
+									</li>
 							</ul>
 						</div>
 					</div>
@@ -207,8 +246,7 @@ int check = 0;
 										học của tôi</span>
 								</a>
 								<ul>
-									<c:forEach var="khoahoctaikhoan"
-										items="${danhsachkhoahoc}">
+									<c:forEach var="khoahoctaikhoan" items="${danhsachkhoahoc}">
 										<li><a href="#"> <i
 												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
 										</a></li>
@@ -359,8 +397,8 @@ int check = 0;
 																			<span>${khoahoc.mota}</span>
 																		</div>
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
-																			class="course_name">${khoahoc.tenkhoahoc}</a>
-																		<a href="ShowInforCart"></a>
+																			class="course_name">${khoahoc.tenkhoahoc}</a> <a
+																			href="ShowInforCart"></a>
 																	</div>
 																</div>
 															</div>
@@ -406,6 +444,23 @@ int check = 0;
 													<c:otherwise>
 														<a href="#">${hocvien.hoten}</a>
 													</c:otherwise>
+												</c:choose>
+											</div>
+											<a href="#">Get the mobile app</a>
+										</div>
+										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+									</c:when>
+									<c:when test="${not empty giangvien.manguoidung}">
+										<div class="footer_main_list">
+											<div class="footer_main_nav">
+												<p>Bạn đang đăng nhập với tên ,</p>
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<a href="#">${thongtin.hoten}</a>
+													</c:when> 
+													<c:otherwise>
+														<a href="#">${giangvien.hoten}</a>
+													</c:otherwise> 
 												</c:choose>
 											</div>
 											<a href="#">Get the mobile app</a>

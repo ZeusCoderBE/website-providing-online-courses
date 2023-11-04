@@ -1,6 +1,7 @@
 package vn.iotstar.database;
 
 import java.sql.*;
+import java.util.*;
 
 public class DataBaseConnection {
 	public Connection initializeDatabase() throws SQLException, ClassNotFoundException {
@@ -33,7 +34,38 @@ public class DataBaseConnection {
 			return null;
 		}
 	}
-	
+
+	public Object ExecuteProcedure(String procedurename,List<Object>param)
+	{
+		Connection conn=null;
+		CallableStatement call=null;
+		Object result=null;
+		try
+		{
+			conn=initializeDatabase();
+			call=conn.prepareCall(procedurename);
+		
+		
+		if(param!=null)
+		{
+			for(int i =0;i<param.size()-1;i++)
+			{
+				call.setObject(i+1, param.get(i));
+			}
+			call.registerOutParameter(param.size(), Types.DOUBLE);
+		}
+			call.execute();
+			result=call.getDouble(param.size());
+			call.close();
+			CloseConnection(conn);
+	   }
+		catch(Exception ex)
+		{
+		
+		}
+		return result;
+	}
+
 	public int ExecuteCommand(String sql) {
 		Connection conn = null;
 		try {
@@ -50,7 +82,7 @@ public class DataBaseConnection {
 			CloseConnection(conn);
 		}
 	}
-	
+
 	public void CloseConnection(Connection c) {
 		try {
 			if (c != null) {

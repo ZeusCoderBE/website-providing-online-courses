@@ -11,14 +11,14 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
 	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
+<script type="text/javascript" src=./templates/JavaScript/script.js></script>
 </head>
 
 
 <body>
 	<div class="container">
 		<div id="form-login">
-			<form action="login" method="post">
+			<form action="login" method="post" onsubmit="return validateForm()">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
@@ -28,15 +28,25 @@
 							<br />
 							<p></p>
 							<div class="form-login-input">
-								<input type="text" placeholder="Email" name="Email" />
+								<input type="text" placeholder="Email" name="Email" required />
 							</div>
 							<div class="form-login-input">
-								<input type="password" placeholder="Password" name="Password" />
+								<input type="password" placeholder="Password" name="Password"
+									required />
 							</div>
+							<div class="form-login-input">
+								<label for="loaitk">Loại Tài Khoản </label>
+							</div>
+							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
+								name="tkgiaovien" id="tkgiaovien" name="tkgiaovien"
+								onchange="handleCheckboxChange(this)"> <label
+								for="Tkhocvien">Học Viên</label> <input type="checkbox"
+								name="tkhocvien" id="tkhocvien" name="tkhocvien"
+								onchange="handleCheckboxChange(this)">
 							<div class="form-notice">
 								<a href="forgetpassword">Forgot Password?</a>
 							</div>
-							<button class="btn" type="submit">Login</button>
+							<input class="btn" type="submit" value="Login">
 							<div class="form-login-policy">
 								<p>Don't have an account?</p>
 								<a href="dang-ky">Signup</a>
@@ -62,7 +72,6 @@
 								</a>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</form>

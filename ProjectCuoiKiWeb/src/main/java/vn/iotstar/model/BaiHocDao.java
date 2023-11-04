@@ -24,5 +24,20 @@ public class BaiHocDao {
 		}
 		return listbaihoc;
 	}
+	public BaiHoc FindOfMyLesson(int mabaihoc) throws ClassNotFoundException, SQLException
+	{
+		String dml="Select *From v_xemdanhsachtailieu where MaBaiHoc="+mabaihoc+"";
+		BaiHoc baihoc=new BaiHoc();
+		ResultSet rs=dbC.ExecuteQuery(dml);
+		if(rs.next()==true)
+		{
+			baihoc=new BaiHoc(rs.getInt("MaBaiHoc"),rs.getNString("TenBaiHoc"),rs.getInt("MaKhoaHoc"),rs.getNString("DuongDanLuuTru"));
+			return baihoc;
+		}
+		else
+		{
+			return null;
+		}
+	}
 
 }

@@ -26,6 +26,10 @@ public class NguoiDung {
 	{
 		return matkhau;
 	}
+	public void setManguoidung(int manguoidung)
+	{
+		this.manguoidung=manguoidung;
+	}
 	public String getQuocgia() {
 		return quocgia;
 	}
