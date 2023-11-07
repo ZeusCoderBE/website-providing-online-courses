@@ -62,10 +62,8 @@ public class HocVienDao {
 	}
 
 	public int UpdateHocVien(HocVien hv) {
-		String sql = "Update NguoiDung set HoTen=N'" + hv.getHoten() + "',Sdt='" + hv.getSdt() + "',QuocGia=N'"
-				+ hv.getQuocgia() + "'," + "VungMien=N'" + hv.getVungmien() + "',DiaChi=N'" + hv.getDiachi()
-				+ "',TrinhDo=N'" + hv.getTrinhdo() + "', Email='" + hv.getEmail() + "'"
-				+ " where NguoiDung.MaNguoiDung=" + hv.getManguoidung() + "";
+		String sql = "exec sp_UpdateNguoiDung " + hv.getManguoidung() + ",N'" + hv.getHoten() + "',N'" + hv.getSdt() + "',"
+				+ "N'"+hv.getQuocgia()+"',N'"+hv.getVungmien()+"',N'"+hv.getDiachi()+"',N'"+hv.getTrinhdo()+"','"+hv.getEmail()+"'";
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}

@@ -29,7 +29,6 @@ public class PaymentController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		try {
 			// Lấy tên khóa học
-			// khoahoc = khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh)));
 			dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
@@ -54,6 +53,7 @@ public class PaymentController {
 		TheDao td = new TheDao();
 		dsKhoahoc = ghd.GetCourseList(dsgiohang);
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		ghd.DeleteCoursesIntoCart(dsKhoahoc,hv.getManguoidung());
 		try {
 			// Lấy tên khóa học
 			the = td.getAThe(hv.getManguoidung());
@@ -76,10 +76,7 @@ public class PaymentController {
 	@RequestMapping(value = "paycourses", method = RequestMethod.POST)
 	public String payCart(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		//dsgiohang = (List<GioHang>) session.getAttribute("dsgiohang");
 		ThanhToanDao ttd = new ThanhToanDao();
-		//dsKhoahoc = ghd.GetCourseList(dsgiohang);
-
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {

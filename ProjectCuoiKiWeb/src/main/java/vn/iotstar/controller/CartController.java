@@ -1,7 +1,6 @@
 package vn.iotstar.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,11 +19,10 @@ import vn.iotstar.model.HocVien;
 public class CartController {
 
 	GioHangDao ghD = new GioHangDao();
-	List<GioHang> dsgiohang;
-
 	@RequestMapping(value = "/ShowInforCart", method = RequestMethod.GET, params = "Id")
 	public String MyCart(@RequestParam("Id") int manguoidung, ModelMap model, HttpSession session) {
 		try {
+			List<GioHang> dsgiohang;
 			dsgiohang = new ArrayList<GioHang>();
 			dsgiohang = ghD.GetMyCart(manguoidung);
 			session.setAttribute("dsgiohang", dsgiohang);

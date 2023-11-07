@@ -27,31 +27,17 @@ public class ProfileController {
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		HocVien hocvien = new HocVien();
 		GiangVien giangvien = new GiangVien();
-		if (hv != null) {
-			hocvien = hvD.TimThongTinDN(hv.getEmail());
-		}
-		if (gv != null) {
-			giangvien = gvD.TimThongTinDN(gv.getEmail());
-		}
-		if (gv == null && hocvien.getEmail() != null) {
-			The the = tD.getAThe(hv.getManguoidung());
-			model.addAttribute("thongtin", hocvien);
-			model.addAttribute("the", the);
-		} else if (gv == null && hocvien.getEmail() == null) {
-			The the = tD.getAThe(hv.getManguoidung());
+		if (hv != null && gv == null) {
 			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-			model.addAttribute("the", the);
+			The the = tD.getAThe(hv.getManguoidung());
 			model.addAttribute("thongtin", hocvien);
-		} else if (hv == null && giangvien.getEmail() != null) {
-			The the = tD.getAThe(gv.getManguoidung());
-			model.addAttribute("thongtin", giangvien);
 			model.addAttribute("the", the);
-		} else if (hv == null && giangvien.getEmail() == null) {
-			The the = tD.getAThe(gv.getManguoidung());
+		} else if (gv != null && hv == null) {
+			giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+			The the = tD.getAThe(giangvien.getManguoidung());
 			model.addAttribute("thongtin", giangvien);
 			model.addAttribute("the", the);
 		}
-
 		return "profile";
 	}
 
@@ -72,56 +58,47 @@ public class ProfileController {
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		GiangVien giangvien = new GiangVien();
 		String url = "";
-		if (hv != null) {
-			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-			if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
-				session.setAttribute("thongtinsai",
-						"Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
-				url = "redirect:/myprofiles";
-			} else if (hocvien.getMatkhau().equals(newpass)) {
-				session.setAttribute("thongtinsai",
-						"Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
-				url = "redirect:/myprofiles";
-			} else if (!hocvien.getMatkhau().equals(password)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (!newpass.equals(repass)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (ndD.UpdateMatKhau(newpass,hocvien.getManguoidung()) == 1) {
-				RealoadKhoaHoc(model);
-				url = "SignIn";
-			}
+		String meSession = "";
+		if (!password.equals("null") && !newpass.equals("null") && !repass.equals("null")) {
+			if (hv != null) {
+				hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+				if (!hocvien.getMatkhau().equals(password)) {
+					meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
+					url = "redirect:/myprofiles";
+				}
+				else if (hocvien.getMatkhau().equals(newpass)) {
+					meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
+					url = "redirect:/myprofiles";
+				} else if (!newpass.equals(repass)) {
+					meSession = "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng";
+					url = "redirect:/myprofiles";
+				} else if (ndD.UpdateMatKhau(newpass, hocvien.getManguoidung()) == 1) {
+					RealoadKhoaHoc(model);
+					url = "SignIn";
+				}
 
-		} else if (gv != null) {
-			giangvien=gvD.TimThongTinDN_id(gv.getManguoidung());
-			if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
-				session.setAttribute("thongtinsai",
-						"Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
-				url = "redirect:/myprofiles";
-			} else if (giangvien.getMatkhau().equals(newpass)) {
-				session.setAttribute("thongtinsai",
-						"Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
-				url = "redirect:/myprofiles";
-			} else if (!giangvien.getMatkhau().equals(password)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (!newpass.equals(repass)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (ndD.UpdateMatKhau(newpass,giangvien.getManguoidung()) == 1) {
-				RealoadKhoaHoc(model);
-				System.out.print("Hello QuangHuy");
-				url = "SignIn";
+			} else if (gv != null) {
+				giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+				if (!giangvien.getMatkhau().equals(password)) {
+					meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
+					url = "redirect:/myprofiles";
+				}
+				else if (giangvien.getMatkhau().equals(newpass)) {
+					meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
+					url = "redirect:/myprofiles";
+				} else if (!newpass.equals(repass)) {
+					meSession = "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng";
+					url = "redirect:/myprofiles";
+				} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
+					RealoadKhoaHoc(model);
+					url = "SignIn";
+				}
 			}
-		}
-		else
-
-		{
-			session.setAttribute("thongtinsai", "Quá Trình Cập Nhật Thất Bại");
+		} else {
+			meSession = "Quá Trình Cập Nhật Thất Bại";
 			url = "redirect:/myprofiles";
 		}
-
+		session.setAttribute("thongtinsai", meSession);
 		return url;
 	}
 

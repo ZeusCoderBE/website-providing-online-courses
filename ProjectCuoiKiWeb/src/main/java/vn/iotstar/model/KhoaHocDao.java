@@ -34,7 +34,6 @@ public class KhoaHocDao {
 					rs.getInt("DanhGia"));
 
 		}
-		System.out.print(query);
 		return khoahoc;
 	}
 	
