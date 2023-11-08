@@ -128,7 +128,7 @@
 					<div class="cart-content">
 						<h3 class="cart-header">Giỏ hàng</h3>
 						<div class="cart-info">
-							<h5>1 khóa học trong giỏ hàng</h5>
+							<h5>Khóa học trong giỏ hàng:${countkhoahoc.numberofcourse} Khoá Học</h5>
 							<ul class="cart-list">
 								<c:forEach var="giohang" items="${dsgiohang}">
 									<li class="cart-item">
@@ -190,7 +190,7 @@
 						<span>Tổng:</span>
 						<h2>$${tonggiatien}</h2>
 						<a href="paycartinfo">
-							<button class="btn btn-primary btn-buy" type="submit")">Thanh Toán</button>
+							<button class="btn btn-primary btn-buy" type="submit">Thanh Toán</button>
 						</a>
 						<p>Khuyến mãi</p>
 						<div class="input-group mb-3">

@@ -63,7 +63,7 @@ CREATE TABLE BAIHOC (
 	MaBaiHoc INT  PRIMARY KEY,
 	TenBaiHoc NVARCHAR(255) ,
 	ThoiGianHoanThanh real,
-	NoiDungBaiHoc TEXT ,
+	NoiDungBaiHoc NTEXT ,
 	MucTieuDauRa real ,
 	NgayDang DATE ,
 	AnhMinhHoa VARCHAR(255),
@@ -198,7 +198,7 @@ VALUES (4, N'Công Nghệ Phần Mềm'),
 -- Chèn khóa học
 INSERT INTO KHOAHOC (MaKhoaHoc,TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia,TheLoai,LinhVuc)
 VALUES
-    (1,N'Khóa học Toán cơ bản', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
+    (1,N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
     (2,N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
     (3,N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
     (4,N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
@@ -272,9 +272,9 @@ VALUES
     
 INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES
-    (1, 1),
-    (2, 1),
-    (3, 2)
+    (4, 1),
+    (5, 1),
+    (4, 2)
     
 -- Insert into TaiLieuVanBan
 INSERT INTO TaiLieuVanBan (MaTaiLieu, NoiDung)

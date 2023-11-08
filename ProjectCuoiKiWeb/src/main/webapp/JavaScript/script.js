@@ -16,6 +16,24 @@ tinymce.init({
 	menubar: 'favs file edit view insert format tools table',
 	content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
 });
+function CheckPass() {
+    var repass = document.getElementById("repass").value;
+    var newpass = document.getElementById("newpass").value;
+    var password = document.getElementById("password").value;
+    if (repass === "" || newpass === "" || password === "") {
+        alert("Bạn Muốn Đổi Mật Khẩu Vui Lòng Nhập Theo Hướng Dẫn");
+        return false;
+    } else if (newpass !== repass) {
+        alert("Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng !");
+        return false;
+    }
+    else
+    {
+		return true;
+	}
+}
+
+
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -29,7 +47,6 @@ function handleFocus() {
 function handleCheckboxChange(checkbox) {
 	var tkhocvienCheckbox = document.getElementById("tkhocvien");
 	var tkgiaovienCheckbox = document.getElementById("tkgiaovien");
-
 	if (checkbox.id === "tkgiaovien" && checkbox.checked) {
 		tkhocvienCheckbox.checked = false;
 	} else if (checkbox.id === "tkhocvien" && checkbox.checked) {
@@ -41,7 +58,7 @@ function validateForm() {
 	var tkgiaovienCheckbox = document.getElementById("tkgiaovien");
 
 	if (!tkhocvienCheckbox.checked && !tkgiaovienCheckbox.checked) {
-		alert("Bạn phải chọn ít nhất một tùy chọn (Học viên hoặc Giáo viên) trước khi đăng ký.");
+		alert("Bạn phải chọn ít nhất một tùy chọn (Học viên hoặc Giáo viên) .");
 		return false;
 	}
 	return true;
@@ -76,6 +93,7 @@ function enableField() {
 	const diachi = document.getElementById("diachi");
 	const save = document.getElementById("save");
 	const email = document.getElementById("email");
+	const chuyennganh = document.getElementById("chuyennganh");
 	username.removeAttribute("disabled");
 	quocgia.removeAttribute("disabled");
 	sdt.removeAttribute("disabled");
@@ -84,6 +102,7 @@ function enableField() {
 	diachi.removeAttribute("disabled");
 	email.removeAttribute("disabled");
 	save.disabled = false;
+	chuyennganh.removeAttribute("disabled");
 }
 function myCourses() {
 	const page = document.querySelector('.page_content');

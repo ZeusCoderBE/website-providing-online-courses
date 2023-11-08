@@ -1,7 +1,6 @@
 package vn.iotstar.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,15 +19,17 @@ import vn.iotstar.model.HocVien;
 public class CartController {
 
 	GioHangDao ghD = new GioHangDao();
-	List<GioHang> dsgiohang;
 
 	@RequestMapping(value = "/ShowInforCart", method = RequestMethod.GET, params = "Id")
 	public String MyCart(@RequestParam("Id") int manguoidung, ModelMap model, HttpSession session) {
 		try {
+			List<GioHang> dsgiohang;
 			dsgiohang = new ArrayList<GioHang>();
 			dsgiohang = ghD.GetMyCart(manguoidung);
 			session.setAttribute("dsgiohang", dsgiohang);
-			//Tổng số tiền cần thanh toán
+			GioHang gh = ghD.CountCourse(manguoidung);
+			model.addAttribute("countkhoahoc", gh);
+			// Tổng số tiền cần thanh toán
 			model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
 
 		} catch (Exception ex) {
@@ -48,6 +49,7 @@ public class CartController {
 				List<GioHang> dsgiohang = new ArrayList<GioHang>();
 				dsgiohang = ghD.GetMyCart(hv.getManguoidung());
 				model.addAttribute("dsgiohang", dsgiohang);
+				model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
 				throw new Exception("Khóa học này đã có trong giỏ hàng của bạn rồi");
 			} else {
 				session.setAttribute("thongbaothemtc", "Bạn đã thêm thành công vui lòng vào giỏ hàng để xem");
@@ -59,10 +61,9 @@ public class CartController {
 		return url;
 	}
 
-	@RequestMapping(value="DeleteCourse",method=RequestMethod.GET,params={"makhoahoc","id"})
-	public String DeleteCourseIntoCart(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc
-			,@RequestParam("id") int manguoidung)
-	{
+	@RequestMapping(value = "DeleteCourse", method = RequestMethod.GET, params = { "makhoahoc", "id" })
+	public String DeleteCourseIntoCart(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc,
+			@RequestParam("id") int manguoidung) {
 		String url = "";
 		try {
 			GioHang giohang = new GioHang(manguoidung, makhoahoc);
@@ -71,35 +72,38 @@ public class CartController {
 				List<GioHang> dsgiohang = new ArrayList<GioHang>();
 				dsgiohang = ghD.GetMyCart(manguoidung);
 				model.addAttribute("dsgiohang", dsgiohang);
+				model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
 				model.addAttribute("thongbaoxoa", "Bạn đã xóa thất bại");
 			} else {
 				session.setAttribute("thongbaoxoa", "Bạn đã xóa thành công vui lòng vào giỏ hàng để xem");
 				url = "redirect:/homepages";
 			}
 		} catch (Exception ex) {
-			
+
 		}
 		return url;
 	}
-	@RequestMapping(value="DeleteCourses",method=RequestMethod.GET,params={"makhoahoc","id"})
-	public String DeleteCoursesIntoCart(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc
-			,@RequestParam("id") int manguoidung) throws ClassNotFoundException, SQLException
-	{
+
+	@RequestMapping(value = "DeleteCourses", method = RequestMethod.GET, params = { "makhoahoc", "id" })
+	public String DeleteCoursesIntoCart(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc,
+			@RequestParam("id") int manguoidung) throws ClassNotFoundException, SQLException {
 		List<GioHang> dsgiohang = new ArrayList<GioHang>();
 		try {
 			GioHang giohang = new GioHang(manguoidung, makhoahoc);
 			if (ghD.DeleteCourseCart(giohang) == 1) {
 				dsgiohang = ghD.GetMyCart(manguoidung);
 				model.addAttribute("dsgiohang", dsgiohang);
-				GioHang gh=ghD.CountCourse(manguoidung);
-				model.addAttribute("countkhoahoc",gh);
+				GioHang gh = ghD.CountCourse(manguoidung);
+				model.addAttribute("countkhoahoc", gh);
+				model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
 				model.addAttribute("thongbaoxoa", "Bạn đã xóa thành công ");
-				
+
 			} else {
 				dsgiohang = ghD.GetMyCart(manguoidung);
-				GioHang gh=ghD.CountCourse(manguoidung);
-				model.addAttribute("countkhoahoc",gh);
+				GioHang gh = ghD.CountCourse(manguoidung);
+				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
+				model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
 				model.addAttribute("thongbaoxoa", "Bạn đã xóa thất bại");
 			}
 		} catch (Exception ex) {
