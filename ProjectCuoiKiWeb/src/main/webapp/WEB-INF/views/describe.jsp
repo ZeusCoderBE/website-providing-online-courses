@@ -145,27 +145,38 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-						<c:if test="${not empty hocvien.manguoidung}">
-							<c:choose>
-								<c:when test="${isdangky != true}">
-									<div class="btn_action">
-										<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
-											<button class="btn btn-success btn_signin__course">Đăng
-												ký học</button>
-										</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
-											class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
-									</div>
-								</c:when>
-								<c:otherwise>
-									<div class="btn_action">
-										<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
-											<button class="btn btn-success btn_signin__course">Vào
-												học</button>
-										</a>
-									</div>
-								</c:otherwise>
-							</c:choose>
-						</c:if>
+						<c:choose>
+							<c:when test="${not empty hocvien.manguoidung}">
+								<c:choose>
+									<c:when test="${isdangky != true}">
+										<div class="btn_action">
+											<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
+												<button class="btn btn-success btn_signin__course">Đăng
+													ký học</button>
+											</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
+												class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="btn_action">
+											<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
+												<button class="btn btn-success btn_signin__course">Vào
+													học</button>
+											</a>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:when>
+							<c:otherwise>
+								<div class="btn_action">
+									<a href="login">
+										<button class="btn btn-success btn_signin__course">Đăng
+											ký học</button>
+									</a> <a href="login"
+										class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
