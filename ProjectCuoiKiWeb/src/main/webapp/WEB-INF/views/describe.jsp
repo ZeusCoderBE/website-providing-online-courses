@@ -172,8 +172,8 @@
 									<a href="login">
 										<button class="btn btn-success btn_signin__course">Đăng
 											ký học</button>
-									</a> <a href="login"
-										class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+									</a> <a href="login" class="btn btn-primary btn_signin__course">Thêm
+										giỏ hàng</a>
 								</div>
 							</c:otherwise>
 						</c:choose>
