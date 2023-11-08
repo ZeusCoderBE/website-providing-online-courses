@@ -26,10 +26,28 @@ public class BaiHocDao {
 	}
 
 	public int ThemBaiHoc(BaiHoc baihoc) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format("INSERT INTO BAIHOC VALUES(%d, '%s', %f, '%s', %f, GETDATE(), NULL, %d)",
+		String sqlStr = String.format("INSERT INTO BAIHOC VALUES(%d, '%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
 				baihoc.getMabaihoc(), baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getNgaydang(), baihoc.getMakhoahoc());
 		int check = dbC.ExecuteCommand(sqlStr);
 		return check;
+	}
+	public String getContentLesson() throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format("SELECT NoiDungBaiHoc FROM BAIHOC WHERE MaBaiHoc=7", null);
+		String content = "Empty";
+		try {
+			ResultSet rs = dbC.ExecuteQuery(sqlStr);
+			if (rs.next()) {
+				content = rs.getNString("NoiDungBaiHoc");
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return content;
 	}
 }

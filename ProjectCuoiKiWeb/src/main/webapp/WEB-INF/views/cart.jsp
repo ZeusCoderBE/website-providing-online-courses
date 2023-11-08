@@ -189,7 +189,7 @@
 					<div class="cart-pay">
 						<span>Tổng:</span>
 						<h2>$${tonggiatien}</h2>
-						<a href="paycartinfo">
+						<a href="paycourseinfo">
 							<button class="btn btn-primary btn-buy" type="submit")">Thanh Toán</button>
 						</a>
 						<p>Khuyến mãi</p>

@@ -1,5 +1,5 @@
 --Tìm và Cập Nhật Tài Khoản Giảng Viên
-CREATE PROCEDURE sp_TimTaiKhoanGiangVien
+CREATE OR ALTER PROCEDURE sp_TimTaiKhoanGiangVien
 as
 begin
 	declare @manguoidung int
@@ -10,7 +10,7 @@ begin
 end
 go
 --Tìm Và Cập Nhật Tài Khoản Học Viên
-CREATE PROCEDURE sp_TimTaiKhoanHocVien
+CREATE OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
 as
 begin
 	declare @manguoidung int
@@ -23,7 +23,7 @@ Go
 
 go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE PROC sp_XemDanhSachBaiHoc
+CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
@@ -35,7 +35,7 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Procedure sp_XemKhoaHocCuaToi
+CREATE OR ALTER Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -61,7 +61,7 @@ end
 GO
 
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE PROCEDURE sp_thanhtoanKH
+CREATE OR ALTER PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS

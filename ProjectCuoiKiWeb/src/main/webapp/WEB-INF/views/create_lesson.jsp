@@ -42,17 +42,6 @@
 								<h3>Nội dung bài học</h3>
 								<form action="" method="post">
 									<textarea name="textarea" id="default">
-										<p>
-											<strong><img
-												src="https://hcmute.edu.vn/Resources/Images/SubDomain/pmo/UTE%20tren%20cong%20bao/Nam%202018/SPKT/1513489129-trao-giai-eureka--1-.jpg"></strong>
-										</p>  <p>Tru?c d&oacute;, v&agrave;o ng&agrave;y 29.5.2006, Th? tu?ng Ch&iacute;nh ph? d&atilde; ban h&agrave;nh Quy?t d?nh s? 122, d?ng &yacute; chuy?n d?i 19 tru?ng ÐH d&acirc;n l?p sang lo?i h&igrave;nh tru?ng ÐH tu th?c, giao B? tru?ng B? GD-ÐT ch? tr&igrave;, ph?i h?p v?i c&aacute;c b? ng&agrave;nh li&ecirc;n quan ban h&agrave;nh c&aacute;c quy d?nh hu?ng d?n vi?c chuy?n c&aacute;c tru?ng ÐH d&acirc;n l?p sang lo?i h&igrave;nh tru?ng ÐH tu th?c v?i th?i h?n chuy?n d?i ho&agrave;n th&agrave;nh tru?c ng&agrave;y 30.6.2007.</p>  <p>19 tru?ng ÐH d&acirc;n l?p l&uacute;c d&oacute; bao g?m: Thang Long, Ð&ocirc;ng Ð&ocirc;, Phuong Ð&ocirc;ng, Kinh doanh v&agrave; C&ocirc;ng ngh? H&agrave; N?i, H?i Ph&ograve;ng, Duy T&acirc;n, B&igrave;nh Duong, L?c H?ng, C?u Long, Van Lang, Van Hi?n, H&ugrave;ng Vuong, H?ng B&agrave;ng (nay l&agrave; Qu?c t? H?ng B&agrave;ng), Ngo?i ng?-Tin h?c TP.HCM, C&ocirc;ng ngh? S&agrave;i G&ograve;n, K? thu?t C&ocirc;ng ngh? TP.HCM (nay l&agrave; C&ocirc;ng ngh? TP.HCM), Ph&uacute; Xu&acirc;n, Luong Th? Vinh, Yersin Ð&agrave; L?t.</p>  <p>Ð?n nay, 16 nam d&atilde; tr&ocirc;i qua nhung ch? c&ograve;n 2 tru?ng ÐH d&acirc;n l?p g?m C&ocirc;ng ngh? S&agrave;i G&ograve;n v&agrave; Phuong Ð&ocirc;ng v?n chua th?c hi?n vi?c chuy?n d?i theo quy d?nh.</p>  <p>Ph&oacute; th? tu?ng y&ecirc;u c?u&nbsp;<a
-												class="link-inline-content" title="B? GD-ÐT "
-												href="https://thanhnien.vn/bo-gd-dt-bien-soan-mot-bo-sach-giao-khoa-giao-vien-de-xuat-gi-18523110214541354.htm"
-												data-rel="follow">B? GD-ÐT&nbsp;</a>nghi&ecirc;m t&uacute;c r&uacute;t kinh nghi?m, kh?n truong th?c hi?n d&uacute;ng ch?c nang v&agrave; nhi?m v? du?c giao, c&oacute; van b?n hu?ng d?n k&egrave;m theo th?i h?n c? th? v&agrave; ch? t&agrave;i nghi&ecirc;m kh?c d?i v?i Tru?ng ÐH d&acirc;n l?p C&ocirc;ng ngh? S&agrave;i G&ograve;n v&agrave; Tru?ng ÐH d&acirc;n l?p Phuong Ð&ocirc;ng.</p>  <p>Ð?ng th?i Ph&oacute; th? tu?ng Ch&iacute;nh ph? y&ecirc;u c?u Tru?ng ÐH d&acirc;n l?p C&ocirc;ng ngh? S&agrave;i G&ograve;n v&agrave; Tru?ng ÐH d&acirc;n l?p Phuong Ð&ocirc;ng nghi&ecirc;m t&uacute;c tu&acirc;n th? ph&aacute;p lu?t, kh?n truong th?c hi?n vi?c chuy?n d?i theo d&uacute;ng quy tr&igrave;nh, th? t?c v&agrave; quy d?nh.</p>  <div
-											class="ddict_btn" style="top: 520px; left: 1066.46px;">
-											<img
-												src="chrome-extension://bpggmmljdiliancllaapiggllnkbjocb/logo/48.png">
-										</div>
 									</textarea>
 								</form>
 							</div>

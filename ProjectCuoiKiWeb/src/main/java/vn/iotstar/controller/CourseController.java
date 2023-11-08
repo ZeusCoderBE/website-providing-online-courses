@@ -18,7 +18,16 @@ public class CourseController {
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET, params = "makhoahoc")
 	public String Courses(ModelMap model, @RequestParam("makhoahoc") int makhoahoc) {
-
+		try {
+			String content = bhD.getContentLesson();
+			model.addAttribute("content", content);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "course";
 	}
 	@RequestMapping(value = "/createlesson", method = RequestMethod.GET)
@@ -29,7 +38,7 @@ public class CourseController {
 	public String CreateLesson(ModelMap model, @RequestParam("namelesson") String name, @RequestParam("trinhdo") String muctieu,
 			@RequestParam("textarea") String content) {
 
-		BaiHoc bh = new BaiHoc(6, name, 30.0, content, Double.parseDouble(muctieu), null, 1);
+		BaiHoc bh = new BaiHoc(7, name, 10.0, content, Double.parseDouble(muctieu), null, 1);
 		try {
 			if (bhD.ThemBaiHoc(bh) == 0) {
 				System.out.println("Them bai hoc that bai");

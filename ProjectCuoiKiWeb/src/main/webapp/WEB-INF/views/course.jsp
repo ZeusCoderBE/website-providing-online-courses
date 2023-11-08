@@ -181,9 +181,9 @@
                             </a>
                         </div>
                         <div class="nav_drawer home_file">
-                            <a href="#">
+                            <a href="createlesson">
                                 <i class="fa-regular fa-file"></i>
-                                <span>Notes</span>
+                                <span>Create Lesson</span>
                             </a>
                         </div>
                         <div class="nav_drawer home_file">
@@ -230,27 +230,7 @@
                                         </div>
                                     </div>
                                     <div class="content_main">
-                                        <div class="container_content">
-                                            <p>Hôm nay chúng ta cùng đi tìm hiểu SSRF (Server Side Request Forgery) là gì, cách phát hiện và ngăn chặn tấn công yêu cầu giả mạo từ phía máy chủ qua bài viết dưới đây.</p>
-                                            <h6 style="font-weight: bold;">SSRF là gì?</h6>
-                                            <p>SSRF (Server Side Request Forgery) hay còn gọi là tấn công yêu cầu giả mạo từ phía máy chủ cho phép kẻ tấn công thay đổi tham số được sử dụng trên ứng dụng web để tạo hoặc kiểm soát các yêu cầu từ máy chủ dễ bị tấn công.</p>
-                                            <p style="text-align: center;"> 
-                                                <img src="https://images.viblo.asia/f327c4f3-5fb4-4eef-b72a-45b43026d8b7.jpg" alt="hacker">
-                                            </p>
-                                            <p>Khi thông tin trong một ứng dụng web phải được lấy từ một tài nguyên bên ngoài, chẳng hạn như nguồn cấp dữ liệu RSS từ một trang web khác, các yêu cầu phía máy chủ được sử dụng để tìm nạp tài nguyên và đưa nó vào ứng dụng web.
-                                                <br>
-                                                Ví dụ, một nhà phát triển có thể sử dụng một URL như https://example.com/feed.php?url=externalsite.com/feed/ để lấy nguồn cấp dữ liệu từ xa. Nếu kẻ tấn công có thể thay đổi tham số url thành localhost, thì anh ta có thể xem các tài nguyên cục bộ được lưu trữ trên máy chủ, làm cho nó dễ bị tấn công bởi yêu cầu giả mạo từ phía máy chủ.</p>
-                                            <h6 style="font-weight: bold;">Nếu kẻ tấn công có thể kiểm soát đích của các yêu cầu phía máy chủ, chúng có thể thực hiện các hành động sau:</h6>    
-                                            <ul>
-                                                <li>Lạm dụng mối quan hệ tin cậy giữa máy chủ dễ bị tổn thương và những người khác.</li>
-                                                <li>Bỏ qua danh sách trắng IP.</li>
-                                                <li>Bỏ qua dịch vụ xác thực dựa trên máy chủ.</li>
-                                                <li>Đọc tài nguyên mà công chúng không thể truy cập, chẳng hạn như trace.axd trong ASP.NET hoặc siêu dữ liệu API trong môi trường AWS.</li>
-                                                <li>Quét mạng nội bộ mà máy chủ được kết nối đến.</li>
-                                                <li>Đọc tệp từ máy chủ web.</li>
-                                                <li>Xem trang trạng thái và tương tác với các API như máy chủ web.</li>
-                                            </ul>
-                                        </div>
+                                        <div class="container_content">${content}</div>
                                     </div>
                                 </div>
                             </div>

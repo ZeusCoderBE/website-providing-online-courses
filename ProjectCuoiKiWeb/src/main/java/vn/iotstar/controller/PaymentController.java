@@ -20,42 +20,21 @@ public class PaymentController {
 	private List<GioHang> dsgiohang;
 	private GioHangDao ghd = new GioHangDao();
 
-	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET, params = "makhoahoc")
-	public String payCourseInfo(ModelMap model, HttpSession session, @RequestParam("makhoahoc") String makh) {
+	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET)
+	public String payCourseInfo(ModelMap model, HttpSession session, @RequestParam(value="makhoahoc", required = false, defaultValue = "null") String makh) {
 		KhoaHocDao khd = new KhoaHocDao();
 		ThanhToanDao ttd = new ThanhToanDao();
 		TheDao td = new TheDao();
 		dsKhoahoc = new ArrayList<KhoaHoc>();
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		try {
-			// Lấy tên khóa học
-			// khoahoc = khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh)));
-			dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
-			the = td.getAThe(hv.getManguoidung());
-			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
-			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
-			model.addAttribute("the", the);
-			model.addAttribute("noidungtt", ttd.NoiDungThanhToan(dsKhoahoc));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.print(e.getMessage());
-			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.print(e.getMessage());
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "pay";
-	}
-	@RequestMapping(value = "/paycartinfo", method = RequestMethod.GET)
-	public String payCartInfo(ModelMap model, HttpSession session) {
-		dsgiohang = (List<GioHang>) session.getAttribute("dsgiohang");
-		ThanhToanDao ttd = new ThanhToanDao();
-		TheDao td = new TheDao();
-		dsKhoahoc = ghd.GetCourseList(dsgiohang);
-		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		try {
-			// Lấy tên khóa học
+			if (makh.equals("null")) {
+				dsgiohang = (List<GioHang>) session.getAttribute("dsgiohang");
+				dsKhoahoc = ghd.GetCourseList(dsgiohang);
+			}
+			else {
+				dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
+			}			
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
 			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
