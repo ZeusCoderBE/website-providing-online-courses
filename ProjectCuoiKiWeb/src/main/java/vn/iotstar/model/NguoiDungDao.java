@@ -7,70 +7,24 @@ import vn.iotstar.database.DataBaseConnection;
 
 public class NguoiDungDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
-	public int SignUp(NguoiDung hv)
-	{
-		String query="Insert into NguoiDung(HoTen,Email,QuocGia,MatKhau,Sdt)"
-				+ "values(N'"+hv.getHoten()+"',N'"+hv.getEmail()+"',N'"+hv.getQuocgia()+"',"
-						+ "N'"+hv.getMatkhau()+"','"+hv.getSdt()+"')";
-		int ketqua=dbconn.ExecuteCommand(query);
+
+	public int SignUp(NguoiDung hv) {
+		String query = "exec sp_SignUp N'" + hv.getHoten() + "','" + hv.getEmail() + "',N'" + hv.getQuocgia() + "',N'"
+				+ hv.getMatkhau() + "', '" + hv.getSdt() + "'";
+		int ketqua = dbconn.ExecuteCommand(query);
 		return ketqua;
 	}
-	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException
-	{
-		String sql="SELECT * FROM vThongTinHocVien AS vtt"
-				+ "\t WHERE vtt.Email = '" + email + "'";
-		ResultSet rs=dbconn.ExecuteQuery(sql);
-		HocVien hv= new HocVien();
-		while(rs.next())
-		{
-			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"),rs.getString("Email")
-					,rs.getString("Sdt"),rs.getNString("QuocGia"),rs.getNString("VungMien"),
-					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getString("MatKhau"),rs.getNString("loaitaikhoan"));
-		}
-		return hv;
-	}
-	public HocVien TimThongTinDN_Id(int manguoidung) throws ClassNotFoundException, SQLException
-	{
-		String sql="SELECT * FROM vThongTinHocVien AS vtt"
-				+ "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
-		ResultSet rs=dbconn.ExecuteQuery(sql);
-		HocVien hv= new HocVien();
-		while(rs.next())
-		{
-			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"),rs.getString("Email")
-					,rs.getString("Sdt"),rs.getNString("QuocGia"),rs.getNString("VungMien"),
-					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getString("MatKhau"),rs.getNString("loaitaikhoan"));
-		}
-		return hv;
-	}
-	public boolean checkDangNhap(String email, String password) {
-		String sqlStr = "SELECT * FROM NGUOIDUNG WHERE Email='" + email + "'" + "AND MatKhau='" + password + "'";
-		boolean check = false;
 
-		try {
-			ResultSet rs = dbconn.ExecuteQuery(sqlStr);
-			if (rs.next()) {
-				check = true;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return check;
-	}
 	public int getForgetPass(String email, String newpass, String checkpass) {
 		String sqlStr = "SELECT * FROM NGUOIDUNG WHERE Email='" + email + "'";
 		ResultSet rs;
 		try {
 			rs = dbconn.ExecuteQuery(sqlStr);
 			if (rs.next() && checkpass.equals(newpass)) {
-				sqlStr = "UPDATE NGUOIDUNG SET MatKhau='" + newpass + "'" + "WHERE Email='" + email + "'";
+				sqlStr = "exec sp_ForgetMatKhau '"+email+"','"+newpass+"'";
+				System.out.print(sqlStr);
 				dbconn.ExecuteCommand(sqlStr);
-			}
-			else {
+			} else {
 				return 0;
 			}
 		} catch (ClassNotFoundException e) {
@@ -81,5 +35,11 @@ public class NguoiDungDao {
 			e.printStackTrace();
 		}
 		return 1;
+	}
+
+	public int UpdateMatKhau(String matkhau, int manguoidung) {
+		String sql = " exec sp_UpdateMatKhau " + manguoidung + ",'" + matkhau + "'";
+		int ketqua = dbconn.ExecuteCommand(sql);
+		return ketqua;
 	}
 }

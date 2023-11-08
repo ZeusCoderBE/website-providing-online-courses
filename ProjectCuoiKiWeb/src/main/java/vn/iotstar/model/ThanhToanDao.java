@@ -48,4 +48,10 @@ public class ThanhToanDao {
 		}
 		return sumCost;
 	}
+	public boolean isEnoughMoney(ThanhToan tt, The the) {
+		if (the.getSoDu() < tt.getTienthanhtoan()) {
+			return false;
+		}
+		return true;
+	}
 }

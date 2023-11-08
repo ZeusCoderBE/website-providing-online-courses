@@ -1,5 +1,95 @@
+ 
+--Thêm Khoá Học Vào Giỏ hàng Của Tôi
+CREATE Or Alter PROCEDURE sp_InsertCourseCart
+    @MaNguoiDung INT,
+    @MaKhoaHoc INT
+AS
+BEGIN
+    INSERT INTO GioHang (MaNguoiDung, MaKhoaHoc)
+    VALUES (@MaNguoiDung, @MaKhoaHoc);
+END;
+Go
+--Xoá Khoá Học Trong Giỏ Hàng
+CREATE Or ALter PROCEDURE sp_DeleteCourseCart
+    @MaNguoiDung INT,
+    @MaKhoaHoc INT
+AS
+BEGIN
+    DELETE FROM GioHang
+    WHERE MaNguoiDung = @MaNguoiDung AND MaKhoaHoc = @MaKhoaHoc;
+END;
+Go
+-- Tạo stored procedure để thêm người dùng
+CREATE OR ALTER PROCEDURE sp_SignUp
+    @HoTen NVARCHAR(255),
+    @Email NVARCHAR(255),
+    @QuocGia NVARCHAR(50),
+    @MatKhau NVARCHAR(255),
+    @Sdt NVARCHAR(20)
+AS
+BEGIN
+    INSERT INTO NguoiDung (HoTen, Email, QuocGia, MatKhau, Sdt)
+    VALUES (@HoTen, @Email, @QuocGia, @MatKhau, @Sdt);
+END
+Go
+-- Tạo sp cập nhật mật khẩu
+CREATE Or ALTER PROCEDURE sp_UpdateMatKhau
+    @MaNguoiDung INT,
+    @MatKhau NVARCHAR(255)
+AS
+BEGIN
+    UPDATE NguoiDung
+    SET MatKhau = @MatKhau
+    WHERE MaNguoiDung = @MaNguoiDung;
+END;
+Go
+--đổi mật khẩu dựa trên mail
+CREATE Or ALTER PROCEDURE sp_ForgetMatKhau
+    @Email varchar(60),
+    @MatKhau NVARCHAR(255)
+AS
+BEGIN
+    UPDATE NguoiDung
+    SET MatKhau = @MatKhau
+    WHERE Email = @Email;
+END
+Go
+-- Update NguoiDung
+CREATE Or ALTER PROCEDURE sp_UpdateNguoiDung
+    @MaNguoiDung INT,
+    @HoTen NVARCHAR(255),
+    @Sdt NVARCHAR(20),
+    @QuocGia NVARCHAR(50),
+    @VungMien NVARCHAR(50),
+    @DiaChi NVARCHAR(255),
+    @TrinhDo NVARCHAR(50),
+    @Email NVARCHAR(255)
+AS
+BEGIN
+    UPDATE NguoiDung
+    SET HoTen = @HoTen,
+        Sdt = @Sdt,
+        QuocGia = @QuocGia,
+        VungMien = @VungMien,
+        DiaChi = @DiaChi,
+        TrinhDo = @TrinhDo,
+        Email = @Email
+    WHERE MaNguoiDung = @MaNguoiDung;
+END
+Go
+--Update chuyên ngành giảng viên
+CREATE OR ALTER PROCEDURE sp_UpdateChuyenNganhGV
+	@ChuyenNganh NVARCHAR(255),
+    @MaGiangVien INT
+AS
+BEGIN
+    UPDATE GiangVien
+    SET ChuyenNganh = @ChuyenNganh
+    WHERE MaGiangVien = @MaGiangVien;
+END
+Go
 --Tìm và Cập Nhật Tài Khoản Giảng Viên
-CREATE OR ALTER PROCEDURE sp_TimTaiKhoanGiangVien
+CREATE Or ALter PROCEDURE sp_TimTaiKhoanGiangVien
 as
 begin
 	declare @manguoidung int
@@ -10,7 +100,7 @@ begin
 end
 go
 --Tìm Và Cập Nhật Tài Khoản Học Viên
-CREATE OR ALTER PROCEDURE sp_TimTaiKhoanHocVien
+CREATE Or ALTER PROCEDURE sp_TimTaiKhoanHocVien
 as
 begin
 	declare @manguoidung int
@@ -21,21 +111,20 @@ begin
 end
 Go
 
-go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE OR ALTER PROC sp_XemDanhSachBaiHoc
+CREATE OR Alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
 	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc From KHOAHOC
 	join BAIHOC 
-	on BAIHOC.MaBaiHoc=KHOAHOC.MaKhoaHoc
+	on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE OR ALTER Procedure sp_XemKhoaHocCuaToi
+CREATE Or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -44,24 +133,9 @@ begin
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
-
 GO
-
---Lấy Thông Tin của người dùng 
---Theo Email
-CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
-@email varchar(64) 
-as 
-begin
-	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
-	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN
-	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
-	where NGUOIDUNG.Email=@email
-end
-GO
-
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE OR ALTER PROCEDURE sp_thanhtoanKH
+CREATE Or ALter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -85,7 +159,32 @@ BEGIN
 		SET @diff = 0
 	END
 END
-
+Go
+-- Check Đăng Đăng Nhập với vai trò là học viên
+Create or Alter Procedure sp_CheckLoginHV
+@email varchar(64),@matkhau nvarchar(30), @check int output
+as
+begin
+	if exists (select 1 From NGUOIDUNG join HOCVIEN on 
+	HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung where NGUOIDUNG.Email=@email and NGUOIDUNG.MatKhau=@matkhau)
+		set @check=1
+	else
+		set @check=0
+	print @check
+end 
+Go
+--Check Đăng Nhập Giảng viên
+Create or Alter Procedure sp_CheckLoginGV
+@email varchar(64),@matkhau nvarchar(30), @check int output
+as
+begin
+	if exists (select 1 From NGUOIDUNG join GIANGVIEN on 
+	GIANGVIEN.MaGiangVien=NGUOIDUNG.MaNguoiDung where NGUOIDUNG.Email=@email and NGUOIDUNG.MatKhau=@matkhau)
+		set @check=1
+	else
+		set @check=0
+	print @check
+end 
 --Update số dư thẻ
 GO
 CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)
