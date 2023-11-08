@@ -140,7 +140,7 @@
 							</button>
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
-									<li><a href="FindLessons?mabaihoc=${baihoc.mabaihoc}">
+									<li><a href="FindDocuments?mabaihoc=${baihoc.mabaihoc}">
 											<span>${baihoc.tenbaihoc}</span>
 									</a></li>
 								</c:forEach>

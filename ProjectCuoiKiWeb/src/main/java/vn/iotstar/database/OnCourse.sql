@@ -63,7 +63,7 @@ CREATE TABLE BAIHOC (
 	MaBaiHoc INT  PRIMARY KEY,
 	TenBaiHoc NVARCHAR(255) ,
 	ThoiGianHoanThanh real,
-	NoiDungBaiHoc TEXT ,
+	NoiDungBaiHoc NTEXT ,
 	MucTieuDauRa real ,
 	NgayDang DATE ,
 	AnhMinhHoa VARCHAR(255),
@@ -272,9 +272,9 @@ VALUES
     
 INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES
-    (1, 1),
-    (2, 1),
-    (3, 2)
+    (4, 1),
+    (5, 1),
+    (4, 2)
     
 -- Insert into TaiLieuVanBan
 INSERT INTO TaiLieuVanBan (MaTaiLieu, NoiDung)

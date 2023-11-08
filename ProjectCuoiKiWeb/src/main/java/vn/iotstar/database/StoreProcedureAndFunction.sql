@@ -1,5 +1,6 @@
+ 
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
-CREATE PROCEDURE sp_InsertCourseCart
+CREATE Or Alter PROCEDURE sp_InsertCourseCart
     @MaNguoiDung INT,
     @MaKhoaHoc INT
 AS
@@ -7,6 +8,7 @@ BEGIN
     INSERT INTO GioHang (MaNguoiDung, MaKhoaHoc)
     VALUES (@MaNguoiDung, @MaKhoaHoc);
 END;
+Go
 --Xoá Khoá Học Trong Giỏ Hàng
 CREATE Or ALter PROCEDURE sp_DeleteCourseCart
     @MaNguoiDung INT,
@@ -16,7 +18,7 @@ BEGIN
     DELETE FROM GioHang
     WHERE MaNguoiDung = @MaNguoiDung AND MaKhoaHoc = @MaKhoaHoc;
 END;
-
+Go
 -- Tạo stored procedure để thêm người dùng
 CREATE OR ALTER PROCEDURE sp_SignUp
     @HoTen NVARCHAR(255),
@@ -29,6 +31,7 @@ BEGIN
     INSERT INTO NguoiDung (HoTen, Email, QuocGia, MatKhau, Sdt)
     VALUES (@HoTen, @Email, @QuocGia, @MatKhau, @Sdt);
 END
+Go
 -- Tạo sp cập nhật mật khẩu
 CREATE Or ALTER PROCEDURE sp_UpdateMatKhau
     @MaNguoiDung INT,
@@ -39,6 +42,7 @@ BEGIN
     SET MatKhau = @MatKhau
     WHERE MaNguoiDung = @MaNguoiDung;
 END;
+Go
 --đổi mật khẩu dựa trên mail
 CREATE Or ALTER PROCEDURE sp_ForgetMatKhau
     @Email varchar(60),
@@ -47,8 +51,9 @@ AS
 BEGIN
     UPDATE NguoiDung
     SET MatKhau = @MatKhau
-    WHERE MaNguoiDung = @Email;
+    WHERE Email = @Email;
 END
+Go
 -- Update NguoiDung
 CREATE Or ALTER PROCEDURE sp_UpdateNguoiDung
     @MaNguoiDung INT,
@@ -71,6 +76,7 @@ BEGIN
         Email = @Email
     WHERE MaNguoiDung = @MaNguoiDung;
 END
+Go
 --Update chuyên ngành giảng viên
 CREATE OR ALTER PROCEDURE sp_UpdateChuyenNganhGV
 	@ChuyenNganh NVARCHAR(255),
@@ -81,7 +87,7 @@ BEGIN
     SET ChuyenNganh = @ChuyenNganh
     WHERE MaGiangVien = @MaGiangVien;
 END
-
+Go
 --Tìm và Cập Nhật Tài Khoản Giảng Viên
 CREATE Or ALter PROCEDURE sp_TimTaiKhoanGiangVien
 as
@@ -154,6 +160,7 @@ BEGIN
 		SET @diff = 0
 	END
 END
+Go
 -- Check Đăng Đăng Nhập với vai trò là học viên
 Create or Alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
@@ -166,6 +173,7 @@ begin
 		set @check=0
 	print @check
 end 
+Go
 --Check Đăng Nhập Giảng viên
 Create or Alter Procedure sp_CheckLoginGV
 @email varchar(64),@matkhau nvarchar(30), @check int output

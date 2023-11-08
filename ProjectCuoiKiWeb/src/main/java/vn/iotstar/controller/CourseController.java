@@ -20,7 +20,7 @@ public class CourseController {
 		List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
 		try {
-			dsbaihoc = bhD.GetScience(khoahoc);
+			dsbaihoc = bhD.GetListLesson(khoahoc);
 			model.addAttribute("dsbaihoc", dsbaihoc);
 			khoahocid=khoahoc;
 		} catch (Exception ex) {
@@ -28,16 +28,17 @@ public class CourseController {
 		}
 		return "course";
 	}
-	@RequestMapping(value = "/FindLessons", method = RequestMethod.GET, params = "mabaihoc")
+	@RequestMapping(value = "/FindDocuments", method = RequestMethod.GET, params = "mabaihoc")
 	public String ShowDocumennt (ModelMap model, @RequestParam("mabaihoc") int mabaihoc) throws ClassNotFoundException, SQLException {
 		String url="";
 		try {
-			BaiHoc baihoc =bhD.FindOfMyLesson(mabaihoc);
+			BaiHoc baihoc =bhD.FindOfMyALesson(mabaihoc);
 			if (baihoc!= null) {
+				//tìm 1 bài học
 				model.addAttribute("lesson",baihoc);
 				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
-				dsbaihoc = bhD.GetScience(khoahoc);
+				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
 				url="course";
 			}

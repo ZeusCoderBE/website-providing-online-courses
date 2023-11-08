@@ -16,6 +16,24 @@ tinymce.init({
 	menubar: 'favs file edit view insert format tools table',
 	content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
 });
+function CheckPass() {
+    var repass = document.getElementById("repass").value;
+    var newpass = document.getElementById("newpass").value;
+    var password = document.getElementById("password").value;
+    if (repass === "" || newpass === "" || password === "") {
+        alert("Bạn Muốn Đổi Mật Khẩu Vui Lòng Nhập Theo Hướng Dẫn");
+        return false;
+    } else if (newpass !== repass) {
+        alert("Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng !");
+        return false;
+    }
+    else
+    {
+		return true;
+	}
+}
+
+
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -75,7 +93,7 @@ function enableField() {
 	const diachi = document.getElementById("diachi");
 	const save = document.getElementById("save");
 	const email = document.getElementById("email");
-	const chuyennganh=document.getElementById("chuyennganh");
+	const chuyennganh = document.getElementById("chuyennganh");
 	username.removeAttribute("disabled");
 	quocgia.removeAttribute("disabled");
 	sdt.removeAttribute("disabled");

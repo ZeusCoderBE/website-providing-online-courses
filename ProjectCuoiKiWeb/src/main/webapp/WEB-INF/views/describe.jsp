@@ -63,7 +63,8 @@
 													</div>
 													<div class="my_course__action">
 														<div class="my_course__buy">
-															<a href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}"></a>
+															<a
+																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}"></a>
 														</div>
 
 														<div class="my_course__delete">
@@ -115,16 +116,7 @@
 					<div class="course_des">${khoahoc.mota}</div>
 					<div class="course_detail">
 						<h2>Bạn sẽ học được gì?</h2>
-						<ul class="list">
-							<c:forEach var="baihoc" items="${listbaihoc}">
-								<li class="list_item"><i class="fa-solid fa-check"></i> <span>Tên
-										Bài Học: ${baihoc.tenbaihoc}</span> <br /> <span>Nội Dung Bài
-										Học: ${baihoc.noidungbaihoc}</span> <br /> <span>Thời Gian
-										Hoàn Thành: ${baihoc.thoigianhoanthanh}h</span></li>
-							</c:forEach>
-						</ul>
 					</div>
-
 					<div class="course__content">
 						<h3>Ngôn Ngữ :${khoahoc.ngonngu}</h3>
 					</div>
@@ -153,25 +145,27 @@
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
-						<c:choose>
-							<c:when test="${isdangky != true}">
-								<div class="btn_action">
-									<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
-										<button class="btn btn-success btn_signin__course">Đăng
-											ký học</button>
-									</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
-										class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<div class="btn_action">
-									<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
-										<button class="btn btn-success btn_signin__course">Vào
-											học</button>
-									</a>
-								</div>
-							</c:otherwise>
-						</c:choose>
+						<c:if test="${not empty hocvien.manguoidung}">
+							<c:choose>
+								<c:when test="${isdangky != true}">
+									<div class="btn_action">
+										<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
+											<button class="btn btn-success btn_signin__course">Đăng
+												ký học</button>
+										</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
+											class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div class="btn_action">
+										<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
+											<button class="btn btn-success btn_signin__course">Vào
+												học</button>
+										</a>
+									</div>
+								</c:otherwise>
+							</c:choose>
+						</c:if>
 					</div>
 				</div>
 			</div>

@@ -10,7 +10,7 @@ public class NguoiDungDao {
 
 	public int SignUp(NguoiDung hv) {
 		String query = "exec sp_SignUp N'" + hv.getHoten() + "','" + hv.getEmail() + "',N'" + hv.getQuocgia() + "',N'"
-				+ hv.getMatkhau()+ "', '" + hv.getSdt() + "'";
+				+ hv.getMatkhau() + "', '" + hv.getSdt() + "'";
 		int ketqua = dbconn.ExecuteCommand(query);
 		return ketqua;
 	}
@@ -22,6 +22,7 @@ public class NguoiDungDao {
 			rs = dbconn.ExecuteQuery(sqlStr);
 			if (rs.next() && checkpass.equals(newpass)) {
 				sqlStr = "exec sp_ForgetMatKhau '"+email+"','"+newpass+"'";
+				System.out.print(sqlStr);
 				dbconn.ExecuteCommand(sqlStr);
 			} else {
 				return 0;
@@ -37,7 +38,7 @@ public class NguoiDungDao {
 	}
 
 	public int UpdateMatKhau(String matkhau, int manguoidung) {
-		String sql = " exec sp_UpdateMatKhau "+manguoidung+",'"+matkhau+"'";
+		String sql = " exec sp_UpdateMatKhau " + manguoidung + ",'" + matkhau + "'";
 		int ketqua = dbconn.ExecuteCommand(sql);
 		return ketqua;
 	}

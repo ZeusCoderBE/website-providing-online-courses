@@ -77,15 +77,16 @@ public class SignInController {
 		return "forget_password";
 	}
 	@RequestMapping(value="getpassword", method=RequestMethod.POST)
-	public String GetForgetPassword(ModelMap model, @RequestParam("Email") String email, @RequestParam("NewPassword") String newpass,  @RequestParam("CheckPassword") String checkpass) 
+	public String GetForgetPassword(HttpSession session,ModelMap model, @RequestParam("Email") String email, @RequestParam("NewPassword") String newpass,  @RequestParam("CheckPassword") String checkpass) 
 	{
 
 		int check = ndd.getForgetPass(email, newpass, checkpass);
 		if (check == 1) {
+			session.setAttribute("thongbaodoipass", "Bạn Đã Đổi Mật Khẩu Thành Công");
 			return "redirect:/login";
 		}
 		else if (check == 0) {
-			model.addAttribute("warning", "Tài khoản hoặc mật khẩu không khớp! Vui lòng nhập lại");
+			model.addAttribute("warning", "Bạn nhập xác nhận mật khẩu chưa đúng !");
 		}
 		return "forget_password";
 	}

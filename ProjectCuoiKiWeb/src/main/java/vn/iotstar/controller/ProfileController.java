@@ -1,16 +1,12 @@
 package vn.iotstar.controller;
-
 import vn.iotstar.model.*;
-
 import java.sql.SQLException;
 import java.util.*;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -49,9 +45,8 @@ public class ProfileController {
 
 	@RequestMapping(value = "changepass", method = RequestMethod.POST)
 	public String ChangePassWord(ModelMap model, HttpSession session,
-			@RequestParam(value = "password", required = false, defaultValue = "null") String password,
-			@RequestParam(value = "newpass", required = false, defaultValue = "null") String newpass,
-			@RequestParam(value = "repass", required = false, defaultValue = "null") String repass)
+			@RequestParam(value = "password", required = false) String password,
+			@RequestParam(value = "newpass", required = false) String newpass)
 			throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
@@ -59,44 +54,38 @@ public class ProfileController {
 		GiangVien giangvien = new GiangVien();
 		String url = "";
 		String meSession = "";
-		if (!password.equals("null") && !newpass.equals("null") && !repass.equals("null")) {
-			if (hv != null) {
-				hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-				if (!hocvien.getMatkhau().equals(password)) {
-					meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
-					url = "redirect:/myprofiles";
-				}
-				else if (hocvien.getMatkhau().equals(newpass)) {
-					meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
-					url = "redirect:/myprofiles";
-				} else if (!newpass.equals(repass)) {
-					meSession = "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng";
-					url = "redirect:/myprofiles";
-				} else if (ndD.UpdateMatKhau(newpass, hocvien.getManguoidung()) == 1) {
-					RealoadKhoaHoc(model);
-					url = "SignIn";
-				}
-
-			} else if (gv != null) {
-				giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
-				if (!giangvien.getMatkhau().equals(password)) {
-					meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
-					url = "redirect:/myprofiles";
-				}
-				else if (giangvien.getMatkhau().equals(newpass)) {
-					meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
-					url = "redirect:/myprofiles";
-				} else if (!newpass.equals(repass)) {
-					meSession = "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng";
-					url = "redirect:/myprofiles";
-				} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
-					RealoadKhoaHoc(model);
-					url = "SignIn";
-				}
+		if (hv != null) {
+			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+			if (!hocvien.getMatkhau().equals(password)) {
+				meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
+				url = "redirect:/myprofiles";
+			} else if (hocvien.getMatkhau().equals(newpass)) {
+				meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
+				url = "redirect:/myprofiles";
+			} else if (ndD.UpdateMatKhau(newpass, hocvien.getManguoidung()) == 1) {
+				RealoadKhoaHoc(model);
+				url = "SignIn";
+			} else {
+				meSession = "Quá Trình Cập Nhật Thất Bại";
+				url = "redirect:/myprofiles";
 			}
-		} else {
-			meSession = "Quá Trình Cập Nhật Thất Bại";
-			url = "redirect:/myprofiles";
+
+		} else if (gv != null) {
+			giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+			if (!giangvien.getMatkhau().equals(password)) {
+				meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
+				url = "redirect:/myprofiles";
+			} else if (giangvien.getMatkhau().equals(newpass)) {
+				meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
+				url = "redirect:/myprofiles";
+			} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
+				RealoadKhoaHoc(model);
+				meSession="Bạn đã đổi mật khẩu thành công";
+				url = "SignIn";
+			} else {
+				meSession = "Quá Trình Cập Nhật Thất Bại";
+				url = "redirect:/myprofiles";
+			}
 		}
 		session.setAttribute("thongtinsai", meSession);
 		return url;

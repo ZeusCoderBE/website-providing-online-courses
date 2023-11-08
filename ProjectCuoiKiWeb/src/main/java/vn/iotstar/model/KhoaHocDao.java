@@ -64,7 +64,20 @@ public class KhoaHocDao {
 
 		return khoahoc;
 	}
-	
+	public List<KhoaHoc> ShowMyCreateOfCourse(int manguoidung) throws ClassNotFoundException, SQLException
+	{
+		String sql="select * From v_XemKhoaHocDaTao where MaGiangVien= "+manguoidung+"";
+		KhoaHoc khoahoc;
+		ResultSet rs=dbC.ExecuteQuery(sql);
+		List<KhoaHoc> listkh=new ArrayList<KhoaHoc>();
+		System.out.print(sql);
+		while(rs.next())
+		{
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getNString("TenKhoaHoc"),rs.getNString("TrinhDoDauVao"),rs.getNString("MoTa"));
+			listkh.add(khoahoc);
+		}
+		return listkh;
+	}
 	public boolean khoahocDangKy(int mand, int makh) throws SQLException, ClassNotFoundException {
 		String sqlStr = "SELECT * FROM DANGKY WHERE MaNguoiDung=" + mand + "AND MaKhoaHoc=" + makh;
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);
