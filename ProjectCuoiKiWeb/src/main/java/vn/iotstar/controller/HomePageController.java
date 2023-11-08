@@ -45,7 +45,6 @@ public class HomePageController {
 				model.addAttribute("thongtin", hocvien);
 				model.addAttribute("countkhoahoc",gh);
 				model.addAttribute("dsgiohang", dsgiohang);
-				System.out.print("hello2");
 				
 			}
 			else if(gv!=null &&hv==null)

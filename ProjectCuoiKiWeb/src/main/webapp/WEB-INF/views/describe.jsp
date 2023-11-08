@@ -63,7 +63,7 @@
 													</div>
 													<div class="my_course__action">
 														<div class="my_course__buy">
-															<a href="#">Buy</a>
+															<a href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}"></a>
 														</div>
 
 														<div class="my_course__delete">
@@ -76,10 +76,8 @@
 										</ul>
 									</div>
 								</div>
-							</li >
-							<li class="mr-3 icon ">
-							   <i class="fa-solid fa-bell"></i>
 							</li>
+							<li class="mr-3 icon "><i class="fa-solid fa-bell"></i></li>
 
 							<div class="site_img">
 								<img

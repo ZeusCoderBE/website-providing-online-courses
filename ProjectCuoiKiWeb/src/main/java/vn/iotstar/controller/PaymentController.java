@@ -88,6 +88,7 @@ public class PaymentController {
 				ttd.thanhToan(tt, the);
 			}
 			model.addAttribute("warning", "Thanh toán thành công!");
+			ghd.DeleteCoursesIntoCart(dsKhoahoc,hv.getManguoidung());
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

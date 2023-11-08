@@ -10,7 +10,7 @@ public class GiangVienDao {
 	DataBaseConnection dbC = new DataBaseConnection();
 
 	public int InsertGiangVien() {
-		String sql = "sp_TimTaiKhoanGiangVien";
+		String sql = "exec sp_TimTaiKhoanGiangVien";
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}
@@ -47,7 +47,7 @@ public class GiangVienDao {
 	}
 
 	public int UpdateChuyenNganhGV(GiangVien gv) {
-		String sql = "sp_UpdateChuyenNganhGV  N'" + gv.getChuyennganh()+"'," +gv.getManguoidung() + "";
+		String sql = "exec sp_UpdateChuyenNganhGV  N'" + gv.getChuyennganh()+"'," +gv.getManguoidung() + "";
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}
