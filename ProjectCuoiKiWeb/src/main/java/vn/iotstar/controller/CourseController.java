@@ -14,7 +14,8 @@ import java.util.*;
 public class CourseController {
 	BaiHocDao bhD = new BaiHocDao();
 	KhoaHocDao khD = new KhoaHocDao();
-	KhoaHoc khoahocid =new KhoaHoc();
+	KhoaHoc khoahocid = new KhoaHoc();
+
 	@RequestMapping(value = "/courses", method = RequestMethod.GET, params = "makhoahoc")
 	public String Courses(ModelMap model, @RequestParam("makhoahoc") int makhoahoc) {
 		List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
@@ -22,43 +23,45 @@ public class CourseController {
 		try {
 			dsbaihoc = bhD.GetListLesson(khoahoc);
 			model.addAttribute("dsbaihoc", dsbaihoc);
-			khoahocid=khoahoc;
+			khoahocid = khoahoc;
 		} catch (Exception ex) {
 
 		}
 		return "course";
 	}
+
 	@RequestMapping(value = "/FindDocuments", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowDocumennt (ModelMap model, @RequestParam("mabaihoc") int mabaihoc) throws ClassNotFoundException, SQLException {
-		String url="";
+	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
+			throws ClassNotFoundException, SQLException {
+		String url = "";
 		try {
-			BaiHoc baihoc =bhD.FindOfMyALesson(mabaihoc);
-			if (baihoc!= null) {
-				//tìm 1 bài học
-				model.addAttribute("lesson",baihoc);
+			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
+			if (baihoc != null) {
+				// tìm 1 bài học
+				model.addAttribute("lesson", baihoc);
 				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
-				url="course";
-			}
-			else
-			{
-				url="redirect:/courses";
+				url = "course";
+			} else {
+				url = "redirect:/courses";
 			}
 		} catch (Exception ex) {
 
 		}
 
 		return url;
-}
+	}
+
 	@RequestMapping(value = "/createlesson", method = RequestMethod.GET)
 	public String Lesson(ModelMap model) {
 		return "create_lesson";
 	}
+
 	@RequestMapping(value = "/createlesson", method = RequestMethod.POST)
-	public String CreateLesson(ModelMap model, @RequestParam("namelesson") String name, @RequestParam("trinhdo") String muctieu,
-			@RequestParam("textarea") String content) {
+	public String CreateLesson(ModelMap model, @RequestParam("namelesson") String name,
+			@RequestParam("trinhdo") String muctieu, @RequestParam("textarea") String content) {
 
 		BaiHoc bh = new BaiHoc(6, name, 30.0, content, Double.parseDouble(muctieu), null, 1);
 		try {

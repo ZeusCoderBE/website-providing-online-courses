@@ -58,7 +58,6 @@ public class SignInController {
 		else
 		{
 			gv=gvD.TimThongTinDN(email);
-			System.out.print("hello");
 			session.setAttribute("giangvien", gv);
 			return "redirect:/homepages";
 		}

@@ -253,12 +253,12 @@
 											học của tôi</span>
 									</a>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${not empty giangvien.manguoidung}">
 									<a style="height: 46px;" href="#"> <i
 										class="fa-solid fa-graduation-cap"></i> <span>Các khóa
 											học đã tạo của tôi </span>
 									</a>
-								</c:otherwise>
+								</c:when>
 							</c:choose>
 							<ul>
 								<c:forEach var="khoahoctaikhoan" items="${danhsachkhoahoc}">
