@@ -145,26 +145,20 @@
                             </button>
 
                             <ul class="list_timer">
-                                <li>
-                                    <a href="#">
-                                        <span>Week1</span>
+                                <li class="my-lesson__detail">
+                                    <a  href="#" >
+                                        <span>Week1</span>                                        
                                     </a>
+                                    <div class="my-lesson-action">
+                                        <div class="my-lesson__buy">
+                                            <a href="#" style="padding: 0 4px;" class="link-buy">Edit</a>
+                                        </div>
+                                        <div class="my-lesson__delete" style="margin-left: 0;">
+                                            <a href="#" style="padding: 0 4px;">Delete</a>
+                                        </div>
+                                    </div>
                                 </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Week2</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Week3</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span>Week4</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                             
                         </div>
@@ -177,7 +171,7 @@
                         <div class="nav_drawer home_file">
                             <a href="#">
                                 <i class="fa-regular fa-file"></i>
-                                <span>Grades</span>
+                                <span>Create lesson</span>
                             </a>
                         </div>
                         <div class="nav_drawer home_file">
@@ -255,6 +249,156 @@
                                 </div>
                             </div>
                             
+                        </div>
+                    </div>
+                    <!-- NOTES -->
+                    <div class="page-note page-common">
+                        <div class="page-content">
+                            <h2>Notes</h2>
+                            <div class="page-content-filter">
+                                <h5>
+                                    Filter
+                                </h5>
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>All notes</option>
+                                    <option value="1">Introduction to Image and Video Processing</option>
+                                    <option value="2">Signals and Systems</option>
+                                    <option value="3">Fourier Transform and Sampling</option>
+                                    <option value="4">Introduction to Image and Video Processing</option>
+                                    <option value="5">Signals and Systems</option>
+                                    <option value="6">Fourier Transform and Sampling</option>
+                                  </select>
+                            </div>
+
+                            <div class="page-note-icon">
+                                <img src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg" alt="book">
+                                <img src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg" alt="book">
+                            </div>
+
+                            <div class="page-notice">You have not added any notes yet. Notes can be created from video pages.</div>
+                        </div>
+                    </div>
+
+                    <!-- Forum -->
+                    <div class="page-forum page-common">
+                        <div class="page-content">
+                            <h2>Forum</h2>
+                            <div class="page-content-form">
+                               <input class="form-control" type="text" placeholder="Search Forum"/>
+                               <button class="btn btn-primary">Search</button>
+                               <button class="btn btn-outline-primary">Create Post</button>
+                            </div>
+                            <div class="page-title">
+                                <div class="page-title-item">
+                                    <h6>Posts for you</h6>
+                                    <ul class="page-title-list">
+                                        <li class="title-item">
+                                            <div class="title-hook">Week2</div>
+                                            <h5 class="title-item-content">
+                                                <a href="#">Why the rational number condition for discrete complex periodic signals?</a>
+                                            </h5>
+                                            <div>
+                                                <span>In the "Complex Exponential Signals" video, it was mentioned that 2*pi/omega has to be a rational number for the complex exponential to be periodic. Why does it h...</span>
+                                            </div>
+                                            <div class="page-title-action">
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-thumbs-up"></i>
+                                                    <div>Like 5</div>
+                                                </div>
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-reply"></i>
+                                                    <div>Reply 2</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="title-item">
+                                            <div class="title-hook">Week2</div>
+                                            <h5 class="title-item-content">
+                                                <a href="#">Why the rational number condition for discrete complex periodic signals?</a>
+                                            </h5>
+                                            <div>
+                                                <span>In the "Complex Exponential Signals" video, it was mentioned that 2*pi/omega has to be a rational number for the complex exponential to be periodic. Why does it h...</span>
+                                            </div>
+                                            <div class="page-title-action">
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-thumbs-up"></i>
+                                                    <div>Like 5</div>
+                                                </div>
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-reply"></i>
+                                                    <div>Reply 2</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="page-note-icon">
+                                <img src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg" alt="book">
+                                <img src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg" alt="book">
+                            </div>
+
+                            <div class="page-notice">You have not added any notes yet. Notes can be created from video pages.</div>
+                        </div>
+                    </div>
+
+                    <!-- Messages -->
+                    <div class="page-message page-common">
+                        <div class="page-content">
+                            <h2>Messages</h2>
+                           
+                            <div class="page-title">
+                                <div class="page-title-item">
+                                    <ul class="page-title-list">
+                                        <li class="title-item">
+                                            <div class="title-message">
+                                                <i class="fa-solid fa-comment-dots"></i>
+                                            </div>
+                                            <h5 class="title-item-content">
+                                                <a href="#">Why the rational number condition for discrete complex periodic signals?</a>
+                                            </h5>
+                                            <div>
+                                                <span>In the "Complex Exponential Signals" video, it was mentioned that 2*pi/omega has to be a rational number for the complex exponential to be periodic. Why does it h...</span>
+                                            </div>
+                                            <div class="page-title-action">
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-thumbs-up"></i>
+                                                    <div>Like 5</div>
+                                                </div>
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-reply"></i>
+                                                    <div>Reply 2</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="title-item">
+                                            <div class="title-hook">Week2</div>
+                                            <h5 class="title-item-content">
+                                                <a href="#">Why the rational number condition for discrete complex periodic signals?</a>
+                                            </h5>
+                                            <div>
+                                                <span>In the "Complex Exponential Signals" video, it was mentioned that 2*pi/omega has to be a rational number for the complex exponential to be periodic. Why does it h...</span>
+                                            </div>
+                                            <div class="page-title-action">
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-thumbs-up"></i>
+                                                    <div>Like 5</div>
+                                                </div>
+                                                <div class="page-active">
+                                                    <i class="fa-solid fa-reply"></i>
+                                                    <div>Reply 2</div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="page-note-icon">
+                                <img src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg" alt="book">
+                                <img src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg" alt="book">
+                            </div>
+
+                            <div class="page-notice">You have not added any notes yet. Notes can be created from video pages.</div>
                         </div>
                     </div>
                 </article>
