@@ -1,4 +1,84 @@
- 
+ --Cập nhật số dư cho người là tác giả của khoá học
+Create Or ALter Procedure sp_CapNhatSoDuTKGV
+@matacgia int,@cost real
+as
+begin
+	--Tìm người giảng viên là tác giả của khoá học
+	declare @magiangvien int
+	set @magiangvien=( select distinct MaGiangVien From KHOAHOC join GIANGVIEN
+	on GIANGVIEN.MaGiangVien=KHOAHOC.MaTacGia
+	where KHOAHOC.MaTacGia=@matacgia)
+	
+	--Cập nhật tài khoản giảng viên
+	declare @sodubandau real
+	select @sodubandau=SoDu From The
+	where MaNguoiDung=@magiangvien
+	Update THE set SoDu=@sodubandau+@cost
+	where MaNguoiDung=@magiangvien
+end
+ --Tạo Biên Soạn
+ Create or ALter Procedure sp_CreateCompilation
+@manguoidung int
+as
+begin
+	declare @makhoahoc int 
+	set @makhoahoc = (select Top 1 MaKhoaHoc From KHOAHOC
+	order by MaKhoaHoc desc)
+	insert into BIENSOAN(MaNguoiDung,MaKhoaHoc)
+	values(@manguoidung,@makhoahoc)
+end
+Go
+--Remove course dành cho giảng viên
+Create or Alter Procedure sp_RemoveACourse
+@makhoahoc int
+as
+begin
+	delete From KHOAHOC
+	where MaKhoaHoc=@makhoahoc
+end
+Go
+--Edit Course dành cho giảng viên
+Create Or Alter Procedure sp_EditACourse
+@makhoahoc int,
+@tenkhoahoc nvarchar(255),
+@matacgia int ,
+@giatien real,
+@ngonngu nvarchar(50),
+@thoigianhoanthanh real,
+@trinhdodauvao nvarchar(50),
+@ngayphathanh date,
+@mota ntext,
+@danhgia int,
+@theloai nvarchar(50),
+@linhvuc nvarchar(30)
+as
+begin
+	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
+	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,DanhGia=@danhgia,TheLoai=@theloai,LinhVuc=@linhvuc
+	where KHOAHOC.MaKhoaHoc=@makhoahoc
+end
+Go
+ --Tạo khoá học dành cho giảng viên
+ Create Or Alter Procedure sp_CreateACourse
+@tenkhoahoc nvarchar(255),
+@matacgia int ,
+@giatien real,
+@ngonngu nvarchar(50),
+@thoigianhoanthanh real,
+@trinhdodauvao nvarchar(50),
+@ngayphathanh date,
+@mota ntext,
+@danhgia int,
+@theloai nvarchar(50),
+@linhvuc nvarchar(30)
+as
+begin
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,DanhGia,TheLoai,LinhVuc)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@danhgia,@theloai,@linhvuc)
+end
+
+ Go
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
 CREATE Or Alter PROCEDURE sp_InsertCourseCart
     @MaNguoiDung INT,
@@ -188,10 +268,10 @@ begin
 end 
 --Update số dư thẻ
 GO
-CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)
+CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap real
 AS
 BEGIN
-	DECLARE @sodu DECIMAL(18, 2)
+	DECLARE @sodu real
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END

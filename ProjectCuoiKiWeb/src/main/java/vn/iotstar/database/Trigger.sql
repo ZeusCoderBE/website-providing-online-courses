@@ -21,4 +21,31 @@ begin
 	values(@mathe,5,@mahocvien)
 
 end 
+go
+--Trigger các dòng tham chiếu trước khi xoá 1 khoá học
+Create or Alter Trigger tg_XoaRangBuocTCKhoaHoc
+on KhoaHoc instead of delete 
+as
+begin
+	declare @makhoahoc int 
+	--set Null cho Bài Học
+	select @makhoahoc=deleted.MaKhoaHoc From deleted 
+	update BAIHOC set MaKhoaHoc=null 
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Biên Soạn
+	delete From BIENSOAN
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Đăng Ký
+	delete From DANGKY 
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Thanh Toán
+	delete From THANHTOAN
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Giỏ Hàng
+	delete From GIOHANG
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Khoá Học
+	delete From KHOAHOC
+	where KHOAHOC.MaKhoaHoc=@makhoahoc
+end
 

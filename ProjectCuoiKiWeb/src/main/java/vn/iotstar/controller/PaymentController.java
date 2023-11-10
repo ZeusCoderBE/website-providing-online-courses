@@ -19,7 +19,9 @@ public class PaymentController {
 	private List<KhoaHoc> dsKhoahoc;
 	private List<GioHang> dsgiohang;
 	private GioHangDao ghd = new GioHangDao();
-
+	HocVienDao hvD=new HocVienDao();
+	KhoaHocDao khD= new KhoaHocDao();
+	GiangVienDao gvD=new GiangVienDao();
 	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET, params = "makhoahoc")
 	public String payCourseInfo(ModelMap model, HttpSession session, @RequestParam("makhoahoc") String makh) {
 		KhoaHocDao khd = new KhoaHocDao();
@@ -27,6 +29,7 @@ public class PaymentController {
 		TheDao td = new TheDao();
 		dsKhoahoc = new ArrayList<KhoaHoc>();
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		List<KhoaHoc> ListKH = null;
 		try {
 			// Lấy tên khóa học
 			dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
@@ -35,6 +38,15 @@ public class PaymentController {
 			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
 			model.addAttribute("the", the);
 			model.addAttribute("noidungtt", ttd.NoiDungThanhToan(dsKhoahoc));
+			ListKH = khD.GetListCourses();
+			model.addAttribute("danhsachkh", ListKH);
+			List<GioHang> dsgiohang = new ArrayList<GioHang>();
+			dsgiohang = ghd.GetTopMyCart(hv.getManguoidung());
+			GioHang gh = ghd.CountCourse(hv.getManguoidung());
+			HocVien hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+			model.addAttribute("thongtin", hocvien);
+			model.addAttribute("countkhoahoc", gh);
+			model.addAttribute("dsgiohang", dsgiohang);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			System.out.print(e.getMessage());
@@ -86,6 +98,8 @@ public class PaymentController {
 				ThanhToan tt = new ThanhToan(hv.getManguoidung(), kh.getMakhoahoc(),
 						kh.getGiatien(), String.format("Thanh toán %s", kh.getTenkhoahoc()));
 				ttd.thanhToan(tt, the);
+				 KhoaHoc khoahoc=new KhoaHoc(kh.getMatacgia(),kh.getGiatien());
+				 gvD.UpdateofCardTeacher(khoahoc);
 			}
 			model.addAttribute("warning", "Thanh toán thành công!");
 			ghd.DeleteCoursesIntoCart(dsKhoahoc,hv.getManguoidung());

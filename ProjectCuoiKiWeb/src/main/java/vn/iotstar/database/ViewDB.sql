@@ -11,6 +11,7 @@ Create Or Alter View v_XemKhoaHocDaTao
 as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien From GIANGVIEN 
 join BIENSOAN on GIANGVIEN.MaGiangVien=BIENSOAN.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc=BIENSOAN.MaKhoaHoc
+Go
 -- Xem Giỏ Hàng
 Create Or Alter View v_XemGioHang
 as 
