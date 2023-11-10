@@ -163,6 +163,16 @@
     color: var(--text-header-color);
 }
 
+
+
+.my_course {
+	right: -100px;
+}
+
+.pseudo_class {
+	right: 40px;
+}
+
 .utilities {
     padding: 8px 0;
     margin-right: 20px;
@@ -187,17 +197,82 @@
     margin-left: 30px;
 }
 
+/* ----------------------------------- */
+
 .utilities .usermenu {
+    position: relative;
     height: 100%;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    /* display: none; */
 }
 
+.usermenu:hover .setting {
+    display: block;
+}
+
+
+.setting {
+    display: none;
+    right: 0;
+    top: 40px;
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.setting__item {
+    width: 100%;
+}
+
+.setting__item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px 24px;
+    width: 100%;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 10px;
+}
+
+.setting__item i {
+    font-size: 1.4rem;
+    background-color: transparent;
+    color: rgb(255, 0, 0);
+    margin-left: 10px;
+}
+
+.setting__item:nth-child(3) i{
+    color: rgb(154, 154, 9);
+}
+.setting__item:nth-child(4) i{
+    color: rgb(154, 57, 9);
+}
+.setting__item:nth-child(5) i{
+    color: rgb(11, 11, 11);
+}
+.setting__item:nth-child(6) i{
+    color: rgb(84, 4, 4);
+}
+
+.setting__item a:hover {
+    background-color: #efe8e8;
+}
+
+.login_taikhoan {
+    display: none;
+}
+
+
+/* ------------------ */
 .utilities .usermenu span {
     font-size: 1rem;
     margin-right: 4px;
     margin-bottom: 2px;
-    color: white;
     text-align: center;
 }
 
@@ -231,6 +306,7 @@
 }
 
 .nav_drawer a {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -240,6 +316,8 @@
     align-items: center;
     color: var(--background-primary);
     background-color: white;
+    transition: background-color 0.5s ease-in; 
+    transition: color 0.25s ease-in; 
 }
 
 .nav_drawer a:focus {
@@ -249,7 +327,8 @@
 }
 
 .nav_drawer a:hover {
-    background-color: #f5f5f5;
+    background-color: #e9e5e5;
+    /* color: white; */
 }
 
 .nav_drawer-primary a{
@@ -259,7 +338,7 @@
 }
 
 .nav_drawer i {
-    margin: 0 10px;
+    margin-right: 10px;
     font-size: 1rem;
 }
 
@@ -300,12 +379,13 @@
     width: auto;
     margin: 0 20px;
     height: auto;
+    padding-left: 10px;
     border: 1px solid var(--border-button);
     border-radius: 6px;
 }
 
 .home_course {
-    display: none;
+    height: auto;
 }
 
 .list_timer {
@@ -418,6 +498,10 @@
 
 }
 
+.nav-link:focus {
+    color: red;
+}
+
 .card_body {
     display: flex;
     flex-direction: column;
@@ -461,7 +545,6 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
 }
 
 .card_text {
@@ -496,7 +579,7 @@
 .card_item .card_img{
     height: 7rem;
     width: 100%;
-        background-image: url("../Images/banner.jpg");
+    background-image: url("../Images/banner.jpg");
     background-size: cover;
 }
 
@@ -523,7 +606,7 @@
 }
 
 .card_group {
-    width: 276px;
+    width: 30%;
 }
 
 .card_setting {
@@ -636,6 +719,7 @@
 
 .navbar .nav-item {
     padding: 0 10px;
+
 }
 
 .navbar .nav-item :hover {
@@ -648,6 +732,8 @@
     color: white;
     height: 100%;
     padding: 14px;
+    transition: all 0.5s linear; 
+
 }
 
 
@@ -696,22 +782,304 @@
 }
 
 .content a {
+    position: relative;
     display: block;
     margin: auto;
     margin-bottom: 50px;
     margin-top: 50px;
     text-decoration: none;
-    background-color: #e7005e;
     width: 200px;
     padding: 10px;
+    background-color: #6767d2;
     padding-bottom: 14px;
     color: white;
     font-weight: 600;
     font-size: 1.3rem;
-    border-radius: 20px;
+    border-radius: inherit;   
+    transition: all 0.25s linear; 
 }
 
 .content a:hover {
+    background-color: #e7005e;
+}
+
+/* footer_main */
+.footer_main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    color: var(--text-header-color);
+    align-items: center;
+    margin: -15px;
+    margin-top: 40px;
+
+}
+
+.footer_main_list {
+    padding: 20px 0;
+    width: 100%;
+    background-color: #353e4e;
+    font-size: 1rem;
+}
+
+.footer_main_list a {
+    color: var(--text-header-color);
+    text-decoration: underline;
+}
+
+.footer_main_nav{
+    display: flex;
+    justify-content: center;
+}
+
+.footer_main_info {
+    width: 100%;
+    background-color: #181b1f;
+    padding: 10px 0;
+}
+
+/* PROFILE */
+.profile-container {
+    margin: 0 6%;
+}
+
+.row_profile {
+    min-height: 100vh;
+}
+
+.profile_info {
+    margin-top: 6%;
+    position: static;
+    height: 100vh;
     background-color: transparent;
-    border: 1px solid #585fa2;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_avata {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 40px;
+    padding-bottom: 10px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    color: black;
+    text-align: start;
+}
+
+.profile_avata + .profile_avata {
+    margin-top: 20px;
+}
+
+.profile_avata span {
+    font-size: 0.9rem;
+    line-height: 0;
+    text-align: start;
+    color: var(--text-color);
+}
+
+.profile_icon {
+    width: 50%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #003584;
+    margin: 10px 0;
+    border: 2px solid rgba(214, 212, 212, 0.8);
+
+}
+
+.profile_icon span{
+    color: white;
+    font-size: 1.9rem;
+
+}
+
+.btn_main {
+    position: relative;
+    margin: 20px 0;
+    width: 100%;
+    background-color: transparent;
+    color: #0d6efd;
+    font-weight: bold;
+    font-size: 0.9rem;
+    border: 1px solid blue;
+}
+
+.btn_signin__profile i {
+    margin-right: 10px;
+}
+
+.profile_update::before {
+    position: absolute;
+    content: "";
+    background-color: #e5e7e8;
+    width: 90%;
+    margin-left: 5%;
+    height: 1px;
+    top: -10px;
+    left: 0;
+}
+
+.btn_main:hover {
+    background-color: #f5f7f8;
+    color: #0d6efd;
+    border: 1px solid blue;
+}
+
+.profile_update {
+    position: relative;
+    font-size: 1.1rem;
+    margin: 6px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.profile_update:hover {
+    background-color: #f5f7f8;
+
+}
+
+/* PROFILE ITEM */
+
+.col-9 {
+    margin-top: 6%;
+    text-align: start;
+}
+
+.profile_content {
+    padding: 50px 90px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.profile_account-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.account-list_item {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-right: 5%;
+}
+
+.account-list_item label {
+    font-weight: bold;
+}
+
+.account-list_item input {
+    flex: 1;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.form-select {
+    flex: 1;
+    margin-top: 10px;
+    padding: 10px;
+    border-color: #767676;
+    border-radius: 1px;
+}
+
+.form-select:focus {
+    border: none;
+}
+
+.btn-save {
+    padding: 10px 30px;
+    width: auto;
+}
+
+.the_line {
+    height: 0.5px;
+    width: 100%;
+    background-color: #e0e0e0;
+    margin: 20px 0;
+}
+
+.personal_email {
+    display: flex;
+    flex-direction: column;
+}
+
+.personal_email input {
+    flex: 1;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 1.1rem;
+}
+
+.profile_content h6 {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #1f1f1f;
+}
+
+.profile_content label {
+    margin-top: 6px;
+}
+
+.personal_password-list {
+    display: flex;
+}
+
+.profile_my-course {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #e5e5e5;
+    margin-bottom: 10px;
+}
+
+.profile_my-course__info {
+    margin-left: 15px;
+}
+
+.profile_my-course__info a {
+    color: #0d6efd;
+    font-size: 1.1rem;
+}
+
+.profile_my-course__info span {
+    font-size: 1rem;
+
+}
+
+.profile_my-course__info p {
+    margin: 0;
+}
+
+.id-card {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 10px;
+}
+
+.id-card h6 {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.id-card span {
+    font-size: 1.2rem;
+}
+
+.price-card {
+    margin-top: 10px;
+}
+
+.price-card span {
+    color: #0d6efd;
 }
