@@ -132,6 +132,9 @@
 							<ul class="cart-list">
 								<c:forEach var="giohang" items="${dsgiohang}">
 									<li class="cart-item">
+									    <input class="checkbox-item"
+										type="checkbox">
+
 										<div class="cart-item-container">
 											<div class="cart-item-info">
 												<div class="cart-item-img">
@@ -164,7 +167,8 @@
 
 											<div class="cart-item-action">
 												<div class="cart-item-delete">
-													<a href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
+													<a
+														href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
 													<a href="#">Lưu để sau</a>
 												</div>
 												<div class="cart-item-price">
@@ -176,8 +180,7 @@
 													</div>
 												</div>
 											</div>
-										</div>
-									</li>
+										</div></li>
 								</c:forEach>
 							</ul>
 						</div>
