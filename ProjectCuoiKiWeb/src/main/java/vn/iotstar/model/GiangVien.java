@@ -13,9 +13,17 @@ public class GiangVien extends NguoiDung {
 	{
 		return chuyennganh;
 	}
+	public GiangVien(String matkhau,int manguoidung)
+	{
+		super(matkhau,manguoidung);
+	}
 	public GiangVien(int manguoidung)
 	{
 		super(manguoidung);
+	}
+	public GiangVien()
+	{
+		
 	}
 	public  GiangVien (int manguoidung,String chuyennganh)
 	{

@@ -110,8 +110,9 @@
 														mật khẩu</span> <i class="fa-solid fa-lock"></i>
 											</a></li>
 
-											<li class="setting__item"><a href="#" onclick="testConfirmDialog()"> <span>Đăng
-														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
+											<li class="setting__item"><a href="#"
+												onclick="testConfirmDialog()"> <span>Đăng xuất</span> <i
+													class="fa-solid fa-right-to-bracket"></i>
 											</a></li>
 										</ul>
 									</div>
@@ -142,16 +143,16 @@
 							<h4>Wallet</h4>
 						</div>
 						<div class="id-card">
-							<h6>Mã thẻ: </h6>
+							<h6>Mã thẻ:</h6>
 							<span>${the.getMaThe()}</span>
 						</div>
 
 						<div class="id-card price-card">
-							<h6 >Số dư khả dụng:</h6>
+							<h6>Số dư khả dụng:</h6>
 							<span>${the.getSoDu()}$</span>
 						</div>
-						<a href="deposit" class="btn btn_main">
-							<i class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
+						<a href="deposit" class="btn btn_main"> <i
+							class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
 							tiền
 						</a>
 					</div>
@@ -176,49 +177,85 @@
 							<i class="fa-solid fa-plus"></i> Add additional info
 						</button>
 					</div>
-
-
 				</nav>
-
-
 				<article class="col-9">
 					<div class="profile_content">
 						<form action="myprofile" method="post">
 							<div class="profile_account">
 								<h6>Account</h6>
-								<ul class="profile_account-list">
-									<li class="account-list_item"><label for="username">Họ
-											và Tên:</label> <input type="text" id="username" name="username"
-										value="${thongtin.hoten}" disabled /></li>
-									<li class="account-list_item"><label for="username">Email:</label>
-										<input type="email" id="email" name="email"
-										value="${thongtin.email}" disabled /></li>
-									<li class="account-list_item"><label for="quocgia">Quốc
-											Gia</label> <input type="text" id="quocgia" name="quocgia"
-										value="${thongtin.quocgia}" disabled /></li>
-									<li class="account-list_item"><label for="username">Language</label>
-										<select class="form-select"
-										aria-label="Default select example">
-											<option selected>Language</option>
-											<option value="English">English</option>
-											<option value="VietNamese">VietNamese</option>
-									</select></li>
-									<li class="account-list_item"><label for="sdt">Số
-											Điện Thoại:</label> <input type="text" id="sdt" name="sdt"
-										value="${thongtin.sdt}" disabled /></li>
-									<li class="account-list_item"><label for="vungmien">Vùng
-											Miền:</label> <input type="text" id="vungmien" name="vungmien"
-										value="${thongtin.vungmien}" disabled /></li>
-									<li class="account-list_item"><label for="diachi">Địa
-											Chỉ:</label> <input type="text" id="diachi" name="diachi"
-										value="${thongtin.diachi}" disabled /></li>
-									<li class="account-list_item"><label for="loaitaikhoan">Loại
-											Tài Khoản</label> <input type="text" id="loaitaikhoan"
-										name="loaitaikhoan" value="${thongtin.loaitaikhoan}" disabled /></li>
-									<li class="account-list_item"><label for="trinhdo">Trình
-											Độ</label> <input type="text" id="trinhdo" name="trinhdo"
-										value="${thongtin.trinhdo}" disabled /></li>
-								</ul>
+								<c:choose>
+									<c:when test="${not empty hocvien.manguoidung}">
+										<ul class="profile_account-list">
+											<li class="account-list_item"><label for="username">Họ
+													và Tên:</label> <input type="text" id="username" name="username"
+												value="${thongtin.hoten}" disabled /></li>
+											<li class="account-list_item"><label for="username">Email:</label>
+												<input type="email" id="email" name="email"
+												value="${thongtin.email}" disabled /></li>
+											<li class="account-list_item"><label for="quocgia">Quốc
+													Gia</label> <input type="text" id="quocgia" name="quocgia"
+												value="${thongtin.quocgia}" disabled /></li>
+											<li class="account-list_item"><label for="username">Language</label>
+												<select class="form-select"
+												aria-label="Default select example">
+													<option selected>Language</option>
+													<option value="English">English</option>
+													<option value="VietNamese">VietNamese</option>
+											</select></li>
+											<li class="account-list_item"><label for="sdt">Số
+													Điện Thoại:</label> <input type="text" id="sdt" name="sdt"
+												value="${thongtin.sdt}" disabled /></li>
+											<li class="account-list_item"><label for="vungmien">Vùng
+													Miền:</label> <input type="text" id="vungmien" name="vungmien"
+												value="${thongtin.vungmien}" disabled /></li>
+											<li class="account-list_item"><label for="diachi">Địa
+													Chỉ:</label> <input type="text" id="diachi" name="diachi"
+												value="${thongtin.diachi}" disabled /></li>
+											<li class="account-list_item"><label for="loaitaikhoan">Loại
+													Tài Khoản</label> <input type="text" id="loaitaikhoan"
+												name="loaitaikhoan" value="${thongtin.loaitaikhoan}"
+												disabled /></li>
+											<li class="account-list_item"><label for="trinhdo">Trình
+													Độ</label> <input type="text" id="trinhdo" name="trinhdo"
+												value="${thongtin.trinhdo}" disabled /></li>
+										</ul>
+									</c:when>
+									<c:otherwise>
+										<ul class="profile_account-list">
+											<li class="account-list_item"><label for="username">Họ
+													và Tên:</label> <input type="text" id="username" name="username"
+												value="${thongtin.hoten}" disabled /></li>
+											<li class="account-list_item"><label for="username">Email:</label>
+												<input type="email" id="email" name="email"
+												value="${thongtin.email}" disabled /></li>
+											<li class="account-list_item"><label for="quocgia">Quốc
+													Gia</label> <input type="text" id="quocgia" name="quocgia"
+												value="${thongtin.quocgia}" disabled /></li>
+											<li class="account-list_item"><label for="username">Language</label>
+												<select class="form-select"
+												aria-label="Default select example">
+													<option selected>Language</option>
+													<option value="English">English</option>
+													<option value="VietNamese">VietNamese</option>
+											</select></li>
+											<li class="account-list_item"><label for="sdt">Số
+													Điện Thoại:</label> <input type="text" id="sdt" name="sdt"
+												value="${thongtin.sdt}" disabled /></li>
+											<li class="account-list_item"><label for="vungmien">Vùng
+													Miền:</label> <input type="text" id="vungmien" name="vungmien"
+												value="${thongtin.vungmien}" disabled /></li>
+											<li class="account-list_item"><label for="diachi">Địa
+													Chỉ:</label> <input type="text" id="diachi" name="diachi"
+												value="${thongtin.diachi}" disabled /></li>
+											<li class="account-list_item"><label for="chuyennganh">Chuyên Ngành</label> <input type="text"
+												name="chuyennganh" id="chuyennganh" value="${thongtin.chuyennganh}"
+												disabled /></li>
+											<li class="account-list_item"><label for="trinhdo">Trình
+													Độ</label> <input type="text" id="trinhdo" name="trinhdo"
+												value="${thongtin.trinhdo}" disabled /></li>
+										</ul>
+									</c:otherwise>
+								</c:choose>
 								<input id="save" type="submit" class="btn btn_main btn-save"
 									value="Save" disabled /> <input id="change" type="button"
 									class="btn btn_main btn-save" style="margin: 20px"

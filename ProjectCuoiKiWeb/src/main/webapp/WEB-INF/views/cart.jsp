@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Giỏ hàng</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -164,7 +164,8 @@
 
 											<div class="cart-item-action">
 												<div class="cart-item-delete">
-													<a href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
+													<a
+														href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
 													<a href="#">Lưu để sau</a>
 												</div>
 												<div class="cart-item-price">
@@ -187,8 +188,10 @@
 				<div class="cart-col-3 col-3">
 					<div class="cart-pay">
 						<span>Tổng:</span>
-						<h2>9999$</h2>
-						<button class="btn btn-primary btn-buy">Thanh Toán</button>
+						<h2>$${tonggiatien}</h2>
+						<a href="paycartinfo">
+							<button class="btn btn-primary btn-buy" type="submit")">Thanh Toán</button>
+						</a>
 						<p>Khuyến mãi</p>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control"
@@ -294,7 +297,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-   <script>
+	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");
 			ReloadAlert("${thongbaoxoa}");

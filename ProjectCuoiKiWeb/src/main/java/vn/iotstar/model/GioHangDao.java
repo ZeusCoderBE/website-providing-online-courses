@@ -1,10 +1,11 @@
 package vn.iotstar.model;
 
-import java.sql.ResultSet;
+import java.sql.*;
 import java.sql.SQLException;
 import java.util.*;
 
 import vn.iotstar.database.DataBaseConnection;
+import vn.iotstar.model.KhoaHoc;
 
 public class GioHangDao {
 	DataBaseConnection dbC = new DataBaseConnection();
@@ -36,6 +37,13 @@ public class GioHangDao {
 			return null;
 		}
 	}
+	public double SumCostOfCourse(List<GioHang> dsgiohang) throws ClassNotFoundException, SQLException {
+		double sumCost = 0;
+		for (GioHang gh: dsgiohang) {
+			sumCost += gh.getKhoahoc().getGiatien();
+		}
+		return sumCost;
+	}
 	public List<GioHang> GetTopMyCart(int manguoidung) throws ClassNotFoundException, SQLException {
 		GioHang giohang = new GioHang();
 		String query = "select Top 3 * From v_XemGioHang where MaNguoiDung=" + manguoidung + "";
@@ -50,7 +58,13 @@ public class GioHangDao {
 		}
 		return dsgiohang;
 	}
-
+	public List<KhoaHoc> GetCourseList(List<GioHang> dsgiohang) {
+		List<KhoaHoc> dskhoahoc = new ArrayList<KhoaHoc>();
+		for (GioHang gh: dsgiohang) {
+			dskhoahoc.add(gh.getKhoahoc());
+		}
+		return dskhoahoc;
+	}
 	public int InsertCourseCart(GioHang gh) {
 		String dml = "insert into GioHang(MaNguoiDung,MaKhoaHoc)\r\n" + "values(" + gh.getHocvien().getManguoidung()
 				+ "," + gh.getKhoahoc().getMakhoahoc() + ")";

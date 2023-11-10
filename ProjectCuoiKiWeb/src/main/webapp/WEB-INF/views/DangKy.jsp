@@ -54,12 +54,12 @@
 							<div class="form-login-input">
 								<label for="loaitk">Loại Tài Khoản </label>
 							</div>
+							<input type="checkbox" name="tkgiaovien" id="tkgiaovien"
+								name="tkgiaovien" onchange="handleCheckboxChange(this)">
 							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
-								name="tkgiaovien" id="tkgiaovien" name="tkgiaovien"
-								onchange="handleCheckboxChange(this)"> <label
-								for="Tkhocvien">Học Viên</label> <input type="checkbox"
 								name="tkhocvien" id="tkhocvien" name="tkhocvien"
-								onchange="handleCheckboxChange(this)">
+								onchange="handleCheckboxChange(this)"> <label
+								for="Tkhocvien">Học Viên</label>
 
 							<button class="btn" type="submit">Sign Up</button>
 							<div class="form-login-policy">
