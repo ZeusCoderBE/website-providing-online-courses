@@ -47,12 +47,12 @@ public class SignInController {
 			@RequestParam("Password") String password,
 			@RequestParam(value = "tkgiangvien", required = false, defaultValue = "null") String tkhocvien) throws ClassNotFoundException, SQLException
 	{
-		HttpSession session =rq.getSession();
+		HttpSession session = rq.getSession();
 		GiangVien gv=new GiangVien();
 		boolean check=gvD.CheckDNGiangVien(email, password);
 		if(check==false)
 		{
-			model.addAttribute("loidangnhap","Bạn Nhập Tài Khoản Hoặc Mật Khẩu Chưa Đúng");
+			model.addAttribute("loidangnhap", "Bạn Nhập Tài Khoản Hoặc Mật Khẩu Chưa Đúng");
 			return "SignIn";
 		}
 		else

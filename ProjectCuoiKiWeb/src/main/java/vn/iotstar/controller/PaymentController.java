@@ -19,11 +19,11 @@ public class PaymentController {
 	private List<KhoaHoc> dsKhoahoc;
 	private List<GioHang> dsgiohang;
 	private GioHangDao ghd = new GioHangDao();
-	HocVienDao hvD=new HocVienDao();
-	KhoaHocDao khD= new KhoaHocDao();
 	GiangVienDao gvD=new GiangVienDao();
-	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET, params = "makhoahoc")
-	public String payCourseInfo(ModelMap model, HttpSession session, @RequestParam("makhoahoc") String makh) {
+	
+	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET)
+	public String payCourseInfo(ModelMap model, HttpSession session, @RequestParam(value="makhoahoc", required = false, defaultValue = "null") String makh) {
+		HocVienDao hvD=new HocVienDao();
 		KhoaHocDao khd = new KhoaHocDao();
 		ThanhToanDao ttd = new ThanhToanDao();
 		TheDao td = new TheDao();
@@ -31,15 +31,19 @@ public class PaymentController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		List<KhoaHoc> ListKH = null;
 		try {
-			// Lấy tên khóa học
-			dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
+
+			if (makh.equals("null")) {
+				dsgiohang = (List<GioHang>) session.getAttribute("dsgiohang");
+				dsKhoahoc = ghd.GetCourseList(dsgiohang);
+			}
+			else {
+				dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
+			}			
 			the = td.getAThe(hv.getManguoidung());
 			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
 			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
 			model.addAttribute("the", the);
 			model.addAttribute("noidungtt", ttd.NoiDungThanhToan(dsKhoahoc));
-			ListKH = khD.GetListCourses();
-			model.addAttribute("danhsachkh", ListKH);
 			List<GioHang> dsgiohang = new ArrayList<GioHang>();
 			dsgiohang = ghd.GetTopMyCart(hv.getManguoidung());
 			GioHang gh = ghd.CountCourse(hv.getManguoidung());
@@ -58,37 +62,14 @@ public class PaymentController {
 		}
 		return "pay";
 	}
-	@RequestMapping(value = "/paycartinfo", method = RequestMethod.GET)
-	public String payCartInfo(ModelMap model, HttpSession session) {
-		dsgiohang = (List<GioHang>) session.getAttribute("dsgiohang");
-		ThanhToanDao ttd = new ThanhToanDao();
-		TheDao td = new TheDao();
-		dsKhoahoc = ghd.GetCourseList(dsgiohang);
-		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		ghd.DeleteCoursesIntoCart(dsKhoahoc,hv.getManguoidung());
-		try {
-			// Lấy tên khóa học
-			the = td.getAThe(hv.getManguoidung());
-			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
-			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
-			model.addAttribute("the", the);
-			model.addAttribute("noidungtt", ttd.NoiDungThanhToan(dsKhoahoc));
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			System.out.print(e.getMessage());
-			e.printStackTrace();
-		} catch (SQLException e) {
-			System.out.print(e.getMessage());
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "pay";
-	}
 
 	@RequestMapping(value = "paycourses", method = RequestMethod.POST)
 	public String payCart(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		//dsgiohang = (List<GioHang>) session.getAttribute("dsgiohang");
 		ThanhToanDao ttd = new ThanhToanDao();
+		//dsKhoahoc = ghd.GetCourseList(dsgiohang);
+
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {
@@ -102,7 +83,6 @@ public class PaymentController {
 				 gvD.UpdateofCardTeacher(khoahoc);
 			}
 			model.addAttribute("warning", "Thanh toán thành công!");
-			ghd.DeleteCoursesIntoCart(dsKhoahoc,hv.getManguoidung());
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

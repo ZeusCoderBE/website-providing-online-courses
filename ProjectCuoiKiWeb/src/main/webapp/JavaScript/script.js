@@ -220,3 +220,8 @@ function confirmPay(diff) {
 		}
 	}
 }
+function createLessonFaied(warning) {
+	if (warning != "" && warning != null) {
+		alert(warning);
+	}
+}

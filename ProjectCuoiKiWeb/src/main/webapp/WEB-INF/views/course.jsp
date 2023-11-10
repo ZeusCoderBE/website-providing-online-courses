@@ -117,8 +117,6 @@
 				</div>
 			</div>
 		</header>
-
-		<<<<<<< HEAD
 		<section class="main">
 			<div class="row">
 				<nav class="col-2">
@@ -142,8 +140,8 @@
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
-										href="FindDocuments?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span>
-									</a>
+										href="FindDocuments?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
+										<!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<div class="my-lesson__buy">
 												<a href="#" style="padding: 0 4px;" class="link-buy">Edit</a>
@@ -156,6 +154,12 @@
 							</ul>
 						</div>
 						<div class="nav_drawer home_file">
+                            <a href="#">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>lịch</span>
+                            </a>
+                        </div> 
+						<div class="nav_drawer home_file">
 							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
 							</a>
 						</div>
@@ -165,9 +169,17 @@
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-regular fa-file"></i> <span>Notes</span>
+							<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
+								class="fa-regular fa-file"></i> <span>Create Lesson</span>
 							</a>
 						</div>
+						<%-- <c:if test="${not empty giangvien.manguoidung}">
+							<div class="nav_drawer home_file">
+								<a href="edit-lesson-tool"> <i class="fa-regular fa-file"></i>
+									<span>Create Lesson</span>
+								</a>
+							</div>
+						</c:if> --%>
 						<div class="nav_drawer home_file">
 							<a href="upload.html"> <i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
@@ -182,341 +194,222 @@
 							</a>
 						</div>
 					</div>
-
 				</nav>
-
-				<article class="col-10">
-					<div class="page_study">
-						<div class="branding-inner">
-							<div class="course_name">SSRF là gì? Cách phát hiện và ngăn
-								chặn tấn công yêu cầu giả mạo từ phía máy chủ</div>
-							<div class="date_course">
-								<span>Đã đăng vào :</span> <span> thg 11 29, 2018 3:12</span>
-							</div>
-						</div>
-
-						<div class="content">
-							<div class="content_text">
-								<div class="content_item">
-									<div class="content_header">
-										<div>Nội dung bài học</div>
-										<div class="content_progress">
-											<i class="fa-solid fa-check"></i> <span>Complete</span>
+				<c:choose>
+					<c:when test="${not empty lesson}">
+						<article class="col-10">
+							<div class="page_study">
+								<div class="branding-inner">
+									<div class="course_name">${lesson.tenbaihoc}</div>
+									<div class="date_course">
+										<span>Đã đăng vào :</span> <span> ${lesson.ngaydang} *
+										</span> <span>Thời lượng :</span> <span>
+											${lesson.thoigianhoanthanh} phút</span>
+									</div>
+								</div>
+								<div class="content">
+									<div class="content_text">
+										<div class="content_item">
+											<div class="content_header">
+												<div>Nội dung bài học</div>
+												<div class="content_progress">
+													<i class="fa-solid fa-check"></i><span>Complete</span>
+												</div>
+											</div>
+											<div class="content_main">
+												<div class="container_content">${lesson.noidungbaihoc}</div>
+											</div>
 										</div>
 									</div>
-									<div class="content_main">
-										<div class="container_content">
-											<p>Hôm nay chúng ta cùng đi tìm hiểu SSRF (Server Side
-												Request Forgery) là gì, cách phát hiện và ngăn chặn tấn công
-												yêu cầu giả mạo từ phía máy chủ qua bài viết dưới đây.</p>
-											<h6 style="font-weight: bold;">SSRF là gì?</h6>
-											<p>SSRF (Server Side Request Forgery) hay còn gọi là tấn
-												công yêu cầu giả mạo từ phía máy chủ cho phép kẻ tấn công
-												thay đổi tham số được sử dụng trên ứng dụng web để tạo hoặc
-												kiểm soát các yêu cầu từ máy chủ dễ bị tấn công.</p>
-											<p style="text-align: center;">
-												<img
-													src="https://images.viblo.asia/f327c4f3-5fb4-4eef-b72a-45b43026d8b7.jpg"
-													alt="hacker">
-											</p>
-											<p>
-												Khi thông tin trong một ứng dụng web phải được lấy từ một
-												tài nguyên bên ngoài, chẳng hạn như nguồn cấp dữ liệu RSS từ
-												một trang web khác, các yêu cầu phía máy chủ được sử dụng để
-												tìm nạp tài nguyên và đưa nó vào ứng dụng web. <br> Ví
-												dụ, một nhà phát triển có thể sử dụng một URL như
-												https://example.com/feed.php?url=externalsite.com/feed/ để
-												lấy nguồn cấp dữ liệu từ xa. Nếu kẻ tấn công có thể thay đổi
-												tham số url thành localhost, thì anh ta có thể xem các tài
-												nguyên cục bộ được lưu trữ trên máy chủ, làm cho nó dễ bị
-												tấn công bởi yêu cầu giả mạo từ phía máy chủ.
-											</p>
-											<h6 style="font-weight: bold;">Nếu kẻ tấn công có thể
-												kiểm soát đích của các yêu cầu phía máy chủ, chúng có thể
-												thực hiện các hành động sau:</h6>
-											<ul>
-												<li>Lạm dụng mối quan hệ tin cậy giữa máy chủ dễ bị tổn
-													thương và những người khác.</li>
-												<li>Bỏ qua danh sách trắng IP.</li>
-												<li>Bỏ qua dịch vụ xác thực dựa trên máy chủ.</li>
-												<li>Đọc tài nguyên mà công chúng không thể truy cập,
-													chẳng hạn như trace.axd trong ASP.NET hoặc siêu dữ liệu API
-													trong môi trường AWS.</li>
-												<li>Quét mạng nội bộ mà máy chủ được kết nối đến.</li>
-												<li>Đọc tệp từ máy chủ web.</li>
-												<li>Xem trang trạng thái và tương tác với các API như
-													máy chủ web.</li>
+								</div>
+							</div>
+							<!-- NOTES -->
+							<div class="page-note page-common">
+								<div class="page-content">
+									<h2>Notes</h2>
+									<div class="page-content-filter">
+										<h5>Filter</h5>
+										<select class="form-select"
+											aria-label="Default select example">
+											<option selected>All notes</option>
+											<option value="1">Introduction to Image and Video
+												Processing</option>
+											<option value="2">Signals and Systems</option>
+											<option value="3">Fourier Transform and Sampling</option>
+											<option value="4">Introduction to Image and Video
+												Processing</option>
+											<option value="5">Signals and Systems</option>
+											<option value="6">Fourier Transform and Sampling</option>
+										</select>
+									</div>
+
+									<div class="page-note-icon">
+										<img
+											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
+											alt="book"> <img
+											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg"
+											alt="book">
+									</div>
+
+									<div class="page-notice">You have not added any notes
+										yet. Notes can be created from video pages.</div>
+								</div>
+							</div>
+
+							<!-- Forum -->
+							<div class="page-forum page-common">
+								<div class="page-content">
+									<h2>Forum</h2>
+									<div class="page-content-form">
+										<input class="form-control" type="text"
+											placeholder="Search Forum" />
+										<button class="btn btn-primary">Search</button>
+										<button class="btn btn-outline-primary">Create Post</button>
+									</div>
+									<div class="page-title">
+										<div class="page-title-item">
+											<h6>Posts for you</h6>
+											<ul class="page-title-list">
+												<li class="title-item">
+													<div class="title-hook">Week2</div>
+													<h5 class="title-item-content">
+														<a href="#">Why the rational number condition for
+															discrete complex periodic signals?</a>
+													</h5>
+													<div>
+														<span>In the "Complex Exponential Signals" video,
+															it was mentioned that 2*pi/omega has to be a rational
+															number for the complex exponential to be periodic. Why
+															does it h...</span>
+													</div>
+													<div class="page-title-action">
+														<div class="page-active">
+															<i class="fa-solid fa-thumbs-up"></i>
+															<div>Like 5</div>
+														</div>
+														<div class="page-active">
+															<i class="fa-solid fa-reply"></i>
+															<div>Reply 2</div>
+														</div>
+													</div>
+												</li>
+												<li class="title-item">
+													<div class="title-hook">Week2</div>
+													<h5 class="title-item-content">
+														<a href="#">Why the rational number condition for
+															discrete complex periodic signals?</a>
+													</h5>
+													<div>
+														<span>In the "Complex Exponential Signals" video,
+															it was mentioned that 2*pi/omega has to be a rational
+															number for the complex exponential to be periodic. Why
+															does it h...</span>
+													</div>
+													<div class="page-title-action">
+														<div class="page-active">
+															<i class="fa-solid fa-thumbs-up"></i>
+															<div>Like 5</div>
+														</div>
+														<div class="page-active">
+															<i class="fa-solid fa-reply"></i>
+															<div>Reply 2</div>
+														</div>
+													</div>
+												</li>
 											</ul>
 										</div>
 									</div>
+									<div class="page-note-icon">
+										<img
+											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
+											alt="book"> <img
+											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg"
+											alt="book">
+									</div>
+
+									<div class="page-notice">You have not added any notes
+										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
 
-						</div>
-					</div>
-					<!-- NOTES -->
-					<div class="page-note page-common">
-						<div class="page-content">
-							<h2>Notes</h2>
-							<div class="page-content-filter">
-								<h5>Filter</h5>
-								<select class="form-select" aria-label="Default select example">
-									<option selected>All notes</option>
-									<option value="1">Introduction to Image and Video
-										Processing</option>
-									<option value="2">Signals and Systems</option>
-									<option value="3">Fourier Transform and Sampling</option>
-									<option value="4">Introduction to Image and Video
-										Processing</option>
-									<option value="5">Signals and Systems</option>
-									<option value="6">Fourier Transform and Sampling</option>
-								</select>
-							</div>
+							<!-- Messages -->
+							<div class="page-message page-common">
+								<div class="page-content">
+									<h2>Messages</h2>
 
-							<div class="page-note-icon">
-								<img
-									src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
-									alt="book"> <img
-									src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg"
-									alt="book">
-							</div>
-
-							<div class="page-notice">You have not added any notes yet.
-								Notes can be created from video pages.</div>
-						</div>
-					</div>
-
-					<!-- Forum -->
-					<div class="page-forum page-common">
-						<div class="page-content">
-							<h2>Forum</h2>
-							<div class="page-content-form">
-								<input class="form-control" type="text"
-									placeholder="Search Forum" />
-								<button class="btn btn-primary">Search</button>
-								<button class="btn btn-outline-primary">Create Post</button>
-							</div>
-							<div class="page-title">
-								<div class="page-title-item">
-									<h6>Posts for you</h6>
-									<ul class="page-title-list">
-										<li class="title-item">
-											<div class="title-hook">Week2</div>
-											<h5 class="title-item-content">
-												<a href="#">Why the rational number condition for
-													discrete complex periodic signals?</a>
-											</h5>
-											<div>
-												<span>In the "Complex Exponential Signals" video, it
-													was mentioned that 2*pi/omega has to be a rational number
-													for the complex exponential to be periodic. Why does it
-													h...</span>
-											</div>
-											<div class="page-title-action">
-												<div class="page-active">
-													<i class="fa-solid fa-thumbs-up"></i>
-													<div>Like 5</div>
-												</div>
-												<div class="page-active">
-													<i class="fa-solid fa-reply"></i>
-													<div>Reply 2</div>
-												</div>
-											</div>
-										</li>
-										<li class="title-item">
-											<div class="title-hook">Week2</div>
-											<h5 class="title-item-content">
-												<a href="#">Why the rational number condition for
-													discrete complex periodic signals?</a>
-											</h5>
-											<div>
-												<span>In the "Complex Exponential Signals" video, it
-													was mentioned that 2*pi/omega has to be a rational number
-													for the complex exponential to be periodic. Why does it
-													h...</span>
-											</div>
-											<div class="page-title-action">
-												<div class="page-active">
-													<i class="fa-solid fa-thumbs-up"></i>
-													<div>Like 5</div>
-												</div>
-												<div class="page-active">
-													<i class="fa-solid fa-reply"></i>
-													<div>Reply 2</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="page-note-icon">
-								<img
-									src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
-									alt="book"> <img
-									src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg"
-									alt="book">
-							</div>
-
-							<div class="page-notice">You have not added any notes yet.
-								Notes can be created from video pages.</div>
-						</div>
-					</div>
-
-					<!-- Messages -->
-					<div class="page-message page-common">
-						<div class="page-content">
-							<h2>Messages</h2>
-
-							<div class="page-title">
-								<div class="page-title-item">
-									<ul class="page-title-list">
-										<li class="title-item">
-											<div class="title-message">
-												<i class="fa-solid fa-comment-dots"></i>
-											</div>
-											<h5 class="title-item-content">
-												<a href="#">Why the rational number condition for
-													discrete complex periodic signals?</a>
-											</h5>
-											<div>
-												<span>In the "Complex Exponential Signals" video, it
-													was mentioned that 2*pi/omega has to be a rational number
-													for the complex exponential to be periodic. Why does it
-													h...</span>
-											</div>
-											<div class="page-title-action">
-												<div class="page-active">
-													<i class="fa-solid fa-thumbs-up"></i>
-													<div>Like 5</div>
-												</div>
-												<div class="page-active">
-													<i class="fa-solid fa-reply"></i>
-													<div>Reply 2</div>
-												</div>
-											</div>
-										</li>
-										<li class="title-item">
-											<div class="title-hook">Week2</div>
-											<h5 class="title-item-content">
-												<a href="#">Why the rational number condition for
-													discrete complex periodic signals?</a>
-											</h5>
-											<div>
-												<span>In the "Complex Exponential Signals" video, it
-													was mentioned that 2*pi/omega has to be a rational number
-													for the complex exponential to be periodic. Why does it
-													h...</span>
-											</div>
-											<div class="page-title-action">
-												<div class="page-active">
-													<i class="fa-solid fa-thumbs-up"></i>
-													<div>Like 5</div>
-												</div>
-												<div class="page-active">
-													<i class="fa-solid fa-reply"></i>
-													<div>Reply 2</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<div class="page-note-icon">
-								<img
-									src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
-									alt="book"> <img
-									src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg"
-									alt="book">
-							</div>
-
-							<div class="page-notice">You have not added any notes yet.
-								Notes can be created from video pages.</div>
-						</div>
-					</div>
-				</article>
-			</div>
-		</section>
-		<footer class="footer">
-			</nav>
-			<c:choose>
-				<c:when test="${not empty lesson}">
-					<article class="col-10">
-						<div class="page_study">
-							<div class="branding-inner">
-								<div class="course_name">SSRF là gì? Cách phát hiện và
-									ngăn chặn tấn công yêu cầu giả mạo từ phía máy chủ</div>
-								<div class="date_course">
-									<span>Đã đăng vào :</span> <span> thg 11 29, 2018 3:12</span>
-								</div>
-							</div>
-
-							<div class="content">
-								<div class="content_text">
-									<div class="content_item">
-										<div class="content_header">
-											<div>Nội dung bài học</div>
-											<div class="content_progress">
-												<i class="fa-solid fa-check"></i> <span>Complete</span>
-											</div>
-										</div>
-										<div class="content_main">
-											<div class="container_content">
-												<p>Hôm nay chúng ta cùng đi tìm hiểu SSRF (Server Side
-													Request Forgery) là gì, cách phát hiện và ngăn chặn tấn
-													công yêu cầu giả mạo từ phía máy chủ qua bài viết dưới đây.</p>
-												<h6 style="font-weight: bold;">SSRF là gì?</h6>
-												<p>SSRF (Server Side Request Forgery) hay còn gọi là tấn
-													công yêu cầu giả mạo từ phía máy chủ cho phép kẻ tấn công
-													thay đổi tham số được sử dụng trên ứng dụng web để tạo hoặc
-													kiểm soát các yêu cầu từ máy chủ dễ bị tấn công.</p>
-												<p style="text-align: center;">
-													<video width="640" height="360" controls>
-														<source src="./templates/ResourceVideo/${lesson.duongdan}"
-															type="video/mp4"></source>
-													</video>
-												</p>
-												<p>
-													Khi thông tin trong một ứng dụng web phải được lấy từ một
-													tài nguyên bên ngoài, chẳng hạn như nguồn cấp dữ liệu RSS
-													từ một trang web khác, các yêu cầu phía máy chủ được sử
-													dụng để tìm nạp tài nguyên và đưa nó vào ứng dụng web. <br>
-													Ví dụ, một nhà phát triển có thể sử dụng một URL như
-													https://example.com/feed.php?url=externalsite.com/feed/ để
-													lấy nguồn cấp dữ liệu từ xa. Nếu kẻ tấn công có thể thay
-													đổi tham số url thành localhost, thì anh ta có thể xem các
-													tài nguyên cục bộ được lưu trữ trên máy chủ, làm cho nó dễ
-													bị tấn công bởi yêu cầu giả mạo từ phía máy chủ.
-												</p>
-												<h6 style="font-weight: bold;">Nếu kẻ tấn công có thể
-													kiểm soát đích của các yêu cầu phía máy chủ, chúng có thể
-													thực hiện các hành động sau:</h6>
-												<ul>
-													<li>Lạm dụng mối quan hệ tin cậy giữa máy chủ dễ bị
-														tổn thương và những người khác.</li>
-													<li>Bỏ qua danh sách trắng IP.</li>
-													<li>Bỏ qua dịch vụ xác thực dựa trên máy chủ.</li>
-													<li>Đọc tài nguyên mà công chúng không thể truy cập,
-														chẳng hạn như trace.axd trong ASP.NET hoặc siêu dữ liệu
-														API trong môi trường AWS.</li>
-													<li>Quét mạng nội bộ mà máy chủ được kết nối đến.</li>
-													<li>Đọc tệp từ máy chủ web.</li>
-													<li>Xem trang trạng thái và tương tác với các API như
-														máy chủ web.</li>
-												</ul>
-											</div>
+									<div class="page-title">
+										<div class="page-title-item">
+											<ul class="page-title-list">
+												<li class="title-item">
+													<div class="title-message">
+														<i class="fa-solid fa-comment-dots"></i>
+													</div>
+													<h5 class="title-item-content">
+														<a href="#">Why the rational number condition for
+															discrete complex periodic signals?</a>
+													</h5>
+													<div>
+														<span>In the "Complex Exponential Signals" video,
+															it was mentioned that 2*pi/omega has to be a rational
+															number for the complex exponential to be periodic. Why
+															does it h...</span>
+													</div>
+													<div class="page-title-action">
+														<div class="page-active">
+															<i class="fa-solid fa-thumbs-up"></i>
+															<div>Like 5</div>
+														</div>
+														<div class="page-active">
+															<i class="fa-solid fa-reply"></i>
+															<div>Reply 2</div>
+														</div>
+													</div>
+												</li>
+												<li class="title-item">
+													<div class="title-hook">Week2</div>
+													<h5 class="title-item-content">
+														<a href="#">Why the rational number condition for
+															discrete complex periodic signals?</a>
+													</h5>
+													<div>
+														<span>In the "Complex Exponential Signals" video,
+															it was mentioned that 2*pi/omega has to be a rational
+															number for the complex exponential to be periodic. Why
+															does it h...</span>
+													</div>
+													<div class="page-title-action">
+														<div class="page-active">
+															<i class="fa-solid fa-thumbs-up"></i>
+															<div>Like 5</div>
+														</div>
+														<div class="page-active">
+															<i class="fa-solid fa-reply"></i>
+															<div>Reply 2</div>
+														</div>
+													</div>
+												</li>
+											</ul>
 										</div>
 									</div>
+									<div class="page-note-icon">
+										<img
+											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
+											alt="book"> <img
+											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_highlight.svg"
+											alt="book">
+									</div>
+
+									<div class="page-notice">You have not added any notes
+										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-						</div>
-					</article>
-				</c:when>
-			</c:choose>
+						</article>
+					</c:when>
+				</c:choose>
+			</div>
+		</section>
 	</div>
-	</section>
-
 	<footer class="footer"> </footer>
-	</div>
 	<script src="./templates/JavaScript/script.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

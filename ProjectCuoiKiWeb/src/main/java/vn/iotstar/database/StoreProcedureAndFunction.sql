@@ -191,9 +191,8 @@ begin
 end
 Go
 
-go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE Or Alter PROC sp_XemDanhSachBaiHoc
+CREATE OR Alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin

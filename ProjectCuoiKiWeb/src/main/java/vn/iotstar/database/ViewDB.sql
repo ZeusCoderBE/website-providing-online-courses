@@ -11,6 +11,7 @@ as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien 
 join BIENSOAN on GIANGVIEN.MaGiangVien=BIENSOAN.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc=BIENSOAN.MaKhoaHoc
 Go
+
 -- Xem Giỏ Hàng
 Create Or Alter View v_XemGioHang
 as 
@@ -30,10 +31,11 @@ select GIANGVIEN.MaGiangVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 Go
 -- Xem Danh Sách Tài Liệu dạng video đính kèm
 Create Or Alter View v_xemdanhsachtailieu as
-select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,KHOAHOC.MaKhoaHoc,DuongDanLuuTru From DINHKEM
+select BaiHoc.*,DuongDanLuuTru 
+From DINHKEM
 join TAILIEU
 on TAILIEU.MaTaiLieu=DINHKEM.MaTaiLieu 
-join BAIHOC 
+right join BAIHOC 
 on BAIHOC.MaBaiHoc=DINHKEM.MaBaiHoc
 join KHOAHOC
 on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
