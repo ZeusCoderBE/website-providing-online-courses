@@ -347,9 +347,11 @@
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");
 			ReloadAlert("${thongbaoxoa}");
+			ReloadAlert("${thongbaott}");
 		}
 	</script>
 	<c:set var="thongbaothemgiohang" value="${null}" scope="request"></c:set>
 	<c:set var="thongbaoxoa" value="${null}" scope="request"></c:set>
+	<c:set var="thongbaott" value="${null}" scope="request"></c:set>
 </body>
 </html>

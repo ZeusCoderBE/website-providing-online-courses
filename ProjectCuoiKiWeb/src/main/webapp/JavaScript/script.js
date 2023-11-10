@@ -92,18 +92,6 @@ function validateForm() {
 	}
 	return true;
 }
-function SelectedCourse()
-{
-	var count=document.getElementById("selectedCourses");
-	if(!count.checked)
-	{
-		alert("Bạn phải chọn ít nhất một khoá học để thanh toán")
-		return false;	
-	}
-	
-	return true;
-}
-
 function testConfirmDialog() {
 	var result = confirm("Bạn chắc chắc có muốn đăng xuất không");
 	if (result == true) {
