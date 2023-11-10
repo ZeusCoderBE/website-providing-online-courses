@@ -1,3 +1,6 @@
+body {
+	overflow-x: hidden;
+}
 
 .branding-inner {
     margin-top: 20px;
