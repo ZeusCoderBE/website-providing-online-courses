@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,9 +81,14 @@
 	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaodung}");
-			ReloadAlert("${loidangnhap}")
+			ReloadAlert("${loidangnhap}");
+			ReloadAlert("${thongbaodoipass}");
+			ReloadAlert("${thongtinsai}");
 		}
 	</script>
-
+	<c:set var="thongbaodung" value="${null}"></c:set>
+	<c:set var="loidangnhap" value="${null}"></c:set>
+	<c:set var="thongbaodoipass" value="${null}"></c:set>
+	<c:set var="thongtinsai" value="${null}"></c:set>
 </body>
 </html>

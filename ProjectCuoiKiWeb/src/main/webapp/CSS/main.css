@@ -141,11 +141,12 @@
 body {
     background-color: #eef2f8;
     font-family: "Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    color: #6d727c;
+    /* color: #6d727c; */
+    color: black;
     font-size: 14px;
     box-sizing: border-box;
     text-align: center;
-    width: 100vw;
+    overflow-x: hidden;
 }
 
 ul {

@@ -1,16 +1,12 @@
 package vn.iotstar.controller;
-
 import vn.iotstar.model.*;
-
 import java.sql.SQLException;
 import java.util.*;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -27,31 +23,17 @@ public class ProfileController {
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		HocVien hocvien = new HocVien();
 		GiangVien giangvien = new GiangVien();
-		if (hv != null) {
-			hocvien = hvD.TimThongTinDN(hv.getEmail());
-		}
-		if (gv != null) {
-			giangvien = gvD.TimThongTinDN(gv.getEmail());
-		}
-		if (gv == null && hocvien.getEmail() != null) {
-			The the = tD.getAThe(hv.getManguoidung());
-			model.addAttribute("thongtin", hocvien);
-			model.addAttribute("the", the);
-		} else if (gv == null && hocvien.getEmail() == null) {
-			The the = tD.getAThe(hv.getManguoidung());
+		if (hv != null && gv == null) {
 			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-			model.addAttribute("the", the);
+			The the = tD.getAThe(hv.getManguoidung());
 			model.addAttribute("thongtin", hocvien);
-		} else if (hv == null && giangvien.getEmail() != null) {
-			The the = tD.getAThe(gv.getManguoidung());
-			model.addAttribute("thongtin", giangvien);
 			model.addAttribute("the", the);
-		} else if (hv == null && giangvien.getEmail() == null) {
-			The the = tD.getAThe(gv.getManguoidung());
+		} else if (gv != null && hv == null) {
+			giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+			The the = tD.getAThe(giangvien.getManguoidung());
 			model.addAttribute("thongtin", giangvien);
 			model.addAttribute("the", the);
 		}
-
 		return "profile";
 	}
 
@@ -63,69 +45,53 @@ public class ProfileController {
 
 	@RequestMapping(value = "changepass", method = RequestMethod.POST)
 	public String ChangePassWord(ModelMap model, HttpSession session,
-			@RequestParam(value = "password", required = false, defaultValue = "null") String password,
-			@RequestParam(value = "newpass", required = false, defaultValue = "null") String newpass,
-			@RequestParam(value = "repass", required = false, defaultValue = "null") String repass)
+			@RequestParam(value = "password", required = false) String password,
+			@RequestParam(value = "newpass", required = false) String newpass)
 			throws ClassNotFoundException, SQLException {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		HocVien hocvien = new HocVien();
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		GiangVien giangvien = new GiangVien();
 		String url = "";
+		String meSession = "";
 		if (hv != null) {
 			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-			if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
-				session.setAttribute("thongtinsai",
-						"Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
+			if (!hocvien.getMatkhau().equals(password)) {
+				meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
 				url = "redirect:/myprofiles";
 			} else if (hocvien.getMatkhau().equals(newpass)) {
-				session.setAttribute("thongtinsai",
-						"Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
+				meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
 				url = "redirect:/myprofiles";
-			} else if (!hocvien.getMatkhau().equals(password)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (!newpass.equals(repass)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (ndD.UpdateMatKhau(newpass,hocvien.getManguoidung()) == 1) {
+			} else if (ndD.UpdateMatKhau(newpass, hocvien.getManguoidung()) == 1) {
 				RealoadKhoaHoc(model);
 				url = "SignIn";
+			} else {
+				meSession = "Quá Trình Cập Nhật Thất Bại";
+				url = "redirect:/myprofiles";
 			}
 
 		} else if (gv != null) {
-			giangvien=gvD.TimThongTinDN_id(gv.getManguoidung());
-			if (password.equals("null") || newpass.equals("null") || repass.equals("null")) {
-				session.setAttribute("thongtinsai",
-						"Bạn Vui Lòng Nhập Theo Hướng Dẫn ở dưới nếu bạn muốn đổi mật khẩu");
+			giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+			if (!giangvien.getMatkhau().equals(password)) {
+				meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
 				url = "redirect:/myprofiles";
 			} else if (giangvien.getMatkhau().equals(newpass)) {
-				session.setAttribute("thongtinsai",
-						"Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác");
+				meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
 				url = "redirect:/myprofiles";
-			} else if (!giangvien.getMatkhau().equals(password)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Mật Khẩu Cũ Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (!newpass.equals(repass)) {
-				session.setAttribute("thongtinsai", "Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng");
-				url = "redirect:/myprofiles";
-			} else if (ndD.UpdateMatKhau(newpass,giangvien.getManguoidung()) == 1) {
+			} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
 				RealoadKhoaHoc(model);
-				System.out.print("Hello QuangHuy");
+				meSession="Bạn đã đổi mật khẩu thành công";
 				url = "SignIn";
+			} else {
+				meSession = "Quá Trình Cập Nhật Thất Bại";
+				url = "redirect:/myprofiles";
 			}
 		}
-		else
-
-		{
-			session.setAttribute("thongtinsai", "Quá Trình Cập Nhật Thất Bại");
-			url = "redirect:/myprofiles";
-		}
-
+		session.setAttribute("thongtinsai", meSession);
 		return url;
 	}
 
-	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
+	@RequestMapping(value = "myprofiles", method = RequestMethod.POST)
 	public String ChangeProfie(ModelMap model, HttpSession session, @RequestParam("username") String username,
 			@RequestParam("quocgia") String quocgia, @RequestParam("sdt") String sdt,
 			@RequestParam("trinhdo") String trinhdo, @RequestParam("diachi") String diachi,
@@ -154,10 +120,10 @@ public class ProfileController {
 				url = "redirect:/homepages";
 			} else {
 				url = "redirect:/myprofiles";
-				throw new SQLException("Quá Trình Cập Nhật Bị Thất Bại Số Điện Thoại Đã tồn tại");
+				session.setAttribute("thongbao","Quá Trình Cập Nhật Thất Bại !");
 			}
-		} catch (SQLException e) {
-			session.setAttribute("thongbao", e.getMessage());
+		} catch (Exception e) {
+			
 		}
 		return url;
 	}

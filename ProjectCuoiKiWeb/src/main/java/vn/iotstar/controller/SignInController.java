@@ -47,18 +47,17 @@ public class SignInController {
 			@RequestParam("Password") String password,
 			@RequestParam(value = "tkgiangvien", required = false, defaultValue = "null") String tkhocvien) throws ClassNotFoundException, SQLException
 	{
-		HttpSession session =rq.getSession();
+		HttpSession session = rq.getSession();
 		GiangVien gv=new GiangVien();
 		boolean check=gvD.CheckDNGiangVien(email, password);
 		if(check==false)
 		{
-			model.addAttribute("loidangnhap","Bạn Nhập Tài Khoản Hoặc Mật Khẩu Chưa Đúng");
+			model.addAttribute("loidangnhap", "Bạn Nhập Tài Khoản Hoặc Mật Khẩu Chưa Đúng");
 			return "SignIn";
 		}
 		else
 		{
 			gv=gvD.TimThongTinDN(email);
-			System.out.print("hello");
 			session.setAttribute("giangvien", gv);
 			return "redirect:/homepages";
 		}
@@ -77,15 +76,16 @@ public class SignInController {
 		return "forget_password";
 	}
 	@RequestMapping(value="getpassword", method=RequestMethod.POST)
-	public String GetForgetPassword(ModelMap model, @RequestParam("Email") String email, @RequestParam("NewPassword") String newpass,  @RequestParam("CheckPassword") String checkpass) 
+	public String GetForgetPassword(HttpSession session,ModelMap model, @RequestParam("Email") String email, @RequestParam("NewPassword") String newpass,  @RequestParam("CheckPassword") String checkpass) 
 	{
 
 		int check = ndd.getForgetPass(email, newpass, checkpass);
 		if (check == 1) {
+			session.setAttribute("thongbaodoipass", "Bạn Đã Đổi Mật Khẩu Thành Công");
 			return "redirect:/login";
 		}
 		else if (check == 0) {
-			model.addAttribute("warning", "Tài khoản hoặc mật khẩu không khớp! Vui lòng nhập lại");
+			model.addAttribute("warning", "Bạn nhập xác nhận mật khẩu chưa đúng !");
 		}
 		return "forget_password";
 	}

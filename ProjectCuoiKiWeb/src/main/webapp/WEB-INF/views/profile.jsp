@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -149,12 +150,16 @@
 
 						<div class="id-card price-card">
 							<h6>Số dư khả dụng:</h6>
-							<span>${the.getSoDu()}$</span>
+							<fmt:formatNumber var="sodu" value="${the.getSoDu()}"
+								type="number" maxFractionDigits="3" />
+							<span>${sodu}$</span>
 						</div>
-						<a href="deposit" class="btn btn_main"> <i
-							class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
-							tiền
-						</a>
+						<c:if test="${not empty hocvien.manguoidung}">
+							<a href="deposit" class="btn btn_main"> <i
+								class="fa-solid fa-wallet" style="margin-right: 6px;"></i> Nạp
+								tiền
+							</a>
+						</c:if>
 					</div>
 					<div class="profile_avata">
 						<div>
@@ -180,7 +185,7 @@
 				</nav>
 				<article class="col-9">
 					<div class="profile_content">
-						<form action="myprofile" method="post">
+						<form action="myprofiles" method="post">
 							<div class="profile_account">
 								<h6>Account</h6>
 								<c:choose>
@@ -247,9 +252,9 @@
 											<li class="account-list_item"><label for="diachi">Địa
 													Chỉ:</label> <input type="text" id="diachi" name="diachi"
 												value="${thongtin.diachi}" disabled /></li>
-											<li class="account-list_item"><label for="chuyennganh">Chuyên Ngành</label> <input type="text"
-												name="chuyennganh" id="chuyennganh" value="${thongtin.chuyennganh}"
-												disabled /></li>
+											<li class="account-list_item"><label for="chuyennganh">Chuyên
+													Ngành</label> <input type="text" name="chuyennganh"
+												id="chuyennganh" value="${thongtin.chuyennganh}" disabled /></li>
 											<li class="account-list_item"><label for="trinhdo">Trình
 													Độ</label> <input type="text" id="trinhdo" name="trinhdo"
 												value="${thongtin.trinhdo}" disabled /></li>
@@ -263,15 +268,16 @@
 							</div>
 						</form>
 						<div class="the_line"></div>
-						<form action="changepass" method="post">
+						<form action="changepass" method="post"
+							onsubmit="return CheckPass()">
 							<div class="personal_password">
 								<h6>Password</h6>
 								<ul class="personal_password-list">
-									<li class="account-list_item"><label for="username">Current
+									<li class="account-list_item"><label for="password">Current
 											password</label> <input type="password" id="password" name="password" /></li>
-									<li class="account-list_item"><label for="username">New
+									<li class="account-list_item"><label for="newpass">New
 											password</label> <input type="password" id="newpass" name="newpass" /></li>
-									<li class="account-list_item"><label for="username">Retype
+									<li class="account-list_item"><label for="repass">Retype
 											password</label> <input type="password" id="repass" name="repass" /></li>
 								</ul>
 								<input type="submit" class="btn btn_main btn-save"
@@ -279,7 +285,6 @@
 							</div>
 						</form>
 						<div class="the_line"></div>
-
 						<div class="profile_course">
 							<h6>Accomplishments</h6>
 							<div class="profile_my-course">

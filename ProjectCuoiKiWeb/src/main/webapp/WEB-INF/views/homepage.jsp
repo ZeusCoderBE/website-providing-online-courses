@@ -96,7 +96,8 @@
 															</div>
 															<div class="my_course__action">
 																<div class="my_course__buy">
-																	<a href="#">Buy</a>
+																	<a
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -117,8 +118,7 @@
 									</li>
 								</c:if>
 
-								<li class="d-flex">
-								<c:choose>
+								<li class="d-flex"><c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
 												<c:choose>
@@ -203,15 +203,13 @@
 											<a href="login"><button style="display: block;"
 													class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
 										</c:otherwise>
-									</c:choose>
-									</li>
+									</c:choose></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</header>
-
 		<section class="main">
 			<div class="row">
 				<nav class="col-2">
@@ -221,14 +219,22 @@
 									trủ hệ thống</span>
 							</a>
 						</div>
-						<c:if test="${not empty hocvien.manguoidung}">
-							<div class=" nav_drawer home">
-								<a href="myhomepage"> <i class="fa-regular fa-clock"></i> <span>Khóa
-										học của tôi</span>
-								</a>
-							</div>
-
-						</c:if>
+						<c:choose>
+							<c:when test="${not empty hocvien.manguoidung}">
+								<div class=" nav_drawer home">
+									<a href="myhomepage"> <i class="fa-regular fa-clock"></i> <span>Khóa
+											học của tôi</span>
+									</a>
+								</div>
+							</c:when>
+							<c:when test="${not empty giangvien.manguoidung}">
+								<div class=" nav_drawer home">
+									<a href="myhomepage"> <i class="fa-regular fa-clock"></i> <span>Các
+											khoá học đã tạo</span>
+									</a>
+								</div>
+							</c:when>
+						</c:choose>
 
 						<div class="nav_drawer calendar">
 							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
@@ -239,22 +245,35 @@
 									tin riêng tư</span>
 							</a>
 						</div>
-						<c:if test="${not empty hocvien.manguoidung}">
-							<div class="nav_drawer home_course">
-								<a style="height: 46px;" href="#"> <i
-									class="fa-solid fa-graduation-cap"></i> <span>Các khóa
-										học của tôi</span>
-								</a>
-								<ul>
-									<c:forEach var="khoahoctaikhoan" items="${danhsachkhoahoc}">
-										<li><a href="#"> <i
-												class="fa-solid fa-graduation-cap"></i> <span>${khoahoctaikhoan.tenkhoahoc}</span>
-										</a></li>
-									</c:forEach>
+						<div class="nav_drawer home_course">
+							<c:choose>
+								<c:when test="${not empty hocvien.manguoidung}">
+									<a style="height: 46px;" href="#"> <i
+										class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+											học của tôi</span>
+									</a>
+								</c:when>
+								<c:when test="${not empty giangvien.manguoidung}">
+									<a style="height: 46px;" href="#"> <i
+										class="fa-solid fa-graduation-cap"></i> <span>Các khóa
+											học đã tạo của tôi </span>
+									</a>
+								</c:when>
+							</c:choose>
+							<ul>
+								<c:forEach var="khoahoctaikhoan" items="${danhsachkhoahoc}">
+									<li><a href="#"> <i class="fa-solid fa-graduation-cap"></i>
+											<span>${khoahoctaikhoan.tenkhoahoc}</span>
+									</a></li>
+								</c:forEach>
 
-								</ul>
-							</div>
-						</c:if>
+							</ul>
+							<c:if test="${not empty giangvien.manguoidung }">
+								<a style="height: 46px;" href="Create-Course"><i
+									class="fa-solid fa-circle-plus"></i> <span>Tạo khoá học
+								</span> </a>
+							</c:if>
+						</div>
 					</div>
 				</nav>
 
@@ -394,7 +413,7 @@
 																			<div class="card_img"></div>
 																		</a>
 																		<div class="course_info">
-																			<span>${khoahoc.mota}</span>
+																			<span>${khoahoc.trinhdodauvao}</span>
 																		</div>
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a> <a
@@ -414,7 +433,7 @@
 																			<div class="card_img"></div>
 																		</a>
 																		<div class="course_info">
-																			<span>${khoahoc.mota}</span>
+																			<span>${khoahoc.trinhdodauvao}</span>
 																		</div>
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a>
@@ -457,10 +476,10 @@
 												<c:choose>
 													<c:when test="${not empty thongtin}">
 														<a href="#">${thongtin.hoten}</a>
-													</c:when> 
+													</c:when>
 													<c:otherwise>
 														<a href="#">${giangvien.hoten}</a>
-													</c:otherwise> 
+													</c:otherwise>
 												</c:choose>
 											</div>
 											<a href="#">Get the mobile app</a>
@@ -495,11 +514,19 @@
 			ReloadAlert("${thongbaokhach}");
 			ReloadAlert("${thongbaothemtc}");
 			ReloadAlert("${thongbaoxoa}");
+			ReloadAlert("${thongbaotaokh}");
+			ReloadAlert("${thatbai}");
+			ReloadAlert("${thongbaoedit}");
+			ReloadAlert("${xoakh}");
 		}
 	</script>
 	<c:set var="thongbaothanhcong" value="${null}"></c:set>
 	<c:set var="thongbaokhach" value="${null}"></c:set>
 	<c:set var="thongbaothemtc" value="${null}"></c:set>
 	<c:set var="thongbaoxoa" value="${null}"></c:set>
+	<c:set var="thongbaotaokh" value="${null}"></c:set>
+	<c:set var="thatbai" value="${null}"></c:set>
+	<c:set var="thongbaoedit" value="${null}"></c:set>
+	<c:set var="xoakh" value="${null}"></c:set>
 </body>
 </html>

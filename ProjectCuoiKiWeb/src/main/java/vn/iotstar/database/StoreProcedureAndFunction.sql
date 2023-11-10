@@ -1,3 +1,173 @@
+ --Cập nhật số dư cho người là tác giả của khoá học
+Create Or ALter Procedure sp_CapNhatSoDuTKGV
+@matacgia int,@cost real
+as
+begin
+	--Tìm người giảng viên là tác giả của khoá học
+	declare @magiangvien int
+	set @magiangvien=( select distinct MaGiangVien From KHOAHOC join GIANGVIEN
+	on GIANGVIEN.MaGiangVien=KHOAHOC.MaTacGia
+	where KHOAHOC.MaTacGia=@matacgia)
+	
+	--Cập nhật tài khoản giảng viên
+	declare @sodubandau real
+	select @sodubandau=SoDu From The
+	where MaNguoiDung=@magiangvien
+	Update THE set SoDu=@sodubandau+@cost
+	where MaNguoiDung=@magiangvien
+end
+ --Tạo Biên Soạn
+ Create or ALter Procedure sp_CreateCompilation
+@manguoidung int
+as
+begin
+	declare @makhoahoc int 
+	set @makhoahoc = (select Top 1 MaKhoaHoc From KHOAHOC
+	order by MaKhoaHoc desc)
+	insert into BIENSOAN(MaNguoiDung,MaKhoaHoc)
+	values(@manguoidung,@makhoahoc)
+end
+Go
+--Remove course dành cho giảng viên
+Create or Alter Procedure sp_RemoveACourse
+@makhoahoc int
+as
+begin
+	delete From KHOAHOC
+	where MaKhoaHoc=@makhoahoc
+end
+Go
+--Edit Course dành cho giảng viên
+Create Or Alter Procedure sp_EditACourse
+@makhoahoc int,
+@tenkhoahoc nvarchar(255),
+@matacgia int ,
+@giatien real,
+@ngonngu nvarchar(50),
+@thoigianhoanthanh real,
+@trinhdodauvao nvarchar(50),
+@ngayphathanh date,
+@mota ntext,
+@danhgia int,
+@theloai nvarchar(50),
+@linhvuc nvarchar(30)
+as
+begin
+	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
+	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,DanhGia=@danhgia,TheLoai=@theloai,LinhVuc=@linhvuc
+	where KHOAHOC.MaKhoaHoc=@makhoahoc
+end
+Go
+ --Tạo khoá học dành cho giảng viên
+ Create Or Alter Procedure sp_CreateACourse
+@tenkhoahoc nvarchar(255),
+@matacgia int ,
+@giatien real,
+@ngonngu nvarchar(50),
+@thoigianhoanthanh real,
+@trinhdodauvao nvarchar(50),
+@ngayphathanh date,
+@mota ntext,
+@danhgia int,
+@theloai nvarchar(50),
+@linhvuc nvarchar(30)
+as
+begin
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,DanhGia,TheLoai,LinhVuc)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@danhgia,@theloai,@linhvuc)
+end
+
+ Go
+--Thêm Khoá Học Vào Giỏ hàng Của Tôi
+CREATE Or Alter PROCEDURE sp_InsertCourseCart
+    @MaNguoiDung INT,
+    @MaKhoaHoc INT
+AS
+BEGIN
+    INSERT INTO GioHang (MaNguoiDung, MaKhoaHoc)
+    VALUES (@MaNguoiDung, @MaKhoaHoc);
+END;
+Go
+--Xoá Khoá Học Trong Giỏ Hàng
+CREATE Or ALter PROCEDURE sp_DeleteCourseCart
+    @MaNguoiDung INT,
+    @MaKhoaHoc INT
+AS
+BEGIN
+    DELETE FROM GioHang
+    WHERE MaNguoiDung = @MaNguoiDung AND MaKhoaHoc = @MaKhoaHoc;
+END;
+Go
+-- Tạo stored procedure để thêm người dùng
+CREATE OR ALTER PROCEDURE sp_SignUp
+    @HoTen NVARCHAR(255),
+    @Email NVARCHAR(255),
+    @QuocGia NVARCHAR(50),
+    @MatKhau NVARCHAR(255),
+    @Sdt NVARCHAR(20)
+AS
+BEGIN
+    INSERT INTO NguoiDung (HoTen, Email, QuocGia, MatKhau, Sdt)
+    VALUES (@HoTen, @Email, @QuocGia, @MatKhau, @Sdt);
+END
+Go
+-- Tạo sp cập nhật mật khẩu
+CREATE Or ALTER PROCEDURE sp_UpdateMatKhau
+    @MaNguoiDung INT,
+    @MatKhau NVARCHAR(255)
+AS
+BEGIN
+    UPDATE NguoiDung
+    SET MatKhau = @MatKhau
+    WHERE MaNguoiDung = @MaNguoiDung;
+END;
+Go
+--đổi mật khẩu dựa trên mail
+CREATE Or ALTER PROCEDURE sp_ForgetMatKhau
+    @Email varchar(60),
+    @MatKhau NVARCHAR(255)
+AS
+BEGIN
+    UPDATE NguoiDung
+    SET MatKhau = @MatKhau
+    WHERE Email = @Email;
+END
+Go
+-- Update NguoiDung
+CREATE Or ALTER PROCEDURE sp_UpdateNguoiDung
+    @MaNguoiDung INT,
+    @HoTen NVARCHAR(255),
+    @Sdt NVARCHAR(20),
+    @QuocGia NVARCHAR(50),
+    @VungMien NVARCHAR(50),
+    @DiaChi NVARCHAR(255),
+    @TrinhDo NVARCHAR(50),
+    @Email NVARCHAR(255)
+AS
+BEGIN
+    UPDATE NguoiDung
+    SET HoTen = @HoTen,
+        Sdt = @Sdt,
+        QuocGia = @QuocGia,
+        VungMien = @VungMien,
+        DiaChi = @DiaChi,
+        TrinhDo = @TrinhDo,
+        Email = @Email
+    WHERE MaNguoiDung = @MaNguoiDung;
+END
+Go
+--Update chuyên ngành giảng viên
+CREATE OR ALTER PROCEDURE sp_UpdateChuyenNganhGV
+	@ChuyenNganh NVARCHAR(255),
+    @MaGiangVien INT
+AS
+BEGIN
+    UPDATE GiangVien
+    SET ChuyenNganh = @ChuyenNganh
+    WHERE MaGiangVien = @MaGiangVien;
+END
+Go
 --Tìm và Cập Nhật Tài Khoản Giảng Viên
 CREATE Or ALter PROCEDURE sp_TimTaiKhoanGiangVien
 as
@@ -21,9 +191,8 @@ begin
 end
 Go
 
-go
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE Or Alter PROC sp_XemDanhSachBaiHoc
+CREATE OR Alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
@@ -44,22 +213,7 @@ begin
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
-
 GO
-
---Lấy Thông Tin của người dùng 
---Theo Email
-CREATE Or Alter PROCEDURE sp_TimThongTinHocVien
-@email varchar(64) 
-as 
-begin
-	select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
-	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN
-	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
-	where NGUOIDUNG.Email=@email
-end
-GO
-
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
 CREATE Or ALter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
@@ -85,6 +239,7 @@ BEGIN
 		SET @diff = 0
 	END
 END
+Go
 -- Check Đăng Đăng Nhập với vai trò là học viên
 Create or Alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
@@ -97,6 +252,7 @@ begin
 		set @check=0
 	print @check
 end 
+Go
 --Check Đăng Nhập Giảng viên
 Create or Alter Procedure sp_CheckLoginGV
 @email varchar(64),@matkhau nvarchar(30), @check int output
@@ -111,10 +267,10 @@ begin
 end 
 --Update số dư thẻ
 GO
-CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)
+CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap real
 AS
 BEGIN
-	DECLARE @sodu DECIMAL(18, 2)
+	DECLARE @sodu real
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,144 +69,142 @@
 					<div class="utilities">
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
-								<li class="mr-3">
-									<div class="show_info">
-										<i class="fa-solid fa-cart-shopping"></i>
-										<div class="show_info__figure">4</div>
-										<div class="my_course">
-											<div class="pseudo_class"></div>
+								<c:if test="${not empty hocvien.manguoidung}">
+									<li class="mr-3">
+										<div class="show_info">
+											<i class="fa-solid fa-cart-shopping"></i>
+											<div class="show_info__figure">${countkhoahoc.numberofcourse}</div>
+											<div class="my_course">
+												<div class="pseudo_class"></div>
+												<div class="my_course__header">
+													<h5>Giỏ hàng của tôi</h5>
+													<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem
+														tất cả</a>
+												</div>
+												<ul class="my_course__list">
+													<c:forEach var="giohangcuatoi" items="${dsgiohang}">
+														<div class="my_course__detail">
+															<div class="my_sourse__item">
+																<a href="#"> <img
+																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+																	alt="react">
+																</a>
+															</div>
+															<div class="my_course__info">
+																<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
+																</span> <span class="info_time"> Xuất bản
+																	:${giohangcuatoi.getKhoahoc().getNgayphathanh()}</span>
+															</div>
+															<div class="my_course__action">
+																<div class="my_course__buy">
+																	<a
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																</div>
 
-											<div class="my_course__header">
-												<h5>Giỏ hàng của tôi</h5>
-												<span>Xem tất cả</span>
+																<div class="my_course__delete">
+																	<a
+																		href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
+																</div>
+															</div>
+														</div>
+													</c:forEach>
+												</ul>
 											</div>
-											<ul class="my_course__list">
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS
-																ahdhdghdsg</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-											</ul>
-
 										</div>
-									</div>
-								</li>
-								<li class="mr-3">
-									<div class="">
-										<i class="fa-solid fa-bell"></i>
-									</div>
-								</li>
-								<li class="d-flex">
-									<div class="usermenu" style="display: flex;">
-										<span>Tran Van Luan</span>
-										<div class="icon_name">
-											<span>T</span>
+									</li>
+									<li class="mr-3">
+										<div class="">
+											<i class="fa-solid fa-bell"></i>
 										</div>
-										<div class="border_bottom"></div>
-										<ul class="setting my_course">
-											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-											<li class="setting__item"><a href="myprofiles"> <span>Hồ
-														sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
-											</a></li>
-											<li class="setting__item"><a href="#"> <span>Chứng
-														chỉ</span> <i class="fa-solid fa-award"></i>
-											</a></li>
-											<li class="setting__item"><a href="#"> <span>Cần
-														trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
-											</a></li>
-											<li class="setting__item"><a href="myprofiles"
-												onclick="scrollToElement('.personal_email')"> <span>Đổi
-														mật khẩu</span> <i class="fa-solid fa-lock"></i>
-											</a></li>
-											<li class="setting__item"><a href="#"> <span>Đăng
-														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
-											</a></li>
-										</ul>
-									</div>
-								</li>
+									</li>
+								</c:if>
+
+								<li class="d-flex"><c:choose>
+										<c:when test="${ not empty hocvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<span>${thongtin.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(thongtin.hoten,0,1)}</span>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<span>${hocvien.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(hocvien.hoten,0,1)}</span>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"> <span>Chứng
+																chỉ</span> <i class="fa-solid fa-award"></i>
+													</a></li>
+
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
+																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"
+														onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span> <i class="fa-solid fa-lock"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:when test="${ not empty giangvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<span>${thongtin.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(thongtin.hoten,0,1)}</span>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<span>${giangvien.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(giangvien.hoten,0,1)}</span>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"> <span>Chứng
+																chỉ</span> <i class="fa-solid fa-award"></i>
+													</a></li>
+
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
+																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"
+														onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span> <i class="fa-solid fa-lock"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="login"><button style="display: block;"
+													class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
+										</c:otherwise>
+									</c:choose></li>
 							</ul>
 						</div>
 					</div>
@@ -242,9 +243,10 @@
 												value="${the.getMaThe()}" />
 										</div>
 										<div class="form-pay-input">
-											<label for="price">Số tiền cần thanh toán</label> <input
-												type="text" id="price" name="price"
-												value="${tonggiatien}" />
+											<label for="price">Số tiền cần thanh toán</label>
+											<fmt:formatNumber var="giatien" value="${tonggiatien}"
+												type="number" maxFractionDigits="3" />
+											<input type="text" id="price" name="price" value="${giatien}" />
 										</div>
 										<div class="form-pay-input">
 											<label for="noidungtt">Nội dung thanh toán</label> <input

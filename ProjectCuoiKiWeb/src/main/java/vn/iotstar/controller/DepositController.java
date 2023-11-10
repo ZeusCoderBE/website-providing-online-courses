@@ -15,7 +15,7 @@ public class DepositController {
 	TheDao tDao = new TheDao();
 
 	@RequestMapping(value = "/deposit", method = RequestMethod.GET)
-	public String ShowDeposit(ModelMap model, HttpSession session) throws ClassNotFoundException, SQLException {
+	public String ShowCard(ModelMap model, HttpSession session) throws ClassNotFoundException, SQLException {
 		TheDao td = new TheDao();
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		The the = td.getAThe(hv.getManguoidung());
@@ -34,7 +34,7 @@ public class DepositController {
 			return "redirect:/myprofiles";
 		}
 		else {
-			session.setAttribute("thongbaotienloi", "Bạn đã cập nhật tiền thất bại !");
+			model.addAttribute("thongbaotienloi", "Bạn đã cập nhật tiền thất bại !");
 			return "deposit";
 		}
 	}

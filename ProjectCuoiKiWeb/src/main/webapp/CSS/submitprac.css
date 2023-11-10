@@ -1,0 +1,25 @@
+@charset "UTF-8";
+#drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  margin: 50px auto;
+  width: 300px;
+}
+
+#file-input {
+  display: none;
+}
+
+#file-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.file-item {
+  margin: 5px 0;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

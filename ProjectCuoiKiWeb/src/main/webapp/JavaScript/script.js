@@ -10,12 +10,59 @@ tinymce.init({
 	toolbar: 'undo redo | styles | bold italic underline | alignleft aligncenter alignright alignjustify |' +
 		'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
 		'forecolor backcolor emoticons',
+	// enable title field in the Image dialog
+	image_title: true,
+	// enable automatic uploads of images represented by blob or data URIs
+	automatic_uploads: true,
+	// add custom filepicker only to Image dialog
+	file_picker_types: 'image',
+	file_picker_callback: function(cb, value, meta) {
+		var input = document.createElement('input');
+		input.setAttribute('type', 'file');
+		input.setAttribute('accept', '*/*');
+
+		input.onchange = function() {
+			var file = this.files[0];
+			var reader = new FileReader();
+
+			reader.onload = function() {
+				var id = 'blobid' + (new Date()).getTime();
+				var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+				var base64 = reader.result.split(',')[1];
+				var blobInfo = blobCache.create(id, file, base64);
+				blobCache.add(blobInfo);
+
+				// call the callback and populate the Title field with the file name
+				cb(blobInfo.blobUri(), { title: file.name });
+			};
+			reader.readAsDataURL(file);
+		};
+
+		input.click();
+	},
 	menu: {
 		favs: { title: 'menu', items: 'code visualaid | searchreplace | emoticons' }
 	},
 	menubar: 'favs file edit view insert format tools table',
 	content_style: 'body{font-family:Helvetica,Arial,sans-serif; font-size:16px}'
 });
+function CheckPass() {
+	var repass = document.getElementById("repass").value;
+	var newpass = document.getElementById("newpass").value;
+	var password = document.getElementById("password").value;
+	if (repass === "" || newpass === "" || password === "") {
+		alert("Bạn Muốn Đổi Mật Khẩu Vui Lòng Nhập Theo Hướng Dẫn");
+		return false;
+	} else if (newpass !== repass) {
+		alert("Bạn Nhập Xác Nhận Mật Khẩu Chưa Đúng !");
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -56,6 +103,15 @@ function testConfirmDialog() {
 		return false;
 	}
 }
+function XacNhanXoaKH(makhoahoc) {
+	var result = confirm("Bạn chắc chắc có muốn xoá khoá học này không");
+	if (result == true) {
+		window.location.href = "Delete-Course?makhoahoc=" + makhoahoc;
+	}
+	else {
+		return false;
+	}
+}
 function handleBlur() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -75,7 +131,7 @@ function enableField() {
 	const diachi = document.getElementById("diachi");
 	const save = document.getElementById("save");
 	const email = document.getElementById("email");
-	const chuyennganh=document.getElementById("chuyennganh");
+	const chuyennganh = document.getElementById("chuyennganh");
 	username.removeAttribute("disabled");
 	quocgia.removeAttribute("disabled");
 	sdt.removeAttribute("disabled");
@@ -104,7 +160,38 @@ function ReloadAlert(thongBao) {
 		alert(thongBao);
 	}
 }
+function checkKhoaHoc() {
+	var matacgia = document.getElementById("matacgia").value;
+	var giatien = document.getElementById("giatien").value;
+	var danhgia = document.getElementById("danhgia").value;
+	var thoiluong = document.getElementById("thoiluong").value;
 
+	var parsedMatacgia = parseFloat(matacgia);
+	if (isNaN(parsedMatacgia)) {
+		alert("Mã tác giả không hợp lệ. Vui lòng nhập một số hợp lệ.");
+		return false;
+	}
+	var parsedGiatien = parseFloat(giatien);
+	if (isNaN(parsedGiatien)) {
+		alert("Giá tiền không hợp lệ. Vui lòng nhập một số hợp lệ.");
+		return false; 
+	}
+
+	var parsedDanhgia = parseFloat(danhgia);
+	if (isNaN(parsedDanhgia)) {
+		alert("Đánh giá không hợp lệ. Vui lòng nhập một số hợp lệ.");
+		return false; 
+	}
+
+	// Kiểm tra kiểu dữ liệu của thoiluong
+	var parsedThoiluong = parseFloat(thoiluong);
+	if (isNaN(parsedThoiluong)) {
+		alert("Thời lượng không hợp lệ. Vui lòng nhập một số hợp lệ.");
+		return false; 
+	}
+	return true;
+
+}
 function goToNewPage() {
 	window.location.href = "./signin.html";
 }
@@ -128,3 +215,47 @@ function confirmPay(diff) {
 		}
 	}
 }
+function createLessonFaied(warning) {
+	if (warning != "" && warning != null) {
+		alert(warning);
+	}
+}
+
+
+$(document).ready(function () {
+  // Đăng ký sự kiện khi có file được kéo và thả
+  $('#drop-area').on('dragover', function (e) {
+    e.preventDefault();
+    $(this).addClass('drag-over');
+  });
+
+  $('#drop-area').on('dragleave', function (e) {
+    e.preventDefault();
+    $(this).removeClass('drag-over');
+  });
+
+  $('#drop-area').on('drop', function (e) {
+    e.preventDefault();
+    $(this).removeClass('drag-over');
+    
+    var files = e.originalEvent.dataTransfer.files;
+    handleFiles(files);
+  });
+
+  // Đăng ký sự kiện khi chọn file từ hộp thoại
+  $('#file-input').on('change', function () {
+    var files = $(this)[0].files;
+    handleFiles(files);
+  });
+
+  function handleFiles(files) {
+    var fileList = $('#file-list');
+
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var listItem = $('<li class="file-item">' + file.name + '</li>');
+      fileList.append(listItem);
+    }
+  }
+});
+
