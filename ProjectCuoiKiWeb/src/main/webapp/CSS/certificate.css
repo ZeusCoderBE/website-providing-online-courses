@@ -1,0 +1,200 @@
+#app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.certificate {
+    width: 700px;
+    height: 900px;
+    background-color: white;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    border: 5px solid #929497;
+    border-radius: 4px;
+}
+
+.certificate i {
+    background-color: white;
+    font-size: 0.6rem;
+    /* border: 1px solid #929497; */
+    z-index: 2;
+    position: absolute;
+    margin: auto;
+    border-radius: 2px;
+}
+
+.certificate i:nth-child(1){
+    top: 9px;
+    left: 9px;
+    padding-right: 6px;
+    padding-bottom: 4px;
+    border-right: 1px solid #929497;
+    border-bottom: 1px solid #929497;
+}
+.certificate i:nth-child(2){
+    top: 9px;
+    right: 9px;
+    padding-left: 6px;
+    padding-bottom: 4px;
+    border-left: 1px solid #929497;
+    border-bottom: 1px solid #929497;
+}
+.certificate i:nth-child(3){
+    bottom: 7px;
+    left: 9px;
+    padding-right: 6px;
+    padding-top: 4px;
+    border-right: 1px solid #929497;
+    border-top: 1px solid #929497;
+}
+.certificate i:nth-child(4){
+    bottom: 7px;
+    right: 9px;
+    padding-left: 6px;
+    padding-top: 4px;
+    border-left: 1px solid #929497;
+    border-top: 1px solid #929497;
+}
+
+.content {
+    /* background-color: white; */
+    background-image: url('https://img5.thuthuatphanmem.vn/uploads/2021/09/22/background-hoa-van-xam-trang_101024170.jpg');
+    background-size: cover;
+    position: relative;
+    height: 100%;
+    border: 1px solid #a4a6a8;
+}
+
+.content::before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.01);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    margin-left: 40px;
+    color: #1c2b33;
+
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-left: -15px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.info {
+    margin-left: 70px;
+    max-width: 300px;
+    margin-top: 90px;
+    color: #7d7e80;
+    font-size: 0.8rem;
+}
+
+.info h4 {
+    font-size: 1.6rem;
+    margin: 20px 0;
+    font-weight: 500;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+.info h6 {
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+    color: #525252;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.logo_certificate {
+    position: absolute;
+    width: 180px;
+    top: 0;
+    right: 60px;
+    background-color: #e3e7ed;
+    height: 470px;
+    border-left: 1px solid #b0b2b4;
+    border-right: 1px solid #b0b2b4;
+    text-align: center;
+    font-size: 1.6rem;
+}
+
+.logo_certificate h5 {
+    padding-top: 40px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.logo_certificate::before {
+    position: absolute;
+    content: "";
+    width: 0;
+    top: 470px;
+    height: 0;
+    right: -2px;
+    border-left: 92px solid transparent ;
+    border-right: 92px solid transparent ;
+    border-top: 92px solid #e3e7ed;
+    z-index: 1;
+}
+
+.logo_certificate::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    top: 471px;
+    height: 0;
+    right: -3px;
+    border-left: 93px solid transparent ;
+    border-right: 93px solid transparent ;
+    border-top: 93px solid #b0b2b4;
+}
+
+.site-img {
+    position: absolute;
+    top: 250px;
+    right: -42px;
+}
+
+.header_footer {
+    display: flex;
+    align-items: center;
+    margin-left: 70px;
+    margin-top: 240px;
+}
+
+.header_footer h1 {
+    font-size: 2.4rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 70px;
+    bottom: 30px;
+    justify-content: end;
+    text-align: end;
+    font-size: 0.9rem;
+    max-width: 400px;
+}
+
+.footer span:first-child{
+    font-size: 1.1rem;
+}
+
+.footer a {
+    margin: 6px 0;
+}
+
+.footer span {
+    font-size: 0.8rem;
+}
