@@ -4,7 +4,6 @@ select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,
 	HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN
 	on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
-
 GO
 --Xem Khoá Học Đã Tạo
 Create Or Alter View v_XemKhoaHocDaTao

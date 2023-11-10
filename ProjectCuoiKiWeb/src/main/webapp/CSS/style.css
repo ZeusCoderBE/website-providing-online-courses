@@ -1083,3 +1083,43 @@
 .price-card span {
     color: #0d6efd;
 }
+
+
+.my-lesson__detail {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.my-lesson__detail:focus-within .my-lesson-action {
+    display: flex;
+}
+
+.my-lesson__detail a {
+    white-space: nowrap; /* Ngăn văn bản xuống dòng */
+    overflow: hidden; /* Ẩn phần văn bản vượt quá độ dài */
+    text-overflow: ellipsis;
+
+}
+
+.my-lesson-action {
+    display: none;
+    justify-content: end;
+    width: 50px;
+    box-sizing: border-box;
+
+}
+
+.my-lesson-action a {
+    font-size: 0.9rem;
+    background-color: #ebeaea;
+}
+
+.my-lesson-action a:hover {
+    background-color: #e5e2e2;
+}
+
+.my-lesson__buy {
+    width: auto;
+    font-size: 0.8rem;
+}
