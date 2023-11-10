@@ -134,6 +134,9 @@
 							<ul class="cart-list">
 								<c:forEach var="giohang" items="${dsgiohang}">
 									<li class="cart-item">
+									    <input class="checkbox-item"
+										type="checkbox">
+
 										<div class="cart-item-container">
 											<div class="cart-item-info">
 												<div class="cart-item-img">
@@ -214,8 +217,7 @@
 													</div>
 												</div>
 											</div>
-										</div>
-									</li>
+										</div></li>
 								</c:forEach>
 							</ul>
 						</div>
