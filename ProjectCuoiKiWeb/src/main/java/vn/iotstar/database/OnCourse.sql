@@ -21,7 +21,7 @@ GO
 CREATE TABLE THE (
 	MaThe VARCHAR(10) PRIMARY KEY, --(Số điện thoại người dùng)
 	SoDu DECIMAL(18, 2),
-	unique(MaNguoiDung) INT,
+	MaNguoiDung INT UNIQUE,
 	CONSTRAINT FK_THE_NGUOIDUNG FOREIGN KEY(MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
@@ -79,8 +79,10 @@ CREATE TABLE BAITAP (
 	HinhThuc NVARCHAR(20) ,
 	ThoiGianHoanThanh real,
 	FileDapAn VARCHAR(255),
+	MaGiangVien INT,
+	CONSTRAINT FK_BAITAP_GIANGVIEN FOREIGN KEY (MaGiangVien) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
 	PRIMARY KEY (TenBaiTap, MaBaiHoc),
-	CONSTRAINT FK_BAITAP_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)  on update cascade
+	CONSTRAINT FK_BAITAP_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc) 
 );
 GO
 
@@ -162,22 +164,7 @@ Create TABLE BIENSOAN
 	CONSTRAINT FK_BIENSOAN_GiangVien FOREIGN KEY (MaNguoiDung) REFERENCES GiangVien(MaGiangVien) ,
 	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
 )
-Go
-Create TAble TaiLieuVanBan
-(
-  MaTaiLieu int primary key,
-  NoiDung Text,
-)
 GO
-Create Table DinhKiemVanBan
-(
-	MaBaiHoc int   ,
-	MaTaiLieu int ,
-	primary key (MaBaiHoc,MaTaiLieu),
-	CONSTRAINT FK_DINHKEMVANBAN_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc),
-	CONSTRAINT FK_DINHKEMVANBAN_TAILIEU FOREIGN KEY (MaTaiLieu) REFERENCES TaiLieuVanBan(MaTaiLieu)
-)
-go
 
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
@@ -279,18 +266,4 @@ VALUES
     (4, 1),
     (5, 1),
     (4, 2)
-    
--- Insert into TaiLieuVanBan
-INSERT INTO TaiLieuVanBan (MaTaiLieu, NoiDung)
-VALUES
-    (1, N'Nội dung tài liệu số 1'),
-    (2, N'Nội dung tài liệu số 2'),
-    (3, N'Nội dung tài liệu số 3');
-
--- Insert into DinhKiemVanBan
-INSERT INTO DinhKiemVanBan (MaBaiHoc, MaTaiLieu)
-VALUES
-    (1, 1),
-    (1, 2),
-    (2, 2),
-    (2, 3);
+  

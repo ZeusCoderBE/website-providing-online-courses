@@ -92,7 +92,17 @@ function validateForm() {
 	}
 	return true;
 }
-
+function SelectedCourse()
+{
+	var count=document.getElementById("selectedCourses");
+	if(!count.checked)
+	{
+		alert("Bạn phải chọn ít nhất một khoá học để thanh toán")
+		return false;	
+	}
+	
+	return true;
+}
 
 function testConfirmDialog() {
 	var result = confirm("Bạn chắc chắc có muốn đăng xuất không");
@@ -219,4 +229,25 @@ function createLessonFaied(warning) {
 	if (warning != "" && warning != null) {
 		alert(warning);
 	}
+}
+
+function TotalPay() {
+  var checkboxes = document.querySelectorAll('.checkbox-item');
+  var priceElements = document.querySelectorAll('.cart-price-current p');
+  var pricePay = document.querySelector(".cart-pay h2");
+  var prices = Array.from(priceElements).map(function(element) {
+    return element.textContent.replace("Giá Tiền: ", "").replace("$", ""); // Bỏ đi ký tự "$" ở cuối
+  });
+  checkboxes.forEach(function(checkbox, index) {
+    checkbox.addEventListener('change', function() {
+      // Nếu checkbox được chọn, thêm giá trị của p vào tổng
+      var total = 0;
+      checkboxes.forEach(function(checkbox, i) {
+        if (checkbox.checked) {
+          total += parseFloat(prices[i]);
+        }
+      });
+      pricePay.textContent = total + "$";
+    });
+  });
 }

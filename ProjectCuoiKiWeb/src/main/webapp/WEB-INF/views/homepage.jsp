@@ -518,6 +518,7 @@
 			ReloadAlert("${thatbai}");
 			ReloadAlert("${thongbaoedit}");
 			ReloadAlert("${xoakh}");
+			ReloadAlert("${warning}")
 		}
 	</script>
 	<c:set var="thongbaothanhcong" value="${null}"></c:set>
@@ -528,5 +529,6 @@
 	<c:set var="thatbai" value="${null}"></c:set>
 	<c:set var="thongbaoedit" value="${null}"></c:set>
 	<c:set var="xoakh" value="${null}"></c:set>
+	<c:set var="warning" value="${null}"></c:set>
 </body>
 </html>
