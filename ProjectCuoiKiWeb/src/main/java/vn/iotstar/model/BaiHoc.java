@@ -58,7 +58,7 @@ public class BaiHoc {
 	public BaiHoc() {
 
 	}
-	public BaiHoc(int mabaihoc,String tenbaihoc, String noidungbaihoc, Date ngaydang, int makhoahoc,String duongdan)
+	public BaiHoc(int mabaihoc,String tenbaihoc, String noidungbaihoc, Date ngaydang, double tghoanthanh,int makhoahoc,String duongdan)
 	{
 		this.mabaihoc=mabaihoc;
 		this.tenbaihoc=tenbaihoc;
@@ -66,6 +66,7 @@ public class BaiHoc {
 		this.duongdan=duongdan;
 		this.ngaydang=ngaydang;
 		this.noidungbaihoc=noidungbaihoc;
+		this.thoigianhoanthanh=tghoanthanh;
 	}
 	public BaiHoc(int makhoahoc)
 	{

@@ -158,10 +158,17 @@
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="createlesson"> <i class="fa-regular fa-file"></i> <span>Create
-									Lesson</span>
-							</a>
+								<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i class="fa-regular fa-file"></i>
+									<span>Create Lesson</span>
+								</a>
 						</div>
+						<%-- <c:if test="${not empty giangvien.manguoidung}">
+							<div class="nav_drawer home_file">
+								<a href="edit-lesson-tool"> <i class="fa-regular fa-file"></i>
+									<span>Create Lesson</span>
+								</a>
+							</div>
+						</c:if> --%>
 						<div class="nav_drawer home_file">
 							<a href="upload.html"> <i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
@@ -186,23 +193,22 @@
 								<div class="branding-inner">
 									<div class="course_name">${lesson.tenbaihoc}</div>
 									<div class="date_course">
-										<span>Đã đăng vào :</span> <span> ${lesson.ngaydang }</span>
+										<span>Đã đăng vào :</span> <span> ${lesson.ngaydang} *
+										</span> <span>Thời lượng :</span> <span>
+											${lesson.thoigianhoanthanh} phút</span>
 									</div>
 								</div>
-
 								<div class="content">
 									<div class="content_text">
 										<div class="content_item">
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<i class="fa-solid fa-check"></i> <span>Complete</span>
+													<i class="fa-solid fa-check"></i><span>Complete</span>
 												</div>
 											</div>
 											<div class="content_main">
-												<div class="container_content">
-													<div>${lesson.noidungbaihoc}</div>
-												</div>
+												<div class="container_content">${lesson.noidungbaihoc}</div>
 											</div>
 										</div>
 									</div>
