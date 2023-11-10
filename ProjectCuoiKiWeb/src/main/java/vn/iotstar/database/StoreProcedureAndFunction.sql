@@ -16,6 +16,7 @@ begin
 	Update THE set SoDu=@sodubandau+@cost
 	where MaNguoiDung=@magiangvien
 end
+GO
  --Tạo Biên Soạn
  Create or ALter Procedure sp_CreateCompilation
 @manguoidung int

@@ -21,8 +21,8 @@
 <link href="./templates/CSS/main.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
-<link href="./templates/CSS/submitprac.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="./templates/CSS/submitprac.css" type="text/css" rel="stylesheet">
 
 <!--  
 -->
