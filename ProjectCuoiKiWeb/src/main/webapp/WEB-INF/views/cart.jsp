@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Giỏ hàng</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -128,7 +129,8 @@
 					<div class="cart-content">
 						<h3 class="cart-header">Giỏ hàng</h3>
 						<div class="cart-info">
-							<h5>1 khóa học trong giỏ hàng</h5>
+							<h5>Khóa học trong giỏ hàng: ${countkhoahoc.numberofcourse}
+								Khoá Học</h5>
 							<ul class="cart-list">
 								<c:forEach var="giohang" items="${dsgiohang}">
 									<li class="cart-item">
@@ -148,13 +150,45 @@
 													<div class="cart-item-evaluate">
 														<div>Bán chạy nhất</div>
 														<div>Đã cập nhật gần đây</div>
-														<span>${gohang.getKhoahoc().ggetDanhgia()}</span>
+														<span>${giohang.getKhoahoc().getDanhgia()}</span>
 														<div class="cart-item-icon__start">
-															<i class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star"></i>
+															<c:choose>
+																<c:when test="${giohang.getKhoahoc().getDanhgia() eq 5}">
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																</c:when>
+																<c:when test="${giohang.getKhoahoc().getDanhgia() eq 4}">
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star "></i>
+																</c:when>
+																<c:when test="${giohang.getKhoahoc().getDanhgia() eq 3}">
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star"></i>
+																	<i class="fa-solid fa-star "></i>
+																</c:when>
+																<c:when test="${giohang.getKhoahoc().getDanhgia() eq 2}">
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star"></i>
+																	<i class="fa-solid fa-star"></i>
+																	<i class="fa-solid fa-star"></i>
+																</c:when>
+																<c:when test="${giohang.getKhoahoc().getDanhgia() eq 1}">
+																	<i class="fa-solid fa-star start-primary"></i>
+																	<i class="fa-solid fa-star "></i>
+																	<i class="fa-solid fa-star"></i>
+																	<i class="fa-solid fa-star"></i>
+																	<i class="fa-solid fa-star"></i>
+																</c:when>
+															</c:choose>
 														</div>
 													</div>
 													<ul class="cart-item-time">
@@ -173,7 +207,10 @@
 												</div>
 												<div class="cart-item-price">
 													<div class="cart-price-current">
-														<p>${giohang.getKhoahoc().getGiatien()}</p>
+														<fmt:formatNumber var="giaTien"
+															value="${giohang.getKhoahoc().getGiatien()}"
+															type="number" maxFractionDigits="3" />
+														<p>Giá Tiền: ${giaTien}$</p>
 													</div>
 													<div class="cart-price-old">
 														<p>10000$</p>
@@ -190,8 +227,13 @@
 				<div class="cart-col-3 col-3">
 					<div class="cart-pay">
 						<span>Tổng:</span>
-						<h2>9999$</h2>
-						<button class="btn btn-primary btn-buy">Thanh Toán</button>
+						<fmt:formatNumber var="giatien" value="${tonggiatien}"
+							type="number" maxFractionDigits="3" />
+						<h2>${giatien}$</h2>
+						<a href="paycartinfo">
+							<button class="btn btn-primary btn-buy" type="submit">Thanh
+								Toán</button>
+						</a>
 						<p>Khuyến mãi</p>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control"
@@ -297,7 +339,7 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-   <script>
+	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");
 			ReloadAlert("${thongbaoxoa}");

@@ -8,4 +8,44 @@ BEGIN
 	INSERT INTO DANGKY VALUES(@mand, @makh)
 END
 GO
+--Tao The cho Nguoi dung
+Create Or Alter Trigger tg_CreateCardVisa
+on HocVien for insert
+as 
+begin
+	declare @mahocvien int
+	declare @mathe int 
+    select @mathe=NGUOIDUNG.Sdt,@mahocvien=inserted.MaHocVien From inserted
+	join NGUOIDUNG on inserted.MaHocVien=NGUOIDUNG.MaNguoiDung
+	insert into THE(MaThe,SoDu,MaNguoiDung)
+	values(@mathe,5,@mahocvien)
+
+end 
+go
+--Trigger các dòng tham chiếu trước khi xoá 1 khoá học
+Create or Alter Trigger tg_XoaRangBuocTCKhoaHoc
+on KhoaHoc instead of delete 
+as
+begin
+	declare @makhoahoc int 
+	--set Null cho Bài Học
+	select @makhoahoc=deleted.MaKhoaHoc From deleted 
+	update BAIHOC set MaKhoaHoc=null 
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Biên Soạn
+	delete From BIENSOAN
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Đăng Ký
+	delete From DANGKY 
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Thanh Toán
+	delete From THANHTOAN
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Giỏ Hàng
+	delete From GIOHANG
+	where MaKhoaHoc=@makhoahoc
+	--Xoá Khoá Học
+	delete From KHOAHOC
+	where KHOAHOC.MaKhoaHoc=@makhoahoc
+end
 

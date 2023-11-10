@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
+<script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div id="page">
@@ -34,111 +36,59 @@
 							<button class="btn btn-outline-success" type="submit">Search</button>
 						</form>
 					</li>
-					<li class="nav_link">
-					<div class="show_info">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <div class="show_info__figure">4</div>
-                            <div class="my_course my_course__cart">
-                                <div class="pseudo_class"></div>
+					<li class="nav_link"><c:if
+							test="${not empty hocvien.manguoidung}">
+							<li class="mr-3">
+								<div class="show_info">
+									<i class="fa-solid fa-cart-shopping"></i>
+									<div class="show_info__figure">${countkhoahoc.numberofcourse}</div>
+									<div class="my_course">
+										<div class="pseudo_class"></div>
+										<div class="my_course__header">
+											<h5>Giỏ hàng của tôi</h5>
+											<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem tất
+												cả</a>
+										</div>
+										<ul class="my_course__list">
+											<c:forEach var="giohangcuatoi" items="${dsgiohang}">
+												<div class="my_course__detail">
+													<div class="my_sourse__item">
+														<a href="#"> <img
+															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+															alt="react">
+														</a>
+													</div>
+													<div class="my_course__info">
+														<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
+														</span> <span class="info_time"> Xuất bản
+															:${giohangcuatoi.getKhoahoc().getNgayphathanh()}</span>
+													</div>
+													<div class="my_course__action">
+														<div class="my_course__buy">
+															<a
+																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}"></a>
+														</div>
 
-                                <div class="my_course__header">
-                                    <h5>Khóa học của tôi</h5>
-                                    <span>Xem tất cả</span>
-                                </div>
-                                <ul class="my_course__list">
-                                    <div class="my_course__detail">
-                                        <div class="my_sourse__item">
-                                            <a href="#">
-                                                <img src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png" alt="react">
-                                            </a>
-                                        </div>
-                                        <div class="my_course__info">
-                                            <span>
-                                                <a href="#">Xây Dựng Website với ReactJS</a>
-                                            </span>
-                                            <span class="info_time">
-                                                Học cách đây
-                                                2 ngày trước
-                                            </span>
-                                           
-                                        </div>
-                                    </div>
-                                    
-                                </ul>
-                                
-                            </div>
-                        </div>
-						<div class="show_info">
-							<span>Khóa học của tôi</span>
-							<div class="my_course">
-								<div class="pseudo_class"></div>
-
-								<div class="my_course__header">
-									<h5>Khóa học của tôi</h5>
-									<span><a href="mycourse?manguoidung=${manguoidung}">Xem
-											tất cả</a></span>
+														<div class="my_course__delete">
+															<a
+																href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
+														</div>
+													</div>
+												</div>
+											</c:forEach>
+										</ul>
+									</div>
 								</div>
-								<ul class="my_course__list">
-									<div class="my_course__detail">
-										<div class="my_sourse__item">
-											<a href="#"> <img
-												src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-												alt="react">
-											</a>
-										</div>
-										<div class="my_course__info">
-											<span> <a href="#">Xây Dựng Website với ReactJS</a>
-											</span> <span class="info_time"> Học cách đây 2 ngày trước </span>
-											<div class="card-footer dashboard-card-footer border-0">
-												<div class="progress border">
-													<div class="progress-bar bar" role="progressbar"
-														aria-valuenow="81" style="width: 81%" aria-valuemin="0"
-														aria-valuemax="100"></div>
-												</div>
-												<div class="small">
-													<span class="sr-only">Course progress:</span> <strong>81</strong>%
-													complete
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="my_course__detail">
-										<div class="my_sourse__item">
-											<a href="#"> <img
-												src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-												alt="react">
-											</a>
-										</div>
-										<div class="my_course__info">
-											<span> <a href="#">Xây Dựng Website với ReactJS</a>
-											</span> <span class="info_time"> Học cách đây 2 ngày trước </span>
-											<div class="card-footer dashboard-card-footer border-0">
-												<div class="progress border">
-													<div class="progress-bar bar" role="progressbar"
-														aria-valuenow="50" style="width: 50%" aria-valuemin="0"
-														aria-valuemax="100"></div>
-												</div>
-												<div class="small">
-													<span class="sr-only">Course progress:</span> <strong>50</strong>%
-													complete
-												</div>
-											</div>
-										</div>
-									</div>
-								</ul>
+							</li>
+							<li class="mr-3 icon "><i class="fa-solid fa-bell"></i></li>
 
+							<div class="site_img">
+								<img
+									src="https://files.fullstack.edu.vn/f8-prod/user_photos/284558/63c4c5f97e0c5.jpg"
+									alt="Trần Văn Luân">
 							</div>
-						</div> <i class=" icon fa-solid fa-bell"></i>
-						<div class="site_img">
-							<img
-								src="https://files.fullstack.edu.vn/f8-prod/user_photos/284558/63c4c5f97e0c5.jpg"
-								alt="Trần Văn Luân">
-						</div>
-					</li>
-				</ul>
-			</nav>
+						</c:if>
 		</div>
-
 		<div class="main">
 			<div class="content">
 				<div class="sidebar">
@@ -163,33 +113,23 @@
 
 				<div class="container">
 					<div class="course_head">
-						<h1>${khoahoc.tenkhoahoc}</h1>
+						<h3>${khoahoc.tenkhoahoc}</h3>
 					</div>
-					<div class="course_des">${khoahoc.mota}</div>
-					<div class="course_detail">
-						<h2>Bạn sẽ học được gì?</h2>
-						<ul class="list">
-							<c:forEach var="baihoc" items="${listbaihoc}">
-								<li class="list_item"><i class="fa-solid fa-check"></i> <span>Tên
-										Bài Học: ${baihoc.tenbaihoc}</span> <br /> <span>Nội Dung Bài
-										Học: ${baihoc.noidungbaihoc}</span> <br /> <span>Thời Gian
-										Hoàn Thành: ${baihoc.thoigianhoanthanh}h</span></li>
-							</c:forEach>
-						</ul>
-					</div>
-
 					<div class="course__content">
 						<h3>Ngôn Ngữ :${khoahoc.ngonngu}</h3>
 					</div>
-
+					<div class="course_des"></div>
+					<div class="course_detail">
+						<p>${khoahoc.mota}</p>
+					</div>
 				</div>
 
 				<div class="info">
 					<div class="course_action">
 						<div class="course_info">
 							<h3>Course</h3>
-							<div class="course_des course_des__main">Giá Tiền:
-								${khoahoc.giatien}$</div>
+							<div class="course_des course_des__main">Thời gian hoàn
+								thành: ${khoahoc.thoigian} bài học</div>
 							<div class="road_line"></div>
 
 							<div class="evaluate">
@@ -200,27 +140,54 @@
 							</div>
 
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
-							<div class="course_des">No previous experience necessary</div>
-							<h5>Thời Gian Hoàn Thành: ${khoahoc.thoigian}</h5>
+							<div class="course_des">${khoahoc.trinhdodauvao}</div>
+							<fmt:formatNumber var="giatien" value="${khoahoc.giatien}"
+								type="number" maxFractionDigits="2" />
+							<h5>Giá Tiền: ${giatien}$</h5>
 
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
 						<c:choose>
-							<c:when test="${isdangky != true}">
+							<c:when
+								test="${not empty hocvien.manguoidung && empty giangvien.manguoidung}">
+								<c:choose>
+									<c:when test="${isdangky != true}">
+										<div class="btn_action">
+											<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
+												<button class="btn btn-success btn_signin__course">Đăng
+													ký học</button>
+											</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
+												class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<div class="btn_action">
+											<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
+												<button class="btn btn-success btn_signin__course">Vào
+													học</button>
+											</a>
+										</div>
+									</c:otherwise>
+								</c:choose>
+							</c:when>
+							<c:when
+								test="${not empty giangvien.manguoidung && empty hocvien.manguoidung && istao==true}">
 								<div class="btn_action">
-									<a href="paycourse?makhoahoc=${khoahoc.makhoahoc}">
-										<button class="btn btn-success btn_signin__course">Đăng
-											ký học</button>
-									</a>
-									<a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}" class="btn btn-primary btn_signin__course">Thêm
-										giỏ hàng</a>
+									<a href="courses?makhoahoc=${khoahoc.makhoahoc}"
+										class="btn btn-success btn_signin__course">Vào</a> <a
+										href="Find-Course?makhoahoc=${khoahoc.makhoahoc} "
+										class="btn btn-primary btn_signin__course">Sửa</a> <a href="#"
+										onclick="XacNhanXoaKH(${khoahoc.makhoahoc})"
+										class="btn btn-success btn_signin__course">Xoá</a>
+
 								</div>
 							</c:when>
 							<c:otherwise>
 								<div class="btn_action">
-									<a href="courses?makhoahoc=${khoahoc.makhoahoc}">
-										<button class="btn btn-success btn_signin__course">Vào học</button>
+									<a href="login">
+										<button class="btn btn-success btn_signin__course">Đăng
+											ký học</button>
 									</a>
 								</div>
 							</c:otherwise>
@@ -320,6 +287,13 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-
+	<script>
+		window.onload = function() {
+			ReloadAlert("${xoakh}");
+			ReloadAlert("${thongbaoedit}");
+		}
+	</script>
+	<c:set var="thongbaoedit" value="${null}"></c:set>
+	<c:set var="xoakh" value="${null}"></c:set>
 </body>
 </html>

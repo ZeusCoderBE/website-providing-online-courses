@@ -5,15 +5,22 @@ import java.sql.Date;
 public class GioHang {
 	private HocVien hocvien;
 	private KhoaHoc khoahoc;
-
+	private int numberofcourse; 
+	
 	public HocVien getHocvien() {
 		return hocvien;
 	}
-
+	public int getNumberofcourse()
+	{
+		return numberofcourse;
+	}
 	public KhoaHoc getKhoahoc() {
 		return khoahoc;
 	}
-
+	public GioHang(int numberofcourse)
+	{
+		this.numberofcourse=numberofcourse;
+	}
 	public GioHang(String hoten, String email, String tenkhoahoc, int danhgia, 
 			int matacgia, String trinhdodauvao,double GiaTien,
 			double thoigianhoanthanh,String linhvuc,Date ngayphathanh,int makhoahoc) {
