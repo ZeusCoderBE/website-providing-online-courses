@@ -192,6 +192,7 @@
 .cart-item {
     width: 100%;
     position: relative;
+    display: flex;
 }
 
 .cart-item::before {
@@ -213,8 +214,12 @@
 .cart-item-container {
     display: flex;
     justify-content: space-between;
-    
+    flex: 1;
+}
 
+.checkbox-item {
+    width: 20px;
+    margin: 0 20px;
 }
 
 .cart-item-info {
