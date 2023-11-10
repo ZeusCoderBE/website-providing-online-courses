@@ -31,7 +31,7 @@ public class BaiHocDao {
 		ResultSet rs=dbC.ExecuteQuery(dml);
 		if(rs.next()==true)
 		{
-			baihoc=new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"), rs.getDate("NgayDang"), rs.getInt("MaKhoaHoc"), rs.getNString("DuongDanLuuTru"));
+			baihoc=new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"), rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"), rs.getInt("MaKhoaHoc"), rs.getNString("DuongDanLuuTru"));
 			return baihoc;
 		}
 		else
@@ -40,12 +40,13 @@ public class BaiHocDao {
 		}
 	}
 
-	public int ThemBaiHoc(BaiHoc baihoc) throws SQLException, ClassNotFoundException {
-		System.out.println("ThemBaiHoc "+baihoc.getMakhoahoc());
+	public void ThemBaiHoc(BaiHoc baihoc) throws SQLException, ClassNotFoundException {
 		String sqlStr = String.format("INSERT INTO BAIHOC VALUES(%d, N'%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
 				baihoc.getMabaihoc(), baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
 		int check = dbC.ExecuteCommand(sqlStr);
-		return check;
+		if (check == 0) {
+			throw new SQLException("Thêm bài học thất bại");
+		}
 	}
 }
