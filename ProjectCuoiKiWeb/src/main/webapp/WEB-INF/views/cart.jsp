@@ -134,7 +134,7 @@
 									Khoá Học</h5>
 								<ul class="cart-list">
 									<c:forEach var="giohang" items="${dsgiohang}">
-										<li class="cart-item"><input class="checkbox-item"
+										<li class="cart-item"><input class="checkbox-item" onclick="TotalPay()"
 											type="checkbox" name="selectedCourses" id="selectedCourses"
 											value="${giohang.getKhoahoc().getMakhoahoc()}">
 											<div class="cart-item-container">
