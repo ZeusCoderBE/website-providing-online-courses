@@ -23,7 +23,16 @@ public class KhoaHocDao {
 		}
 		return danhsachkh;
 	}
-
+	public List<KhoaHoc> CountSelectedCourses(List<String>selectedCourses) throws NumberFormatException, ClassNotFoundException, SQLException
+	{
+		List<KhoaHoc>selectedtemp=new ArrayList<>();
+		for(String courseId:selectedCourses)
+		{
+			KhoaHoc course=FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
+			selectedtemp.add(course);
+		}
+		return selectedtemp;
+	}
 	public int EditACourse(KhoaHoc khoahoc) {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
