@@ -91,7 +91,7 @@ public class ProfileController {
 		return url;
 	}
 
-	@RequestMapping(value = "myprofile", method = RequestMethod.POST)
+	@RequestMapping(value = "myprofiles", method = RequestMethod.POST)
 	public String ChangeProfie(ModelMap model, HttpSession session, @RequestParam("username") String username,
 			@RequestParam("quocgia") String quocgia, @RequestParam("sdt") String sdt,
 			@RequestParam("trinhdo") String trinhdo, @RequestParam("diachi") String diachi,
@@ -120,10 +120,10 @@ public class ProfileController {
 				url = "redirect:/homepages";
 			} else {
 				url = "redirect:/myprofiles";
-				throw new SQLException("Quá Trình Cập Nhật Bị Thất Bại Số Điện Thoại Đã tồn tại");
+				session.setAttribute("thongbao","Quá Trình Cập Nhật Thất Bại !");
 			}
-		} catch (SQLException e) {
-			session.setAttribute("thongbao", e.getMessage());
+		} catch (Exception e) {
+			
 		}
 		return url;
 	}

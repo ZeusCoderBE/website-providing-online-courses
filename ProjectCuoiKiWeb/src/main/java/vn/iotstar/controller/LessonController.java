@@ -30,7 +30,7 @@ public class LessonController {
 			@RequestParam("tghoanthanh") String tghoanthanh, @RequestParam("trinhdo") String muctieu,
 			@RequestParam("textarea") String content) {
 		
-		BaiHoc bh = new BaiHoc(8, name, Double.parseDouble(tghoanthanh), content, Double.parseDouble(muctieu), null, makhoahoc);
+		BaiHoc bh = new BaiHoc(0, name, Double.parseDouble(tghoanthanh), content, Double.parseDouble(muctieu), null, makhoahoc);
 		try {
 			bhD.ThemBaiHoc(bh);
 		} catch (ClassNotFoundException e) {

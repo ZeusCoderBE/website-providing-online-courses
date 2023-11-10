@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,7 @@
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
+<script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div id="page">
@@ -111,24 +113,23 @@
 
 				<div class="container">
 					<div class="course_head">
-						<h1>${khoahoc.tenkhoahoc}</h1>
-					</div>
-					<div class="course_des">${khoahoc.mota}</div>
-					<div class="course_detail">
-						<h2>Bạn sẽ học được gì?</h2>
+						<h3>${khoahoc.tenkhoahoc}</h3>
 					</div>
 					<div class="course__content">
 						<h3>Ngôn Ngữ :${khoahoc.ngonngu}</h3>
 					</div>
-
+					<div class="course_des"></div>
+					<div class="course_detail">
+						<p>${khoahoc.mota}</p>
+					</div>
 				</div>
 
 				<div class="info">
 					<div class="course_action">
 						<div class="course_info">
 							<h3>Course</h3>
-							<div class="course_des course_des__main">Giá Tiền:
-								${khoahoc.giatien}$</div>
+							<div class="course_des course_des__main">Thời gian hoàn
+								thành: ${khoahoc.thoigian} bài học</div>
 							<div class="road_line"></div>
 
 							<div class="evaluate">
@@ -139,14 +140,17 @@
 							</div>
 
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
-							<div class="course_des">No previous experience necessary</div>
-							<h5>Thời Gian Hoàn Thành: ${khoahoc.thoigian}</h5>
+							<div class="course_des">${khoahoc.trinhdodauvao}</div>
+							<fmt:formatNumber var="giatien" value="${khoahoc.giatien}"
+								type="number" maxFractionDigits="2" />
+							<h5>Giá Tiền: ${giatien}$</h5>
 
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
 						<c:choose>
-							<c:when test="${not empty hocvien.manguoidung}">
+							<c:when
+								test="${not empty hocvien.manguoidung && empty giangvien.manguoidung}">
 								<c:choose>
 									<c:when test="${isdangky != true}">
 										<div class="btn_action">
@@ -167,13 +171,24 @@
 									</c:otherwise>
 								</c:choose>
 							</c:when>
+							<c:when
+								test="${not empty giangvien.manguoidung && empty hocvien.manguoidung && istao==true}">
+								<div class="btn_action">
+									<a href="courses?makhoahoc=${khoahoc.makhoahoc}"
+										class="btn btn-success btn_signin__course">Vào</a> <a
+										href="Find-Course?makhoahoc=${khoahoc.makhoahoc} "
+										class="btn btn-primary btn_signin__course">Sửa</a> <a href="#"
+										onclick="XacNhanXoaKH(${khoahoc.makhoahoc})"
+										class="btn btn-success btn_signin__course">Xoá</a>
+
+								</div>
+							</c:when>
 							<c:otherwise>
 								<div class="btn_action">
 									<a href="login">
 										<button class="btn btn-success btn_signin__course">Đăng
 											ký học</button>
-									</a> <a href="login"
-										class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+									</a>
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -272,6 +287,13 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-
+	<script>
+		window.onload = function() {
+			ReloadAlert("${xoakh}");
+			ReloadAlert("${thongbaoedit}");
+		}
+	</script>
+	<c:set var="thongbaoedit" value="${null}"></c:set>
+	<c:set var="xoakh" value="${null}"></c:set>
 </body>
 </html>

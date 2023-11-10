@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
+import java.sql.*;
 
 @Controller
 public class HomePageController {
@@ -85,12 +86,6 @@ public class HomePageController {
 		}
 		return "homepage";
 	}
-
-	@RequestMapping(value = "/Create-Course", method = RequestMethod.GET)
-	public String CreateCourse() {
-		return "create_course";
-	}
-
 	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
 	public String XemMotKhoaHoc(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
@@ -109,11 +104,15 @@ public class HomePageController {
 				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
 				model.addAttribute("isdangky", khD.khoahocDangKy(hv.getManguoidung(), khoahoc.getMakhoahoc()));
-			} else {
+			} else if (hv == null && gv != null) {
 				khoahoc = khD.FindCourseOfCustomer(khoahoc);
 				model.addAttribute("khoahoc", khoahoc);
-				ListBH = bhD.GetListLesson(khoahoc);
-				model.addAttribute("listbaihoc", ListBH);
+				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung(), khoahoc.getMakhoahoc()));
+			}
+			else
+			{
+				khoahoc = khD.FindCourseOfCustomer(khoahoc);
+				model.addAttribute("khoahoc", khoahoc);
 			}
 
 		} catch (Exception ex) {

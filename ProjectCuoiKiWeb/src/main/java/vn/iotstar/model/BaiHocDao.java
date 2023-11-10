@@ -24,25 +24,24 @@ public class BaiHocDao {
 		}
 		return listbaihoc;
 	}
-	public BaiHoc FindOfMyALesson(int mabaihoc) throws ClassNotFoundException, SQLException
-	{
-		String dml="Select *From v_xemdanhsachtailieu where MaBaiHoc="+mabaihoc+"";
-		BaiHoc baihoc=new BaiHoc();
-		ResultSet rs=dbC.ExecuteQuery(dml);
-		if(rs.next()==true)
-		{
-			baihoc=new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"), rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"), rs.getInt("MaKhoaHoc"), rs.getNString("DuongDanLuuTru"));
+
+	public BaiHoc FindOfMyALesson(int mabaihoc) throws ClassNotFoundException, SQLException {
+		String dml = "Select *From v_xemdanhsachtailieu where MaBaiHoc=" + mabaihoc + "";
+		BaiHoc baihoc = new BaiHoc();
+		ResultSet rs = dbC.ExecuteQuery(dml);
+		if (rs.next() == true) {
+			baihoc = new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"),
+					rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"), rs.getInt("MaKhoaHoc"),
+					rs.getNString("DuongDanLuuTru"));
 			return baihoc;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
 
 	public void ThemBaiHoc(BaiHoc baihoc) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format("INSERT INTO BAIHOC VALUES(%d, N'%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
-				baihoc.getMabaihoc(), baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
+		String sqlStr = String.format("INSERT INTO BAIHOC VALUES(N'%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
+				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
 		int check = dbC.ExecuteCommand(sqlStr);
 		if (check == 0) {

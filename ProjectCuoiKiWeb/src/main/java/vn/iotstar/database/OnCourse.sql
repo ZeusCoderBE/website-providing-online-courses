@@ -1,4 +1,3 @@
-
 --DROP DATABASE ONCOURSE
 create database ONCOURSE
 
@@ -22,8 +21,8 @@ GO
 CREATE TABLE THE (
 	MaThe VARCHAR(10) PRIMARY KEY, --(Số điện thoại người dùng)
 	SoDu DECIMAL(18, 2),
-	MaNguoiDung INT,
-	FOREIGN KEY(MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung)
+	unique(MaNguoiDung) INT,
+	CONSTRAINT FK_THE_NGUOIDUNG FOREIGN KEY(MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung)
 );
 GO
 
@@ -42,21 +41,22 @@ CREATE TABLE GIANGVIEN (
 GO
 
 CREATE TABLE KHOAHOC (
-	MaKhoaHoc INT PRIMARY KEY,
-	TenKhoaHoc NVARCHAR(255) ,
-	MaTacGia INT ,
-	GiaTien DECIMAL(18, 2) ,
-	NgonNgu NVARCHAR(50) , 
-	ThoiGianHoanThanh DECIMAL(4, 2),
-	TrinhDoDauVao NVARCHAR(50) ,
-	NgayPhatHanh DATE ,
-	MoTa NVARCHAR(255) ,
-	DanhGia INT ,
-	TheLoai nvarchar(50),
-	LinhVuc nvarchar(30),
-	CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien),
-	CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
+    MaKhoaHoc INT PRIMARY KEY IDENTITY(1,1),
+    TenKhoaHoc NVARCHAR(255),
+    MaTacGia INT,
+    GiaTien REAL,
+    NgonNgu NVARCHAR(50),
+    ThoiGianHoanThanh REAL,
+    TrinhDoDauVao NVARCHAR(50),
+    NgayPhatHanh DATE,
+    MoTa NTEXT,
+    DanhGia INT,
+    TheLoai NVARCHAR(50),
+    LinhVuc NVARCHAR(30),
+    CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
+    CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
 );
+
 GO
 
 CREATE TABLE BAIHOC (
@@ -68,7 +68,7 @@ CREATE TABLE BAIHOC (
 	NgayDang DATE ,
 	AnhMinhHoa VARCHAR(255),
 	MaKhoaHoc INT,
-	CONSTRAINT FK_BAIHOC_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc),
+	CONSTRAINT FK_BAIHOC_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc) On delete set null on update cascade,
 	CONSTRAINT CHK_MUCTIEUDAURA CHECK (MucTieuDauRa BETWEEN 0.0 AND 10.0)
 );
 GO
@@ -80,7 +80,7 @@ CREATE TABLE BAITAP (
 	ThoiGianHoanThanh real,
 	FileDapAn VARCHAR(255),
 	PRIMARY KEY (TenBaiTap, MaBaiHoc),
-	CONSTRAINT FK_BAITAP_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)
+	CONSTRAINT FK_BAITAP_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)  on update cascade
 );
 GO
 
@@ -96,7 +96,7 @@ CREATE TABLE GIOHANG (
 	MaNguoiDung INT,
 	MaKhoaHoc INT,
 	PRIMARY KEY (MaNguoiDung, MaKhoaHoc),
-	CONSTRAINT FK_GIOHANG_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
+	CONSTRAINT FK_GIOHANG_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung) ,
 	CONSTRAINT FK_GIOHANG_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc)
 );
 GO
@@ -148,17 +148,19 @@ CREATE TABLE DINHKEM (
 	MaBaiHoc INT ,
 	MaTaiLieu INT ,
 	PRIMARY KEY (MaBaiHoc, MaTaiLieu),
-	CONSTRAINT FK_DINHKEM_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc),
-	CONSTRAINT FK_DINHKEM_TAILIEU FOREIGN KEY (MaTaiLieu) REFERENCES TAILIEU(MaTaiLieu)
+	CONSTRAINT FK_DINHKEM_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)  on update cascade,
+	CONSTRAINT FK_DINHKEM_TAILIEU FOREIGN KEY (MaTaiLieu) REFERENCES TAILIEU(MaTaiLieu)  on update cascade
 
 );
 GO
 
 Create TABLE BIENSOAN
 (
-	MaNguoiDung int foreign key references NguoiDung(MaNguoiDung),
-	MaKhoaHoc int foreign key references KhoaHoc(MaKhoaHoc),
-	primary key (MaNguoiDung,MaKhoaHoc)
+	MaNguoiDung int ,
+	MaKhoaHoc int ,
+	primary key (MaNguoiDung,MaKhoaHoc),
+	CONSTRAINT FK_BIENSOAN_GiangVien FOREIGN KEY (MaNguoiDung) REFERENCES GiangVien(MaGiangVien) ,
+	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
 )
 Go
 Create TAble TaiLieuVanBan
@@ -169,9 +171,11 @@ Create TAble TaiLieuVanBan
 GO
 Create Table DinhKiemVanBan
 (
-	MaBaiHoc int   FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc),
-	MaTaiLieu int FOREIGN KEY (MaTaiLieu) REFERENCES TaiLieuVanBan(MaTaiLieu),
-	primary key (MaBaiHoc,MaTaiLieu)
+	MaBaiHoc int   ,
+	MaTaiLieu int ,
+	primary key (MaBaiHoc,MaTaiLieu),
+	CONSTRAINT FK_DINHKEMVANBAN_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc),
+	CONSTRAINT FK_DINHKEMVANBAN_TAILIEU FOREIGN KEY (MaTaiLieu) REFERENCES TaiLieuVanBan(MaTaiLieu)
 )
 go
 
@@ -196,20 +200,20 @@ VALUES (4, N'Công Nghệ Phần Mềm'),
     (5, N'Mạng Và An Ninh Mạng')
 
 -- Chèn khóa học
-INSERT INTO KHOAHOC (MaKhoaHoc,TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia,TheLoai,LinhVuc)
+INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia,TheLoai,LinhVuc)
 VALUES
-    (1,N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
-    (2,N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
-    (3,N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
-    (4,N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
+    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
+    (N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
+    (N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
+    (N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
     
-INSERT INTO BAIHOC (MaBaiHoc,TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
+INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
 VALUES
-    (1,N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
-    (2,N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1),
-    (3,N'Bài học 3', 2.0, N'Nội dung bài học 1', 4.5, '2023-02-05', 'anh3.jpg', 2),
-    (4,N'Bài học 4', 2.5, N'Nội dung bài học 1', 5.0, '2023-02-10', 'anh4.jpg', 2),
-    (5,N'Bài học 5', 3.0, N'Nội dung bài học 1', 6.0, '2023-02-15', 'anh5.jpg', 3);
+    (N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
+    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1),
+    (N'Bài học 3', 2.0, N'Nội dung bài học 1', 4.5, '2023-02-05', 'anh3.jpg', 2),
+    (N'Bài học 4', 2.5, N'Nội dung bài học 1', 5.0, '2023-02-10', 'anh4.jpg', 2),
+    (N'Bài học 5', 3.0, N'Nội dung bài học 1', 6.0, '2023-02-15', 'anh5.jpg', 3);
 
 INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, HinhThuc, ThoiGianHoanThanh, FileDapAn)
 VALUES
