@@ -68,6 +68,56 @@
 					<div class="utilities">
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
+								<c:if test="${not empty hocvien.manguoidung}">
+									<li class="mr-3">
+										<div class="show_info">
+											<i class="fa-solid fa-cart-shopping"></i>
+											<div class="show_info__figure">${countkhoahoc.numberofcourse}</div>
+											<div class="my_course">
+												<div class="pseudo_class"></div>
+												<div class="my_course__header">
+													<h5>Giỏ hàng của tôi</h5>
+													<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem
+														tất cả</a>
+												</div>
+												<ul class="my_course__list">
+													<c:forEach var="giohangcuatoi" items="${dsgiohang}">
+														<div class="my_course__detail">
+															<div class="my_sourse__item">
+																<a href="#"> <img
+																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+																	alt="react">
+																</a>
+															</div>
+															<div class="my_course__info">
+																<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
+																</span> <span class="info_time"> Xuất bản
+																	:${giohangcuatoi.getKhoahoc().getNgayphathanh()}</span>
+															</div>
+															<div class="my_course__action">
+																<div class="my_course__buy">
+																	<a
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																</div>
+
+																<div class="my_course__delete">
+																	<a
+																		href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
+																</div>
+															</div>
+														</div>
+													</c:forEach>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li class="mr-3">
+										<div class="">
+											<i class="fa-solid fa-bell"></i>
+										</div>
+									</li>
+								</c:if>
+
 								<li class="d-flex"><c:choose>
 										<c:when test="${ not empty hocvien.manguoidung}">
 											<div class="usermenu">
@@ -91,11 +141,11 @@
 													<li class="setting__item"><a href="myprofiles"> <span>Hồ
 																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
 													</a></li>
-													<li class="setting__item"><a href="#"> <span>Chứng
+													<li class="setting__item"><a href="myprofiles"> <span>Chứng
 																chỉ</span> <i class="fa-solid fa-award"></i>
 													</a></li>
 
-													<li class="setting__item"><a href="#"> <span>Cần
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
 																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
 													</a></li>
 													<li class="setting__item"><a href="myprofiles"
@@ -103,8 +153,48 @@
 																mật khẩu</span> <i class="fa-solid fa-lock"></i>
 													</a></li>
 													<li class="setting__item"><a href="#"
-														onclick="testConfirmDialog()"> <span>Đăng xuất
-														</span> <i class="fa-solid fa-right-to-bracket"></i>
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:when test="${ not empty giangvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<span>${thongtin.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(thongtin.hoten,0,1)}</span>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<span>${giangvien.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(giangvien.hoten,0,1)}</span>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"> <span>Chứng
+																chỉ</span> <i class="fa-solid fa-award"></i>
+													</a></li>
+
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
+																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"
+														onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span> <i class="fa-solid fa-lock"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
 													</a></li>
 												</ul>
 											</div>

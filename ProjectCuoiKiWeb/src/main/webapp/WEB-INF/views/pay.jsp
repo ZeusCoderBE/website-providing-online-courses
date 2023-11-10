@@ -160,46 +160,6 @@
 												</ul>
 											</div>
 										</c:when>
-										<c:when test="${ not empty giangvien.manguoidung}">
-											<div class="usermenu">
-												<c:choose>
-													<c:when test="${not empty thongtin}">
-														<span>${thongtin.hoten}</span>
-														<div class="icon_name">
-															<span>${fn:substring(thongtin.hoten,0,1)}</span>
-														</div>
-													</c:when>
-													<c:otherwise>
-														<span>${giangvien.hoten}</span>
-														<div class="icon_name">
-															<span>${fn:substring(giangvien.hoten,0,1)}</span>
-														</div>
-													</c:otherwise>
-												</c:choose>
-												<div class="border_bottom"></div>
-												<ul class="setting my_course">
-													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-													<li class="setting__item"><a href="myprofiles"> <span>Hồ
-																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
-													</a></li>
-													<li class="setting__item"><a href="myprofiles"> <span>Chứng
-																chỉ</span> <i class="fa-solid fa-award"></i>
-													</a></li>
-
-													<li class="setting__item"><a href="myprofiles"> <span>Cần
-																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
-													</a></li>
-													<li class="setting__item"><a href="myprofiles"
-														onclick="scrollToElement('.personal_email')"> <span>Đổi
-																mật khẩu</span> <i class="fa-solid fa-lock"></i>
-													</a></li>
-													<li class="setting__item"><a href="#"
-														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
-															<i class="fa-solid fa-right-to-bracket"></i>
-													</a></li>
-												</ul>
-											</div>
-										</c:when>
 										<c:otherwise>
 											<a href="login"><button style="display: block;"
 													class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
