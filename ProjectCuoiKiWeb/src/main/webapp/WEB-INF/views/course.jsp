@@ -68,49 +68,52 @@
 					<div class="utilities">
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
-								<li class="mr-3">
-									<div class="">
-										<i class="fa-solid fa-bell"></i>
-									</div>
-								</li>
-								<li class="d-flex">
-									<div class="usermenu" style="display: flex;">
-										<c:choose>
-											<c:when test="${not empty thongtin}">
-												<span>${thongtin.hoten}</span>
-												<div class="icon_name">
-													<span>${fn:substring(thongtin.hoten,0,1)}</span>
-												</div>
-											</c:when>
-											<c:otherwise>
-												<span>${hocvien.hoten}</span>
-												<div class="icon_name">
-													<span>${fn:substring(hocvien.hoten,0,1)}</span>
-												</div>
-											</c:otherwise>
-										</c:choose>
-										<div class="border_bottom"></div>
-										<ul class="setting my_course">
-											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-											<li class="setting__item"><a href="myprofiles"> <span>Hồ
-														sơ cá nhân</span>
-											</a></li>
-											<li class="setting__item"><a href="myprofiles"> <span>Chứng
-														chỉ</span>
-											</a></li>
-											<li class="setting__item"><a href="myprofiles"> <span>Cần
-														trợ giúp</span>
-											</a></li>
-											<li class="setting__item"><a href="myprofiles"> <span>Đổi
-														mật khẩu</span>
-											</a></li>
-											<li class="setting__item"><a
-												onclick="testConfirmDialog()" href="#"> <span>Đăng
-														xuất</span>
-											</a></li>
-										</ul>
-									</div>
-								</li>
+								<li class="d-flex"><c:choose>
+										<c:when test="${ not empty hocvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<span>${thongtin.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(thongtin.hoten,0,1)}</span>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<span>${hocvien.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(hocvien.hoten,0,1)}</span>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"> <span>Chứng
+																chỉ</span> <i class="fa-solid fa-award"></i>
+													</a></li>
+
+													<li class="setting__item"><a href="#"> <span>Cần
+																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"
+														onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span> <i class="fa-solid fa-lock"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất
+														</span> <i class="fa-solid fa-right-to-bracket"></i>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="login"><button style="display: block;"
+													class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
+										</c:otherwise>
+									</c:choose></li>
 							</ul>
 						</div>
 					</div>
@@ -154,32 +157,16 @@
 							</ul>
 						</div>
 						<div class="nav_drawer home_file">
-                            <a href="#">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                <span>lịch</span>
-                            </a>
-                        </div> 
-						<div class="nav_drawer home_file">
 							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
 							</a>
 						</div>
-						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-regular fa-file"></i> <span>Create
-									lesson</span>
-							</a>
-						</div>
-						<div class="nav_drawer home_file">
-							<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
-								class="fa-regular fa-file"></i> <span>Create Lesson</span>
-							</a>
-						</div>
-						<%-- <c:if test="${not empty giangvien.manguoidung}">
+						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
 								<a href="edit-lesson-tool"> <i class="fa-regular fa-file"></i>
 									<span>Create Lesson</span>
 								</a>
 							</div>
-						</c:if> --%>
+						</c:if>
 						<div class="nav_drawer home_file">
 							<a href="upload.html"> <i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
