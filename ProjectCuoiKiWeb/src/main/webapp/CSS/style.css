@@ -486,7 +486,7 @@
 }
 
 /* .nav_drawer__course:focus-within .list_timer, */
-.nav_drawer__course:hover .list_timer {
+.nav_drawer__course:focus-within .list_timer {
     display: block;
 }
 
@@ -1186,7 +1186,7 @@
     justify-content: space-between;
 }
 
-.my-lesson__detail:focus-within .my-lesson-action {
+.my-lesson__detail:hover .my-lesson-action {
     display: flex;
 }
 
