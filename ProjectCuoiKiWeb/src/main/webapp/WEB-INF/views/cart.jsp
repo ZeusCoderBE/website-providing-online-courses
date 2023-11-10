@@ -232,9 +232,7 @@
 					<div class="cart-col-3 col-3">
 						<div class="cart-pay">
 							<span>Tổng:</span>
-							<fmt:formatNumber var="giatien" value="${tonggiatien}"
-								type="number" maxFractionDigits="3" />
-							<h2>${giatien}$</h2>
+							<h2>0</h2>
 							<button class="btn btn-primary btn-buy" type="submit">Thanh
 								Toán</button>
 							<p>Khuyến mãi</p>
