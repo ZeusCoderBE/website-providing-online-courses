@@ -24,6 +24,7 @@ public class CourseController {
 	KhoaHocDao khD = new KhoaHocDao();
 	KhoaHoc khoahocid = new KhoaHoc();
 	GiangVienDao gvD = new GiangVienDao();
+	int mode = 0;
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET, params = "makhoahoc")
 	public String Courses(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc) {
@@ -41,7 +42,8 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/FindDocuments", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc) throws ClassNotFoundException, SQLException {
+	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
+			throws ClassNotFoundException, SQLException {
 		String url = "";
 		try {
 			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
@@ -66,12 +68,14 @@ public class CourseController {
 
 	@RequestMapping(value = "/Create-Course", method = RequestMethod.GET)
 	public String CreateCourse() {
+		mode = 0;
 		return "create_course";
 	}
 
 	@RequestMapping(value = "Find-Course", method = RequestMethod.GET, params = "makhoahoc")
 	public String FindCourse(HttpSession session, @RequestParam("makhoahoc") int makhoahoc, ModelMap model)
 			throws ClassNotFoundException, SQLException {
+		mode = 1;
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
 		khoahocid = khoahoc;
 		KhoaHoc ketqua = khD.FindCourseOfCustomer(khoahoc);
@@ -86,28 +90,41 @@ public class CourseController {
 		return url;
 	}
 
-	@RequestMapping(value = "/Edit-Course", method = RequestMethod.POST)
+	@RequestMapping(value = "/Post-Course", method = RequestMethod.POST)
 	public String EditCourse(@RequestParam("tenkhoahoc") String tenkhoahoc, @RequestParam("theloai") String theloai,
 			@RequestParam("matacgia") int matacgia, @RequestParam("giatien") double giatien,
-			@RequestParam("trinhdodauvao") String trinhdo, @RequestParam("danhgia") int danhgia,
+			@RequestParam("trinhdodauvao") String trinhdo,
 			@RequestParam("ngonngu") String ngonngu, @RequestParam("thoiluong") double thoiluong,
 			@RequestParam("linhvuc") String linhvuc, @RequestParam("ngayphathanh") Date ngayphathanh,
 			@RequestParam("textarea") String mota, ModelMap model, HttpSession session) {
 		String url = "";
+		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
 			String mess = "";
 			KhoaHoc khoahoc = new KhoaHoc(khoahocid.getMakhoahoc(), tenkhoahoc, matacgia, giatien, ngonngu, thoiluong,
-					trinhdo, ngayphathanh, mota, danhgia, theloai, linhvuc);
-			if (khD.EditACourse(khoahoc) == 1) {
-				mess = "Chúc mừng bạn đã sửa thành công một khoá học !";
-				url = "redirect:/homepages";
-				session.setAttribute("thongbaoedit", mess);
-			} else {
-				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				model.addAttribute("editkhoahoc", khoahoc);
-				mess = "Dường như có lỗi trong quá trình sửa";
-				model.addAttribute("thongbaoedit", mess);
-				url = "describe";
+					trinhdo, ngayphathanh, mota, 0, theloai, linhvuc);
+			if (mode == 0) {
+				if (khD.CreateACourse(khoahoc) == 1 && gvD.InsertCompilation(gv.getManguoidung()) == 1) {
+					mess = "Chúc mừng bạn đã tạo thành công một khoá học ! ";
+					url = "redirect:/homepages";
+					session.setAttribute("thongbaotaokh", mess);
+				} else {
+					mess = "Dường như có lỗi trong quá trình tạo";
+					model.addAttribute("thongbaotaokh", mess);
+					url = "create_course";
+				}
+			} else if (mode == 1) {
+				if (khD.EditACourse(khoahoc) == 1) {
+					mess = "Chúc mừng bạn đã sửa thành công một khoá học !";
+					url = "redirect:/homepages";
+					session.setAttribute("thongbaoedit", mess);
+				} else {
+					khoahoc = khD.FindCourseOfCustomer(khoahoc);
+					model.addAttribute("editkhoahoc", khoahoc);
+					mess = "Dường như có lỗi trong quá trình sửa";
+					model.addAttribute("thongbaoedit", mess);
+					url = "describe";
+				}
 			}
 		} catch (Exception ex) {
 			System.out.print(ex.getMessage());
@@ -129,34 +146,6 @@ public class CourseController {
 			url = "describe";
 			model.addAttribute("xoakh", mess);
 
-		}
-		return url;
-	}
-
-	@RequestMapping(value = "/Create-Course", method = RequestMethod.POST)
-	public String CreateCourse(@RequestParam("tenkhoahoc") String tenkhoahoc, @RequestParam("theloai") String theloai,
-			@RequestParam("matacgia") int matacgia, @RequestParam("giatien") double giatien,
-			@RequestParam("trinhdodauvao") String trinhdo, @RequestParam("danhgia") int danhgia,
-			@RequestParam("ngonngu") String ngonngu, @RequestParam("thoiluong") double thoiluong,
-			@RequestParam("linhvuc") String linhvuc, @RequestParam("ngayphathanh") Date ngayphathanh,
-			@RequestParam("textarea") String mota, ModelMap model, HttpSession session) {
-		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
-		String url = "";
-		try {
-			String mess = "";
-			KhoaHoc khoahoc = new KhoaHoc(0, tenkhoahoc, matacgia, giatien, ngonngu, thoiluong, trinhdo, ngayphathanh,
-					mota, danhgia, theloai, linhvuc);
-			if (khD.CreateACourse(khoahoc) == 1 && gvD.InsertCompilation(gv.getManguoidung()) == 1) {
-				mess = "Chúc mừng bạn đã tạo thành công một khoá học ! ";
-				url = "redirect:/homepages";
-				session.setAttribute("thongbaotaokh", mess);
-			} else {
-				mess = "Dường như có lỗi trong quá trình tạo";
-				model.addAttribute("thongbaotaokh", mess);
-				url = "create_course";
-			}
-		} catch (Exception ex) {
-			
 		}
 		return url;
 	}

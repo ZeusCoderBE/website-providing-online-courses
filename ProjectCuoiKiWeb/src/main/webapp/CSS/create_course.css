@@ -55,8 +55,8 @@ body {
     margin-top: 20px;
 }
 .output {
+  text-align: center;
   width: 100%;
-  margin-left: 50%;
 }
 
 input[type=range] {
@@ -81,4 +81,15 @@ input[type=range]::-webkit-slider-thumb {
 
 input[type=range]:focus {
   outline: none;
+}
+
+.form-progress{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 50%;
+}
+
+.form-progress__item {
+	flex: 1;
 }

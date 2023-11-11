@@ -23,12 +23,21 @@ public class KhoaHocDao {
 		}
 		return danhsachkh;
 	}
-
+	public List<KhoaHoc> CountSelectedCourses(List<String>selectedCourses) throws NumberFormatException, ClassNotFoundException, SQLException
+	{
+		List<KhoaHoc>selectedtemp=new ArrayList<>();
+		for(String courseId:selectedCourses)
+		{
+			KhoaHoc course=FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
+			selectedtemp.add(course);
+		}
+		return selectedtemp;
+	}
 	public int EditACourse(KhoaHoc khoahoc) {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
 				+ khoahoc.getThoigian() + ",N'" + khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'"
-				+ ",N'" + khoahoc.getMota() + "'," + khoahoc.getDanhgia() + ",N'" + khoahoc.getTheloai() + "',N'"
+				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'"
 				+ khoahoc.getLinhvuc() + "'";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
@@ -44,11 +53,11 @@ public class KhoaHocDao {
 		String dml = "exec sp_CreateACourse N'" + khoahoc.getTenkhoahoc() + "'," + khoahoc.getMatacgia() + ","
 				+ khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "'," + khoahoc.getThoigian() + ",N'"
 				+ khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'" + ",N'" + khoahoc.getMota()
-				+ "'," + khoahoc.getDanhgia() + ",N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "'";
+				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "'";
+		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
-
 	public KhoaHoc FindCourseOfCustomer(KhoaHoc khoahoc) throws ClassNotFoundException, SQLException {
 		String query = "select *From KhoaHoc where MaKhoaHoc=" + khoahoc.getMakhoahoc() + "";
 		ResultSet rs = dbC.ExecuteQuery(query);

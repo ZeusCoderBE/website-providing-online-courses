@@ -39,7 +39,7 @@ begin
 end
 Go
 --Edit Course dành cho giảng viên
-Create Or Alter Procedure sp_EditACourse
+CREATE OR ALTER PROCEDURE sp_EditACourse
 @makhoahoc int,
 @tenkhoahoc nvarchar(255),
 @matacgia int ,
@@ -49,19 +49,19 @@ Create Or Alter Procedure sp_EditACourse
 @trinhdodauvao nvarchar(50),
 @ngayphathanh date,
 @mota ntext,
-@danhgia int,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30)
 as
 begin
 	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
 	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
-	NgayPhatHanh=@ngayphathanh,MoTa=@mota,DanhGia=@danhgia,TheLoai=@theloai,LinhVuc=@linhvuc
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,TheLoai=@theloai,LinhVuc=@linhvuc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
 Go
+
  --Tạo khoá học dành cho giảng viên
- Create Or Alter Procedure sp_CreateACourse
+CREATE OR ALTER PROCEDURE sp_CreateACourse
 @tenkhoahoc nvarchar(255),
 @matacgia int ,
 @giatien real,
@@ -70,15 +70,13 @@ Go
 @trinhdodauvao nvarchar(50),
 @ngayphathanh date,
 @mota ntext,
-@danhgia int,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30)
 as
 begin
-	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,DanhGia,TheLoai,LinhVuc)
-	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@danhgia,@theloai,@linhvuc)
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@theloai,@linhvuc)
 end
-
  Go
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
 CREATE Or Alter PROCEDURE sp_InsertCourseCart
@@ -193,7 +191,7 @@ end
 Go
 
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE  PROC sp_XemDanhSachBaiHoc
+CREATE PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
@@ -242,7 +240,7 @@ BEGIN
 END
 Go
 -- Check Đăng Đăng Nhập với vai trò là học viên
-Create or Alter Procedure sp_CheckLoginHV
+Create or alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
 as
 begin
