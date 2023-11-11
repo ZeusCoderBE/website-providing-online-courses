@@ -222,40 +222,5 @@ function createLessonFaied(warning) {
 }
 
 
-$(document).ready(function () {
-  // Đăng ký sự kiện khi có file được kéo và thả
-  $('#drop-area').on('dragover', function (e) {
-    e.preventDefault();
-    $(this).addClass('drag-over');
-  });
 
-  $('#drop-area').on('dragleave', function (e) {
-    e.preventDefault();
-    $(this).removeClass('drag-over');
-  });
-
-  $('#drop-area').on('drop', function (e) {
-    e.preventDefault();
-    $(this).removeClass('drag-over');
-    
-    var files = e.originalEvent.dataTransfer.files;
-    handleFiles(files);
-  });
-
-  // Đăng ký sự kiện khi chọn file từ hộp thoại
-  $('#file-input').on('change', function () {
-    var files = $(this)[0].files;
-    handleFiles(files);
-  });
-
-  function handleFiles(files) {
-    var fileList = $('#file-list');
-
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
-      var listItem = $('<li class="file-item">' + file.name + '</li>');
-      fileList.append(listItem);
-    }
-  }
-});
 

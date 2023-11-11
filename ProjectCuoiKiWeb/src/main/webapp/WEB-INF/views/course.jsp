@@ -308,12 +308,92 @@
 								</div>
 
 <!-- Đang làm chỗ này -->
-								<div id="drop-area">
-									<h1>Kéo và Thả File</h1>
-									<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
-									<input type="file" id="file-input" />
-									<ul id="file-list"></ul>
-								</div>
+								<form id="upload-form" action="Submit-Practice"
+									method="post" enctype="multipart/form-data">
+									<div id="drop-area">
+										<h1>Kéo và Thả File</h1>
+										<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
+										<input type="file" id="file-input" name="files" multiple />
+										<ul id="file-list"></ul>
+										<input type="submit" id="submit-button" value="Submit" />
+									</div>
+								</form>
+								
+								<script>
+								  $(document).ready(function () {
+								    var dropArea = $('#drop-area');
+								    var fileList = $('#file-list');
+								    var submitButton = $('#submit-button');
+								
+								    dropArea.on('dragover', function (e) {
+								      e.preventDefault();
+								      dropArea.addClass('drag-over');
+								    });
+								
+								    dropArea.on('dragleave', function (e) {
+								      e.preventDefault();
+								      dropArea.removeClass('drag-over');
+								    });
+								
+								    dropArea.on('drop', function (e) {
+								      e.preventDefault();
+								      dropArea.removeClass('drag-over');
+								
+								      var files = e.originalEvent.dataTransfer.files;
+								      handleFiles(files);
+								    });
+								
+								    $('#file-input').on('change', function () {
+								      var files = $(this)[0].files;
+								      handleFiles(files);
+								    });
+								
+								    submitButton.on('click', function () {
+								      // Thực hiện xử lý khi nhấn nút Submit
+								      saveFiles();
+								    });
+								
+								    function handleFiles(files) {
+								      for (var i = 0; i < files.length; i++) {
+								        var file = files[i];
+								        var listItem = $('<li class="file-item">' + file.name + '<button class="delete-button" data-index="' + i + '">Xóa</button></li>');
+								        fileList.append(listItem);
+								
+								        // Đăng ký sự kiện xóa file khi nhấn nút Xóa
+								        listItem.find('.delete-button').on('click', function () {
+								          var index = $(this).data('index');
+								          removeFile(index);
+								        });
+								      }
+								    }
+								
+								    function removeFile(index) {
+								      // Xóa file khỏi danh sách
+								      $('#file-list li').eq(index).remove();
+								    }
+								
+								    function saveFiles() {
+								        var files = $('#file-list li');
+								        var formData = new FormData($('#upload-form')[0]);
+
+								        $.ajax({
+								          type: 'POST',
+								          url: '/upload/files',
+								          data: formData,
+								          contentType: false,
+								          processData: false,
+								          success: function (response) {
+								            alert(response);
+								            // Thêm code xử lý sau khi lưu thành công
+								          },
+								          error: function (error) {
+								            console.error(error);
+								            alert('Error occurred while saving files.');
+								          }
+								        });
+								      }
+								  });
+								</script>
 <!-- Tới đây nè -->
 							</div>
 							<!-- NOTES -->

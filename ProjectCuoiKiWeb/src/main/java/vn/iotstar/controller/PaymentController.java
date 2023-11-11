@@ -82,6 +82,7 @@ public class PaymentController {
 				 KhoaHoc khoahoc=new KhoaHoc(kh.getMatacgia(),kh.getGiatien());
 				 gvD.UpdateofCardTeacher(khoahoc);
 			}
+			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
 			model.addAttribute("warning", "Thanh toán thành công!");
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {
