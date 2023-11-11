@@ -21,18 +21,18 @@ begin
 	values(@mathe,5,@mahocvien)
 
 end 
+Go
 --Tạo thẻ cho giảng viên
---Tao The cho Học Viên
 Create Or Alter Trigger tg_CreateCardVisaGV
 on GiangVien for insert
 as 
 begin
 	declare @magiangvien int
 	declare @mathe varchar(10)
-    select @mathe=NGUOIDUNG.Sdt,@magiangvien=inserted.MaGiangVien From inserted
+    select @mathe=NGUOIDUNG.SDT,@magiangvien=inserted.MaGiangVien From inserted
 	join NGUOIDUNG on inserted.MaGiangVien=NGUOIDUNG.MaNguoiDung
 	insert into THE(MaThe,SoDu,MaNguoiDung)
-	values(@mathe,0,@magiangvien)
+	values(@mathe,5,@magiangvien)
 
 end
 go

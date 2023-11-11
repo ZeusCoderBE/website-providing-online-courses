@@ -164,7 +164,8 @@ Create TABLE BIENSOAN
 	CONSTRAINT FK_BIENSOAN_GiangVien FOREIGN KEY (MaNguoiDung) REFERENCES GiangVien(MaGiangVien) ,
 	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
 )
-GO
+Go
+
 
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)

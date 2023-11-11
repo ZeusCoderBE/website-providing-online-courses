@@ -40,6 +40,12 @@ tinymce.init({
 
 		input.click();
 	},
+
+	// add custom filepicker only to Image dialog
+	file_picker_types: 'media',
+	audio_template_callback: function(data) {
+		return '<audio controls>' + '\n<source src="' + data.source + '"' + (data.sourcemime ? ' type="' + data.sourcemime + '"' : '') + ' />\n' + (data.altsource ? '<source src="' + data.altsource + '"' + (data.altsourcemime ? ' type="' + data.altsourcemime + '"' : '') + ' />\n' : '') + '</audio>';
+	},
 	menu: {
 		favs: { title: 'menu', items: 'code visualaid | searchreplace | emoticons' }
 	},
