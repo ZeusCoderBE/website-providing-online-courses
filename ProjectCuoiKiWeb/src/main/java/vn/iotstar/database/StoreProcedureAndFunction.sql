@@ -1,5 +1,5 @@
  --Cập nhật số dư cho người là tác giả của khoá học
-Create Or ALter Procedure sp_CapNhatSoDuTKGV
+Create or ALter Procedure sp_CapNhatSoDuTKGV
 @matacgia int,@cost real
 as
 begin
@@ -16,6 +16,7 @@ begin
 	Update THE set SoDu=@sodubandau+@cost
 	where MaNguoiDung=@magiangvien
 end
+GO
  --Tạo Biên Soạn
  Create or ALter Procedure sp_CreateCompilation
 @manguoidung int
@@ -192,7 +193,7 @@ end
 Go
 
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE OR Alter PROC sp_XemDanhSachBaiHoc
+CREATE  PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
@@ -204,7 +205,7 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Or ALter Procedure sp_XemKhoaHocCuaToi
+CREATE Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -215,7 +216,7 @@ begin
 end
 GO
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE Or ALter PROCEDURE sp_thanhtoanKH
+CREATE PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -265,6 +266,7 @@ begin
 		set @check=0
 	print @check
 end 
+
 --Update số dư thẻ
 GO
 CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap real

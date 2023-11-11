@@ -20,7 +20,7 @@
 <body>
 	<div id="app">
 		<div class="form_create">
-			<form action="create-lesson" method="post">
+			<form action="post-lesson" method="post">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
@@ -30,25 +30,25 @@
 							<div class="form-login-input">
 								<label for="namelesson">Tên bài học:</label> <input type="text"
 									id="namelesson" name="namelesson" placeholder="Tên bài học"
-									value="${null}" />
+									value="${editbaihoc.tenbaihoc}" />
 								<div>
 									<label for="datelesson">Thời gian hoàn thành</label>
 									<output id="Output" class="output">0</output>
 									<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
-										value="0" max="180" step="0.5" list="ticks"
-										oninput="Output.value = tghoanthanh.value"/>
+										value="${editbaihoc.thoigianhoanthanh}" max="180" step="0.5" list="ticks"
+										oninput="Output.value = tghoanthanh.value" />
 								</div>
 							</div>
 							<div class="form-login-input">
-								<label for="trinhdo">Mục tiêu đầu ra</label> <input type="text"
-									id="trinhdo" name="trinhdo" value="${null}" />
+								<label for="daura">Mục tiêu đầu ra</label> <input type="text"
+									id="daura" name="daura" value="${editbaihoc.muctieudaura}" />
 							</div>
 							<div class="content">
 								<h3>Nội dung bài học</h3>
-								<textarea name="textarea" id="default"></textarea>
+								<textarea name="textarea" id="default" value = "${editbaihoc.noidungbaihoc}"></textarea>
 							</div>
-							<button class="btn btn-primary" type="submit"
-								onclick="ReloadAlert('${warning}')">Tạo bài học</button>
+							<button class="btn btn-primary" type="submit">Tạo
+								bài học</button>
 						</div>
 					</div>
 				</div>

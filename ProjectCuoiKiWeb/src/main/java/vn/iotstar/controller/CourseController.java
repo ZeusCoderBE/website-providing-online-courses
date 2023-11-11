@@ -5,10 +5,14 @@ import vn.iotstar.model.*;
 import java.sql.Date;
 import java.sql.SQLException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -37,8 +41,7 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/FindDocuments", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
-			throws ClassNotFoundException, SQLException {
+	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc) throws ClassNotFoundException, SQLException {
 		String url = "";
 		try {
 			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
@@ -60,6 +63,7 @@ public class CourseController {
 
 		return url;
 	}
+
 	@RequestMapping(value = "/Create-Course", method = RequestMethod.GET)
 	public String CreateCourse() {
 		return "create_course";
@@ -152,6 +156,7 @@ public class CourseController {
 				url = "create_course";
 			}
 		} catch (Exception ex) {
+			
 		}
 		return url;
 	}

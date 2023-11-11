@@ -31,8 +31,8 @@ public class BaiHocDao {
 		ResultSet rs = dbC.ExecuteQuery(dml);
 		if (rs.next() == true) {
 			baihoc = new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"),
-					rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"), rs.getInt("MaKhoaHoc"),
-					rs.getNString("DuongDanLuuTru"));
+					rs.getDouble("MucTieuDauRa"), rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"),
+					rs.getInt("MaKhoaHoc"), rs.getNString("DuongDanLuuTru"));
 			return baihoc;
 		} else {
 			return null;
@@ -47,5 +47,18 @@ public class BaiHocDao {
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");
 		}
+	}
+
+	public void XoaBaiHoc(int mabaihoc) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format("DELETE FROM BAIHOC WHERE MaBaiHoc = %d", mabaihoc);
+		int check = dbC.ExecuteCommand(sqlStr);
+	}
+
+	public void CapNhatBaiHoc(BaiHoc bh) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format(
+				"UPDATE BAIHOC SET TenBaiHoc=N'%s', ThoiGianHoanThanh=%f, NoiDungBaiHoc=N'%s', MucTieuDauRa=%f WHERE MaBaiHoc=%d",
+				bh.getTenbaihoc(), bh.getThoigianhoanthanh(), bh.getNoidungbaihoc(), bh.getMuctieudaura(),
+				bh.getMabaihoc());
+		int check = dbC.ExecuteCommand(sqlStr);
 	}
 }
