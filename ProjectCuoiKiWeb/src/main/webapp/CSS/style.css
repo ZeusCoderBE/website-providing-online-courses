@@ -401,7 +401,6 @@
 .nav_drawer a {
     position: relative;
     display: flex;
-    flex-wrap: wrap;
     height: 100%;
     width: 100%;
     padding-left: 20px;
@@ -438,6 +437,10 @@
 .nav_drawer span {
     font-size: 1rem;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 20px;
 }
 
 .nav_drawer li {
@@ -453,6 +456,9 @@
     padding-left: 30px;
     height: 40px;
     width: 100%;
+    white-space: nowrap; /* Ngăn văn bản xuống dòng */
+    overflow: hidden; /* Ẩn phần văn bản vượt quá độ dài */
+    text-overflow: ellipsis;
 }
 
 .nav_drawer__item {

@@ -38,12 +38,17 @@
 							<div class="form-login-input">
 								<label for="loaitk">Loại Tài Khoản </label>
 							</div>
-							<input type="checkbox" name="tkgiaovien" id="tkgiaovien"
-								name="tkgiaovien" onchange="handleCheckboxChange(this)">
-							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
+							<div class="form-login-type">
+								<input type="radio" class="my-checkbox" name="tkgiaovien"
+									id="tkgiaovien" name="tkgiaovien"
+									onchange="handleCheckboxChange(this)"> <label
+									for="tkgiaovien">Giáo Viên</label>
+								<input class="my-checkbox" type="radio"
 								name="tkhocvien" id="tkhocvien" name="tkhocvien"
 								onchange="handleCheckboxChange(this)"> <label
-								for="Tkhocvien">Học Viên</label>
+								for="tkhocvien">Học Viên</label>
+							</div>
+							
 							<div class="form-notice">
 								<a href="forgetpassword">Forgot Password?</a>
 							</div>
