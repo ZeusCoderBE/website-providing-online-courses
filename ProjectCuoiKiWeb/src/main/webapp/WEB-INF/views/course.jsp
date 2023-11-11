@@ -238,10 +238,12 @@
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
 												<div class="my-lesson__buy">
-													<a href="#" style="padding: 0 4px;" class="link-buy">Edit</a>
+													<a href="edit-lesson-info?mabaihoc=${baihoc.mabaihoc}"
+														style="padding: 0 4px;" class="link-buy">Edit</a>
 												</div>
 												<div class="my-lesson__delete" style="margin-left: 0;">
-													<a href="#" style="padding: 0 4px;">Delete</a>
+													<a href="remove-lesson?mabaihoc=${baihoc.mabaihoc}"
+														style="padding: 0 4px;">Delete</a>
 												</div>
 											</c:if>
 										</div></li>
@@ -254,7 +256,7 @@
 						</div>
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
-								<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
+								<a href="create-lesson-info?makhoahoc=${makhoahoc}"> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>

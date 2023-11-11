@@ -57,32 +57,6 @@ public class KhoaHocDao {
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
-
-	public int EditACourse(KhoaHoc khoahoc) {
-		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
-				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
-				+ khoahoc.getThoigian() + ",N'" + khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'"
-				+ ",N'" + khoahoc.getMota() + "'," + khoahoc.getDanhgia() + ",N'" + khoahoc.getTheloai() + "',N'"
-				+ khoahoc.getLinhvuc() + "'";
-		int ketqua = dbC.ExecuteCommand(dml);
-		return ketqua;
-	}
-
-	public int RemoveAcourse(KhoaHoc khoahoc) {
-		String dml="exec sp_RemoveACourse "+khoahoc.getMakhoahoc()+"";
-		int ketqua=dbC.ExecuteCommand(dml);
-		return ketqua;
-	}
-
-	public int CreateACourse(KhoaHoc khoahoc) {
-		String dml = "exec sp_CreateACourse N'" + khoahoc.getTenkhoahoc() + "'," + khoahoc.getMatacgia() + ","
-				+ khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "'," + khoahoc.getThoigian() + ",N'"
-				+ khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'" + ",N'" + khoahoc.getMota()
-				+ "'," + khoahoc.getDanhgia() + ",N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "'";
-		int ketqua = dbC.ExecuteCommand(dml);
-		return ketqua;
-	}
-
 	public KhoaHoc FindCourseOfCustomer(KhoaHoc khoahoc) throws ClassNotFoundException, SQLException {
 		String query = "select *From KhoaHoc where MaKhoaHoc=" + khoahoc.getMakhoahoc() + "";
 		ResultSet rs = dbC.ExecuteQuery(query);

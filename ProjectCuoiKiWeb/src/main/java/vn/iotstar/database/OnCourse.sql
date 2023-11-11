@@ -1,7 +1,7 @@
 --DROP DATABASE ONCOURSE
 create database ONCOURSE
-
 go
+
 USE ONCOURSE
 Go
 --drop database OnCourse
@@ -155,7 +155,6 @@ CREATE TABLE DINHKEM (
 
 );
 GO
-
 Create TABLE BIENSOAN
 (
 	MaNguoiDung int ,
@@ -165,8 +164,6 @@ Create TABLE BIENSOAN
 	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
 )
 Go
-
-
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
 VALUES
@@ -267,4 +264,4 @@ VALUES
     (4, 1),
     (5, 1),
     (4, 2)
-  
+

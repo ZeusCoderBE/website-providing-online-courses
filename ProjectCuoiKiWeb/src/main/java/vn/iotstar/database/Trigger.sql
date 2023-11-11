@@ -62,4 +62,20 @@ begin
 	delete From KHOAHOC
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
+GO
 
+--Xóa những tham chiếu tới bài học trước khi xóa bài học
+CREATE OR ALTER TRIGGER tr_xoaBaiHoc ON BAIHOC
+INSTEAD OF DELETE
+AS
+DECLARE @mabaihoc INT
+SELECT @mabaihoc=d.MaBaiHoc
+FROM deleted d
+BEGIN
+	DELETE FROM LAMBAITAP WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM BAITAP WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM HOC WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM DINHKEM WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM BAIHOC WHERE MaBaiHoc = @mabaihoc
+END
+GO
