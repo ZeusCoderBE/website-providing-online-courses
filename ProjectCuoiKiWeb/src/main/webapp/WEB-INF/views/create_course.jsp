@@ -56,9 +56,10 @@
 										<label for="gv">Trình độ </label> <input type="text"
 											id="trinhdodauvao" name="trinhdodauvao"
 											placeholder="vd :Cơ Bản" required
-											value="${findkhoahoc.trinhdodauvao}" /> <label for="price">Đánh
-											Giá</label> <input type="text" id="danhgia" name="danhgia"
-											placeholder="vd: 5" required value="${findkhoahoc.danhgia}" />
+											value="${findkhoahoc.trinhdodauvao}" /> 
+											<label for="upload">Upload file</label> 
+											<input type="file" class="form-control" id="upload"/>
+							    
 									</div>
 									<div class="form-login-input">
 										<label for="makh">Ngôn ngữ</label> <input type="text"
@@ -113,9 +114,11 @@
 									<div class="form-login-input">
 										<label for="gv">Trình độ </label> <input type="text"
 											id="trinhdodauvao" name="trinhdodauvao"
-											placeholder="vd :thạc sĩ" required /> <label for="price">Đánh
-											Giá</label> <input type="text" id="danhgia" name="danhgia"
-											placeholder="vd: 5" required />
+											placeholder="vd :thạc sĩ" required /> 
+											<label for="upload">Upload
+											file</label> 
+											<input type="file" class="form-control"
+											id="upload" />
 									</div>
 									<div class="form-login-input">
 										<label for="makh">Ngôn ngữ</label> <input type="text"

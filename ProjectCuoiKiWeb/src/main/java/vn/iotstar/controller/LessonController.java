@@ -32,6 +32,7 @@ public class LessonController {
 		
 		BaiHoc bh = new BaiHoc(0, name, Double.parseDouble(tghoanthanh), content, Double.parseDouble(muctieu), null, makhoahoc);
 		try {
+			
 			bhD.ThemBaiHoc(bh);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

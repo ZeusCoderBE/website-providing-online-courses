@@ -31,18 +31,23 @@
 								<label for="namelesson">Tên bài học:</label> <input type="text"
 									id="namelesson" name="namelesson" placeholder="Tên bài học"
 									value="${null}" />
-								<div>
-									<label for="datelesson">Thời gian hoàn thành</label>
-									<output id="Output" class="output">0</output>
-									<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
-										value="0" max="180" step="0.5" list="ticks"
-										oninput="Output.value = tghoanthanh.value"/>
-								</div>
+								
 							</div>
 							<div class="form-login-input">
-								<label for="trinhdo">Mục tiêu đầu ra</label> <input type="text"
+								<label for="trinhdo">Mục tiêu đầu ra</label> <input type=""
 									id="trinhdo" name="trinhdo" value="${null}" />
+							    <div class="form-progress">
+									<label for="datelesson">Thời gian hoàn thành</label>
+									<div class="form-progress__item">
+										<output id="Output" class="output">0</output>
+										<input name="tghoanthanh" id="tghoanthanh" type="range"
+											min="0" value="0" max="180" step="0.5" list="ticks"
+											oninput="Output.value = tghoanthanh.value" />
+									</div>
+								</div>
 							</div>
+							
+							
 							<div class="content">
 								<h3>Nội dung bài học</h3>
 								<textarea name="textarea" id="default"></textarea>
