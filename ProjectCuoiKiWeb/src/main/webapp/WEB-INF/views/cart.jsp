@@ -232,11 +232,7 @@
 					<div class="cart-col-3 col-3">
 						<div class="cart-pay">
 							<span>Tổng:</span>
-<<<<<<< HEAD
-							<h2>0</h2>
-=======
 							<h2>0$</h2>
->>>>>>> 27fb7740c72c9b20677660d6fc76c02147d7096d
 							<button class="btn btn-primary btn-buy" type="submit">Thanh
 								Toán</button>
 							<p>Khuyến mãi</p>
