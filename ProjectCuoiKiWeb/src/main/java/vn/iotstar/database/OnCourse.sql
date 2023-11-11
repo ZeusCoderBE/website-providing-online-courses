@@ -47,12 +47,13 @@ CREATE TABLE KHOAHOC (
     GiaTien REAL,
     NgonNgu NVARCHAR(50),
     ThoiGianHoanThanh REAL,
-    TrinhDoDauVao NVARCHAR(50),
+    TrinhDoDauVao NVARCHAR(50) ,
     NgayPhatHanh DATE,
     MoTa NTEXT,
-    DanhGia INT,
+    DanhGia INT default 5,
     TheLoai NVARCHAR(50),
     LinhVuc NVARCHAR(30),
+    MinhHoa varchar(255),
     CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
 );
@@ -185,12 +186,12 @@ VALUES (4, N'Công Nghệ Phần Mềm'),
     (5, N'Mạng Và An Ninh Mạng')
 
 -- Chèn khóa học
-INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia,TheLoai,LinhVuc)
+INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa,TheLoai,LinhVuc)
 VALUES
-    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
-    (N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
-    (N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
-    (N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
+    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản',N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
+    (N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
+    (N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới',N'Khoá Học Dài Hạn',N'Dữ Liệu'),
+    (N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
     
 INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
 VALUES

@@ -193,7 +193,7 @@ end
 Go
 
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE  PROC sp_XemDanhSachBaiHoc
+CREATE or alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
@@ -205,7 +205,7 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Procedure sp_XemKhoaHocCuaToi
+CREATE or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
@@ -216,7 +216,7 @@ begin
 end
 GO
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE PROCEDURE sp_thanhtoanKH
+CREATE or alter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -242,7 +242,7 @@ BEGIN
 END
 Go
 -- Check Đăng Đăng Nhập với vai trò là học viên
-Create or Alter Procedure sp_CheckLoginHV
+Create or alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
 as
 begin

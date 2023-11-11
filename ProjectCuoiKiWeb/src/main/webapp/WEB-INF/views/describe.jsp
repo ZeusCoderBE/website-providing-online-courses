@@ -154,10 +154,9 @@
 								<c:choose>
 									<c:when test="${isdangky != true}">
 										<div class="btn_action">
-											<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}" class="btn btn-success btn_signin__course">
-												Đăng Ký
-											</a> 
-											<a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
+											<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}"
+												class="btn btn-success btn_signin__course"> Đăng Ký </a> <a
+												href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
 												class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
 										</div>
 									</c:when>
@@ -183,14 +182,15 @@
 
 								</div>
 							</c:when>
-							<c:otherwise>
+							<c:when
+								test="${empty giangvien.manguoidung && empty hocvien.manguoidung && empty istao}">
 								<div class="btn_action">
 									<a href="login">
 										<button class="btn btn-success btn_signin__course">Đăng
 											ký học</button>
 									</a>
 								</div>
-							</c:otherwise>
+							</c:when>
 						</c:choose>
 					</div>
 				</div>
