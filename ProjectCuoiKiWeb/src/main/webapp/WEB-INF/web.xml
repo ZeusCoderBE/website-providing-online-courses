@@ -25,5 +25,8 @@
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	<<<<<<< HEAD
 
+	=======
+	>>>>>>> 1d03420d52b9193c06b2ec278864841d259bf365
 </web-app>

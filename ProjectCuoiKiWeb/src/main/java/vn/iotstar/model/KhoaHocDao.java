@@ -1,5 +1,10 @@
 package vn.iotstar.model;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -18,7 +23,7 @@ public class KhoaHocDao {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
-					rs.getInt("DanhGia"));
+					rs.getInt("DanhGia"), rs.getString("MinhHoa"));
 			danhsachkh.add(khoahoc);
 		}
 		return danhsachkh;
@@ -29,6 +34,7 @@ public class KhoaHocDao {
 		for(String courseId:selectedCourses)
 		{
 			KhoaHoc course=FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
+
 			selectedtemp.add(course);
 		}
 		return selectedtemp;
@@ -37,15 +43,15 @@ public class KhoaHocDao {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
 				+ khoahoc.getThoigian() + ",N'" + khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'"
-				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'"
-				+ khoahoc.getLinhvuc() + "'";
+				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','"
+				+ khoahoc.getMinhhoa() + "'";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
 
 	public int RemoveAcourse(KhoaHoc khoahoc) {
-		String dml="exec sp_RemoveACourse "+khoahoc.getMakhoahoc()+"";
-		int ketqua=dbC.ExecuteCommand(dml);
+		String dml = "exec sp_RemoveACourse " + khoahoc.getMakhoahoc() + "";
+		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
 
@@ -53,7 +59,7 @@ public class KhoaHocDao {
 		String dml = "exec sp_CreateACourse N'" + khoahoc.getTenkhoahoc() + "'," + khoahoc.getMatacgia() + ","
 				+ khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "'," + khoahoc.getThoigian() + ",N'"
 				+ khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'" + ",N'" + khoahoc.getMota()
-				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "'";
+				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','" + khoahoc.getMinhhoa() + "'";
 		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
@@ -65,7 +71,7 @@ public class KhoaHocDao {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
-					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"));
+					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"), rs.getString("MinhHoa"));
 
 		}
 		return khoahoc;
@@ -78,7 +84,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -91,7 +97,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"));
 			listkh.add(khoahoc);
 		}
 		return listkh;

@@ -24,7 +24,9 @@
 	<div id="app">
 		<div class="form_create">
 			<form action="Post-Course" method="post"
-				onsubmit="return checkKhoaHoc()">
+				<<<<<<< HEAD onsubmit="return checkKhoaHoc()"> =======
+				enctype="multipart/form-data" onsubmit="return checkKhoaHoc()">
+				>>>>>>> 1d03420d52b9193c06b2ec278864841d259bf365
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
@@ -55,8 +57,8 @@
 									id="trinhdodauvao" name="trinhdodauvao"
 									placeholder="vd :Cơ Bản" required
 									value="${findkhoahoc.trinhdodauvao}" /> <label for="upload">Upload
-									file</label> <input type="file" class="form-control" id="upload" />
-
+									file</label> <input type="file" class="form-control" id="upload"
+									name="minhhoa" />
 							</div>
 							<div class="form-login-input">
 								<label for="makh">Ngôn ngữ</label> <input type="text"

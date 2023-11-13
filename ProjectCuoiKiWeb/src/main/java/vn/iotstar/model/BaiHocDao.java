@@ -65,7 +65,8 @@ public class BaiHocDao {
 
 	public void XoaBaiHoc(int mabaihoc) throws SQLException, ClassNotFoundException {
 		String sqlStr = String.format("DELETE FROM BAIHOC WHERE MaBaiHoc = %d", mabaihoc);
-		int check = dbC.ExecuteCommand(sqlStr);
+		dbC.ExecuteCommand(sqlStr);
+		
 	}
 
 	public void CapNhatBaiHoc(BaiHoc bh) throws SQLException, ClassNotFoundException {
@@ -73,6 +74,6 @@ public class BaiHocDao {
 				"UPDATE BAIHOC SET TenBaiHoc=N'%s', ThoiGianHoanThanh=%f, NoiDungBaiHoc=N'%s', MucTieuDauRa=%f WHERE MaBaiHoc=%d",
 				bh.getTenbaihoc(), bh.getThoigianhoanthanh(), bh.getNoidungbaihoc(), bh.getMuctieudaura(),
 				bh.getMabaihoc());
-		int check = dbC.ExecuteCommand(sqlStr);
+		dbC.ExecuteCommand(sqlStr);
 	}
 }

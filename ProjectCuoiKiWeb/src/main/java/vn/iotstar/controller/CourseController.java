@@ -4,15 +4,20 @@ import vn.iotstar.model.*;
 
 import java.sql.Date;
 import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;<<<<<<<HEAD=======
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;>>>>>>>1d 03420d 52 b9193c06b2ec278864841d259bf365
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
-
 import java.util.*;
+import java.io.File;
 
 @Controller
 public class CourseController {
@@ -20,6 +25,8 @@ public class CourseController {
 	KhoaHocDao khD = new KhoaHocDao();
 	KhoaHoc khoahocid = new KhoaHoc();
 	GiangVienDao gvD = new GiangVienDao();
+	@Autowired
+	ServletContext context;
 	int mode = 0;
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET, params = "makhoahoc")
@@ -36,7 +43,6 @@ public class CourseController {
 		}
 		return "course";
 	}
-
 
 	@RequestMapping(value = "/Create-Course", method = RequestMethod.GET)
 	public String CreateCourse() {
@@ -67,14 +73,26 @@ public class CourseController {
 			@RequestParam("matacgia") int matacgia, @RequestParam("giatien") double giatien,
 			@RequestParam("trinhdodauvao") String trinhdo, @RequestParam("ngonngu") String ngonngu,
 			@RequestParam("thoiluong") double thoiluong, @RequestParam("linhvuc") String linhvuc,
-			@RequestParam("ngayphathanh") Date ngayphathanh, @RequestParam("textarea") String mota, ModelMap model,
-			HttpSession session) {
+			@RequestParam("ngayphathanh") Date ngayphathanh, @RequestParam("textarea") String mota,
+			@RequestParam("minhhoa") MultipartFile minhhoa, ModelMap model, HttpSession session,
+			MultipartHttpServletRequest rq) {
 		String url = "";
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
 			String mess = "";
+			String originname = "";
+
+			// Lưu file ảnh thumbnail cho khóa học
+			MultipartFile mul = rq.getFile(minhhoa.getName());
+			if (mul != null) {
+				originname = mul.getOriginalFilename();
+				String upload = context.getRealPath("Images\\" + originname);
+				File dest = new File(upload);
+				mul.transferTo(dest);
+			}
+
 			KhoaHoc khoahoc = new KhoaHoc(khoahocid.getMakhoahoc(), tenkhoahoc, matacgia, giatien, ngonngu, thoiluong,
-					trinhdo, ngayphathanh, mota, 0, theloai, linhvuc);
+					trinhdo, ngayphathanh, mota, 0, theloai, linhvuc, originname);
 			if (mode == 0) {
 				if (khD.CreateACourse(khoahoc) == 1 && gvD.InsertCompilation(gv.getManguoidung()) == 1) {
 					mess = "Chúc mừng bạn đã tạo thành công một khoá học ! ";
@@ -117,9 +135,7 @@ public class CourseController {
 			mess = "Bạn đã xoá thất bại";
 			url = "describe";
 			model.addAttribute("xoakh", mess);
-
 		}
 		return url;
 	}
-
 }
