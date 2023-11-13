@@ -13,6 +13,7 @@ public class KhoaHoc {
 	private Date ngayphathanh;
 	private String mota;
 	private int danhgia;
+	private String minhhoa;
 	private String theloai;
 	private String linhvuc;
 
@@ -63,9 +64,13 @@ public class KhoaHoc {
 	public int getDanhgia() {
 		return danhgia;
 	}
+	
+	public String getMinhhoa() {
+		return minhhoa;
+	}
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
-			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia) {
+			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String minhhoa) {
 		this.makhoahoc = makhoahoc;
 		this.tenkhoahoc = tenkhoahoc;
 		this.matacgia = matacgia;
@@ -76,10 +81,11 @@ public class KhoaHoc {
 		this.ngayphathanh = ngayphathanh;
 		this.mota = mota;
 		this.danhgia = danhgia;
+		this.minhhoa = minhhoa;
 	}
 
 	public KhoaHoc(int makhoahoc,String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
-			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String theloai, String linhvuc) {
+			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String theloai, String linhvuc, String minhhoa) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.matacgia = matacgia;
 		this.giatien = giatien;
@@ -92,6 +98,7 @@ public class KhoaHoc {
 		this.theloai = theloai;
 		this.linhvuc = linhvuc;
 		this.makhoahoc=makhoahoc;
+		this.minhhoa = minhhoa;
 	}
 
 	public KhoaHoc(String tenkhoahoc, int danhgia, int matacgia, String trinhdodauvao, Double giatien, Double thoigian,
@@ -107,11 +114,12 @@ public class KhoaHoc {
 		this.makhoahoc = makhoahoc;
 	}
 
-	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota) {
+	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota, String minhhoa) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.trinhdodauvao = trinhdodauvao;
 		this.makhoahoc = makhoahoc;
 		this.mota = mota;
+		this.minhhoa = minhhoa;
 	}
 	public KhoaHoc(int matacgia,double giatien)
 	{

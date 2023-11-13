@@ -50,12 +50,13 @@ CREATE OR ALTER PROCEDURE sp_EditACourse
 @ngayphathanh date,
 @mota ntext,
 @theloai nvarchar(50),
-@linhvuc nvarchar(30)
+@linhvuc nvarchar(30),
+@minhhoa varchar(255)
 as
 begin
 	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
 	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
-	NgayPhatHanh=@ngayphathanh,MoTa=@mota,TheLoai=@theloai,LinhVuc=@linhvuc
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,TheLoai=@theloai,LinhVuc=@linhvuc, MinhHoa=@minhhoa
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
 Go
@@ -71,13 +72,14 @@ CREATE OR ALTER PROCEDURE sp_CreateACourse
 @ngayphathanh date,
 @mota ntext,
 @theloai nvarchar(50),
-@linhvuc nvarchar(30)
+@linhvuc nvarchar(30),
+@minhhoa varchar(255)
 as
 begin
-	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc)
-	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@theloai,@linhvuc)
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc, MinhHoa)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@theloai,@linhvuc, @minhhoa)
 end
- Go
+Go
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
 CREATE Or Alter PROCEDURE sp_InsertCourseCart
     @MaNguoiDung INT,
@@ -203,11 +205,11 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Procedure sp_XemKhoaHocCuaToi
+CREATE or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa, KhoaHoc.MinhHoa From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung

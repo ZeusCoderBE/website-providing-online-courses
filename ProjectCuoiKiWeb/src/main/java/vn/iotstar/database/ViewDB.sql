@@ -7,7 +7,7 @@ select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 GO
 --Xem Khoá Học Đã Tạo
 Create Or Alter View v_XemKhoaHocDaTao
-as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien From GIANGVIEN 
+as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien, KHOAHOC.MinhHoa From GIANGVIEN 
 join BIENSOAN on GIANGVIEN.MaGiangVien=BIENSOAN.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc=BIENSOAN.MaKhoaHoc
 Go
