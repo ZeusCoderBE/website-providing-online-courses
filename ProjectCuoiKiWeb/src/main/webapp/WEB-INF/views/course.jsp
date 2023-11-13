@@ -302,11 +302,10 @@
 												<div class="container_content">
 													<form>
 														<c:forEach var="tailieu" items="${dstailieu}">
-															<label>Thể loại: </label>
-															<input type="text" value="${tailieu.theloai}">
 															<label>File:</label>
-															<input type="image"
-																value="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+															<a
+																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+																${tailieu.duongdanluutru}" </a>
 														</c:forEach>
 													</form>
 												</div>
@@ -351,7 +350,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-
+							-->
 							<!-- Forum -->
 							<div class="page-forum page-common">
 								<div class="page-content">
@@ -427,8 +426,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-
-							<!-- Messages -->
+							<!-- Messages-->
 							<div class="page-message page-common">
 								<div class="page-content">
 									<h2>Messages</h2>
@@ -499,6 +497,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
+							
 						</article>
 					</c:when>
 				</c:choose>

@@ -5,7 +5,7 @@ public class TaiLieuDao {
 	DataBaseConnection dbC = new DataBaseConnection();
 
 	public int CreateDocument(TaiLieu tailieu) {
-		String dml = "exec sp_CreateDocument '" + tailieu.getTheloai() + "','" + tailieu.getDinhdangluutru() + "','"
+		String dml = "exec sp_CreateDocument N'" + tailieu.getTheloai() + "','" + tailieu.getDinhdangluutru() + "',N'"
 				+ tailieu.getDuongdanluutru() + "'";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;

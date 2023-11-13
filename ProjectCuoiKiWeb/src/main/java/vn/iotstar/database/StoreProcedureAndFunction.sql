@@ -19,6 +19,7 @@ begin
 	Insert into DINHKEM(MaBaiHoc,MaTaiLieu)
 	values(@mabaihoc,@matailieu)
 end
+Go
  --Cập nhật số dư cho người là tác giả của khoá học
 Create or ALter Procedure sp_CapNhatSoDuTKGV
 @matacgia int,@cost real

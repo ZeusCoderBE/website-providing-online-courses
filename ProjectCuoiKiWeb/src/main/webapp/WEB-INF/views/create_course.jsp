@@ -24,9 +24,7 @@
 	<div id="app">
 		<div class="form_create">
 			<form action="Post-Course" method="post"
-				<<<<<<< HEAD onsubmit="return checkKhoaHoc()"> =======
 				enctype="multipart/form-data" onsubmit="return checkKhoaHoc()">
-				>>>>>>> 1d03420d52b9193c06b2ec278864841d259bf365
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">

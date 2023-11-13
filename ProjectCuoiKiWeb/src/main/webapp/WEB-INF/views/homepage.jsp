@@ -410,7 +410,8 @@
 																<div class="view_content">
 																	<div class="card_item">
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
-																			<div class="card_img" style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
+																			<div class="card_img"
+																				style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
 																		</a>
 																		<div class="course_info">
 																			<span>${khoahoc.trinhdodauvao}</span>
@@ -430,11 +431,11 @@
 																<div class="view_content">
 																	<div class="card_item">
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
-																			<div class="card_img" style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
+																			<div class="card_img"
+																				style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
 																			<div class="course_info">
 																				<span>${khoahoc.trinhdodauvao}</span>
-																			</div> 
-																			<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			</div> <a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a>
 																	</div>
 																</div>
