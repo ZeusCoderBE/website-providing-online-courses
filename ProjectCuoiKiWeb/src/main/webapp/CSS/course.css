@@ -69,13 +69,17 @@ body {
     justify-content: start;
 }
 
-.container_content p,
+/*.container_content p,
 .container_content li {
     margin: 10px;
     font-size: 1rem;
     font-weight: 400;
     color: black;
     text-align: left;
+}*/
+
+.nav-item {
+	margin: 1px;
 }
 
 .container_content h6 {
@@ -154,6 +158,17 @@ body {
     width: 100%;
     margin-top: 20px;
     background-color: #e5e7e8;
+}
+
+.nav-link {
+    font-size: 0.9rem;
+    color: white;
+    padding: 6px;
+    
+}
+
+.col-lg-9 {
+	width: 100%;
 }
 
 .title-item {

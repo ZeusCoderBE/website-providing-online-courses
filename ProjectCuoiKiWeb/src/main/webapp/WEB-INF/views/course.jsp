@@ -288,7 +288,7 @@
 											${lesson.thoigianhoanthanh} phút</span>
 									</div>
 								</div>
-								<div class="content">
+								<div class="content-course">
 									<div class="content_text">
 										<div class="content_item">
 											<div class="content_header">
