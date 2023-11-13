@@ -299,6 +299,21 @@
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
+												<div class="container_content">
+													<form>
+														<c:forEach var="tailieu" items="${dstailieu}">
+															<label>Thể loại: </label>
+															<input type="text" value="${tailieu.theloai}">
+															<label>File:</label>
+															<input type="image"
+																value="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+														</c:forEach>
+													</form>
+												</div>
+												<div class="container_content">
+													<a href="create-document?mabaihoc=${lesson.mabaihoc}">
+														Create</a>
+												</div>
 											</div>
 										</div>
 									</div>

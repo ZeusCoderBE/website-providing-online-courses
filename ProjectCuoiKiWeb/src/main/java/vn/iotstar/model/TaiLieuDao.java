@@ -1,5 +1,20 @@
 package vn.iotstar.model;
 
-public class TaiLieuDao {
+import vn.iotstar.database.DataBaseConnection;
 
+public class TaiLieuDao {
+	DataBaseConnection dbC = new DataBaseConnection();
+
+	public int CreateDocument(TaiLieu tailieu) {
+		String dml = "exec sp_CreateDocument '" + tailieu.getTheloai() + "','" + tailieu.getDinhdangluutru() + "','"
+				+ tailieu.getDuongdanluutru() + "'";
+		int ketqua = dbC.ExecuteCommand(dml);
+		return ketqua;
+	}
+
+	public int CreateAttachment(int mabaihoc) {
+		String dml = "exec sp_CreateAttachment " + mabaihoc + "";
+		int ketqua = dbC.ExecuteCommand(dml);
+		return ketqua;
+	}
 }

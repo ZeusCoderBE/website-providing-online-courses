@@ -1,3 +1,24 @@
+--Create Document
+Create or Alter Procedure sp_CreateDocument
+@theloai nvarchar(50),@dinhdang varchar(50),@duongdan nvarchar(255)
+as
+begin
+	Insert into TaiLieu(TheLoai,DinhDangLuuTru,DuongDanLuuTru)
+	values(@theloai,@dinhdang,@duongdan)
+end
+Go
+--Create Attach
+Create Or Alter Procedure sp_CreateAttachment
+@mabaihoc int
+as
+begin
+	--Tìm mã tài liệu mới được tạo
+	declare @matailieu int
+	set @matailieu=(select Top 1 MaTaiLieu From TAILIEU order by MaTaiLieu desc)
+	--đính kèm
+	Insert into DINHKEM(MaBaiHoc,MaTaiLieu)
+	values(@mabaihoc,@matailieu)
+end
  --Cập nhật số dư cho người là tác giả của khoá học
 Create or ALter Procedure sp_CapNhatSoDuTKGV
 @matacgia int,@cost real
@@ -39,7 +60,7 @@ begin
 end
 Go
 --Edit Course dành cho giảng viên
-Create Or Alter Procedure sp_EditACourse
+CREATE OR ALTER PROCEDURE sp_EditACourse
 @makhoahoc int,
 @tenkhoahoc nvarchar(255),
 @matacgia int ,
@@ -49,19 +70,19 @@ Create Or Alter Procedure sp_EditACourse
 @trinhdodauvao nvarchar(50),
 @ngayphathanh date,
 @mota ntext,
-@danhgia int,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30)
 as
 begin
 	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
 	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
-	NgayPhatHanh=@ngayphathanh,MoTa=@mota,DanhGia=@danhgia,TheLoai=@theloai,LinhVuc=@linhvuc
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,TheLoai=@theloai,LinhVuc=@linhvuc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
 Go
+
  --Tạo khoá học dành cho giảng viên
- Create Or Alter Procedure sp_CreateACourse
+CREATE OR ALTER PROCEDURE sp_CreateACourse
 @tenkhoahoc nvarchar(255),
 @matacgia int ,
 @giatien real,
@@ -70,15 +91,13 @@ Go
 @trinhdodauvao nvarchar(50),
 @ngayphathanh date,
 @mota ntext,
-@danhgia int,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30)
 as
 begin
-	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,DanhGia,TheLoai,LinhVuc)
-	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@danhgia,@theloai,@linhvuc)
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@theloai,@linhvuc)
 end
-
  Go
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
 CREATE Or Alter PROCEDURE sp_InsertCourseCart

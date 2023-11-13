@@ -30,8 +30,8 @@ select GIANGVIEN.MaGiangVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 	on GIANGVIEN.MaGiangVien=NGUOIDUNG.MaNguoiDung
 Go
 -- Xem Danh Sách Tài Liệu dạng video đính kèm
-Create Or Alter View v_xemdanhsachtailieu as
-select BaiHoc.*,DuongDanLuuTru 
+Create or Alter View v_xemdanhsachtailieu as
+select BaiHoc.*,TAILIEU.MaTaiLieu,TAILIEU.TheLoai,TAILIEU.DinhDangLuuTru,DuongDanLuuTru 
 From DINHKEM
 join TAILIEU
 on TAILIEU.MaTaiLieu=DINHKEM.MaTaiLieu 

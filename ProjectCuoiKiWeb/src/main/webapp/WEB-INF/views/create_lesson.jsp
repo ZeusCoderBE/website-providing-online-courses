@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
 							<div class="form-login-input">
 								<label for="daura">Mục tiêu đầu ra</label> <input type="text"
 									id="daura" name="daura" value="${editbaihoc.muctieudaura}" />
-							</div>
+							</div>						
 							<div class="content">
 								<h3>Nội dung bài học</h3>
 								<textarea name="textarea" id="default" value = "${editbaihoc.noidungbaihoc}"></textarea>

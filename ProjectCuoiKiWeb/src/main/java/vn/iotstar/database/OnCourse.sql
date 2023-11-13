@@ -88,7 +88,7 @@ CREATE TABLE BAITAP (
 GO
 
 CREATE TABLE TAILIEU (
-	MaTaiLieu INT  PRIMARY KEY,
+	MaTaiLieu INT  PRIMARY KEY IDENTITY,
 	TheLoai NVARCHAR(20),
 	DinhDangLuuTru NVARCHAR(20),
 	DuongDanLuuTru NVARCHAR(255) 
@@ -209,13 +209,13 @@ VALUES
     (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf'),
     (N'Bài tập 1', 3, N'Loại 1', 2.0, 'dap_an_5.pdf');
 
-INSERT INTO TAILIEU (MaTaiLieu,TheLoai, DinhDangLuuTru, DuongDanLuuTru)
+INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
-    (1,N'Tài liệu 1', N'PDF', 'duong_dan_1.pdf'),
-    (2,N'Tài liệu 2', N'PDF', 'duong_dan_2.pdf'),
-    (3,N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
-    (4,N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
-    (5,N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
+    (N'Tài liệu 1', N'PDF', 'duong_dan_1.pdf'),
+    (N'Tài liệu 2', N'PDF', 'duong_dan_2.pdf'),
+    (N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
+    (N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
+    (N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
 
 INSERT INTO GIOHANG (MaNguoiDung, MaKhoaHoc)
 VALUES

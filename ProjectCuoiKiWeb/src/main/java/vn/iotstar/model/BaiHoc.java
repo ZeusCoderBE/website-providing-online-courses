@@ -54,7 +54,6 @@ public class BaiHoc {
 		this.ngaydang = date;
 		this.makhoahoc = makhoahoc;
 	}
-
 	public BaiHoc() {
 
 	}
