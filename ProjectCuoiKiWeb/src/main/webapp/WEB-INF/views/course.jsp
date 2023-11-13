@@ -21,7 +21,6 @@
 <link href="./templates/CSS/main.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
-<link href="./templates/CSS/create_course.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="./templates/CSS/submitprac.css" type="text/css" rel="stylesheet">
 
@@ -216,53 +215,6 @@
 				</div>
 			</div>
 		</header>
-		
-		<div class="create-lesson">
-		  <div class="form_create">
-			<form action="create-lesson" method="post">
-				<div class="form-list">
-					<div class="form-item">
-						<div class="form-item-login">
-							<div class="form-login-header">
-								<h1>TẠO BÀI HỌC</h1>
-							</div>
-							<div class="form-login-input">
-								<label for="namelesson">Tên bài học:</label> <input type="text"
-									id="namelesson" name="namelesson" placeholder="Tên bài học"
-									value="${null}" />
-								
-							</div>
-							<div class="form-login-input">
-								<label for="trinhdo">Mục tiêu đầu ra</label> <input type=""
-									id="trinhdo" name="trinhdo" value="${null}" />
-							    <div class="form-progress">
-									<label for="datelesson">Thời gian hoàn thành</label>
-									<div class="form-progress__item">
-										<output id="Output" class="output">0</output>
-										<input name="tghoanthanh" id="tghoanthanh" type="range"
-											min="0" value="0" max="180" step="0.5" list="ticks"
-											oninput="Output.value = tghoanthanh.value" />
-									</div>
-								</div>
-							</div>
-							
-							
-							<div class="content-lesson">
-								<h3>Nội dung bài học</h3>
-								<textarea name="textarea" id="default"></textarea>
-							</div>
-							<button class="btn btn-primary" type="submit"
-								>Tạo bài học</button>
-							
-							
-						</div>
-					</div>
-				</div>
-			</form>
-			<button class="btn btn-primary" type="submit"
-								onclick='CloseCreate("create-lesson")'>Hủy</button>
-		</div>
-		</div>
 		<section class="main">
 			<div class="row">
 				<nav class="col-2">
@@ -308,7 +260,7 @@
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
 							<!-- edit-lesson-tool?makhoahoc=${makhoahoc} -->
-								<a href="#" onclick='OpenCreate("create-lesson")'> <i
+								<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>
@@ -636,9 +588,6 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.tiny.cloud/1/yjs36lnwbew65fjemjpjuu6cjayfnprmaybt1rl1rmo6jx5e/tinymce/6/tinymce.min.js"
-		referrerpolicy="origin"></script>
 	<script src="./templates/JavaScript/script.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
