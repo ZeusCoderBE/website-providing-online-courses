@@ -6,6 +6,8 @@ begin
 	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
 	where MaTaiLieu=@matailieu
 end
+
+go
 --Create Document
 Create or Alter Procedure sp_CreateDocument
 @theloai nvarchar(50),@dinhdang varchar(50),@duongdan nvarchar(255)
