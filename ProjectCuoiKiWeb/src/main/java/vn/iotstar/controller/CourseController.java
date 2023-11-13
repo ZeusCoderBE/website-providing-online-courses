@@ -2,14 +2,23 @@ package vn.iotstar.controller;
 
 import vn.iotstar.model.*;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.SQLException;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import jakarta.persistence.criteria.Path;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.*;
@@ -155,5 +164,34 @@ public class CourseController {
 		}
 		return url;
 	}
+	@RequestMapping(value = "/Submit-Practice", method = RequestMethod.POST)
+	public String createCourse(@RequestParam("file") MultipartFile file, ModelMap model, HttpSession session) {
+        String uploadDirectory = "./templates/ResourceFile/";
 
+        if (file != null && !file.isEmpty()) {
+            try {
+                // Lấy tên của file
+                String fileName = file.getOriginalFilename();
+
+                // Tạo đường dẫn cho file đã tải lên
+                Path path = (Path) Paths.get(uploadDirectory, fileName);
+                File fileDestination = ((java.nio.file.Path) path).toFile();
+                // Lưu file đã tải lên vào thư mục được chỉ định
+                file.transferTo(fileDestination);
+
+                // Thêm thông báo thành công vào model
+                model.addAttribute("message", "File uploaded successfully!");
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("message", "Error occurred while uploading file!");
+                return "create_lesson";
+            }
+        } else {
+            model.addAttribute("message", "Please select a file before submitting.");
+            return "pay";
+        }
+
+
+        return "create_course";
+    }
 }

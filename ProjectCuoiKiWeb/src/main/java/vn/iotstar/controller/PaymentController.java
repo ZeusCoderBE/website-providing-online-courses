@@ -82,7 +82,7 @@ public class PaymentController {
 				gvD.UpdateofCardTeacher(khoahoc);
 			}
 			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
-			session.setAttribute("warning", "Thanh toán thành công!");
+			model.addAttribute("warning", "Thanh toán thành công!");
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

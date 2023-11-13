@@ -21,6 +21,12 @@
 <link href="./templates/CSS/main.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
+<link href="./templates/CSS/create_course.css" type="text/css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="./templates/CSS/submitprac.css" type="text/css" rel="stylesheet">
+
+<!--  
+-->
 </head>
 <body>
 	<div class="" id="app">
@@ -210,6 +216,53 @@
 				</div>
 			</div>
 		</header>
+		
+		<div class="create-lesson">
+		  <div class="form_create">
+			<form action="create-lesson" method="post">
+				<div class="form-list">
+					<div class="form-item">
+						<div class="form-item-login">
+							<div class="form-login-header">
+								<h1>TẠO BÀI HỌC</h1>
+							</div>
+							<div class="form-login-input">
+								<label for="namelesson">Tên bài học:</label> <input type="text"
+									id="namelesson" name="namelesson" placeholder="Tên bài học"
+									value="${null}" />
+								
+							</div>
+							<div class="form-login-input">
+								<label for="trinhdo">Mục tiêu đầu ra</label> <input type=""
+									id="trinhdo" name="trinhdo" value="${null}" />
+							    <div class="form-progress">
+									<label for="datelesson">Thời gian hoàn thành</label>
+									<div class="form-progress__item">
+										<output id="Output" class="output">0</output>
+										<input name="tghoanthanh" id="tghoanthanh" type="range"
+											min="0" value="0" max="180" step="0.5" list="ticks"
+											oninput="Output.value = tghoanthanh.value" />
+									</div>
+								</div>
+							</div>
+							
+							
+							<div class="content-lesson">
+								<h3>Nội dung bài học</h3>
+								<textarea name="textarea" id="default"></textarea>
+							</div>
+							<button class="btn btn-primary" type="submit"
+								>Tạo bài học</button>
+							
+							
+						</div>
+					</div>
+				</div>
+			</form>
+			<button class="btn btn-primary" type="submit"
+								onclick='CloseCreate("create-lesson")'>Hủy</button>
+		</div>
+		</div>
 		<section class="main">
 			<div class="row">
 				<nav class="col-2">
@@ -254,7 +307,8 @@
 						</div>
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
-								<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
+							<!-- edit-lesson-tool?makhoahoc=${makhoahoc} -->
+								<a href="#" onclick='OpenCreate("create-lesson")'> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>
@@ -301,6 +355,95 @@
 										</div>
 									</div>
 								</div>
+
+<!-- Đang làm chỗ này -->
+								<form id="upload-form" action="Submit-Practice"
+									method="post" enctype="multipart/form-data">
+									<div id="drop-area">
+										<h1>Kéo và Thả File</h1>
+										<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
+										<input type="file" id="file-input" name="file" multiple />
+										<ul id="file-list"></ul>
+										<input type="submit" id="submit-button" value="Submit" onclick="uploadFile()"/>
+									</div>
+								</form>
+								
+								<script>
+								  $(document).ready(function () {
+								    var dropArea = $('#drop-area');
+								    var fileList = $('#file-list');
+								    var submitButton = $('#submit-button');
+								
+								    dropArea.on('dragover', function (e) {
+								      e.preventDefault();
+								      dropArea.addClass('drag-over');
+								    });
+								
+								    dropArea.on('dragleave', function (e) {
+								      e.preventDefault();
+								      dropArea.removeClass('drag-over');
+								    });
+								
+								    dropArea.on('drop', function (e) {
+								      e.preventDefault();
+								      dropArea.removeClass('drag-over');
+								
+								      var files = e.originalEvent.dataTransfer.files;
+								      handleFiles(files);
+								    });
+								
+								    $('#file-input').on('change', function () {
+								      var files = $(this)[0].files;
+								      handleFiles(files);
+								    });
+								
+								    submitButton.on('click', function () {
+								      // Thực hiện xử lý khi nhấn nút Submit
+								      saveFiles();
+								    });
+								
+								    function handleFiles(files) {
+								      for (var i = 0; i < files.length; i++) {
+								        var file = files[i];
+								        var listItem = $('<li class="file-item">' + file.name + '<button class="delete-button" data-index="' + i + '">Xóa</button></li>');
+								        fileList.append(listItem);
+								
+								        // Đăng ký sự kiện xóa file khi nhấn nút Xóa
+								        listItem.find('.delete-button').on('click', function () {
+								          var index = $(this).data('index');
+								          removeFile(index);
+								        });
+								      }
+								    }
+								
+								    function removeFile(index) {
+								      // Xóa file khỏi danh sách
+								      $('#file-list li').eq(index).remove();
+								    }
+								
+								    function saveFiles() {
+								        var files = $('#file-list li');
+								        var formData = new FormData($('#upload-form')[0]);
+
+								        $.ajax({
+								          type: 'POST',
+								          url: '/upload/files',
+								          data: formData,
+								          contentType: false,
+								          processData: false,
+								          success: function (response) {
+								            alert(response);
+								            // Thêm code xử lý sau khi lưu thành công
+								          },
+								          error: function (error) {
+								            console.error(error);
+								            alert('Error occurred while saving files.');
+								          }
+								        });
+								      }
+								  });
+								</script>
+<!-- Tới đây nè -->
 							</div>
 							<!-- NOTES -->
 							<div class="page-note page-common">
@@ -489,10 +632,19 @@
 		</section>
 	</div>
 	<footer class="footer"> </footer>
-	<script src="./templates/JavaScript/script.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.tiny.cloud/1/yjs36lnwbew65fjemjpjuu6cjayfnprmaybt1rl1rmo6jx5e/tinymce/6/tinymce.min.js"
+		referrerpolicy="origin"></script>
+	<script src="./templates/JavaScript/script.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			ReloadAlert("${warning}")
+		}
+	</script>
+	<c:set var="warning" value="${null}"></c:set>
 </body>
 </html>
