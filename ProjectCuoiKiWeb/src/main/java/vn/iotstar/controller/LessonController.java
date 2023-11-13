@@ -69,11 +69,7 @@ public class LessonController {
 				File dest = new File(upload);
 				mul.transferTo(dest);
 				System.out.print("Download Successfull");
-				@SuppressWarnings("null")
-				//
-				// Đường dẫn đang lưu cứng trên local người chạy project. Cần thay đổi để thích ứng với từng local khác nhau
-				//
-				LamBaiTap lbt = new LamBaiTap(manguoidung, "Bài tập 1", mabaihoc, upload);
+				LamBaiTap lbt = new LamBaiTap(manguoidung, "Bài tập 1", mabaihoc, originname);
 				lbtD.NopBaiTap(lbt);
 			} catch (Exception ex) {
 				System.out.print(ex.getMessage());
