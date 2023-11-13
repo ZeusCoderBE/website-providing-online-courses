@@ -2,22 +2,32 @@ package vn.iotstar.controller;
 
 import vn.iotstar.model.*;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.SQLException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestPart;
 
-import jakarta.persistence.criteria.Path;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import java.util.*;
+
 
 @Controller
 public class CourseController {
@@ -159,26 +169,5 @@ public class CourseController {
 		} catch (Exception ex) {
 		}
 		return url;
-	}
-	
-	@RequestMapping(value = "/Submit-Practice", method = RequestMethod.POST)
-	public String CreateCourse(@RequestParam("files") MultipartFile file, ModelMap model, HttpSession session) {
-		String uploadDirectory = "src/file/baitap/";
-		if (!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-				java.nio.file.Path path = Paths.get(uploadDirectory + file.getOriginalFilename());
-				Files.write(path, bytes);
-
-				model.addAttribute("message", "Files uploaded successfully!");
-			} catch (IOException e) {
-				e.printStackTrace();
-				model.addAttribute("message", "Error occurred while uploading files!");
-			}
-		} else {
-			model.addAttribute("message", "Please select files before submitting.");
-		}
-
-		return "create_course";
 	}
 }

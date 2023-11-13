@@ -215,7 +215,7 @@ begin
 	where HOCVIEN.MaHocVien=@manguoidung
 end
 GO
--- So sánh giá tiền thanh toàn và giá tiền khóa học
+-- So sánh giá tiền thanh toán và giá tiền khóa học
 CREATE Or ALter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
@@ -241,7 +241,7 @@ BEGIN
 	END
 END
 Go
--- Check Đăng Đăng Nhập với vai trò là học viên
+-- Check Đăng Nhập với vai trò là học viên
 Create or Alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
 as
@@ -275,3 +275,15 @@ BEGIN
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END
+GO
+
+--Học viên nộp bài tập
+CREATE Or ALTER PROCEDURE sp_NopBaiTap @mand INT, @TenBaiTap NVARCHAR(50), @mabaihoc INT, @filebailam VARCHAR(255) 
+as
+begin
+	INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, FileBaiLam)
+	VALUES (@mand, @TenBaiTap, @mabaihoc, @filebailam)
+end
+Go
+
+

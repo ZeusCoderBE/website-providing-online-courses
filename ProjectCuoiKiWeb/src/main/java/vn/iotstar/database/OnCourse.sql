@@ -78,7 +78,6 @@ CREATE TABLE BAITAP (
 	MaBaiHoc INT NOT NULL,
 	HinhThuc NVARCHAR(20) ,
 	ThoiGianHoanThanh real,
-	FileDapAn VARCHAR(255),
 	MaGiangVien INT,
 	CONSTRAINT FK_BAITAP_GIANGVIEN FOREIGN KEY (MaGiangVien) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
 	PRIMARY KEY (TenBaiTap, MaBaiHoc),
@@ -138,6 +137,7 @@ CREATE TABLE LAMBAITAP (
 	MaNguoiDung INT ,
 	TenBaiTap NVARCHAR(50) ,
 	MaBaiHoc INT ,
+	FileBaiLam VARCHAR(255),
 	DiemSo INT ,
 	PRIMARY KEY (MaNguoiDung, TenBaiTap, MaBaiHoc),
 	CONSTRAINT FK_LAMBAITAP_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
@@ -202,13 +202,13 @@ VALUES
     (N'Bài học 4', 2.5, N'Nội dung bài học 1', 5.0, '2023-02-10', 'anh4.jpg', 2),
     (N'Bài học 5', 3.0, N'Nội dung bài học 1', 6.0, '2023-02-15', 'anh5.jpg', 3);
 
-INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, HinhThuc, ThoiGianHoanThanh, FileDapAn)
+INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, HinhThuc, ThoiGianHoanThanh)
 VALUES
-    (N'Bài tập 1', 1, N'Loại 1', 2.0, 'dap_an_1.pdf'),
-    (N'Bài tập 2', 1, N'Loại 2', 3.0, 'dap_an_2.pdf'),
-    (N'Bài tập 1', 2, N'Loại 1', 2.5, 'dap_an_3.pdf'),
-    (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf'),
-    (N'Bài tập 1', 3, N'Loại 1', 2.0, 'dap_an_5.pdf');
+    (N'Bài tập 1', 1, N'Loại 1', 2.0),
+    (N'Bài tập 2', 1, N'Loại 2', 3.0),
+    (N'Bài tập 1', 2, N'Loại 1', 2.5),
+    (N'Bài tập 2', 2, N'Loại 2', 3.5),
+    (N'Bài tập 1', 3, N'Loại 1', 2.0);
 
 INSERT INTO TAILIEU (MaTaiLieu,TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
@@ -248,12 +248,6 @@ VALUES
     (1, 1, '2023-01-10'),
     (2, 2, '2023-01-11'),
     (3, 3, '2023-01-12')
-    
-INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
-VALUES
-    (1, N'Bài tập 1', 1, 9),
-    (2, N'Bài tập 2', 2, 8),
-    (3, N'Bài tập 1', 3, 7)
     
 INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
 VALUES

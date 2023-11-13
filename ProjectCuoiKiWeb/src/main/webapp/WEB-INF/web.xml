@@ -12,6 +12,11 @@
       <param-value>/WEB-INF/configs/*.xml</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
+    <multipart-config>
+			<max-file-size>50000000</max-file-size>
+			<max-request-size>50000000</max-request-size>
+			<file-size-threshold>0</file-size-threshold>
+		</multipart-config>
   </servlet>
   <servlet-mapping>
     <servlet-name>dispatcher</servlet-name>
