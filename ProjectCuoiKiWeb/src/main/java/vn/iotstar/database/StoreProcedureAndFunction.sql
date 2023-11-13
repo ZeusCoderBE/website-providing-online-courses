@@ -1,3 +1,11 @@
+--Update Document
+Create or Alter Procedure sp_EditDocument
+@matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru varchar(50)
+as
+begin
+	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
+	where MaTaiLieu=@matailieu
+end
 --Create Document
 Create or Alter Procedure sp_CreateDocument
 @theloai nvarchar(50),@dinhdang varchar(50),@duongdan nvarchar(255)

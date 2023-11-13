@@ -233,7 +233,7 @@
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
-										href="FindDocuments?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
+										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
 										<!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
@@ -300,14 +300,16 @@
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 												<div class="container_content">
-													<form>
+													<c:if test="${not empty dstailieu}">
 														<c:forEach var="tailieu" items="${dstailieu}">
 															<label>File:</label>
 															<a
 																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
 																${tailieu.duongdanluutru}" </a>
+															<a href="find-document?matailieu=${tailieu.matailieu}">
+																Edit</a>
 														</c:forEach>
-													</form>
+													</c:if>
 												</div>
 												<div class="container_content">
 													<a href="create-document?mabaihoc=${lesson.mabaihoc}">
@@ -497,7 +499,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-							
+
 						</article>
 					</c:when>
 				</c:choose>

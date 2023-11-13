@@ -30,7 +30,8 @@ public class LessonController {
 	int makhoahoc;
 	int mode;
 	int mabaihoc;
-	int modedoucument;
+	int modedocument;
+	int matailieu;
 	@Autowired
 	ServletContext context;
 
@@ -44,12 +45,37 @@ public class LessonController {
 	@RequestMapping(value = "/create-document", method = RequestMethod.GET, params = "mabaihoc")
 	public String Document(@RequestParam("mabaihoc") int mabaihoc) {
 		this.mabaihoc = mabaihoc;
-		modedoucument = 0;
+		modedocument = 0;
 		return "create_document";
 	}
 
-	@RequestMapping(value = "/FindDocuments", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
+	@RequestMapping(value = "/find-document")
+	public String FindDocument(@RequestParam("matailieu") int matailieu, ModelMap model, HttpSession session) {
+		String url = "";
+		try {
+			TaiLieu tailieu = new TaiLieu(matailieu);
+			this.matailieu = tailieu.getMatailieu();
+			tailieu = tlD.FindADocumen(tailieu);
+			if (tailieu != null) {
+				model.addAttribute("tailieu", tailieu);
+				System.out.print(tailieu.getDinhdangluutru());
+				url = "create_document";
+			} else {
+
+				session.setAttribute("thatbai", "Không tìm thấy tài liệu để sửa");
+				url = "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
+			}
+		} catch (Exception ex) {
+			session.setAttribute("thatbai", "Không tìm thấy tài liệu để sửa");
+			url = "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
+
+		}
+		return url;
+
+	}
+
+	@RequestMapping(value = "/Find-Lesson", method = RequestMethod.GET, params = "mabaihoc")
+	public String ShowLesson(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
 			throws ClassNotFoundException, SQLException {
 		String url = "";
 		try {
@@ -83,28 +109,34 @@ public class LessonController {
 			HttpSession session)
 
 	{
-		System.out.print("davaoday");
 		MultipartFile mul = rq.getFile("user-file");
-		String url = "";
 		if (mul != null) {
 			String originname = mul.getOriginalFilename();
 			try {
 				String upload = context.getRealPath("Resource\\ResourceDocument\\" + originname);
 				File dest = new File(upload);
 				mul.transferTo(dest);
-				TaiLieu tailieu = new TaiLieu(theloai, dinhdang, originname);
-				if (tlD.CreateDocument(tailieu) == 1 && tlD.CreateAttachment(mabaihoc) == 1) {
+				TaiLieu tailieu = new TaiLieu(matailieu, theloai, dinhdang, originname);
+				if (modedocument == 0) {
+					if (tlD.CreateDocument(tailieu) == 1 && tlD.CreateAttachment(mabaihoc) == 1) {
 
-					url = "redirect:/courses?makhoahoc=" + makhoahoc;
+						session.setAttribute("uptailieu", "Bạn đã upload tài liệu thành công !");
+					} else {
+						session.setAttribute("uptailieu", "Có lỗi xảy ra!");
+					}
 				} else {
-					model.addAttribute("uptailieu", "Có lỗi xảy ra !");
+					if (tlD.EditDocument(tailieu) == 1) {
+						session.setAttribute("uptailieu", "Bạn đã cập nhật tài liệu thành công !");
+					} else {
+						session.setAttribute("uptailieu", "Có lỗi xảy ra!");
+					}
 				}
 
 			} catch (Exception ex) {
 				System.out.print(ex.getMessage());
 			}
 		}
-		return url;
+		return "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
 	}
 
 	@RequestMapping(value = "/edit-lesson-info", method = RequestMethod.GET)

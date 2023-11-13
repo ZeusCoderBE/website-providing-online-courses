@@ -32,15 +32,23 @@
 							</div>
 							<div class="form-login-input">
 								<label id="theloai">Thể loại</label> <input type="text"
-									name="theloai"><br /> <label id="dinhdang">Định
-									dạng lưu trữ:</label> <input type="text" name="dinhdang">
+									name="theloai" value="${tailieu.theloai}"><br /> <label
+									id="dinhdang">Định dạng lưu trữ:</label> <input type="text"
+									name="dinhdang" value="${tailieu.dinhdangluutru}">
 							</div>
 							<div class="form-login-input">
 								<label id="user-file">Tài liệu:</label> <input type="file"
 									name="user-file"> <br />
 							</div>
 							<div class="form-login-input">
-								<button class="btn btn-primary" type="submit">Upload</button>
+								<c:choose>
+									<c:when test="${empty tailieu}">
+										<button class="btn btn-primary" type="submit">Upload</button>
+									</c:when>
+									<c:otherwise>
+										<button class="btn btn-primary" type="submit">Edit</button>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
