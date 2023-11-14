@@ -24,6 +24,7 @@ public class TaiLieuDao {
 	public int EditDocument(TaiLieu tailieu) {
 		String dml = "exec sp_EditDocument " + tailieu.getMatailieu() + ",N'" + tailieu.getTheloai() + "','"
 				+ tailieu.getDinhdangluutru() + "',N'" + tailieu.getDuongdanluutru() + "'";
+		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}

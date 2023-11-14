@@ -306,15 +306,19 @@
 															<a
 																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
 																${tailieu.duongdanluutru}" </a>
-															<a href="find-document?matailieu=${tailieu.matailieu}">
-																Edit</a>
+															<c:if test="${not empty giangvien.manguoidung}">
+																<a href="find-document?matailieu=${tailieu.matailieu}">
+																	Edit</a>
+															</c:if>
 														</c:forEach>
 													</c:if>
 												</div>
+												<c:if test="${not empty giangvien.manguoidung}">
 												<div class="container_content">
 													<a href="create-document?mabaihoc=${lesson.mabaihoc}">
 														Create</a>
 												</div>
+												</c:if>
 											</div>
 										</div>
 									</div>

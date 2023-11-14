@@ -52,13 +52,13 @@ public class LessonController {
 	@RequestMapping(value = "/find-document")
 	public String FindDocument(@RequestParam("matailieu") int matailieu, ModelMap model, HttpSession session) {
 		String url = "";
+		modedocument=1;
 		try {
 			TaiLieu tailieu = new TaiLieu(matailieu);
 			this.matailieu = tailieu.getMatailieu();
 			tailieu = tlD.FindADocumen(tailieu);
 			if (tailieu != null) {
 				model.addAttribute("tailieu", tailieu);
-				System.out.print(tailieu.getDinhdangluutru());
 				url = "create_document";
 			} else {
 
@@ -83,6 +83,7 @@ public class LessonController {
 			if (baihoc != null) {
 				// tìm 1 bài học
 				model.addAttribute("lesson", baihoc);
+				this.mabaihoc=mabaihoc;
 				model.addAttribute("makhoahoc", baihoc.getMakhoahoc());
 				makhoahoc = baihoc.getMakhoahoc();
 				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
@@ -103,7 +104,7 @@ public class LessonController {
 		return url;
 	}
 
-	@RequestMapping(value = "/post-document", method = RequestMethod.POST)
+	@RequestMapping(value = "post-document", method = RequestMethod.POST)
 	public String CreateDocumentofLesson(@RequestParam("theloai") String theloai,
 			@RequestParam("dinhdang") String dinhdang, MultipartHttpServletRequest rq, ModelMap model,
 			HttpSession session)
