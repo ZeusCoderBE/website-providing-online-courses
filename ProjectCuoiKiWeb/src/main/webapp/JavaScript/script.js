@@ -1,7 +1,7 @@
 tinymce.init({
 	selector: 'textarea#default',
 	width: 1100,
-	height: 800,
+	height: 700,
 	plugins: [
 		'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'prewiew', 'anchor', 'pagebreak',
 		'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
@@ -19,7 +19,7 @@ tinymce.init({
 	file_picker_callback: function(cb, value, meta) {
 		var input = document.createElement('input');
 		input.setAttribute('type', 'file');
-		input.setAttribute('accept', 'image/*');
+		input.setAttribute('accept', '*/*');
 
 		input.onchange = function() {
 			var file = this.files[0];
@@ -98,6 +98,16 @@ function validateForm() {
 	}
 	return true;
 }
+function SelectedCourse() {
+	var count = document.getElementById("selectedCourses");
+	if (!count.checked) {
+		alert("Bạn phải chọn ít nhất một khoá học để thanh toán")
+		return false;
+	}
+
+	return true;
+}
+
 function testConfirmDialog() {
 	var result = confirm("Bạn chắc chắc có muốn đăng xuất không");
 	if (result == true) {
@@ -178,20 +188,20 @@ function checkKhoaHoc() {
 	var parsedGiatien = parseFloat(giatien);
 	if (isNaN(parsedGiatien)) {
 		alert("Giá tiền không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false; 
+		return false;
 	}
 
 	var parsedDanhgia = parseFloat(danhgia);
 	if (isNaN(parsedDanhgia)) {
 		alert("Đánh giá không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false; 
+		return false;
 	}
 
 	// Kiểm tra kiểu dữ liệu của thoiluong
 	var parsedThoiluong = parseFloat(thoiluong);
 	if (isNaN(parsedThoiluong)) {
 		alert("Thời lượng không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false; 
+		return false;
 	}
 	return true;
 
@@ -226,22 +236,84 @@ function createLessonFaied(warning) {
 }
 
 function TotalPay() {
-  var checkboxes = document.querySelectorAll('.checkbox-item');
-  var priceElements = document.querySelectorAll('.cart-price-current p');
-  var pricePay = document.querySelector(".cart-pay h2");
-  var prices = Array.from(priceElements).map(function(element) {
-    return element.textContent.replace("Giá Tiền: ", "").replace("$", ""); // Bỏ đi ký tự "$" ở cuối
+	var checkboxes = document.querySelectorAll('.checkbox-item');
+	var priceElements = document.querySelectorAll('.cart-price-current p');
+	var pricePay = document.querySelector(".cart-pay h2");
+	var prices = Array.from(priceElements).map(function(element) {
+		return element.textContent.replace("Giá Tiền: ", "").replace("$", ""); // Bỏ đi ký tự "$" ở cuối
+	});
+	checkboxes.forEach(function(checkbox, index) {
+		checkbox.addEventListener('change', function() {
+			// Nếu checkbox được chọn, thêm giá trị của p vào tổng
+			var total = 0;
+			checkboxes.forEach(function(checkbox, i) {
+				if (checkbox.checked) {
+					total += parseFloat(prices[i]);
+				}
+			});
+			pricePay.textContent = total + "$";
+		});
+	});
+}
+
+function uploadFile() {
+	var fileInput = document.getElementById('file-input');
+	var files = fileInput.files;
+
+	var formData = new FormData();
+	for (var i = 0; i < files.length; i++) {
+		formData.append('files', files[i]);
+	}
+
+	// Sử dụng AJAX để gửi FormData đến server
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', './Submit-Practice', true);
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			console.log('Files uploaded successfully!');
+		} else {
+			console.log('Error uploading files!');
+		}
+	};
+	xhr.send(formData);
+}
+
+
+function scrollToTop() {
+  console.log('Clicked on back-to-top button');
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Sử dụng 'smooth' để có hiệu ứng cuộn mượt
   });
-  checkboxes.forEach(function(checkbox, index) {
-    checkbox.addEventListener('change', function() {
-      // Nếu checkbox được chọn, thêm giá trị của p vào tổng
-      var total = 0;
-      checkboxes.forEach(function(checkbox, i) {
-        if (checkbox.checked) {
-          total += parseFloat(prices[i]);
-        }
-      });
-      pricePay.textContent = total + "$";
-    });
-  });
+}
+
+function OpenCreate(name){
+  let elements = document.getElementsByClassName(name);
+    
+  // Kiểm tra xem có phần tử nào với class name đã cho hay không
+  if (elements.length > 0) {
+      let create = elements[0];
+
+      if (!create.classList.contains('active')) {
+          create.classList.add('active');
+          scrollToTop();
+      }
+
+      document.body.classList.add('create-open');
+  } else {
+      console.error('Không tìm thấy phần tử với class ' + name);
+  }
+}
+
+function CloseCreate(name){
+  let elements = document.getElementsByClassName(name);
+  if(elements.length >0){
+    let create = elements[0];
+    if(create.classList.contains('active')){
+      create.classList.remove('active');
+    }
+    document.body.classList.remove('create-open');
+  }else {
+    console.error('Không thể xóa phần tử với class ' + name);
+  }
 }
