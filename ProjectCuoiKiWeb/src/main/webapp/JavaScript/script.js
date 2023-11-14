@@ -311,3 +311,11 @@ function CloseCreate(name){
     console.error('Không thể xóa phần tử với class ' + name);
   }
 }
+
+function MaskDone() {
+	let icon = document.querySelector('.content_progress i');
+	let mask = document.querySelector('.content_progress span');
+	icon.classList.add('fa-solid');
+	icon.classList.add('fa-check');
+	mask.textContent = 'complete';
+}

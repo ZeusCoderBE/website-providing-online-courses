@@ -298,12 +298,13 @@
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<i class="fa-solid fa-check"></i><span>Complete</span>
+													<i class="fa-solid fa-circle-pause"></i></i><span>Pending</span>
 												</div>
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 											</div>
+											<button class="btn btn-primary btn-mask" onclick="MaskDone()">Mask as complete</button>
 										</div>
 									</div>
 								</div>

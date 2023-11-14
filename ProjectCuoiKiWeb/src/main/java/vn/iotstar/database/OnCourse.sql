@@ -128,6 +128,7 @@ CREATE TABLE HOC (
 	MaNguoiDung INT,
 	MaBaiHoc INT,
 	NgayHoanThanh DATE,
+	TienDo varchar(10),
 	PRIMARY KEY (MaNguoiDung, MaBaiHoc),
 	CONSTRAINT FK_HOC_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_HOC_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)
@@ -243,11 +244,11 @@ VALUES
     (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
-INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
+INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh, TienDo)
 VALUES
-    (1, 1, '2023-01-10'),
-    (2, 2, '2023-01-11'),
-    (3, 3, '2023-01-12')
+    (1, 1, '2023-01-10', 'Done'),
+    (2, 2, '2023-01-11', 'Pending'),
+    (3, 3, '2023-01-12', 'Done')
     
 INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
 VALUES
