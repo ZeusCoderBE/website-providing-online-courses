@@ -32,7 +32,7 @@
 								<h1>COURSE</h1>
 							</div>
 
-<<<<<<< HEAD
+							<<<<<<< HEAD
 							<div class="form-login-input">
 								<label for="name_course">Tên khóa học:</label> <input
 									type="text" id="tenkhoahoc" name="tenkhoahoc"

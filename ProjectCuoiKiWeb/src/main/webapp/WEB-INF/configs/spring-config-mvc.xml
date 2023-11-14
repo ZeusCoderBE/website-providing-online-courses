@@ -18,15 +18,9 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-<<<<<<< HEAD
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
-=======
-	
-	
-	
->>>>>>> eeb52c9d2241d3bafe8e1ef7d689121ef3b05e20
 	<mvc:resources mapping="/templates/**"
 		location="/,classpath://WEB-INF/resources/" cache-period="5000" />
-	
+
 </beans>
