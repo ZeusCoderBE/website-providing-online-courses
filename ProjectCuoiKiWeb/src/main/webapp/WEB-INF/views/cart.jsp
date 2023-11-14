@@ -124,7 +124,7 @@
 		</header>
 
 		<section class="cart-container">
-			<form action="paycourseinfo" method="GET" onsubmit="return  SelectedCourse()">
+			<form action="paycourseinfo" method="GET">
 				<div class="row cart-row">
 					<div class="cart-col-9 col-9">
 						<div class="cart-content">
@@ -244,7 +244,6 @@
 								<button class="btn btn-outline-secondary" type="button"
 									id="button-addon2">Áp dụng</button>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -345,9 +344,11 @@
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");
 			ReloadAlert("${thongbaoxoa}");
+			ReloadAlert("${thongbaott}");
 		}
 	</script>
 	<c:set var="thongbaothemgiohang" value="${null}" scope="request"></c:set>
 	<c:set var="thongbaoxoa" value="${null}" scope="request"></c:set>
+	<c:set var="thongbaott" value="${null}" scope="request"></c:set>
 </body>
 </html>

@@ -8,19 +8,33 @@ BEGIN
 	INSERT INTO DANGKY VALUES(@mand, @makh)
 END
 GO
---Tao The cho Nguoi dung
+--Tao The cho Học Viên
 Create Or Alter Trigger tg_CreateCardVisa
 on HocVien for insert
 as 
 begin
 	declare @mahocvien int
-	declare @mathe int 
+	declare @mathe varchar(10)
     select @mathe=NGUOIDUNG.Sdt,@mahocvien=inserted.MaHocVien From inserted
 	join NGUOIDUNG on inserted.MaHocVien=NGUOIDUNG.MaNguoiDung
 	insert into THE(MaThe,SoDu,MaNguoiDung)
 	values(@mathe,5,@mahocvien)
 
 end 
+Go
+--Tạo thẻ cho giảng viên
+Create Or Alter Trigger tg_CreateCardVisaGV
+on GiangVien for insert
+as 
+begin
+	declare @magiangvien int
+	declare @mathe varchar(10)
+    select @mathe=NGUOIDUNG.SDT,@magiangvien=inserted.MaGiangVien From inserted
+	join NGUOIDUNG on inserted.MaGiangVien=NGUOIDUNG.MaNguoiDung
+	insert into THE(MaThe,SoDu,MaNguoiDung)
+	values(@mathe,5,@magiangvien)
+
+end
 go
 --Trigger các dòng tham chiếu trước khi xoá 1 khoá học
 Create or Alter Trigger tg_XoaRangBuocTCKhoaHoc
@@ -48,4 +62,20 @@ begin
 	delete From KHOAHOC
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
+GO
 
+--Xóa những tham chiếu tới bài học trước khi xóa bài học
+CREATE OR ALTER TRIGGER tr_xoaBaiHoc ON BAIHOC
+INSTEAD OF DELETE
+AS
+DECLARE @mabaihoc INT
+SELECT @mabaihoc=d.MaBaiHoc
+FROM deleted d
+BEGIN
+	DELETE FROM LAMBAITAP WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM BAITAP WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM HOC WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM DINHKEM WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM BAIHOC WHERE MaBaiHoc = @mabaihoc
+END
+GO

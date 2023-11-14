@@ -7,7 +7,7 @@ select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 GO
 --Xem Khoá Học Đã Tạo
 Create Or Alter View v_XemKhoaHocDaTao
-as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien From GIANGVIEN 
+as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien, KHOAHOC.MinhHoa From GIANGVIEN 
 join BIENSOAN on GIANGVIEN.MaGiangVien=BIENSOAN.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc=BIENSOAN.MaKhoaHoc
 Go
@@ -30,8 +30,8 @@ select GIANGVIEN.MaGiangVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 	on GIANGVIEN.MaGiangVien=NGUOIDUNG.MaNguoiDung
 Go
 -- Xem Danh Sách Tài Liệu dạng video đính kèm
-Create Or Alter View v_xemdanhsachtailieu as
-select BaiHoc.*,DuongDanLuuTru 
+Create or Alter View v_xemdanhsachtailieu as
+select BaiHoc.*,TAILIEU.MaTaiLieu,TAILIEU.TheLoai,TAILIEU.DinhDangLuuTru,DuongDanLuuTru 
 From DINHKEM
 join TAILIEU
 on TAILIEU.MaTaiLieu=DINHKEM.MaTaiLieu 

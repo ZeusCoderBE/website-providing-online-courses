@@ -1,5 +1,37 @@
+--Update Document
+Create or Alter Procedure sp_EditDocument
+@matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru varchar(50)
+as
+begin
+	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
+	where MaTaiLieu=@matailieu
+end
+
+go
+--Create Document
+Create or Alter Procedure sp_CreateDocument
+@theloai nvarchar(50),@dinhdang varchar(50),@duongdan nvarchar(255)
+as
+begin
+	Insert into TaiLieu(TheLoai,DinhDangLuuTru,DuongDanLuuTru)
+	values(@theloai,@dinhdang,@duongdan)
+end
+Go
+--Create Attach
+Create Or Alter Procedure sp_CreateAttachment
+@mabaihoc int
+as
+begin
+	--Tìm mã tài liệu mới được tạo
+	declare @matailieu int
+	set @matailieu=(select Top 1 MaTaiLieu From TAILIEU order by MaTaiLieu desc)
+	--đính kèm
+	Insert into DINHKEM(MaBaiHoc,MaTaiLieu)
+	values(@mabaihoc,@matailieu)
+end
+Go
  --Cập nhật số dư cho người là tác giả của khoá học
-Create Or ALter Procedure sp_CapNhatSoDuTKGV
+Create or ALter Procedure sp_CapNhatSoDuTKGV
 @matacgia int,@cost real
 as
 begin
@@ -39,7 +71,7 @@ begin
 end
 Go
 --Edit Course dành cho giảng viên
-Create Or Alter Procedure sp_EditACourse
+CREATE OR ALTER PROCEDURE sp_EditACourse
 @makhoahoc int,
 @tenkhoahoc nvarchar(255),
 @matacgia int ,
@@ -49,19 +81,20 @@ Create Or Alter Procedure sp_EditACourse
 @trinhdodauvao nvarchar(50),
 @ngayphathanh date,
 @mota ntext,
-@danhgia int,
 @theloai nvarchar(50),
-@linhvuc nvarchar(30)
+@linhvuc nvarchar(30),
+@minhhoa varchar(255)
 as
 begin
 	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
 	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
-	NgayPhatHanh=@ngayphathanh,MoTa=@mota,DanhGia=@danhgia,TheLoai=@theloai,LinhVuc=@linhvuc
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,TheLoai=@theloai,LinhVuc=@linhvuc, MinhHoa=@minhhoa
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
 end
 Go
+
  --Tạo khoá học dành cho giảng viên
- Create Or Alter Procedure sp_CreateACourse
+CREATE OR ALTER PROCEDURE sp_CreateACourse
 @tenkhoahoc nvarchar(255),
 @matacgia int ,
 @giatien real,
@@ -70,16 +103,15 @@ Go
 @trinhdodauvao nvarchar(50),
 @ngayphathanh date,
 @mota ntext,
-@danhgia int,
 @theloai nvarchar(50),
-@linhvuc nvarchar(30)
+@linhvuc nvarchar(30),
+@minhhoa varchar(255)
 as
 begin
-	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,DanhGia,TheLoai,LinhVuc)
-	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@danhgia,@theloai,@linhvuc)
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc, MinhHoa)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@theloai,@linhvuc, @minhhoa)
 end
-
- Go
+Go
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
 CREATE Or Alter PROCEDURE sp_InsertCourseCart
     @MaNguoiDung INT,
@@ -193,7 +225,7 @@ end
 Go
 
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE OR Alter PROC sp_XemDanhSachBaiHoc
+CREATE or Alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
@@ -205,18 +237,18 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Or ALter Procedure sp_XemKhoaHocCuaToi
+CREATE or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa, KhoaHoc.MinhHoa From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
 GO
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE Or ALter PROCEDURE sp_thanhtoanKH
+CREATE or alter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -242,7 +274,7 @@ BEGIN
 END
 Go
 -- Check Đăng Đăng Nhập với vai trò là học viên
-Create or Alter Procedure sp_CheckLoginHV
+Create or alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
 as
 begin
@@ -266,6 +298,7 @@ begin
 		set @check=0
 	print @check
 end 
+
 --Update số dư thẻ
 GO
 CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap real

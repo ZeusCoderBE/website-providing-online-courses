@@ -5,8 +5,6 @@ import java.sql.SQLException;
 import java.util.*;
 
 import vn.iotstar.database.DataBaseConnection;
-import vn.iotstar.model.KhoaHoc;
-
 public class GioHangDao {
 	DataBaseConnection dbC = new DataBaseConnection();
 

@@ -6,309 +6,292 @@
 	<artifactId>ProjectCuoiKiWeb</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	 <properties>
-		<spring.version>6.0.11</spring.version>
-		<servlet.version>4.0.1</servlet.version>
-		<jstl.version>1.2.2</jstl.version>
-		<jsp.version>2.3.3</jsp.version>
-		<jakarta-jstl.version>2.0.0</jakarta-jstl.version>
-		<jakarta-jstl-api.version>2.0.0</jakarta-jstl-api.version>
-		<commons-io.version>2.11.0</commons-io.version>
-		<commons-fileupload.version>1.5</commons-fileupload.version>
-		<org.hibernate.core.version>6.1.5.Final</org.hibernate.core.version>
-		<org.hibernate.entitymanager>5.6.15.Final</org.hibernate.entitymanager>
-		<org.hibernate.javax.persitence>1.0.0.Final</org.hibernate.javax.persitence>
-		<org.springframewwork.hibernate>3.1.0</org.springframewwork.hibernate>
-	</properties>
-	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-		<dependency>
-		    <groupId>com.microsoft.sqlserver</groupId>
-		    <artifactId>mssql-jdbc</artifactId>
-		    <version>7.2.2.jre11</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
-		    <version>${org.hibernate.core.version}</version>
-		    <type>pom</type>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
-		<dependency>
-		    <groupId>org.hibernate.javax.persistence</groupId>
-		    <artifactId>hibernate-jpa-2.1-api</artifactId>
-		    <version>${org.hibernate.javax.persitence}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
-		<dependency>
-		    <groupId>org.springframework.data</groupId>
-		    <artifactId>spring-data-jpa</artifactId>
-		    <version>${org.springframewwork.hibernate}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
-		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-entitymanager</artifactId>
-		    <version>${org.hibernate.entitymanager}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-		<dependency>
-		    <groupId>commons-fileupload</groupId>
-		    <artifactId>commons-fileupload</artifactId>
-		    <version>${commons-fileupload.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
-		    <groupId>commons-io</groupId>
-		    <artifactId>commons-io</artifactId>
-		    <version>${commons-io.version}</version>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api -->
-		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>javax.servlet.jsp.jstl-api</artifactId>
-			<version>${jstl.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api -->
-		<dependency>
-		    <groupId>jakarta.servlet.jsp.jstl</groupId>
-		    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-		    <version>${jakarta-jstl.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl -->
-		<dependency>
-		    <groupId>org.glassfish.web</groupId>
-		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-		    <version>${jakarta-jstl-api.version}</version>
-		</dependency>
-		<!--
-		https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>${jsp.version}</version>
-			<scope>provided</scope>
-		</dependency>
-
-
-		<!--
-		https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>6.0.13</version>
-		</dependency>
-
-		<!--
-		https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api -->
-		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-annotations-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina-ant</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina-ha</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-ssi</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-storeconfig</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-tribes</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-catalina</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jdt</groupId>
-			<artifactId>ecj</artifactId>
-			<version>3.33.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-el-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>jakartaee-migration</artifactId>
-			<version>1.0.7</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jasper-el</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jasper</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jaspic-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jsp-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-coyote</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-dbcp</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-cs</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-de</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-es</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-fr</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-ja</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-ko</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-pt-BR</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-ru</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-i18n-zh-CN</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jdbc</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-jni</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-util-scan</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-util</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-websocket</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-websocket-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-websocket-client-api</artifactId>
-			<version>10.1.9</version>
-		</dependency>
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<release>20</release>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.3</version>
-			</plugin>
-		</plugins>
-	</build>
+<properties>
+<spring.version>6.0.11</spring.version>
+<servlet.version>4.0.1</servlet.version>
+<jstl.version>1.2.2</jstl.version>
+<jsp.version>2.3.3</jsp.version>
+<jakarta-jstl.version>2.0.0</jakarta-jstl.version>
+<jakarta-jstl-api.version>2.0.0</jakarta-jstl-api.version>
+<commons-io.version>2.11.0</commons-io.version>
+<commons-fileupload.version>1.5</commons-fileupload.version>
+<org.hibernate.core.version>6.1.5.Final</org.hibernate.core.version>
+<org.hibernate.entitymanager>5.6.15.Final</org.hibernate.entitymanager>
+<org.hibernate.javax.persitence>1.0.0.Final</org.hibernate.javax.persitence>
+<org.springframewwork.hibernate>3.1.0</org.springframewwork.hibernate>
+</properties>
+<dependencies>
+<!--  https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc  -->
+<dependency>
+<groupId>com.microsoft.sqlserver</groupId>
+<artifactId>mssql-jdbc</artifactId>
+<version>7.2.2.jre11</version>
+</dependency>
+<!--  https://mvnrepository.com/artifact/org.hibernate/hibernate-core  -->
+<dependency>
+<groupId>org.hibernate</groupId>
+<artifactId>hibernate-core</artifactId>
+<version>${org.hibernate.core.version}</version>
+<type>pom</type>
+</dependency>
+<!--  https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api  -->
+<dependency>
+<groupId>org.hibernate.javax.persistence</groupId>
+<artifactId>hibernate-jpa-2.1-api</artifactId>
+<version>${org.hibernate.javax.persitence}</version>
+</dependency>
+<!--  https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa  -->
+<dependency>
+<groupId>org.springframework.data</groupId>
+<artifactId>spring-data-jpa</artifactId>
+<version>${org.springframewwork.hibernate}</version>
+</dependency>
+<!--  https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager  -->
+<dependency>
+<groupId>org.hibernate</groupId>
+<artifactId>hibernate-entitymanager</artifactId>
+<version>${org.hibernate.entitymanager}</version>
+</dependency>
+<!--  https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload  -->
+<dependency>
+<groupId>commons-fileupload</groupId>
+<artifactId>commons-fileupload</artifactId>
+<version>${commons-fileupload.version}</version>
+</dependency>
+<!--  https://mvnrepository.com/artifact/commons-io/commons-io  -->
+<dependency>
+<groupId>commons-io</groupId>
+<artifactId>commons-io</artifactId>
+<version>${commons-io.version}</version>
+</dependency>
+<!-- 
+		https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api  -->
+<dependency>
+<groupId>javax.servlet.jsp.jstl</groupId>
+<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+<version>${jstl.version}</version>
+<scope>provided</scope>
+</dependency>
+<!--  https://mvnrepository.com/artifact/jakarta.servlet.jsp.jstl/jakarta.servlet.jsp.jstl-api  -->
+<dependency>
+<groupId>jakarta.servlet.jsp.jstl</groupId>
+<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+<version>${jakarta-jstl.version}</version>
+</dependency>
+<!--  https://mvnrepository.com/artifact/org.glassfish.web/jakarta.servlet.jsp.jstl  -->
+<dependency>
+<groupId>org.glassfish.web</groupId>
+<artifactId>jakarta.servlet.jsp.jstl</artifactId>
+<version>${jakarta-jstl-api.version}</version>
+</dependency>
+<!-- 
+		https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api  -->
+<dependency>
+<groupId>javax.servlet.jsp</groupId>
+<artifactId>javax.servlet.jsp-api</artifactId>
+<version>${jsp.version}</version>
+<scope>provided</scope>
+</dependency>
+<!-- 
+		https://mvnrepository.com/artifact/org.springframework/spring-webmvc  -->
+<dependency>
+<groupId>org.springframework</groupId>
+<artifactId>spring-webmvc</artifactId>
+<version>${spring.version}</version>
+</dependency>
+<!-- 
+		https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api  -->
+<!--  https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api  -->
+<dependency>
+<groupId>javax.servlet</groupId>
+<artifactId>javax.servlet-api</artifactId>
+<version>${servlet.version}</version>
+<scope>provided</scope>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-annotations-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-catalina-ant</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-catalina-ha</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-ssi</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-storeconfig</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-tribes</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-catalina</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.eclipse.jdt</groupId>
+<artifactId>ecj</artifactId>
+<version>3.33.0</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-el-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>jakartaee-migration</artifactId>
+<version>1.0.7</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-jasper-el</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-jasper</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-jaspic-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-jsp-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-servlet-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-coyote</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-dbcp</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-cs</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-de</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-es</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-fr</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-ja</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-ko</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-pt-BR</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-ru</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-i18n-zh-CN</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-jdbc</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-jni</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-util-scan</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-util</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-websocket</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-websocket-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+<dependency>
+<groupId>org.apache.tomcat</groupId>
+<artifactId>tomcat-websocket-client-api</artifactId>
+<version>10.1.9</version>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<plugin>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>3.8.1</version>
+<configuration>
+<release>20</release>
+</configuration>
+</plugin>
+<plugin>
+<artifactId>maven-war-plugin</artifactId>
+<version>3.2.3</version>
+</plugin>
+</plugins>
+</build>
 </project>

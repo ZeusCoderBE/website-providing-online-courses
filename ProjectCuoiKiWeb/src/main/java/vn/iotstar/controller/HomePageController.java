@@ -19,11 +19,6 @@ public class HomePageController {
 	HocVienDao hvD = new HocVienDao();
 	GiangVienDao gvD = new GiangVienDao();
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String intro() {
-		return "introduction";
-	}
-
 	@RequestMapping(value = "/homepages", method = RequestMethod.GET)
 	public String homePage(ModelMap model, HttpSession session) throws Exception {
 		List<KhoaHoc> ListKH = null;

@@ -22,7 +22,8 @@
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<link href="./templates/CSS/submitprac.css" type="text/css" rel="stylesheet">
+<link href="./templates/CSS/submitprac.css" type="text/css"
+	rel="stylesheet">
 
 <!--  
 -->
@@ -238,15 +239,17 @@
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
-										href="FindDocuments?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
+										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
 										<!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
 												<div class="my-lesson__buy">
-													<a href="#" style="padding: 0 4px;" class="link-buy">Edit</a>
+													<a href="edit-lesson-info?mabaihoc=${baihoc.mabaihoc}"
+														style="padding: 0 4px;" class="link-buy">Edit</a>
 												</div>
 												<div class="my-lesson__delete" style="margin-left: 0;">
-													<a href="#" style="padding: 0 4px;">Delete</a>
+													<a href="remove-lesson?mabaihoc=${baihoc.mabaihoc}"
+														style="padding: 0 4px;">Delete</a>
 												</div>
 											</c:if>
 										</div></li>
@@ -259,8 +262,7 @@
 						</div>
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
-							<!-- edit-lesson-tool?makhoahoc=${makhoahoc} -->
-								<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
+								<a href="create-lesson-info?makhoahoc=${makhoahoc}"> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>
@@ -292,7 +294,7 @@
 											${lesson.thoigianhoanthanh} phút</span>
 									</div>
 								</div>
-								<div class="content">
+								<div class="content-course">
 									<div class="content_text">
 										<div class="content_item">
 											<div class="content_header">
@@ -303,100 +305,167 @@
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
+												<div class="container_content">
+													<c:if test="${not empty dstailieu}">
+														<c:forEach var="tailieu" items="${dstailieu}">
+															<label>File:</label>
+															<a
+																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+																${tailieu.duongdanluutru}</a>
+															<c:if test="${not empty giangvien.manguoidung}">
+																<a href="find-document?matailieu=${tailieu.matailieu}">
+																	Edit</a>
+															</c:if>
+														</c:forEach>
+													</c:if>
+												</div>
+												<c:if test="${not empty giangvien.manguoidung}">
+													<div class="container_content">
+														<a href="create-document?mabaihoc=${lesson.mabaihoc}">
+															Create</a>
+													</div>
+												</c:if>
 											</div>
 											<button class="btn btn-primary btn-mask" onclick="MaskDone()">Mask as complete</button>
 										</div>
 									</div>
 								</div>
 
-<!-- Đang làm chỗ này -->
-								<form id="upload-form" action="Submit-Practice"
-									method="post" enctype="multipart/form-data">
+								<!-- Đang làm chỗ này -->
+								<form id="upload-form" action="Submit-Practice" method="post"
+									enctype="multipart/form-data">
 									<div id="drop-area">
 										<h1>Kéo và Thả File</h1>
 										<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
 										<input type="file" id="file-input" name="file" multiple />
 										<ul id="file-list"></ul>
-										<input type="submit" id="submit-button" value="Submit" onclick="uploadFile()"/>
+										<input type="submit" id="submit-button" value="Submit"
+											onclick="uploadFile()" />
 									</div>
 								</form>
-								
-								<script>
-								  $(document).ready(function () {
-								    var dropArea = $('#drop-area');
-								    var fileList = $('#file-list');
-								    var submitButton = $('#submit-button');
-								
-								    dropArea.on('dragover', function (e) {
-								      e.preventDefault();
-								      dropArea.addClass('drag-over');
-								    });
-								
-								    dropArea.on('dragleave', function (e) {
-								      e.preventDefault();
-								      dropArea.removeClass('drag-over');
-								    });
-								
-								    dropArea.on('drop', function (e) {
-								      e.preventDefault();
-								      dropArea.removeClass('drag-over');
-								
-								      var files = e.originalEvent.dataTransfer.files;
-								      handleFiles(files);
-								    });
-								
-								    $('#file-input').on('change', function () {
-								      var files = $(this)[0].files;
-								      handleFiles(files);
-								    });
-								
-								    submitButton.on('click', function () {
-								      // Thực hiện xử lý khi nhấn nút Submit
-								      saveFiles();
-								    });
-								
-								    function handleFiles(files) {
-								      for (var i = 0; i < files.length; i++) {
-								        var file = files[i];
-								        var listItem = $('<li class="file-item">' + file.name + '<button class="delete-button" data-index="' + i + '">Xóa</button></li>');
-								        fileList.append(listItem);
-								
-								        // Đăng ký sự kiện xóa file khi nhấn nút Xóa
-								        listItem.find('.delete-button').on('click', function () {
-								          var index = $(this).data('index');
-								          removeFile(index);
-								        });
-								      }
-								    }
-								
-								    function removeFile(index) {
-								      // Xóa file khỏi danh sách
-								      $('#file-list li').eq(index).remove();
-								    }
-								
-								    function saveFiles() {
-								        var files = $('#file-list li');
-								        var formData = new FormData($('#upload-form')[0]);
 
-								        $.ajax({
-								          type: 'POST',
-								          url: '/upload/files',
-								          data: formData,
-								          contentType: false,
-								          processData: false,
-								          success: function (response) {
-								            alert(response);
-								            // Thêm code xử lý sau khi lưu thành công
-								          },
-								          error: function (error) {
-								            console.error(error);
-								            alert('Error occurred while saving files.');
-								          }
-								        });
-								      }
-								  });
+								<script>
+									$(document)
+											.ready(
+													function() {
+														var dropArea = $('#drop-area');
+														var fileList = $('#file-list');
+														var submitButton = $('#submit-button');
+
+														dropArea
+																.on(
+																		'dragover',
+																		function(
+																				e) {
+																			e
+																					.preventDefault();
+																			dropArea
+																					.addClass('drag-over');
+																		});
+
+														dropArea
+																.on(
+																		'dragleave',
+																		function(
+																				e) {
+																			e
+																					.preventDefault();
+																			dropArea
+																					.removeClass('drag-over');
+																		});
+
+														dropArea
+																.on(
+																		'drop',
+																		function(
+																				e) {
+																			e
+																					.preventDefault();
+																			dropArea
+																					.removeClass('drag-over');
+
+																			var files = e.originalEvent.dataTransfer.files;
+																			handleFiles(files);
+																		});
+
+														$('#file-input')
+																.on(
+																		'change',
+																		function() {
+																			var files = $(this)[0].files;
+																			handleFiles(files);
+																		});
+
+														submitButton
+																.on(
+																		'click',
+																		function() {
+																			// Thực hiện xử lý khi nhấn nút Submit
+																			saveFiles();
+																		});
+
+														function handleFiles(
+																files) {
+															for (var i = 0; i < files.length; i++) {
+																var file = files[i];
+																var listItem = $('<li class="file-item">'
+																		+ file.name
+																		+ '<button class="delete-button" data-index="' + i + '">Xóa</button></li>');
+																fileList
+																		.append(listItem);
+
+																// Đăng ký sự kiện xóa file khi nhấn nút Xóa
+																listItem
+																		.find(
+																				'.delete-button')
+																		.on(
+																				'click',
+																				function() {
+																					var index = $(
+																							this)
+																							.data(
+																									'index');
+																					removeFile(index);
+																				});
+															}
+														}
+
+														function removeFile(
+																index) {
+															// Xóa file khỏi danh sách
+															$('#file-list li')
+																	.eq(index)
+																	.remove();
+														}
+
+														function saveFiles() {
+															var files = $('#file-list li');
+															var formData = new FormData(
+																	$('#upload-form')[0]);
+
+															$
+																	.ajax({
+																		type : 'POST',
+																		url : '/upload/files',
+																		data : formData,
+																		contentType : false,
+																		processData : false,
+																		success : function(
+																				response) {
+																			alert(response);
+																			// Thêm code xử lý sau khi lưu thành công
+																		},
+																		error : function(
+																				error) {
+																			console
+																					.error(error);
+																			alert('Error occurred while saving files.');
+																		}
+																	});
+														}
+													});
 								</script>
-<!-- Tới đây nè -->
+								<!-- Tới đây nè -->
 							</div>
 							<!-- NOTES -->
 							<div class="page-note page-common">
@@ -430,7 +499,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-
+							-->
 							<!-- Forum -->
 							<div class="page-forum page-common">
 								<div class="page-content">
@@ -506,8 +575,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-
-							<!-- Messages -->
+							<!-- Messages-->
 							<div class="page-message page-common">
 								<div class="page-content">
 									<h2>Messages</h2>
@@ -578,6 +646,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
+
 						</article>
 					</c:when>
 				</c:choose>
