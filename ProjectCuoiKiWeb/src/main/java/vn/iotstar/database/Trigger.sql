@@ -5,7 +5,7 @@ BEGIN
 	DECLARE @mand INT, @makh INT
 	SELECT @mand=i.MaNguoiDung, @makh=i.MaKhoaHoc
 	FROM inserted i
-	INSERT INTO DANGKY VALUES(@mand, @makh)
+	INSERT INTO DANGKY VALUES(@mand, @makh,0)
 END
 GO
 --Tao The cho Học Viên
@@ -79,3 +79,39 @@ BEGIN
 	DELETE FROM BAIHOC WHERE MaBaiHoc = @mabaihoc
 END
 GO
+-- KHI CẬP NHẬT TRẠNG THÁI BẢNG 'HOC' THÌ CẬP NHẬT TIẾN ĐỘ CHO BẢNG DANGKY
+CREATE OR ALTER TRIGGER tr_updateTienDo ON HOC
+FOR UPDATE
+AS
+DECLARE @mabaihoc INT
+DECLARE @manguoidung INT
+SELECT @mabaihoc= i.MaBaiHoc , @manguoidung = i.MaNguoiDung
+FROM inserted i
+BEGIN
+    DECLARE @tiendo REAL
+	DECLARE @countbaihoc INT
+	DECLARE @countbaidahoc INT
+
+	SELECT @countbaihoc= count(*)
+	FROM BAIHOC as bh
+	JOIN KHOAHOC as kh ON kh.MaKhoaHoc = bh.MaKhoaHoc
+	WHERE bh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
+	                      FROM BAIHOC AS bh
+						  WHERE bh.MaBaiHoc = @mabaihoc)
+
+	SELECT @countbaidahoc= count(*)
+	FROM BAIHOC as bh
+	JOIN HOC as hoc ON hoc.MaBaiHoc = bh.MaBaiHoc
+	JOIN KHOAHOC as kh ON kh.MaKhoaHoc = bh.MaKhoaHoc
+	WHERE hoc.TrangThai = 'Done' and hoc.MaNguoiDung = @manguoidung and bh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
+	                      FROM BAIHOC AS bh
+						  WHERE bh.MaBaiHoc = @mabaihoc)
+
+	IF @countbaihoc >0
+	   BEGIN
+	       SET @tiendo = @countbaidahoc * 100 / @countbaihoc
+           UPDATE DANGKY SET TienDo = @tiendo WHERE MaNguoiDung = @manguoidung
+       END
+	ELSE
+	   UPDATE DANGKY SET TienDo = 0 WHERE MaNguoiDung = @manguoidung 
+END

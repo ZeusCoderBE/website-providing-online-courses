@@ -298,7 +298,7 @@
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<i class="fa-solid fa-check"></i><span>Complete</span>
+													<i class="fa-solid fa-graduation-cap"></i><span>${trangthai}</span>
 												</div>
 											</div>
 											<div class="content_main">
@@ -324,6 +324,7 @@
 													</div>
 												</c:if>
 											</div>
+											<button class="btn btn-primary btn-mask" onclick="MaskDone(${lesson.mabaihoc})">Mask as complete</button>
 										</div>
 									</div>
 								</div>

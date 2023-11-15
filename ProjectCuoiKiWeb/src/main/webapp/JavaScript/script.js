@@ -314,3 +314,12 @@ function CloseCreate(name){
     console.error('Không thể xóa phần tử với class ' + name);
   }
 }
+
+function MaskDone(mabaihoc) {
+/*	let icon = document.querySelector('.content_progress i');
+	let mask = document.querySelector('.content_progress span');
+	icon.classList.add('fa-solid');
+	icon.classList.add('fa-check');
+	mask.textContent = 'Done';*/
+	window.location.href= 'mask-complete?mabaihoc=' + mabaihoc;
+}

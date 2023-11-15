@@ -37,6 +37,16 @@ body {
     padding: 20px;
 }
 
+.content_item {
+	position: relative;
+}
+
+.btn-mask{
+	position: absolute;
+	bottom: 10px;
+	left: 0;
+}
+
 .content_header {
     display: flex;
     justify-content: space-between;
@@ -52,6 +62,10 @@ body {
     padding: 2px 6px;
     border-radius: 4px;
     background-color: #ccd4d2;
+}
+
+.content_progress span {
+	margin-left: 6px;
 }
 
 .content_main {
