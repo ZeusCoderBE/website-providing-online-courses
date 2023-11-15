@@ -20,6 +20,7 @@ public class PaymentController {
 	private GioHangDao ghd = new GioHangDao();
 	GiangVienDao gvD = new GiangVienDao();
 	GioHangDao ghD = new GioHangDao();
+	BaiHocDao bhD = new BaiHocDao();
 
 	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET)
 	public String payCourseInfo(ModelMap model,
@@ -41,13 +42,14 @@ public class PaymentController {
 			the = td.getAThe(hv.getManguoidung());
 			if (selectedCourses == null && makh.equals("null")) {
 				url = "cart";
-				model.addAttribute("thongbaott","Không có gì trong giỏ hàng để thanh toán hoặc bạn chưa chọn khoá học cần để thanh toán");
+				model.addAttribute("thongbaott",
+						"Không có gì trong giỏ hàng để thanh toán hoặc bạn chưa chọn khoá học cần để thanh toán");
 			} else if (makh.equals("null") && selectedCourses != null && !selectedCourses.isEmpty()) {
 				dsKhoahoc = khd.CountSelectedCourses(selectedCourses);
-				url="pay";
+				url = "pay";
 			} else {
 				dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
-				url="pay";
+				url = "pay";
 			}
 			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
 			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
@@ -74,7 +76,7 @@ public class PaymentController {
 	public String payCart(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		ThanhToanDao ttd = new ThanhToanDao();
-
+		BaiHoc baihoc = new BaiHoc();
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {
@@ -86,9 +88,13 @@ public class PaymentController {
 				ttd.thanhToan(tt, the);
 				KhoaHoc khoahoc = new KhoaHoc(kh.getMatacgia(), kh.getGiatien());
 				gvD.UpdateofCardTeacher(khoahoc);
+				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
+				bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
 			}
+			;
 			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
-			model.addAttribute("warning", "Thanh toán thành công!");
+			System.out.print("Di Ngang Qua Day");
+			session.setAttribute("warning", "Thanh toán thành công!");
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

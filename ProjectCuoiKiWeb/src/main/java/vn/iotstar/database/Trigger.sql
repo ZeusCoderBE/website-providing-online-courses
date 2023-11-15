@@ -5,7 +5,7 @@ BEGIN
 	DECLARE @mand INT, @makh INT
 	SELECT @mand=i.MaNguoiDung, @makh=i.MaKhoaHoc
 	FROM inserted i
-	INSERT INTO DANGKY VALUES(@mand, @makh,0)
+	INSERT INTO DANGKY(MaNguoiDung,MaKhoaHoc) VALUES(@mand, @makh)
 END
 GO
 --Tao The cho Học Viên
@@ -76,7 +76,9 @@ BEGIN
 	DELETE FROM BAITAP WHERE MaBaiHoc = @mabaihoc
 	DELETE FROM HOC WHERE MaBaiHoc = @mabaihoc
 	DELETE FROM DINHKEM WHERE MaBaiHoc = @mabaihoc
+	Delete FROM HOC WHERE MABAIHOC=@mabaihoc
 	DELETE FROM BAIHOC WHERE MaBaiHoc = @mabaihoc
+	
 END
 GO
 -- KHI CẬP NHẬT TRẠNG THÁI BẢNG 'HOC' THÌ CẬP NHẬT TIẾN ĐỘ CHO BẢNG DANGKY
@@ -95,7 +97,7 @@ BEGIN
 	SELECT @countbaihoc= count(*)
 	FROM BAIHOC as bh
 	JOIN KHOAHOC as kh ON kh.MaKhoaHoc = bh.MaKhoaHoc
-	WHERE bh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
+	WHERE kh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
 	                      FROM BAIHOC AS bh
 						  WHERE bh.MaBaiHoc = @mabaihoc)
 
@@ -103,7 +105,7 @@ BEGIN
 	FROM BAIHOC as bh
 	JOIN HOC as hoc ON hoc.MaBaiHoc = bh.MaBaiHoc
 	JOIN KHOAHOC as kh ON kh.MaKhoaHoc = bh.MaKhoaHoc
-	WHERE hoc.TrangThai = 'Done' and hoc.MaNguoiDung = @manguoidung and bh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
+	WHERE hoc.TrangThai = 'Done' and hoc.MaNguoiDung = @manguoidung and kh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
 	                      FROM BAIHOC AS bh
 						  WHERE bh.MaBaiHoc = @mabaihoc)
 

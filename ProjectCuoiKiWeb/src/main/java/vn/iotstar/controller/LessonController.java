@@ -16,6 +16,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import vn.iotstar.model.BaiHoc;
 import vn.iotstar.model.BaiHocDao;
+import vn.iotstar.model.HocVien;
 import vn.iotstar.model.KhoaHoc;
 import vn.iotstar.model.KhoaHocDao;
 import vn.iotstar.model.TaiLieu;
@@ -52,7 +53,7 @@ public class LessonController {
 	@RequestMapping(value = "/find-document")
 	public String FindDocument(@RequestParam("matailieu") int matailieu, ModelMap model, HttpSession session) {
 		String url = "";
-		modedocument=1;
+		modedocument = 1;
 		try {
 			TaiLieu tailieu = new TaiLieu(matailieu);
 			this.matailieu = tailieu.getMatailieu();
@@ -83,7 +84,7 @@ public class LessonController {
 			if (baihoc != null) {
 				// tìm 1 bài học
 				model.addAttribute("lesson", baihoc);
-				this.mabaihoc=mabaihoc;
+				this.mabaihoc = mabaihoc;
 				model.addAttribute("makhoahoc", baihoc.getMakhoahoc());
 				makhoahoc = baihoc.getMakhoahoc();
 				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
@@ -93,8 +94,9 @@ public class LessonController {
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
-				String tiendo = bhD.TrangThaiHoc(mabaihoc);
-				model.addAttribute("trangthai", tiendo);
+				BaiHoc trangthai = bhD.FindStatus(mabaihoc);
+				model.addAttribute("trangthai", trangthai);
+
 				url = "course";
 			} else {
 				url = "redirect:/courses";
@@ -105,13 +107,15 @@ public class LessonController {
 
 		return url;
 	}
-	
+
 	@RequestMapping(value = "/mask-complete", method = RequestMethod.GET, params = "mabaihoc")
-	public String MaskComplete(@RequestParam("mabaihoc") int mabaihoc, ModelMap model, HttpSession session) 
-	    throws SQLException, ClassNotFoundException{
+	public String MaskComplete(@RequestParam("mabaihoc") int mabaihoc, HttpSession session)
+			throws SQLException, ClassNotFoundException {
+
 		try {
-			bhD.MaskAsDone(mabaihoc);
-		}catch (Exception ex) {
+			HocVien hv = (HocVien) session.getAttribute("hocvien");
+			bhD.MaskAsDone(mabaihoc, hv.getManguoidung());
+		} catch (Exception ex) {
 			System.out.print(ex.getMessage());
 		}
 		return "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;

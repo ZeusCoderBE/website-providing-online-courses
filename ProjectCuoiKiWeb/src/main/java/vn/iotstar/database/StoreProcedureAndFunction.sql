@@ -6,7 +6,20 @@ begin
 	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
 	where MaTaiLieu=@matailieu
 end
-
+Go
+--Inser dữ liệu bài học vào bảng học
+Create or Alter Procedure sp_InsertLessonIntoHoc
+@manguoidung int,@mabaihoc int
+as
+begin
+	insert into HOC(MaNguoiDung,MaBaiHoc)
+	select HOCVIEN.MaHocVien,BAIHOC.MaBaiHoc From BAIHOC join
+	KHOAHOC on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
+	join DANGKY
+	on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
+	join HOCVIEN on HOCVIEN.MaHocVien=DANGKY.MaNguoiDung
+	where MaHocVien=@manguoidung and MaBaiHoc=@mabaihoc
+end
 go
 --Create Document
 Create or Alter Procedure sp_CreateDocument

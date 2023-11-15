@@ -1,6 +1,9 @@
 package vn.iotstar.model;
 
 import java.util.*;
+
+import jakarta.servlet.jsp.jstl.sql.Result;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,6 +26,17 @@ public class BaiHocDao {
 			listbaihoc.add(baihoc);
 		}
 		return listbaihoc;
+	}
+
+	public BaiHoc FindMaBaiHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String dml = "select distinct(BAIHOC.MaBaiHoc) From BAIHOC " + "where MaKhoaHoc= " + makhoahoc + "";
+		ResultSet rs = dbC.ExecuteQuery(dml);
+		BaiHoc baihoc = new BaiHoc();
+		if (rs.next()) {
+			baihoc = new BaiHoc(rs.getInt("MaBaiHoc"));
+			return baihoc;
+		}
+		return null;
 	}
 
 	public BaiHoc FindOfMyALesson(int mabaihoc) throws ClassNotFoundException, SQLException {
@@ -57,6 +71,7 @@ public class BaiHocDao {
 				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
 		int check = dbC.ExecuteCommand(sqlStr);
+		System.out.print(sqlStr);
 		System.out.println(baihoc.getThoigianhoanthanh());
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");
@@ -66,7 +81,7 @@ public class BaiHocDao {
 	public void XoaBaiHoc(int mabaihoc) throws SQLException, ClassNotFoundException {
 		String sqlStr = String.format("DELETE FROM BAIHOC WHERE MaBaiHoc = %d", mabaihoc);
 		dbC.ExecuteCommand(sqlStr);
-		
+
 	}
 
 	public void CapNhatBaiHoc(BaiHoc bh) throws SQLException, ClassNotFoundException {
@@ -76,19 +91,30 @@ public class BaiHocDao {
 				bh.getMabaihoc());
 		dbC.ExecuteCommand(sqlStr);
 	}
-	
-	public void MaskAsDone (int mabaihoc) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format("UPDATE HOC SET TrangThai = 'Done' WHERE MaBaiHoc =%d", mabaihoc);
+
+	public void MaskAsDone(int mabaihoc, int manguoidung) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format(
+				"UPDATE HOC SET TrangThai = 'Done',NgayHoanThanh=GETDATE() WHERE MaBaiHoc =%d and MaNguoiDung=%d",
+				mabaihoc, manguoidung);
 		dbC.ExecuteCommand(sqlStr);
 	}
-	
-	public String TrangThaiHoc(int mabaihoc) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format("select TrangThai from HOC where MaBaiHoc = %d", mabaihoc);
-	    ResultSet rs=dbC.ExecuteQuery(sqlStr);
-	    if (rs.next()) {
-	    	return rs.getString("TrangThai");
-	    }
-	    
-	    return null;
+
+	public void InsertIntoHoc(int manguoidung, int mabaihoc) {
+		String dml = "sp_InsertLessonIntoHoc " + manguoidung + "," + mabaihoc + " ";
+		System.out.print(dml);
+		dbC.ExecuteCommand(dml);
 	}
+
+	public BaiHoc FindStatus(int mabaihoc) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format("select TrangThai from HOC where MaBaiHoc = %d", mabaihoc);
+		BaiHoc baihoc = new BaiHoc();
+		ResultSet rs = dbC.ExecuteQuery(sqlStr);
+		if (rs.next()) {
+			baihoc = new BaiHoc(rs.getString("TrangThai"));
+			return baihoc;
+		}
+
+		return null;
+	}
+
 }
