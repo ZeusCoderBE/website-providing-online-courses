@@ -24,7 +24,6 @@ public class TaiLieuDao {
 	public int EditDocument(TaiLieu tailieu) {
 		String dml = "exec sp_EditDocument " + tailieu.getMatailieu() + ",N'" + tailieu.getTheloai() + "','"
 				+ tailieu.getDinhdangluutru() + "',N'" + tailieu.getDuongdanluutru() + "'";
-		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
@@ -32,7 +31,6 @@ public class TaiLieuDao {
 	public TaiLieu FindADocumen(TaiLieu tailieu) throws ClassNotFoundException, SQLException {
 		String dml = "select *From TAILIEU  where MaTaiLieu=" + tailieu.getMatailieu() + "";
 		ResultSet rs = dbC.ExecuteQuery(dml);
-		System.out.print(dml);
 		TaiLieu tailieutim = new TaiLieu();
 		if (rs.next()) {
 			tailieutim = new TaiLieu(rs.getInt("MaTaiLieu"), rs.getNString("TheLoai"), rs.getString("DinhDangLuuTru"),

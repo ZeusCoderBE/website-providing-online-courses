@@ -59,11 +59,5 @@
 	<script
 		src="https://cdn.tiny.cloud/1/yjs36lnwbew65fjemjpjuu6cjayfnprmaybt1rl1rmo6jx5e/tinymce/6/tinymce.min.js"
 		referrerpolicy="origin"></script>
-	<script>
-		window.onload = function() {
-			ReloadAlert("${uptailieu}");
-		}
-	</script>
-	<c:set var="uptailieu" value="${null}"></c:set>
 </body>
 </html>

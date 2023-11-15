@@ -175,37 +175,34 @@ function ReloadAlert(thongBao) {
 	}
 }
 function checkKhoaHoc() {
-	var matacgia = document.getElementById("matacgia").value;
-	var giatien = document.getElementById("giatien").value;
-	var danhgia = document.getElementById("danhgia").value;
-	var thoiluong = document.getElementById("thoiluong").value;
+    // Lấy giá trị của các trường
+    var giatienValue = document.getElementById('giatien').value;
+    var thoiluongValue = document.getElementById('thoiluong').value;
+    var matacgiaValue = document.getElementById('matacgia').value;
 
-	var parsedMatacgia = parseFloat(matacgia);
-	if (isNaN(parsedMatacgia)) {
-		alert("Mã tác giả không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false;
-	}
-	var parsedGiatien = parseFloat(giatien);
-	if (isNaN(parsedGiatien)) {
-		alert("Giá tiền không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false;
-	}
+    // Kiểm tra giá trị không chứa kí tự chữ hoặc kí tự đặc biệt
+    var regex = /^[0-9.]+$/; // Chỉ chấp nhận các kí tự số
+    if (!regex.test(giatienValue)) {
+        alert("Giá tiền không hợp lệ");
+        return false;
+    }
 
-	var parsedDanhgia = parseFloat(danhgia);
-	if (isNaN(parsedDanhgia)) {
-		alert("Đánh giá không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false;
-	}
+    if (!regex.test(thoiluongValue)) {
+        alert("Thời lượng không hợp lệ");
+        return false;
+    }
 
-	// Kiểm tra kiểu dữ liệu của thoiluong
-	var parsedThoiluong = parseFloat(thoiluong);
-	if (isNaN(parsedThoiluong)) {
-		alert("Thời lượng không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false;
-	}
-	return true;
+    regex = /^[0-9]+$/; // Chỉ chấp nhận các kí tự số cho mã tác giả
+    if (!regex.test(matacgiaValue)) {
+        alert("Mã tác giả không hợp lệ.");
+        return false;
+    }
 
+    // Nếu mọi kiểm tra đều qua, cho phép form submit
+    return true;
 }
+
+
 function goToNewPage() {
 	window.location.href = "./signin.html";
 }

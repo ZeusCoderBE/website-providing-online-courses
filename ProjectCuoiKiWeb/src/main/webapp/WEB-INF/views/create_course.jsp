@@ -31,8 +31,6 @@
 							<div class="form-login-header">
 								<h1>COURSE</h1>
 							</div>
-
-							<<<<<<< HEAD
 							<div class="form-login-input">
 								<label for="name_course">Tên khóa học:</label> <input
 									type="text" id="tenkhoahoc" name="tenkhoahoc"
@@ -57,7 +55,7 @@
 									placeholder="vd :Cơ Bản" required
 									value="${findkhoahoc.trinhdodauvao}" /> <label for="upload">Upload
 									file</label> <input type="file" class="form-control" id="upload"
-									name="minhhoa" />
+									name="minhhoa" required />
 							</div>
 							<div class="form-login-input">
 								<label for="makh">Ngôn ngữ</label> <input type="text"

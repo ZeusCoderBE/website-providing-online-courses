@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import java.util.*;
-import java.io.File;
 
 @Controller
 public class CourseController {
@@ -69,7 +68,7 @@ public class CourseController {
 		return url;
 	}
 
-	@RequestMapping(value = "/Post-Course", method = RequestMethod.POST)
+	@RequestMapping(value = "Post-Course", method = RequestMethod.POST)
 	public String EditCourse(@RequestParam("tenkhoahoc") String tenkhoahoc, @RequestParam("theloai") String theloai,
 			@RequestParam("matacgia") int matacgia, @RequestParam("giatien") double giatien,
 			@RequestParam("trinhdodauvao") String trinhdo, @RequestParam("ngonngu") String ngonngu,

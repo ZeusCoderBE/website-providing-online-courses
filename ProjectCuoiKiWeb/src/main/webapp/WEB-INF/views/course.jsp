@@ -24,9 +24,7 @@
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <link href="./templates/CSS/submitprac.css" type="text/css"
 	rel="stylesheet">
-
-<!--  
--->
+<script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div class="" id="app">
@@ -657,12 +655,13 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 		crossorigin="anonymous"></script>
-	<script src="./templates/JavaScript/script.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
-			ReloadAlert("${warning}")
+			ReloadAlert("${warning}");
+			ReloadAlert("${uptailieu}")
 		}
 	</script>
 	<c:set var="warning" value="${null}"></c:set>
+	<c:set var="uptailieu" value="${null}"></c:set>
 </body>
 </html>
