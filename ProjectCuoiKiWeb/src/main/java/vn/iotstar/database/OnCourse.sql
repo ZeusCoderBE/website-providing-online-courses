@@ -107,6 +107,7 @@ GO
 CREATE TABLE DANGKY (
 	MaNguoiDung INT,
 	MaKhoaHoc INT,
+	TienDo REAL,
 	PRIMARY KEY (MaNguoiDung, MaKhoaHoc),
 	CONSTRAINT FK_DANGKY_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_DANGKY_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc)
@@ -129,7 +130,7 @@ CREATE TABLE HOC (
 	MaNguoiDung INT,
 	MaBaiHoc INT,
 	NgayHoanThanh DATE,
-	TienDo varchar(10),
+	TrangThai varchar(10),
 	PRIMARY KEY (MaNguoiDung, MaBaiHoc),
 	CONSTRAINT FK_HOC_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_HOC_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)
@@ -224,11 +225,11 @@ VALUES
     (2, 1),
     (3, 2)
     
-INSERT INTO DANGKY (MaNguoiDung, MaKhoaHoc)
+INSERT INTO DANGKY (MaNguoiDung, MaKhoaHoc, TienDo)
 VALUES
-    (1, 1),
-    (2, 1),
-    (3, 2)
+    (1, 1, 0),
+    (2, 1, 0),
+    (3, 2, 0)
     
 -- Chèn thẻ tài khoản
 INSERT INTO THE 
@@ -243,9 +244,10 @@ VALUES
     (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
     (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
-INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh, TienDo)
+INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh, TrangThai)
 VALUES
-    (1, 1, '2023-01-10', 'Done'),
+    (1, 1, '2023-01-10', 'Peding'),
+	(1, 2, '2023-01-10', 'Pending'),
     (2, 2, '2023-01-11', 'Pending'),
     (3, 3, '2023-01-12', 'Done')
     
@@ -267,3 +269,6 @@ VALUES
     (5, 1),
     (4, 2)
 
+
+select *from HOC
+SELECT *FROM BAIHOC

@@ -39,3 +39,4 @@ right join BAIHOC
 on BAIHOC.MaBaiHoc=DINHKEM.MaBaiHoc
 join KHOAHOC
 on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
+

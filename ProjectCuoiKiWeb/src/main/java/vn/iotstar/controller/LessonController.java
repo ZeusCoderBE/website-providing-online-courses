@@ -93,6 +93,8 @@ public class LessonController {
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
+				String tiendo = bhD.TrangThaiHoc(mabaihoc);
+				model.addAttribute("trangthai", tiendo);
 				url = "course";
 			} else {
 				url = "redirect:/courses";
@@ -102,6 +104,17 @@ public class LessonController {
 		}
 
 		return url;
+	}
+	
+	@RequestMapping(value = "/mask-complete", method = RequestMethod.GET, params = "mabaihoc")
+	public String MaskComplete(@RequestParam("mabaihoc") int mabaihoc, ModelMap model, HttpSession session) 
+	    throws SQLException, ClassNotFoundException{
+		try {
+			bhD.MaskAsDone(mabaihoc);
+		}catch (Exception ex) {
+			System.out.print(ex.getMessage());
+		}
+		return "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
 	}
 
 	@RequestMapping(value = "post-document", method = RequestMethod.POST)

@@ -318,10 +318,11 @@ function CloseCreate(name){
   }
 }
 
-function MaskDone() {
-	let icon = document.querySelector('.content_progress i');
+function MaskDone(mabaihoc) {
+/*	let icon = document.querySelector('.content_progress i');
 	let mask = document.querySelector('.content_progress span');
 	icon.classList.add('fa-solid');
 	icon.classList.add('fa-check');
-	mask.textContent = 'complete';
+	mask.textContent = 'Done';*/
+	window.location.href= 'mask-complete?mabaihoc=' + mabaihoc;
 }

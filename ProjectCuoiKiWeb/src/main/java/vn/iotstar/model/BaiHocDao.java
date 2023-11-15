@@ -76,4 +76,19 @@ public class BaiHocDao {
 				bh.getMabaihoc());
 		dbC.ExecuteCommand(sqlStr);
 	}
+	
+	public void MaskAsDone (int mabaihoc) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format("UPDATE HOC SET TrangThai = 'Done' WHERE MaBaiHoc =%d", mabaihoc);
+		dbC.ExecuteCommand(sqlStr);
+	}
+	
+	public String TrangThaiHoc(int mabaihoc) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format("select TrangThai from HOC where MaBaiHoc = %d", mabaihoc);
+	    ResultSet rs=dbC.ExecuteQuery(sqlStr);
+	    if (rs.next()) {
+	    	return rs.getString("TrangThai");
+	    }
+	    
+	    return null;
+	}
 }
