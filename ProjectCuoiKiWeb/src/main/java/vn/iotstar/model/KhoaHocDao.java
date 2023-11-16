@@ -78,8 +78,9 @@ public class KhoaHocDao {
 		KhoaHoc khoahoc = new KhoaHoc();
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
+			System.out.println(rs.getFloat("TienDo"));
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"), rs.getFloat("TienDo"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -92,7 +93,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"), 0);
 			listkh.add(khoahoc);
 		}
 		return listkh;

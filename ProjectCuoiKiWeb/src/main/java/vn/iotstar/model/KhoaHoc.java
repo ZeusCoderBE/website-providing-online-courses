@@ -16,6 +16,7 @@ public class KhoaHoc {
 	private String minhhoa;
 	private String theloai;
 	private String linhvuc;
+	private float tiendo;
 
 	public String getLinhvuc() {
 		return linhvuc;
@@ -68,6 +69,10 @@ public class KhoaHoc {
 	public String getMinhhoa() {
 		return minhhoa;
 	}
+	
+	public float getTiendo() {
+		return tiendo;
+	}
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
 			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String minhhoa) {
@@ -114,12 +119,13 @@ public class KhoaHoc {
 		this.makhoahoc = makhoahoc;
 	}
 
-	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota, String minhhoa) {
+	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota, String minhhoa, float tiendo) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.trinhdodauvao = trinhdodauvao;
 		this.makhoahoc = makhoahoc;
 		this.mota = mota;
 		this.minhhoa = minhhoa;
+		this.tiendo = tiendo;
 	}
 	public KhoaHoc(int matacgia,double giatien)
 	{

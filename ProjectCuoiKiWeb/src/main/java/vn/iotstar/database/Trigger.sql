@@ -65,7 +65,7 @@ end
 GO
 
 --Xóa những tham chiếu tới bài học trước khi xóa bài học
-CREATE OR ALTER TRIGGER tr_xoaBaiHoc ON BAIHOC
+CREATE OR ALTER TRIGGER tg_xoaBaiHoc ON BAIHOC
 INSTEAD OF DELETE
 AS
 DECLARE @mabaihoc INT
@@ -82,7 +82,7 @@ BEGIN
 END
 GO
 -- KHI CẬP NHẬT TRẠNG THÁI BẢNG 'HOC' THÌ CẬP NHẬT TIẾN ĐỘ CHO BẢNG DANGKY
-CREATE OR ALTER TRIGGER tr_updateTienDo ON HOC
+CREATE OR ALTER TRIGGER tg_updateTienDo ON HOC
 FOR UPDATE
 AS
 DECLARE @mabaihoc INT
@@ -117,3 +117,45 @@ BEGIN
 	ELSE
 	   UPDATE DANGKY SET TienDo = 0 WHERE MaNguoiDung = @manguoidung 
 END
+
+GO
+
+--Thêm bài học khi giáo viên thêm bài học cho khóa học mà học viên đã đăng ký
+CREATE OR ALTER TRIGGER tr_Add_BH_Hoc ON BAIHOC
+AFTER INSERT
+AS 
+BEGIN
+   DECLARE @TempTable TABLE (
+    MaNguoiDung INT,
+    MaBaiHoc INT,
+    NgayHoanThanh DATE
+    )
+
+   -- Insert các giá trị từ SELECT vào bảng tạm
+   INSERT INTO @TempTable (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
+   SELECT dk.MaNguoiDung, i.MaBaiHoc,  i.NgayDang 
+   FROM inserted i
+   INNER JOIN DANGKY dk ON dk.MaKhoaHoc= i.MaKhoaHoc
+
+   -- Sử dụng các giá trị từ bảng tạm trong câu lệnh INSERT
+   INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
+   SELECT MaNguoiDung, MaBaiHoc, NgayHoanThanh
+   FROM @TempTable
+   WHERE MaNguoiDung IS NOT NULL
+END
+
+Go
+
+--Xóa bài học ở bảng Học khi xóa Bài học khỏi khóa học
+CREATE OR ALTER TRIGGER tr_Delete_BH_Hoc ON BAIHOC
+FOR DELETE
+AS 
+BEGIN
+   DELETE FROM HOC
+   WHERE (MaBaiHoc) IN (
+   SELECT  i.MaBaiHoc
+   FROM deleted i
+   INNER JOIN DANGKY dk ON dk.MaKhoaHoc = i.MaKhoaHoc
+   );
+END
+

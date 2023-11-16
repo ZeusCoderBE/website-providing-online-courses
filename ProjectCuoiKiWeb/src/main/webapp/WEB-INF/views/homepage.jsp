@@ -424,11 +424,11 @@
 																		<div class="card-footer dashboard-card-footer border-0 bg-white">
 																			<div class="progress bg-white border">
 																				<div class="progress-bar bar" role="progressbar"
-																					aria-valuenow="5" style="width: 5%"
+																					aria-valuenow="${khoahoc.tiendo}" style="width: ${khoahoc.tiendo}%"
 																					aria-valuemin="0" aria-valuemax="100"></div>
 																			</div>
 																			<div class="small">
-																				<span class="sr-only">Course progress:</span> <strong>5</strong>%
+																				<span class="sr-only">Course progress:</span> <strong>${khoahoc.tiendo} </strong>%
 																				complete
 																			</div>
 																		</div>
@@ -452,17 +452,7 @@
 																		</div>
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a>
-																		<div class="card-footer dashboard-card-footer border-0 bg-white">
-																			<div class="progress bg-white border">
-																				<div class="progress-bar bar" role="progressbar"
-																					aria-valuenow="5" style="width: 5%"
-																					aria-valuemin="0" aria-valuemax="100"></div>
-																			</div>
-																			<div class="small">
-																				<span class="sr-only">Course progress:</span> <strong>5</strong>%
-																				complete
-																			</div>
-																		</div>
+																		
 																	</div>
 																</div>
 															</div>
