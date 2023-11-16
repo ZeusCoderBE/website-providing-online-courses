@@ -248,8 +248,8 @@ INSERT INTO HOC (MaNguoiDung, MaBaiHoc)
 VALUES
     (1, 1),
 	(1, 2),
-    (2, 2,),
-    (3, 3,)
+    (2, 2),
+    (3, 3)
     
 INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
 VALUES
