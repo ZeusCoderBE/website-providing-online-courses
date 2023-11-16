@@ -55,6 +55,11 @@ public class HomePageController {
 		return "homepage";
 	}
 
+	@RequestMapping(value = "introduction", method = RequestMethod.GET)
+	public String ShowIntroduction() {
+		return "introduction";
+	}
+
 	@RequestMapping(value = "/myhomepage", method = RequestMethod.GET)
 	public String FindMyLearning(HttpSession session, ModelMap model) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
@@ -81,6 +86,7 @@ public class HomePageController {
 		}
 		return "homepage";
 	}
+
 	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
 	public String XemMotKhoaHoc(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
@@ -103,9 +109,7 @@ public class HomePageController {
 				khoahoc = khD.FindCourseOfCustomer(khoahoc);
 				model.addAttribute("khoahoc", khoahoc);
 				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung(), khoahoc.getMakhoahoc()));
-			}
-			else
-			{
+			} else {
 				khoahoc = khD.FindCourseOfCustomer(khoahoc);
 				model.addAttribute("khoahoc", khoahoc);
 			}

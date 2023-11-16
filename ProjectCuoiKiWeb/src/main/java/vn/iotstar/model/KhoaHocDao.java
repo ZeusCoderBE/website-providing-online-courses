@@ -23,17 +23,18 @@ public class KhoaHocDao {
 		}
 		return danhsachkh;
 	}
-	public List<KhoaHoc> CountSelectedCourses(List<String>selectedCourses) throws NumberFormatException, ClassNotFoundException, SQLException
-	{
-		List<KhoaHoc>selectedtemp=new ArrayList<>();
-		for(String courseId:selectedCourses)
-		{
-			KhoaHoc course=FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
+
+	public List<KhoaHoc> CountSelectedCourses(List<String> selectedCourses)
+			throws NumberFormatException, ClassNotFoundException, SQLException {
+		List<KhoaHoc> selectedtemp = new ArrayList<>();
+		for (String courseId : selectedCourses) {
+			KhoaHoc course = FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
 
 			selectedtemp.add(course);
 		}
 		return selectedtemp;
 	}
+
 	public int EditACourse(KhoaHoc khoahoc) {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
@@ -59,6 +60,7 @@ public class KhoaHocDao {
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
+
 	public KhoaHoc FindCourseOfCustomer(KhoaHoc khoahoc) throws ClassNotFoundException, SQLException {
 		String query = "select *From KhoaHoc where MaKhoaHoc=" + khoahoc.getMakhoahoc() + "";
 		ResultSet rs = dbC.ExecuteQuery(query);
@@ -79,7 +81,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"), rs.getDouble("TienDo"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -92,7 +94,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"), null);
 			listkh.add(khoahoc);
 		}
 		return listkh;
