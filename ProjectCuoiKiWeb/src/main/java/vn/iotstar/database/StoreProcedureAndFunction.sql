@@ -7,6 +7,16 @@ begin
 	where MaTaiLieu=@matailieu
 end
 Go
+--Remove Document
+Create or Alter Procedure sp_DeleteDocument
+@matailieu int
+as
+begin
+	delete From TAILIEU
+	where MaTaiLieu=@matailieu
+	
+end
+Go
 --Inser dữ liệu bài học vào bảng học
 Create or Alter Procedure sp_InsertLessonIntoHoc
 @manguoidung int,@mabaihoc int

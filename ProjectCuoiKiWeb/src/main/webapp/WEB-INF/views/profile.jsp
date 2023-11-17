@@ -304,7 +304,6 @@
 										</div>
 									</div>
 								</c:forEach>
-
 							</div>
 						</c:if>
 

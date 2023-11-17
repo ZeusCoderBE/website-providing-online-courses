@@ -147,6 +147,22 @@ BEGIN
    WHERE MaNguoiDung IS NOT NULL
 END
 Go
+--Xoá Ràng buộc Tài Liệu
+Create or Alter Trigger tg_XoaRangBuocTaiLieu
+on TaiLieu instead of delete
+as
+begin 
+	--Tìm MÃ Tài Liệu
+	declare @matailieu int
+	select @matailieu=deleted.MaTaiLieu from deleted
+	--Xử lí ràng buộc 
+	Delete From DINHKEM
+	where MaTaiLieu=@matailieu
+	--Xoá tài liệu
+	Delete From TAILIEU
+	where MaTaiLieu=@matailieu
+
+end
 
 
 
