@@ -1,5 +1,13 @@
+--View xem các khoá học đã được đăng ký
+CREATE OR ALTER VIEW v_xemkhoahocdangky as
+select KhoaHoc.MaKhoaHoc,COUNT(DANGKY.MaNguoiDung) as[SoLuong] From DANGKY
+join KHOAHOC
+on KHOAHOC.MaKhoaHoc =DANGKY.MaKhoaHoc
+group by KHOAHOC.MaKhoaHoc
+
+Go
 --Xem Thông Tin Học Viên
-CREATE OR ALTER VIEW vThongTinHocVien as
+CREATE OR ALTER VIEW v_ThongTinHocVien as
 select HOCVIEN.MaHocVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 	NGUOIDUNG.QuocGia,NGUOIDUNG.VungMien,NGUOIDUNG.DiaChi,NGUOIDUNG.TrinhDo,
 	HOCVIEN.LoaiTaiKhoan,NguoiDung.MatKhau  From NGUOIDUNG join  HOCVIEN

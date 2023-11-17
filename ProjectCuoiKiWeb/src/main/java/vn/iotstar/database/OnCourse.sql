@@ -210,15 +210,6 @@ VALUES
     (N'Bài tập 1', 2, N'Loại 1', 2.5, 'dap_an_3.pdf'),
     (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf'),
     (N'Bài tập 1', 3, N'Loại 1', 2.0, 'dap_an_5.pdf');
-
-INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
-VALUES
-    (N'Tài liệu 1', N'PDF', 'duong_dan_1.pdf'),
-    (N'Tài liệu 2', N'PDF', 'duong_dan_2.pdf'),
-    (N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
-    (N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
-    (N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
-
 INSERT INTO GIOHANG (MaNguoiDung, MaKhoaHoc)
 VALUES
     (1, 1),
@@ -256,12 +247,6 @@ VALUES
     (1, N'Bài tập 1', 1, 9),
     (2, N'Bài tập 2', 2, 8),
     (3, N'Bài tập 1', 3, 7)
-    
-INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
-VALUES
-    (1, 1),
-    (2, 2),
-    (3, 3)
     
 INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES

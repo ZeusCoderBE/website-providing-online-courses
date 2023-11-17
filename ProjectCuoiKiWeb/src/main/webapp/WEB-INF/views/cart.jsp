@@ -134,8 +134,9 @@
 									Khoá Học</h5>
 								<ul class="cart-list">
 									<c:forEach var="giohang" items="${dsgiohang}">
-										<li class="cart-item"><input class="checkbox-item" onclick="TotalPay()"
-											type="checkbox" name="selectedCourses" id="selectedCourses"
+										<li class="cart-item"><input class="checkbox-item"
+											onclick="TotalPay()" type="checkbox" name="selectedCourses"
+											id="selectedCourses"
 											value="${giohang.getKhoahoc().getMakhoahoc()}">
 											<div class="cart-item-container">
 												<div class="cart-item-info">
@@ -207,15 +208,14 @@
 												<div class="cart-item-action">
 													<div class="cart-item-delete">
 														<a
-															href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
-														<a href="#">Lưu để sau</a>
+															href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
 													</div>
 													<div class="cart-item-price">
 														<div class="cart-price-current">
 															<fmt:formatNumber var="giaTien"
 																value="${giohang.getKhoahoc().getGiatien()}"
 																type="number" maxFractionDigits="3" />
-															<p>Giá Tiền: ${giaTien}$</p>
+															<p>Giá Tiền: ${giaTien.replace(',','.')}$</p>
 														</div>
 														<div class="cart-price-old">
 															<p>10000$</p>

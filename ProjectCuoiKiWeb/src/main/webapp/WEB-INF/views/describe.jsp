@@ -66,7 +66,7 @@
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a
-																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 														</div>
 
 														<div class="my_course__delete">
@@ -134,7 +134,14 @@
 
 							<div class="evaluate">
 								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i>
-								<span>(1.040 reviews)</span>
+								<c:choose>
+									<c:when test="${ not empty dem.soluong}">
+										<span>(${dem.soluong} Đăng ký)</span>
+									</c:when>
+									<c:otherwise>
+										<span>(0 Đăng ký)</span>
+									</c:otherwise>
+								</c:choose>
 								<div class="line_stand"></div>
 								<i class="fa-solid fa-thumbs-up"></i> <span>92%</span>
 							</div>
@@ -142,9 +149,8 @@
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
 							<div class="course_des">${khoahoc.trinhdodauvao}</div>
 							<fmt:formatNumber var="giatien" value="${khoahoc.giatien}"
-								type="number" maxFractionDigits="2" />
-							<h5>Giá Tiền: ${giatien}$</h5>
-
+								type="number" pattern="###0.00" />
+							<h5>Giá Tiền: ${giatien.replace(',', '.')}$</h5>
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>

@@ -18,9 +18,14 @@ public class KhoaHoc {
 	private String theloai;
 	private String linhvuc;
 	private double tiendo;
+	private int soluong;
 
 	public String getLinhvuc() {
 		return linhvuc;
+	}
+
+	public int getSoluong() {
+		return soluong;
 	}
 
 	public Double getTiendo() {
@@ -78,6 +83,11 @@ public class KhoaHoc {
 	public KhoaHoc(int makhoahoc, String tenkhoahoc) {
 		this.makhoahoc = makhoahoc;
 		this.tenkhoahoc = tenkhoahoc;
+	}
+
+	public KhoaHoc(int makhoahoc, int soluong) {
+		this.makhoahoc = makhoahoc;
+		this.soluong = soluong;
 	}
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,

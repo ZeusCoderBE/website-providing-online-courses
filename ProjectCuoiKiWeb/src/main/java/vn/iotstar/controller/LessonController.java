@@ -17,6 +17,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import vn.iotstar.model.BaiHoc;
 import vn.iotstar.model.BaiHocDao;
+import vn.iotstar.model.GiangVien;
 import vn.iotstar.model.HocVien;
 import vn.iotstar.model.KhoaHoc;
 import vn.iotstar.model.KhoaHocDao;
@@ -81,6 +82,7 @@ public class LessonController {
 			throws ClassNotFoundException, SQLException {
 		String url = "";
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
 			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
 			if (baihoc != null) {
@@ -96,8 +98,10 @@ public class LessonController {
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
-				BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
-				model.addAttribute("trangthai", trangthai);
+				if (gv == null && hv != null) {
+					BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
+					model.addAttribute("trangthai", trangthai);
+				}
 
 				url = "course";
 			} else {

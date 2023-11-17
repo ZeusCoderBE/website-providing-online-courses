@@ -71,8 +71,6 @@ public class BaiHocDao {
 				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
 		int check = dbC.ExecuteCommand(sqlStr);
-		System.out.print(sqlStr);
-		System.out.println(baihoc.getThoigianhoanthanh());
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");
 		}
@@ -101,7 +99,6 @@ public class BaiHocDao {
 
 	public void InsertIntoHoc(int manguoidung, int mabaihoc) {
 		String dml = "sp_InsertLessonIntoHoc " + manguoidung + "," + mabaihoc + " ";
-		System.out.print(dml);
 		dbC.ExecuteCommand(dml);
 	}
 

@@ -47,7 +47,8 @@
 								<fmt:formatNumber var="giatien" value="${findkhoahoc.giatien}"
 									type="number" maxFractionDigits="3" />
 								<input type="text" id="giatien" name="giatien"
-									placeholder="vd: $9999" required value="${giatien}" />
+									placeholder="vd: $9999" required
+									value="${giatien.replace(',','.')}" />
 							</div>
 							<div class="form-login-input">
 								<label for="gv">Trình độ </label> <input type="text"

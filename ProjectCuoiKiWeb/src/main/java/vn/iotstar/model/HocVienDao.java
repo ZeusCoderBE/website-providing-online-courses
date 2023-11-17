@@ -15,7 +15,7 @@ public class HocVienDao {
 	}
 
 	public HocVien TimThongTinDN_Id(int manguoidung) throws ClassNotFoundException, SQLException {
-		String sql = "SELECT * FROM vThongTinHocVien AS vtt" + "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
+		String sql = "SELECT * FROM v_ThongTinHocVien AS vtt" + "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
 		ResultSet rs = dbC.ExecuteQuery(sql);
 		HocVien hv = new HocVien();
 		while (rs.next()) {
@@ -27,7 +27,7 @@ public class HocVienDao {
 	}
 
 	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException {
-		String sql = "SELECT * FROM vThongTinHocVien AS vtt" + "\t WHERE vtt.Email = '" + email + "'";
+		String sql = "SELECT * FROM v_ThongTinHocVien AS vtt" + "\t WHERE vtt.Email = '" + email + "'";
 		ResultSet rs = dbC.ExecuteQuery(sql);
 		HocVien hv = new HocVien();
 		while (rs.next()) {
