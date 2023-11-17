@@ -108,6 +108,7 @@ body {
 	border: 1px dashed #333;
 	margin: 10px 20%;
 	border-radius: 10px;
+	display: flex;
 }
 
 .btn-create--file {

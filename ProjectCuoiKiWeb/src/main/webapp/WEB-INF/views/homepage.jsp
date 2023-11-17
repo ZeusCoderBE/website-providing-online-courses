@@ -92,7 +92,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">

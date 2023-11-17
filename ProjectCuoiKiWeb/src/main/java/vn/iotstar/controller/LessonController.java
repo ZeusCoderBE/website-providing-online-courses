@@ -52,7 +52,24 @@ public class LessonController {
 		return "create_document";
 	}
 
-	@RequestMapping(value = "/find-document")
+	@RequestMapping(value = "/delete-document", method = RequestMethod.GET, params = "matailieu")
+	public String RemoveDocument(@RequestParam("matailieu") int matailieu,HttpSession session) {
+		try {
+			TaiLieu tailieu = new TaiLieu(matailieu);
+			if (tlD.RemoveDocument(tailieu) == 1) {
+				session.setAttribute("xoatailieu", "Bạn đã xoá thành công tài liệu ");
+			}
+			else
+			{
+				session.setAttribute("xoatailieu","Có lỗi xảy ra");
+			}
+		} catch (Exception ex) {
+				System.out.print(ex.getMessage());
+		}
+		return "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
+	}
+
+	@RequestMapping(value = "/find-document", method = RequestMethod.GET, params = "matailieu")
 	public String FindDocument(@RequestParam("matailieu") int matailieu, ModelMap model, HttpSession session) {
 		String url = "";
 		modedocument = 1;
@@ -82,7 +99,7 @@ public class LessonController {
 			throws ClassNotFoundException, SQLException {
 		String url = "";
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		GiangVien gv = (GiangVien) session.getAttribute("GiangVien");
+		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
 			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
 			if (baihoc != null) {
@@ -93,7 +110,7 @@ public class LessonController {
 				makhoahoc = baihoc.getMakhoahoc();
 				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
 				List<TaiLieu> dstailieu = new ArrayList<>();
-				dstailieu = bhD.FindDocumentofMylesson(mabaihoc);
+				dstailieu = tlD.FindDocumentofMylesson(mabaihoc);
 				model.addAttribute("dstailieu", dstailieu);
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
@@ -119,7 +136,9 @@ public class LessonController {
 
 		try {
 			HocVien hv = (HocVien) session.getAttribute("hocvien");
-			bhD.MaskAsDone(mabaihoc, hv.getManguoidung());
+			if (hv != null) {
+				bhD.MaskAsDone(mabaihoc, hv.getManguoidung());
+			}	
 
 		} catch (Exception ex) {
 			System.out.print(ex.getMessage());

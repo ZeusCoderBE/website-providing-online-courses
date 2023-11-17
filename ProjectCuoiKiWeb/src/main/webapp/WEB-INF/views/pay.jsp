@@ -92,7 +92,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -200,7 +200,8 @@
 											<label for="price">Số tiền cần thanh toán</label>
 											<fmt:formatNumber var="giatien" value="${tonggiatien}"
 												type="number" maxFractionDigits="3" />
-											<input type="text" id="price" name="price" value="${giatien}" />
+											<input type="text" id="price" name="price"
+												value="${giatien.replace(',','.')}" />
 										</div>
 										<div class="form-pay-input">
 											<label for="noidungtt">Nội dung thanh toán</label> <input

@@ -146,7 +146,7 @@
 							<h6>Số dư khả dụng:</h6>
 							<fmt:formatNumber var="sodu" value="${the.getSoDu()}"
 								type="number" maxFractionDigits="3" />
-							<span>${sodu}$</span>
+							<span>${sodu.replace(',','.')}$</span>
 						</div>
 						<c:if test="${not empty hocvien.manguoidung}">
 							<a href="deposit" class="btn btn_main"> <i
@@ -298,7 +298,6 @@
 										</div>
 									</div>
 								</c:forEach>
-
 							</div>
 						</c:if>
 

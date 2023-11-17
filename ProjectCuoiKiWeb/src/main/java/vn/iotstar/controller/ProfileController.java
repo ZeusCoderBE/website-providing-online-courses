@@ -28,9 +28,6 @@ public class ProfileController {
 		if (hv != null && gv == null) {
 			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
 			certificate = hvD.FindCertificateHV(hocvien.getManguoidung());
-			for (KhoaHoc kh : certificate) {
-				System.out.print(kh.getTenkhoahoc());
-			}
 			The the = tD.getAThe(hv.getManguoidung());
 			model.addAttribute("certificate", certificate);
 			model.addAttribute("thongtin", hocvien);

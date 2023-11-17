@@ -24,6 +24,18 @@ public class KhoaHocDao {
 		return danhsachkh;
 	}
 
+	public KhoaHoc CountSignIn(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String query = "select *From v_xemkhoahocdangky where MaKhoaHoc=" + makhoahoc + "";
+		ResultSet rs = dbC.ExecuteQuery(query);
+		KhoaHoc khoahoc = new KhoaHoc();
+		if (rs.next()) {
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getInt("SoLuong"));
+			return khoahoc;
+		}
+		return null;
+
+	}
+
 	public List<KhoaHoc> CountSelectedCourses(List<String> selectedCourses)
 			throws NumberFormatException, ClassNotFoundException, SQLException {
 		List<KhoaHoc> selectedtemp = new ArrayList<>();

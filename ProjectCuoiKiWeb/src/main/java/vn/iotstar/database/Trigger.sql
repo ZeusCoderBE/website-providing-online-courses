@@ -1,4 +1,4 @@
-CREATE OR ALTER TRIGGER tr_themDangKy ON THANHTOAN
+CREATE OR ALTER TRIGGER tg_themDangKy ON THANHTOAN
 AFTER INSERT
 AS
 BEGIN
@@ -124,9 +124,8 @@ BEGIN
 END
 
 GO
-
 --Thêm bài học khi giáo viên thêm bài học cho khóa học mà học viên đã đăng ký
-CREATE OR ALTER TRIGGER tr_Add_BH_Hoc ON BAIHOC
+CREATE OR ALTER TRIGGER tg_Add_BH_Hoc ON BAIHOC
 AFTER INSERT
 AS 
 BEGIN
@@ -147,8 +146,23 @@ BEGIN
    FROM @TempTable
    WHERE MaNguoiDung IS NOT NULL
 END
-
 Go
+--Xoá Ràng buộc Tài Liệu
+Create or Alter Trigger tg_XoaRangBuocTaiLieu
+on TaiLieu instead of delete
+as
+begin 
+	--Tìm MÃ Tài Liệu
+	declare @matailieu int
+	select @matailieu=deleted.MaTaiLieu from deleted
+	--Xử lí ràng buộc 
+	Delete From DINHKEM
+	where MaTaiLieu=@matailieu
+	--Xoá tài liệu
+	Delete From TAILIEU
+	where MaTaiLieu=@matailieu
+
+end
 
 
 

@@ -92,7 +92,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -184,7 +184,7 @@
 										</div>
 										<div class="form-pay-input">
 											<label for="namekh">Tên học viên</label> <input type="text"
-												id="namehv" name="namehv" disabled value="${hocvien.hoten}" />
+												id="namehv" name="namehv" disabled value="${thongtin.hoten}" />
 										</div>
 										<div class="form-pay-input">
 											<label for="cardNumber">Card Number</label> <input

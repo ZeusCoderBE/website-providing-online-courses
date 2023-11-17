@@ -97,7 +97,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -234,9 +234,9 @@
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
 										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"
-										onclick="ShowOption('page_study','page-forum', 'page-message', 'page-note')"
-										> <span>${baihoc.tenbaihoc}</span></a>
-										<!-- Các nút chức năng -->
+										onclick="ShowOption('page_study','page-forum', 'page-message', 'page-note')">
+											<span>${baihoc.tenbaihoc}</span>
+									</a> <!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
 												<div class="my-lesson__buy">
@@ -252,26 +252,31 @@
 								</c:forEach>
 							</ul>
 						</div>
-						
+
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
-								<a href="create-lesson-info?makhoahoc=${makhoahoc}" 
-								> <i
+								<a href="create-lesson-info?makhoahoc=${makhoahoc}"> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>
 						</c:if>
 						<div class="nav_drawer home_file">
-							<a href="#" onclick="ShowOption('page-note','page_study', 'page-message', 'page-forum')"> <i class="fa-regular fa-file"></i> <span>Notes</span>
+							<a href="#"
+								onclick="ShowOption('page-note','page_study', 'page-message', 'page-forum')">
+								<i class="fa-regular fa-file"></i> <span>Notes</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="#" onclick="ShowOption('page-forum','page_study', 'page-message', 'page-note')"> <i class="fa-regular fa-file"></i> <span>Discussion
+							<a href="#"
+								onclick="ShowOption('page-forum','page_study', 'page-message', 'page-note')">
+								<i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="#" onclick="ShowOption('page-message','page_study', 'page-note', 'page-forum')"> <i class="fa-regular fa-file"></i> <span>Messages</span>
+							<a href="#"
+								onclick="ShowOption('page-message','page_study', 'page-note', 'page-forum')">
+								<i class="fa-regular fa-file"></i> <span>Messages</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
@@ -320,16 +325,24 @@
 																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
 																${tailieu.duongdanluutru}</a>
 															<c:if test="${not empty giangvien.manguoidung}">
-																<a href="find-document?matailieu=${tailieu.matailieu}" class="btn-edit--file">
-																	Edit</a>
+																<a href="find-document?matailieu=${tailieu.matailieu}"
+																	class="btn-edit--file"> Edit</a>
+																<a href="delete-document?matailieu=${tailieu.matailieu}"
+																	class="btn-edit--file">Delete</a>
 															</c:if>
 														</c:forEach>
 													</c:if>
-													<c:if test="${not empty giangvien.manguoidung}">
-														<a href="create-document?mabaihoc=${lesson.mabaihoc}" class="btn btn-outline-secondary btn-create--file">
-															Create</a>
-												</c:if>
+													<c:if
+														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
+															<a href="create-document?mabaihoc=${lesson.mabaihoc}"
+																class="btn btn-outline-secondary btn-create--file">
+																Create</a>
+														
+													</c:if>
+
 												</div>
+												
+												
 												
 											</div>
 											<div class="content-complete">
@@ -342,13 +355,16 @@
 														    <i class="fa-solid fa-check"></i>
 															<span>Complete</span>
 														</c:when>
-														<c:otherwise>
-														    <i class="fa-solid fa-xmark"></i>
-															<span>You're not done yet</span>
-														</c:otherwise>
+														
 													</c:choose>
 												</div>
 											</div>
+											<c:if
+												test="${ empty giangvien.manguoidung && not empty hocvien.manguoidung}">
+												<button class="btn btn-primary btn-mask"
+													onclick="MaskDone(${lesson.mabaihoc})">Mask as
+													complete</button>
+											</c:if>
 										</div>
 									</div>
 								</div>
@@ -521,7 +537,7 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-							
+
 							<!-- Forum -->
 							<div class="page-forum page-common active">
 								<div class="page-content">
@@ -759,17 +775,18 @@
 				</c:choose>
 			</div>
 		</section>
-		
+
 	</div>
-	
 	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
 	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${warning}");
-			ReloadAlert("${uptailieu}")
+			ReloadAlert("${uptailieu}");
+			ReloadAlert("${xoatailieu}");
 		}
 	</script>
 	<c:set var="warning" value="${null}"></c:set>
 	<c:set var="uptailieu" value="${null}"></c:set>
+	<c:set var="xoatailieu" value="${null}"></c:set>
 </body>
 </html>

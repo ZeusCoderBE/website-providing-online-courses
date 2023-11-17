@@ -53,26 +53,11 @@ public class BaiHocDao {
 		}
 	}
 
-	public List<TaiLieu> FindDocumentofMylesson(int mabaihoc) throws ClassNotFoundException, SQLException {
-		String dml = "Select *From v_xemdanhsachtailieu where MaBaiHoc=" + mabaihoc + "";
-		TaiLieu tailieu = new TaiLieu();
-		List<TaiLieu> dstailieu = new ArrayList<>();
-		ResultSet rs = dbC.ExecuteQuery(dml);
-		while (rs.next() == true) {
-			tailieu = new TaiLieu(rs.getInt("MaKhoaHoc"), rs.getInt("MaBaiHoc"), rs.getInt("MaTaiLieu"),
-					rs.getNString("TheLoai"), rs.getString("DinhDangLuuTru"), rs.getNString("DuongDanLuuTru"));
-			dstailieu.add(tailieu);
-		}
-		return dstailieu;
-	}
-
 	public void ThemBaiHoc(BaiHoc baihoc) throws SQLException, ClassNotFoundException {
 		String sqlStr = String.format(Locale.US, "INSERT INTO BAIHOC VALUES(N'%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
 				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
 		int check = dbC.ExecuteCommand(sqlStr);
-		System.out.print(sqlStr);
-		System.out.println(baihoc.getThoigianhoanthanh());
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");
 		}
@@ -101,7 +86,6 @@ public class BaiHocDao {
 
 	public void InsertIntoHoc(int manguoidung, int mabaihoc) {
 		String dml = "sp_InsertLessonIntoHoc " + manguoidung + "," + mabaihoc + " ";
-		System.out.print(dml);
 		dbC.ExecuteCommand(dml);
 	}
 
