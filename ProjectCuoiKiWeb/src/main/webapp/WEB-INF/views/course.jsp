@@ -239,7 +239,9 @@
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
-										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
+										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"
+										onclick="ShowOption('page_study','page-forum', 'page-message', 'page-note')"
+										> <span>${baihoc.tenbaihoc}</span></a>
 										<!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
@@ -256,24 +258,26 @@
 								</c:forEach>
 							</ul>
 						</div>
-						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
-							</a>
-						</div>
+						
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
-								<a href="create-lesson-info?makhoahoc=${makhoahoc}"> <i
+								<a href="create-lesson-info?makhoahoc=${makhoahoc}" 
+								> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>
 						</c:if>
 						<div class="nav_drawer home_file">
-							<a href="upload.html"> <i class="fa-regular fa-file"></i> <span>Discussion
+							<a href="#" onclick="ShowOption('page-note','page_study', 'page-message', 'page-forum')"> <i class="fa-regular fa-file"></i> <span>Notes</span>
+							</a>
+						</div>
+						<div class="nav_drawer home_file">
+							<a href="#" onclick="ShowOption('page-forum','page_study', 'page-message', 'page-note')"> <i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-regular fa-file"></i> <span>Messages</span>
+							<a href="#" onclick="ShowOption('page-message','page_study', 'page-note', 'page-forum')"> <i class="fa-regular fa-file"></i> <span>Messages</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
@@ -478,7 +482,7 @@
 								<!-- Tới đây nè -->
 							</div>
 							<!-- NOTES -->
-							<div class="page-note page-common">
+							<div class="page-note page-common active">
 								<div class="page-content">
 									<h2>Notes</h2>
 									<div class="page-content-filter">
@@ -509,9 +513,9 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-							-->
+							
 							<!-- Forum -->
-							<div class="page-forum page-common">
+							<div class="page-forum page-common active">
 								<div class="page-content">
 									<h2>Forum</h2>
 									<div class="page-content-form">
@@ -586,7 +590,7 @@
 								</div>
 							</div>
 							<!-- Messages-->
-							<div class="page-message page-common">
+							<div class="page-message page-common active">
 								<div class="page-content">
 									<h2>Messages</h2>
 

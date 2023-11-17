@@ -214,6 +214,10 @@ body {
 	color: blue;
 }
 
+.active {
+	display: none;
+}
+
 .list_timer {
 	height: 200px;
 	overflow-y: auto;
