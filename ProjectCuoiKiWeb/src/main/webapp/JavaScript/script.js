@@ -323,3 +323,16 @@ function MaskDone(mabaihoc) {
 	mask.textContent = 'Done';*/
 	window.location.href= 'mask-complete?mabaihoc=' + mabaihoc;
 }
+
+function ShowOption(name, ...item){
+	let tab = document.getElementsByClassName(name);
+	for(var i =0; i<item.length; i++){
+		let tabName = document.getElementsByClassName(item[i]);
+		if(!tabName[0].classList.contains('active')){	
+		    tabName[0].classList.add('active');			
+		}
+	}
+	if(tab[0].classList.contains('active')){
+		tab[0].classList.remove('active');
+	}
+}

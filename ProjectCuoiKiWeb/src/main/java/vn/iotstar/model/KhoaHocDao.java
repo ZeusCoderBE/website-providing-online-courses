@@ -135,7 +135,7 @@ public class KhoaHocDao {
 		String sqlStr = "select MaKhoaHoc, TenKhoaHoc from KhoaHoc where MaKhoaHoc =" + makhoahoc;
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);
 		KhoaHoc kh = new KhoaHoc();
-		if (rs.next()) {
+		while (rs.next()) {
 			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"));
 			return kh;
 		}

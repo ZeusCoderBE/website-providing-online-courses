@@ -321,6 +321,7 @@ BEGIN
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END
+
 Go
 --Tìm chứng chỉ
 CREATE OR ALTER PROC sp_FindCertificate @manguoidung INT

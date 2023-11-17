@@ -82,7 +82,11 @@ public class LessonController {
 			throws ClassNotFoundException, SQLException {
 		String url = "";
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
+<<<<<<< HEAD
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
+=======
+		GiangVien gv = (GiangVien) session.getAttribute("GiangVien");
+>>>>>>> ee48452f4f753b45619770e3ef01911228a3d083
 		try {
 			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
 			if (baihoc != null) {
@@ -102,7 +106,6 @@ public class LessonController {
 					BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
 					model.addAttribute("trangthai", trangthai);
 				}
-
 				url = "course";
 			} else {
 				url = "redirect:/courses";

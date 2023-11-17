@@ -124,7 +124,7 @@ BEGIN
 END
 
 GO
-
+--Thêm bài học khi giáo viên thêm bài học cho khóa học mà học viên đã đăng ký
 CREATE OR ALTER TRIGGER tg_Add_BH_Hoc ON BAIHOC
 AFTER INSERT
 AS 
@@ -146,7 +146,6 @@ BEGIN
    FROM @TempTable
    WHERE MaNguoiDung IS NOT NULL
 END
-
 Go
 
 
