@@ -82,7 +82,7 @@ public class HomePageController {
 			}
 
 		} catch (Exception ex) {
-
+				System.out.print(ex.getMessage());
 		}
 		return "homepage";
 	}

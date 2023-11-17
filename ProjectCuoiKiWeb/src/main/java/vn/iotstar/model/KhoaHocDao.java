@@ -80,6 +80,7 @@ public class KhoaHocDao {
 		KhoaHoc khoahoc = new KhoaHoc();
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
+			System.out.println(rs.getFloat("TienDo"));
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
 					rs.getNString("MoTa"), rs.getString("MinhHoa"), rs.getDouble("TienDo"));
 			listkh.add(khoahoc);
@@ -94,7 +95,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"), null);
+					rs.getNString("MoTa"), rs.getString("MinhHoa"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -116,5 +117,16 @@ public class KhoaHocDao {
 			return true;
 		}
 		return false;
+	}
+
+	public KhoaHoc FindTenKhoaHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String sqlStr = "select MaKhoaHoc, TenKhoaHoc from KhoaHoc where MaKhoaHoc =" + makhoahoc;
+		ResultSet rs = dbC.ExecuteQuery(sqlStr);
+		KhoaHoc kh = new KhoaHoc();
+		if (rs.next()) {
+			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"));
+			return kh;
+		}
+		return null;
 	}
 }

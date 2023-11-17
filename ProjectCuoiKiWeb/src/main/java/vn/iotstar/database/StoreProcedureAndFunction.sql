@@ -254,7 +254,7 @@ CREATE or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa, KhoaHoc.MinhHoa,DangKy.TienDo From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa, KhoaHoc.MinhHoa, DANGKY.TienDo From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
@@ -321,3 +321,15 @@ BEGIN
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END
+Go
+--Tìm chứng chỉ
+CREATE OR ALTER PROC sp_FindCertificate @manguoidung INT
+AS
+BEGIN
+   SELECT kh.MaKhoaHoc, kh.TenKhoaHoc
+   FROM NGUOIDUNG AS nd
+   INNER JOIN DANGKY as dk ON dk.MaNguoiDung = nd.MaNguoiDung
+   INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
+   WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
+END
+

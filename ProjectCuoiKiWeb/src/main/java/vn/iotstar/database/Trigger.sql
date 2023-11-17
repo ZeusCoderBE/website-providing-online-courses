@@ -65,7 +65,7 @@ end
 GO
 
 --Xóa những tham chiếu tới bài học trước khi xóa bài học
-CREATE OR ALTER TRIGGER tr_xoaBaiHoc ON BAIHOC
+CREATE OR ALTER TRIGGER tg_xoaBaiHoc ON BAIHOC
 INSTEAD OF DELETE
 AS
 DECLARE @mabaihoc INT
@@ -76,14 +76,12 @@ BEGIN
 	DELETE FROM BAITAP WHERE MaBaiHoc = @mabaihoc
 	DELETE FROM HOC WHERE MaBaiHoc = @mabaihoc
 	DELETE FROM DINHKEM WHERE MaBaiHoc = @mabaihoc
-	Delete FROM HOC WHERE MABAIHOC=@mabaihoc
 	DELETE FROM BAIHOC WHERE MaBaiHoc = @mabaihoc
-	
 END
 GO
 -- KHI CẬP NHẬT TRẠNG THÁI BẢNG 'HOC' THÌ CẬP NHẬT TIẾN ĐỘ CHO BẢNG DANGKY
-CREATE OR ALTER TRIGGER tr_updateTienDo ON HOC
-FOR UPDATE
+CREATE OR ALTER TRIGGER tg_updateTienDo ON HOC
+FOR UPDATE,INSERT
 AS
 DECLARE @mabaihoc INT
 DECLARE @manguoidung INT
@@ -97,6 +95,7 @@ BEGIN
 	SELECT @countbaihoc= count(*)
 	FROM BAIHOC as bh
 	JOIN KHOAHOC as kh ON kh.MaKhoaHoc = bh.MaKhoaHoc
+	
 	WHERE kh.MaKhoaHoc = (SELECT Distinct MaKhoaHoc 
 	                      FROM BAIHOC AS bh
 						  WHERE bh.MaBaiHoc = @mabaihoc)
@@ -113,7 +112,43 @@ BEGIN
 	   BEGIN
 	       SET @tiendo = @countbaidahoc * 100 / @countbaihoc
            UPDATE DANGKY SET TienDo = @tiendo WHERE MaNguoiDung = @manguoidung
+           and MaKhoaHoc=(SELECT Distinct MaKhoaHoc 
+	                      FROM BAIHOC AS bh
+						  WHERE bh.MaBaiHoc = @mabaihoc)
        END
 	ELSE
 	   UPDATE DANGKY SET TienDo = 0 WHERE MaNguoiDung = @manguoidung 
+	   and MaKhoaHoc=(SELECT Distinct MaKhoaHoc 
+	                      FROM BAIHOC AS bh
+						  WHERE bh.MaBaiHoc = @mabaihoc)
 END
+
+GO
+
+CREATE OR ALTER TRIGGER tr_Add_BH_Hoc ON BAIHOC
+AFTER INSERT
+AS 
+BEGIN
+   DECLARE @TempTable TABLE (
+    MaNguoiDung INT,
+    MaBaiHoc INT
+    )
+
+   -- Insert các giá trị từ SELECT vào bảng tạm
+   INSERT INTO @TempTable (MaNguoiDung, MaBaiHoc)
+   SELECT dk.MaNguoiDung, i.MaBaiHoc
+   FROM inserted i
+   INNER JOIN DANGKY dk ON dk.MaKhoaHoc= i.MaKhoaHoc
+
+   -- Sử dụng các giá trị từ bảng tạm trong câu lệnh INSERT
+   INSERT INTO HOC (MaNguoiDung, MaBaiHoc)
+   SELECT MaNguoiDung, MaBaiHoc
+   FROM @TempTable
+   WHERE MaNguoiDung IS NOT NULL
+END
+
+Go
+
+
+
+

@@ -394,6 +394,7 @@
 .main {
 	position: relative;
 	top: 50px;
+	margin: 0;
 }
 
 .nav_drawer {
@@ -654,7 +655,7 @@
 
 .card_text {
 	width: 300px;
-	height: 220px;
+	height: auto;
 	margin: 15px;
 }
 
@@ -707,11 +708,12 @@
 	text-decoration: none;
 	color: #505255;
 	font-weight: bold;
+	margin-bottom: 10px;
 	font-size: 0.9rem;
 }
 
 .progress {
-	height: 10px;
+	height: 8px;
 }
 
 .small {

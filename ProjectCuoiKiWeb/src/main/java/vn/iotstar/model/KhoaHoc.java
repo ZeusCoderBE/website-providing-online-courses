@@ -1,6 +1,7 @@
 package vn.iotstar.model;
 
 import java.sql.Date;
+
 public class KhoaHoc {
 
 	private int makhoahoc;
@@ -21,10 +22,11 @@ public class KhoaHoc {
 	public String getLinhvuc() {
 		return linhvuc;
 	}
-	public Double getTiendo()
-	{
+
+	public Double getTiendo() {
 		return tiendo;
 	}
+
 	public String getTheloai() {
 		return theloai;
 	}
@@ -68,9 +70,14 @@ public class KhoaHoc {
 	public int getDanhgia() {
 		return danhgia;
 	}
-	
+
 	public String getMinhhoa() {
 		return minhhoa;
+	}
+
+	public KhoaHoc(int makhoahoc, String tenkhoahoc) {
+		this.makhoahoc = makhoahoc;
+		this.tenkhoahoc = tenkhoahoc;
 	}
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
@@ -88,8 +95,9 @@ public class KhoaHoc {
 		this.minhhoa = minhhoa;
 	}
 
-	public KhoaHoc(int makhoahoc,String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
-			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String theloai, String linhvuc, String minhhoa) {
+	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
+			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String theloai, String linhvuc,
+			String minhhoa) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.matacgia = matacgia;
 		this.giatien = giatien;
@@ -101,7 +109,7 @@ public class KhoaHoc {
 		this.danhgia = danhgia;
 		this.theloai = theloai;
 		this.linhvuc = linhvuc;
-		this.makhoahoc=makhoahoc;
+		this.makhoahoc = makhoahoc;
 		this.minhhoa = minhhoa;
 	}
 
@@ -118,18 +126,26 @@ public class KhoaHoc {
 		this.makhoahoc = makhoahoc;
 	}
 
-	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota, String minhhoa,Double tiendo) {
+	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota, String minhhoa, Double tiendo) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.trinhdodauvao = trinhdodauvao;
 		this.makhoahoc = makhoahoc;
 		this.mota = mota;
 		this.minhhoa = minhhoa;
-		this.tiendo=tiendo;
+		this.tiendo = tiendo;
 	}
-	public KhoaHoc(int matacgia,double giatien)
-	{
-		this.matacgia=matacgia;
-		this.giatien=giatien;
+
+	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String mota, String minhhoa) {
+		this.tenkhoahoc = tenkhoahoc;
+		this.trinhdodauvao = trinhdodauvao;
+		this.makhoahoc = makhoahoc;
+		this.mota = mota;
+		this.minhhoa = minhhoa;
+	}
+
+	public KhoaHoc(int matacgia, double giatien) {
+		this.matacgia = matacgia;
+		this.giatien = giatien;
 	}
 
 	public KhoaHoc() {

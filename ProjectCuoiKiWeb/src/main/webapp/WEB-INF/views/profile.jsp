@@ -20,7 +20,6 @@
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
-<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() {
 		var elementId = localStorage.getItem('scrollToElement');
@@ -36,6 +35,7 @@
 		}
 	});
 </script>
+<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div class="" id="app">
@@ -285,49 +285,29 @@
 							</div>
 						</form>
 						<div class="the_line"></div>
-						<div class="profile_course">
-							<h6>Accomplishments</h6>
-							<div class="profile_my-course">
-								<div class="profile_my-course__img">
-									<img
-										src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
-										srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
-										alt="Certificate logo" style="max-height: 72px;">
-								</div>
-								<div class="profile_my-course__info">
-									<a href="#">Version Control</a>
-									<p>OnCourse</p>
-									<span>Grade Achieved: 91.25%</span>
-								</div>
-							</div>
-							<div class="profile_my-course">
-								<div class="profile_my-course__img">
-									<img
-										src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
-										srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
-										alt="Certificate logo" style="max-height: 72px;">
-								</div>
-								<div class="profile_my-course__info">
-									<a href="#">Version Control</a>
-									<p>OnCourse</p>
-									<span>Grade Achieved: 91.25%</span>
-								</div>
-							</div>
-							<div class="profile_my-course">
-								<div class="profile_my-course__img">
-									<img
-										src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
-										srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
-										alt="Certificate logo" style="max-height: 72px;">
-								</div>
-								<div class="profile_my-course__info">
-									<a href="#">Version Control</a>
-									<p>OnCourse</p>
-									<span>Grade Achieved: 91.25%</span>
-								</div>
-							</div>
+						<c:if test="${not empty hocvien.manguoidung}">
+							<div class="profile_course">
+								<h6>Accomplishments</h6>
+								<c:forEach var="certificate" items="${certificate}">
+									<div class="profile_my-course">
+										<div class="profile_my-course__img">
+											<img
+												src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
+												srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
+												alt="Certificate logo" style="max-height: 72px;">
+										</div>
+										<div class="profile_my-course__info">
+											<a href="certificate?makhoahoc=${certificate.makhoahoc}"
+												class="btn-certificate">${certificate.tenkhoahoc}</a>
+											<p>OnCourse</p>
+											<span>Grade Achieved: 100%</span>
+										</div>
+									</div>
+								</c:forEach>
 
-						</div>
+							</div>
+						</c:if>
+
 
 					</div>
 				</article>
@@ -360,6 +340,5 @@
 	<c:set var="thongbao" value="${null}"></c:set>
 	<c:set var="thongtinsai" value="${null}"></c:set>
 	<c:set var="thongbaotien" value="${null}"></c:set>
-
 </body>
 </html>
