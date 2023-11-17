@@ -17,6 +17,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import vn.iotstar.model.BaiHoc;
 import vn.iotstar.model.BaiHocDao;
+import vn.iotstar.model.GiangVien;
 import vn.iotstar.model.HocVien;
 import vn.iotstar.model.KhoaHoc;
 import vn.iotstar.model.KhoaHocDao;
@@ -77,9 +78,11 @@ public class LessonController {
 	}
 
 	@RequestMapping(value = "/Find-Lesson", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowLesson(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
+	public String ShowLesson(ModelMap model, @RequestParam("mabaihoc") int mabaihoc, HttpSession session)
 			throws ClassNotFoundException, SQLException {
 		String url = "";
+		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		GiangVien gv = (GiangVien) session.getAttribute("GiangVien");
 		try {
 			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
 			if (baihoc != null) {
@@ -95,9 +98,10 @@ public class LessonController {
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
-				BaiHoc trangthai = bhD.FindStatus(mabaihoc);
-				model.addAttribute("trangthai", trangthai);
-
+				if (gv == null && hv != null) {
+					BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
+					model.addAttribute("trangthai", trangthai);
+				}
 				url = "course";
 			} else {
 				url = "redirect:/courses";
@@ -110,13 +114,13 @@ public class LessonController {
 	}
 
 	@RequestMapping(value = "/mask-complete", method = RequestMethod.GET, params = "mabaihoc")
-	public String MaskComplete(@RequestParam("mabaihoc") int mabaihoc, HttpSession session,ModelMap model)
+	public String MaskComplete(@RequestParam("mabaihoc") int mabaihoc, HttpSession session, ModelMap model)
 			throws SQLException, ClassNotFoundException {
 
 		try {
 			HocVien hv = (HocVien) session.getAttribute("hocvien");
 			bhD.MaskAsDone(mabaihoc, hv.getManguoidung());
-		
+
 		} catch (Exception ex) {
 			System.out.print(ex.getMessage());
 		}

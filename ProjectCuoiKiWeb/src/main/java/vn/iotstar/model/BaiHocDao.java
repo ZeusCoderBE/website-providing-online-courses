@@ -105,8 +105,9 @@ public class BaiHocDao {
 		dbC.ExecuteCommand(dml);
 	}
 
-	public BaiHoc FindStatus(int mabaihoc) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format("select TrangThai from HOC where MaBaiHoc = %d", mabaihoc);
+	public BaiHoc FindStatus(int mabaihoc, int manguoidung) throws SQLException, ClassNotFoundException {
+		String sqlStr = String.format("select TrangThai from HOC where MaBaiHoc = %d and MaNguoiDung=%d", mabaihoc,
+				manguoidung);
 		BaiHoc baihoc = new BaiHoc();
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);
 		if (rs.next()) {

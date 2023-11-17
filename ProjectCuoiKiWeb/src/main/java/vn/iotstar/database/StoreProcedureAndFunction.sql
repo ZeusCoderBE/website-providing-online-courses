@@ -322,13 +322,15 @@ BEGIN
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END
 
+Go
 --Tìm chứng chỉ
 CREATE OR ALTER PROC sp_FindCertificate @manguoidung INT
 AS
 BEGIN
-   SELECT dk.MaKhoaHoc
+   SELECT kh.MaKhoaHoc, kh.TenKhoaHoc
    FROM NGUOIDUNG AS nd
    INNER JOIN DANGKY as dk ON dk.MaNguoiDung = nd.MaNguoiDung
+   INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
 

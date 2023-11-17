@@ -55,6 +55,11 @@ public class HomePageController {
 		return "homepage";
 	}
 
+	@RequestMapping(value = "introduction", method = RequestMethod.GET)
+	public String ShowIntroduction() {
+		return "introduction";
+	}
+
 	@RequestMapping(value = "/myhomepage", method = RequestMethod.GET)
 	public String FindMyLearning(HttpSession session, ModelMap model) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
@@ -77,43 +82,10 @@ public class HomePageController {
 			}
 
 		} catch (Exception ex) {
-
+				System.out.print(ex.getMessage());
 		}
 		return "homepage";
 	}
-	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
-	public String XemMotKhoaHoc(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc) {
-		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
-		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		List<BaiHoc> ListBH = new ArrayList<BaiHoc>();
-		try {
-			if (hv != null && gv == null) {
-				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				model.addAttribute("khoahoc", khoahoc);
-				ListBH = bhD.GetListLesson(khoahoc);
-				model.addAttribute("listbaihoc", ListBH);
-				List<GioHang> dsgiohang = new ArrayList<GioHang>();
-				dsgiohang = ghD.GetMyCart(hv.getManguoidung());
-				GioHang gh = ghD.CountCourse(hv.getManguoidung());
-				model.addAttribute("countkhoahoc", gh);
-				model.addAttribute("dsgiohang", dsgiohang);
-				model.addAttribute("isdangky", khD.khoahocDangKy(hv.getManguoidung(), khoahoc.getMakhoahoc()));
-			} else if (hv == null && gv != null) {
-				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				model.addAttribute("khoahoc", khoahoc);
-				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung(), khoahoc.getMakhoahoc()));
-			}
-			else
-			{
-				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				model.addAttribute("khoahoc", khoahoc);
-			}
 
-		} catch (Exception ex) {
-			System.out.print(ex.getMessage());
-		}
-
-		return "describe";
-	}
+	
 }

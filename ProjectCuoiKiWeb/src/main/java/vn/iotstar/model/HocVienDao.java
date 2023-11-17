@@ -13,34 +13,31 @@ public class HocVienDao {
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}
-	public HocVien TimThongTinDN_Id(int manguoidung) throws ClassNotFoundException, SQLException
-	{
-		String sql="SELECT * FROM vThongTinHocVien AS vtt"
-				+ "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
-		ResultSet rs=dbC.ExecuteQuery(sql);
-		HocVien hv= new HocVien();
-		while(rs.next())
-		{
-			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"),rs.getString("Email")
-					,rs.getString("Sdt"),rs.getNString("QuocGia"),rs.getNString("VungMien"),
-					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getString("MatKhau"),rs.getNString("loaitaikhoan"));
+
+	public HocVien TimThongTinDN_Id(int manguoidung) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM vThongTinHocVien AS vtt" + "\t WHERE vtt.MaHocVien = '" + manguoidung + "'";
+		ResultSet rs = dbC.ExecuteQuery(sql);
+		HocVien hv = new HocVien();
+		while (rs.next()) {
+			hv = new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"), rs.getString("Email"), rs.getString("Sdt"),
+					rs.getNString("QuocGia"), rs.getNString("VungMien"), rs.getNString("DiaChi"),
+					rs.getNString("TrinhDo"), rs.getString("MatKhau"), rs.getNString("loaitaikhoan"));
 		}
 		return hv;
 	}
-	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException
-	{
-		String sql="SELECT * FROM vThongTinHocVien AS vtt"
-				+ "\t WHERE vtt.Email = '" + email + "'";
-		ResultSet rs=dbC.ExecuteQuery(sql);
-		HocVien hv= new HocVien();
-		while(rs.next())
-		{
-			hv=new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"),rs.getString("Email")
-					,rs.getString("Sdt"),rs.getNString("QuocGia"),rs.getNString("VungMien"),
-					rs.getNString("DiaChi"),rs.getNString("TrinhDo"),rs.getString("MatKhau"),rs.getNString("loaitaikhoan"));
+
+	public HocVien TimThongTinDN(String email) throws ClassNotFoundException, SQLException {
+		String sql = "SELECT * FROM vThongTinHocVien AS vtt" + "\t WHERE vtt.Email = '" + email + "'";
+		ResultSet rs = dbC.ExecuteQuery(sql);
+		HocVien hv = new HocVien();
+		while (rs.next()) {
+			hv = new HocVien(rs.getInt("MaHocVien"), rs.getNString("HoTen"), rs.getString("Email"), rs.getString("Sdt"),
+					rs.getNString("QuocGia"), rs.getNString("VungMien"), rs.getNString("DiaChi"),
+					rs.getNString("TrinhDo"), rs.getString("MatKhau"), rs.getNString("loaitaikhoan"));
 		}
 		return hv;
 	}
+
 	public boolean checkDangNhapHV(String email, String password) {
 		String sqlStr = "exec sp_CheckLoginHV ?,?,?";
 		boolean check = false;
@@ -62,24 +59,23 @@ public class HocVienDao {
 	}
 
 	public int UpdateHocVien(HocVien hv) {
-		String sql = "exec sp_UpdateNguoiDung " + hv.getManguoidung() + ",N'" + hv.getHoten() + "',N'" + hv.getSdt() + "',"
-				+ "N'"+hv.getQuocgia()+"',N'"+hv.getVungmien()+"',N'"+hv.getDiachi()+"',N'"+hv.getTrinhdo()+"','"+hv.getEmail()+"'";
+		String sql = "exec sp_UpdateNguoiDung " + hv.getManguoidung() + ",N'" + hv.getHoten() + "',N'" + hv.getSdt()
+				+ "'," + "N'" + hv.getQuocgia() + "',N'" + hv.getVungmien() + "',N'" + hv.getDiachi() + "',N'"
+				+ hv.getTrinhdo() + "','" + hv.getEmail() + "'";
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}
-	
+
 	public List<KhoaHoc> FindCertificateHV (int manguoidung) throws ClassNotFoundException, SQLException {
 		String sql = "exec sp_FindCertificate " + manguoidung;
 		ResultSet rs = dbC.ExecuteQuery(sql);
 		List<KhoaHoc> certificate = new ArrayList<>();
 		KhoaHoc kh = new KhoaHoc();
-		if (rs.next()) {
-			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getString("TenKhoaHoc"));
+		while (rs.next()) {
+			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getNString("TenKhoaHoc"));
 			certificate.add(kh);
 		}
-		
 		return certificate;
 	}
 
-	
 }
