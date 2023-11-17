@@ -887,6 +887,7 @@
 	border-radius: 10px;
 	font-size: 1.6rem;
 	margin-bottom: 100px;
+	text-align: center;
 }
 
 .content h1 {
@@ -934,7 +935,8 @@
 	color: var(--text-header-color);
 	align-items: center;
 	margin: -15px;
-	margin-top: 40px;
+	margin-top: 120px;
+	text-align: center;
 
 }
 

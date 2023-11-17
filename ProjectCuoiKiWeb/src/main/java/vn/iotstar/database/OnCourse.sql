@@ -186,30 +186,22 @@ VALUES (1, N'Vàng'),
 INSERT INTO  GIANGVIEN (MaGiangVien, ChuyenNganh)
 VALUES (4, N'Công Nghệ Phần Mềm'),
     (5, N'Mạng Và An Ninh Mạng')
-
 -- Chèn khóa học
-INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa,TheLoai,LinhVuc)
+INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa,TheLoai,LinhVuc, MinhHoa)
 VALUES
-    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản',N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
-    (N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
-    (N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới',N'Khoá Học Dài Hạn',N'Dữ Liệu'),
-    (N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
+    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản',N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin', 'js.png')
     
 INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
 VALUES
     (N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
-    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1),
-    (N'Bài học 3', 2.0, N'Nội dung bài học 1', 4.5, '2023-02-05', 'anh3.jpg', 2),
-    (N'Bài học 4', 2.5, N'Nội dung bài học 1', 5.0, '2023-02-10', 'anh4.jpg', 2),
-    (N'Bài học 5', 3.0, N'Nội dung bài học 1', 6.0, '2023-02-15', 'anh5.jpg', 3);
+    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1)
 
 INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, HinhThuc, ThoiGianHoanThanh, FileDapAn)
 VALUES
     (N'Bài tập 1', 1, N'Loại 1', 2.0, 'dap_an_1.pdf'),
     (N'Bài tập 2', 1, N'Loại 2', 3.0, 'dap_an_2.pdf'),
     (N'Bài tập 1', 2, N'Loại 1', 2.5, 'dap_an_3.pdf'),
-    (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf'),
-    (N'Bài tập 1', 3, N'Loại 1', 2.0, 'dap_an_5.pdf');
+    (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf')
 
 INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
@@ -218,19 +210,12 @@ VALUES
     (N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
     (N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
     (N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
-
-INSERT INTO GIOHANG (MaNguoiDung, MaKhoaHoc)
-VALUES
-    (1, 1),
-    (2, 1),
-    (3, 2)
     
 INSERT INTO DANGKY (MaNguoiDung, MaKhoaHoc)
 VALUES
     (1, 1),
-    (2, 1),
-    (3, 2)
-    
+    (2, 1)
+
 -- Chèn thẻ tài khoản
 INSERT INTO THE 
 VALUES
@@ -242,30 +227,27 @@ VALUES
 INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan, NoiDungThanhToan)
 VALUES
     (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
-    (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
-    (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
+    (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN')
+
 INSERT INTO HOC (MaNguoiDung, MaBaiHoc)
 VALUES
     (1, 1),
 	(1, 2),
-    (2, 2),
-    (3, 3)
+    (2, 2)
     
 INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
 VALUES
     (1, N'Bài tập 1', 1, 9),
-    (2, N'Bài tập 2', 2, 8),
-    (3, N'Bài tập 1', 3, 7)
+    (2, N'Bài tập 2', 2, 8)
     
 INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
 VALUES
     (1, 1),
-    (2, 2),
-    (3, 3)
+    (2, 2)
     
 INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES
-    (4, 1),
-    (5, 1),
-    (4, 2)
+    (4, 1)
+    
+
 

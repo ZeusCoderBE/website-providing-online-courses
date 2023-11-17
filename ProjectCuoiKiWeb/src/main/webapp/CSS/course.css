@@ -65,7 +65,21 @@ body {
 	font-size: 1rem;
 	padding: 2px 6px;
 	border-radius: 4px;
-	background-color: #ccd4d2;
+	background-color: #e1ece9;
+}
+
+.content-complete {
+	display: flex;
+	align-items: center;
+	height: 37px;
+	
+}
+
+.content-maskDone {
+	margin-left: 160px;
+	font-size: 1.2rem;
+	background-color: transparent;
+	
 }
 
 .content_progress span {
@@ -73,7 +87,6 @@ body {
 }
 
 .content_main {
-	min-height: 500px;
 	padding-bottom: 50px;
 }
 
@@ -86,6 +99,26 @@ body {
 	margin: 10px;
 	flex-direction: column;
 	justify-content: start;
+}
+
+.container-file {
+	position: relative;
+	padding: 20px;
+	padding-bottom: 80px;
+	border: 1px dashed #333;
+	margin: 10px 20%;
+	border-radius: 10px;
+}
+
+.btn-create--file {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	width: 100px;
+}
+
+.btn-edit--file {
+	width: 100px;
 }
 
 /*.container_content p,

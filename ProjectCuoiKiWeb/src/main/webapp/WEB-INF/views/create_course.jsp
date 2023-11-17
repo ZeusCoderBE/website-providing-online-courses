@@ -9,15 +9,9 @@
 <meta charset="UTF-8">
 <title>Create course</title>
 <link rel="stylesheet" href="./templates/CSS/create_course.css">
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
@@ -94,8 +88,7 @@
 		</div>
 	</div>
 	<script
-		src="https://cdn.tiny.cloud/1/yjs36lnwbew65fjemjpjuu6cjayfnprmaybt1rl1rmo6jx5e/tinymce/6/tinymce.min.js"
-		referrerpolicy="origin"></script>
+		src="./templates/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
 	<script src="./templates/JavaScript/script.js"></script>
 	<script>
 		window.onload = function() {

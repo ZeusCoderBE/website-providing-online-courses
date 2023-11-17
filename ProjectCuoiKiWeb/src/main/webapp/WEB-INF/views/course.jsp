@@ -9,14 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trang Chủ</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
+<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
@@ -304,20 +298,21 @@
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<i class="fa-solid fa-graduation-cap"></i>
 													<c:choose>
-														<c:when test="${not empty trangthai}">
+														<c:when test="${trangthai.trangthai =='Done'}">
+														    <i class="fa-solid fa-check"></i>
 															<span>${trangthai.trangthai}</span>
 														</c:when>
 														<c:otherwise>
-															<span>Pending</span>
+														    <i class="fa-solid fa-circle-pause"></i>
+			  												<span>Pending</span>
 														</c:otherwise>
 													</c:choose>
 												</div>
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
-												<div class="container_content">
+												<div class="container_content container-file">
 													<c:if test="${not empty dstailieu}">
 														<c:forEach var="tailieu" items="${dstailieu}">
 															<label>File:</label>
@@ -325,28 +320,41 @@
 																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
 																${tailieu.duongdanluutru}</a>
 															<c:if test="${not empty giangvien.manguoidung}">
-																<a href="find-document?matailieu=${tailieu.matailieu}">
+																<a href="find-document?matailieu=${tailieu.matailieu}" class="btn-edit--file">
 																	Edit</a>
 															</c:if>
 														</c:forEach>
 													</c:if>
-												</div>
-												<c:if test="${not empty giangvien.manguoidung}">
-													<div class="container_content">
-														<a href="create-document?mabaihoc=${lesson.mabaihoc}">
+													<c:if test="${not empty giangvien.manguoidung}">
+														<a href="create-document?mabaihoc=${lesson.mabaihoc}" class="btn btn-outline-secondary btn-create--file">
 															Create</a>
-													</div>
 												</c:if>
+												</div>
+												
 											</div>
-											<button class="btn btn-primary btn-mask"
+											<div class="content-complete">
+											   <button class="btn btn-primary btn-mask"
 												onclick="MaskDone(${lesson.mabaihoc})">Mask as
 												complete</button>
+												<div class="content_progress content-maskDone">
+													<c:choose>
+														<c:when test="${trangthai.trangthai =='Done'}">
+														    <i class="fa-solid fa-check"></i>
+															<span>Complete</span>
+														</c:when>
+														<c:otherwise>
+														    <i class="fa-solid fa-xmark"></i>
+															<span>You're not done yet</span>
+														</c:otherwise>
+													</c:choose>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
 
 								<!-- Đang làm chỗ này -->
-								<form id="upload-form" action="Submit-Practice" method="post"
+								<!-- <form id="upload-form" action="Submit-Practice" method="post"
 									enctype="multipart/form-data">
 									<div id="drop-area">
 										<h1>Kéo và Thả File</h1>
@@ -478,7 +486,7 @@
 																	});
 														}
 													});
-								</script>
+								</script> -->
 								<!-- Tới đây nè -->
 							</div>
 							<!-- NOTES -->
@@ -754,10 +762,7 @@
 		
 	</div>
 	
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
 	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${warning}");
