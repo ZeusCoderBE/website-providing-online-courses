@@ -25,9 +25,9 @@
 				</div>
 				<div class="info">
 					<span class="date_complete">Sep 15, 2023</span>
-					<h4>Trần Văn Luân</h4>
+					<h4>${tenhocvien}</h4>
 					<span>has success completed</span>
-					<h6>HTML and CSS in depth</h6>
+					<h6>${khoahoc.tenkhoahoc}</h6>
 					<span>an online none-credit course authorized by Oncourse
 						and offered throungh OnCourse</span>
 				</div>
@@ -62,7 +62,7 @@
         let div = document.querySelector("#app");
         let btn = document.querySelector(".btn");
         btn.addEventListener('click', () => {
-            html2pdf(div) .save('Certificate.pdf');
+            html2pdf(div).save('Certificate.pdf');
         });
     </script>
 </body>

@@ -73,6 +73,11 @@ public class KhoaHoc {
 	public float getTiendo() {
 		return tiendo;
 	}
+	
+	public KhoaHoc(int makhoahoc, String tenkhoahoc) {
+		this.makhoahoc = makhoahoc;
+		this.tenkhoahoc = tenkhoahoc;
+	}
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
 			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String minhhoa) {

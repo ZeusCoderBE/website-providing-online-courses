@@ -146,16 +146,6 @@ END
 
 Go
 
---Xóa bài học ở bảng Học khi xóa Bài học khỏi khóa học
-CREATE OR ALTER TRIGGER tr_Delete_BH_Hoc ON BAIHOC
-FOR DELETE
-AS 
-BEGIN
-   DELETE FROM HOC
-   WHERE (MaBaiHoc) IN (
-   SELECT  i.MaBaiHoc
-   FROM deleted i
-   INNER JOIN DANGKY dk ON dk.MaKhoaHoc = i.MaKhoaHoc
-   );
-END
+
+
 

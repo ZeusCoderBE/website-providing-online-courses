@@ -67,6 +67,19 @@ public class HocVienDao {
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}
+	
+	public List<KhoaHoc> FindCertificateHV (int manguoidung) throws ClassNotFoundException, SQLException {
+		String sql = "exec sp_FindCertificate " + manguoidung;
+		ResultSet rs = dbC.ExecuteQuery(sql);
+		List<KhoaHoc> certificate = new ArrayList<>();
+		KhoaHoc kh = new KhoaHoc();
+		if (rs.next()) {
+			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"),rs.getString("TenKhoaHoc"));
+			certificate.add(kh);
+		}
+		
+		return certificate;
+	}
 
 	
 }

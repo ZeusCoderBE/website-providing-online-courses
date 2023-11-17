@@ -116,4 +116,15 @@ public class KhoaHocDao {
 		}
 		return false;
 	}
+	
+	public KhoaHoc FindTenKhoaHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String sqlStr = "select MaKhoaHoc, TenKhoaHoc from KhoaHoc where MaKhoaHoc =" + makhoahoc;
+		ResultSet rs = dbC.ExecuteQuery(sqlStr);
+		KhoaHoc kh = new KhoaHoc();
+		if(rs.next()) {
+			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"));
+			return kh;
+		}
+		return null;
+	}
 }

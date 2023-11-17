@@ -23,9 +23,12 @@ public class ProfileController {
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		HocVien hocvien = new HocVien();
 		GiangVien giangvien = new GiangVien();
+		List <KhoaHoc> certificate = new ArrayList<>();
 		if (hv != null && gv == null) {
 			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+			certificate = hvD.FindCertificateHV(hv.getManguoidung());
 			The the = tD.getAThe(hv.getManguoidung());
+			model.addAttribute("certificate", certificate);
 			model.addAttribute("thongtin", hocvien);
 			model.addAttribute("the", the);
 		} else if (gv != null && hv == null) {
@@ -126,5 +129,14 @@ public class ProfileController {
 			
 		}
 		return url;
+	}
+	
+	@RequestMapping(value= "certificate", method=RequestMethod.GET)
+	public String PrintCertificate(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc) throws SQLException, ClassNotFoundException{
+		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		KhoaHoc namekh= khD.FindTenKhoaHoc(makhoahoc);
+	    model.addAttribute("khoahoc", namekh);
+		model.addAttribute("tenhocvien", hv.getHoten());
+		return "certificate";
 	}
 }
