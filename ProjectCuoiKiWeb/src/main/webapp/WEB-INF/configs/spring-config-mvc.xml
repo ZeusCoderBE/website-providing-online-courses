@@ -20,14 +20,9 @@
 	</bean>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</bean>
-<<<<<<< HEAD
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	<mvc:resources mapping="/templates/**"
 		location="/,classpath://WEB-INF/resources/" cache-period="5000" />
 
-=======
-	<mvc:resources mapping="/templates/**"
-		location="/,classpath://WEB-INF/resources/" cache-period="5000" />
->>>>>>> 0fb2204a3fb56f5b66809cfbc8bb297e835c9b69
 </beans>
