@@ -224,10 +224,7 @@ VALUES
 	('4567891230', 151.00, 3),
 	('3216549870', 230.00, 4),
 	('9873216540', 135.00, 5)
-INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan, NoiDungThanhToan)
-VALUES
-    (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
-    (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN')
+
 
 INSERT INTO HOC (MaNguoiDung, MaBaiHoc)
 VALUES

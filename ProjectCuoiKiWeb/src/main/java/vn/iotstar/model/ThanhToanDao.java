@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import vn.iotstar.database.DataBaseConnection;
 
@@ -13,14 +14,15 @@ public class ThanhToanDao {
 	public void thanhToan(ThanhToan tt, The the) throws ClassNotFoundException, SQLException {
 		int check;
 		// Thanh toán khóa học
-		String sqlStr = String.format("INSERT INTO THANHTOAN VALUES(%d, %d, GETDATE(), %f,'%s')", tt.getMaNguoiDung(),
+		String sqlStr = String.format(Locale.US,"INSERT INTO THANHTOAN VALUES(%d, %d, GETDATE(), %f,'%s')", tt.getMaNguoiDung(),
 				tt.getMaKhoaHoc(), tt.getTienthanhtoan(), tt.getNdThanhToan());
+		System.out.print(sqlStr);
 		check = dbconn.ExecuteCommand(sqlStr);
 		if (check == 0) {
 			throw new SQLException("Thanh toán thất bại");
 		}
 		// Trừ tiền thẻ tài khoản
-		sqlStr = String.format("UPDATE THE SET SoDu=%f WHERE MaThe='%s'", (the.getSoDu() - tt.getTienthanhtoan()),
+		sqlStr = String.format(Locale.US,"UPDATE THE SET SoDu=%f WHERE MaThe='%s'", (the.getSoDu() - tt.getTienthanhtoan()),
 				the.getMaThe());
 		check = dbconn.ExecuteCommand(sqlStr);
 		if (check == 0) {

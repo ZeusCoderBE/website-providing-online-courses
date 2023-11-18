@@ -57,6 +57,7 @@ public class BaiHocDao {
 		String sqlStr = String.format(Locale.US, "INSERT INTO BAIHOC VALUES(N'%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
 				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
+		System.out.print(sqlStr);		
 		int check = dbC.ExecuteCommand(sqlStr);
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");

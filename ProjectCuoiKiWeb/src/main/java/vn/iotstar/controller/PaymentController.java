@@ -84,17 +84,23 @@ public class PaymentController {
 				throw new OutOfMoney("Không đủ tiền để thanh toán");
 			}
 			for (KhoaHoc kh : dsKhoahoc) {
+				System.out.print("1");
 				ThanhToan tt = new ThanhToan(hv.getManguoidung(), kh.getMakhoahoc(), kh.getGiatien(),
 						String.format("Thanh toán %s", kh.getTenkhoahoc()));
 				ttd.thanhToan(tt, the);
+				
 				KhoaHoc khoahoc = new KhoaHoc(kh.getMatacgia(), kh.getGiatien());
 				gvD.UpdateofCardTeacher(khoahoc);
+				
 				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
+<<<<<<< HEAD
+=======
+				
+>>>>>>> ed201a9c5d05adf0557702b1a36feadc7b36d33c
 				if (baihoc != null) {
 					bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
 				}
 			}
-			;
 			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
 			System.out.print("Di Ngang Qua Day");
 			session.setAttribute("warning", "Thanh toán thành công!");
