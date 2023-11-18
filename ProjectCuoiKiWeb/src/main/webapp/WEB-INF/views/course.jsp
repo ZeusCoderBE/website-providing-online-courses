@@ -365,9 +365,24 @@
 													</c:choose>
 												</div>
 											</div>
+											<br><br>
+<!-- Đang làm chỗ này -->
+											<form id="upload-form" enctype="multipart/form-data"
+												action="fileuploadservlet?mabaihoc=${lesson.mabaihoc}&manguoidung=${hocvien.manguoidung}" method="post">
+												<div id="drop-area">
+													<a>${lesson.mabaihoc}</a>
+													<h1>Kéo và Thả File</h1>
+													<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
+													<input type="file" id="file-input" name="file" />
+													<ul id="file-list"></ul>
+													<input type="submit" id="submit-button" value="Submit" />
+												</div>
+											</form>
+<!-- Tới đây nè -->
 										</div>
 									</div>
 								</div>
+<<<<<<< HEAD
 
 								<!-- Đang làm chỗ này -->
 								<!-- <form id="upload-form" action="Submit-Practice" method="post"
@@ -504,6 +519,8 @@
 													});
 								</script> -->
 								<!-- Tới đây nè -->
+=======
+>>>>>>> 0fb2204a3fb56f5b66809cfbc8bb297e835c9b69
 							</div>
 							<!-- NOTES -->
 							<div class="page-note page-common active">

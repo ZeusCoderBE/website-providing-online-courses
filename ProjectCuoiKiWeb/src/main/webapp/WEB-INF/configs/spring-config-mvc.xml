@@ -15,12 +15,19 @@
 	<mvc:annotation-driven></mvc:annotation-driven>
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/" />
-		<property name="suffix" value=".jsp" />
+	<property name="prefix" value="/WEB-INF/views/" />
+	<property name="suffix" value=".jsp" />
 	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</bean>
+<<<<<<< HEAD
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
 	<mvc:resources mapping="/templates/**"
 		location="/,classpath://WEB-INF/resources/" cache-period="5000" />
 
+=======
+	<mvc:resources mapping="/templates/**"
+		location="/,classpath://WEB-INF/resources/" cache-period="5000" />
+>>>>>>> 0fb2204a3fb56f5b66809cfbc8bb297e835c9b69
 </beans>

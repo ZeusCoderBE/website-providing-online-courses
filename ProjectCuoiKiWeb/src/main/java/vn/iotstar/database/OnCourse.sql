@@ -239,5 +239,3 @@ INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES
     (4, 1)
     
-
-
