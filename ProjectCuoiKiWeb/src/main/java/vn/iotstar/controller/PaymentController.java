@@ -93,10 +93,6 @@ public class PaymentController {
 				gvD.UpdateofCardTeacher(khoahoc);
 				
 				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
-<<<<<<< HEAD
-=======
-				
->>>>>>> ed201a9c5d05adf0557702b1a36feadc7b36d33c
 				if (baihoc != null) {
 					bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
 				}

@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trang Đăng Nhập</title>
-<link rel="stylesheet" href="./templates/CSS/styledn.css">
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <script type="text/javascript" src=./templates/JavaScript/script.js></script>
+<link rel="stylesheet" href="./templates/CSS/styledn.css">
 </head>
 
 
@@ -24,8 +24,7 @@
 							<div class="form-login-header">
 								<h1>Login</h1>
 							</div>
-							<br />
-							<p></p>
+							
 							<div class="form-login-input">
 								<input type="text" placeholder="Email" name="Email" required />
 							</div>
