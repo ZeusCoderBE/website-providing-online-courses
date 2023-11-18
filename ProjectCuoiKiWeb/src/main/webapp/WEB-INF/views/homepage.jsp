@@ -520,7 +520,8 @@
 		</section>
 	</div>
 	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
-	<script>
+	</script>
+	<script >
 		window.onload = function() {
 			ReloadAlert("${thongbaothanhcong}");
 			ReloadAlert("${thongbaokhach}");

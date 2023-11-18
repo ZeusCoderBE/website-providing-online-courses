@@ -77,6 +77,7 @@ public class PaymentController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		ThanhToanDao ttd = new ThanhToanDao();
 		BaiHoc baihoc = new BaiHoc();
+		System.out.print("Da qua day");
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {
@@ -89,7 +90,9 @@ public class PaymentController {
 				KhoaHoc khoahoc = new KhoaHoc(kh.getMatacgia(), kh.getGiatien());
 				gvD.UpdateofCardTeacher(khoahoc);
 				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
-				bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
+				if (baihoc != null) {
+					bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
+				}
 			}
 			;
 			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
@@ -109,7 +112,7 @@ public class PaymentController {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());
 		} catch (Exception ex) {
-
+			System.out.print(ex.getMessage());
 		}
 		return "pay";
 	}

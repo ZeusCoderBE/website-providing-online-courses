@@ -10,7 +10,8 @@
 <title>Trang Chủ</title>
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
@@ -303,17 +304,21 @@
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<c:choose>
-														<c:when test="${trangthai.trangthai =='Done'}">
-														    <i class="fa-solid fa-check"></i>
-															<span>${trangthai.trangthai}</span>
-														</c:when>
-														<c:otherwise>
-														    <i class="fa-solid fa-circle-pause"></i>
-			  												<span>Pending</span>
-														</c:otherwise>
-													</c:choose>
+													<c:if
+														test="${empty giangvien.manguoidung && not empty hocvien.manguoidung}">
+														<c:choose>
+															<c:when test="${trangthai.trangthai eq 'Done'}">
+																<i class="fa-solid fa-check"></i>
+																<span>${trangthai.trangthai}</span>
+															</c:when>
+															<c:otherwise>
+																<i class="fa-solid fa-circle-pause"></i>
+																<span>${trangthai.trangthai}</span>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
 												</div>
+
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
@@ -334,37 +339,32 @@
 													</c:if>
 													<c:if
 														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
-															<a href="create-document?mabaihoc=${lesson.mabaihoc}"
-																class="btn btn-outline-secondary btn-create--file">
-																Create</a>
-														
+														<a href="create-document?mabaihoc=${lesson.mabaihoc}"
+															class="btn btn-outline-secondary btn-create--file">
+															Create</a>
+
 													</c:if>
 
 												</div>
-												
-												
-												
+
+
+
 											</div>
 											<div class="content-complete">
-											   <button class="btn btn-primary btn-mask"
-												onclick="MaskDone(${lesson.mabaihoc})">Mask as
-												complete</button>
+												<c:if test="${empty giangvien.manguoidung}">
+													<button class="btn btn-primary btn-mask"
+														onclick="MaskDone(${lesson.mabaihoc})">Mask as
+														complete</button>
+												</c:if>
 												<div class="content_progress content-maskDone">
 													<c:choose>
-														<c:when test="${trangthai.trangthai =='Done'}">
-														    <i class="fa-solid fa-check"></i>
+														<c:when test="${trangthai.trangthai eq 'Done'}">
+															<i class="fa-solid fa-check"></i>
 															<span>Complete</span>
 														</c:when>
-														
 													</c:choose>
 												</div>
 											</div>
-											<c:if
-												test="${ empty giangvien.manguoidung && not empty hocvien.manguoidung}">
-												<button class="btn btn-primary btn-mask"
-													onclick="MaskDone(${lesson.mabaihoc})">Mask as
-													complete</button>
-											</c:if>
 										</div>
 									</div>
 								</div>
@@ -777,7 +777,8 @@
 		</section>
 
 	</div>
-	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
 	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${warning}");
