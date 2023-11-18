@@ -1,4 +1,5 @@
 package vn.iotstar.controller;
+
 import vn.iotstar.model.*;
 import java.sql.SQLException;
 import java.util.*;
@@ -23,9 +24,12 @@ public class ProfileController {
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		HocVien hocvien = new HocVien();
 		GiangVien giangvien = new GiangVien();
+		List<KhoaHoc> certificate = new ArrayList<>();
 		if (hv != null && gv == null) {
 			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+			certificate = hvD.FindCertificateHV(hocvien.getManguoidung());
 			The the = tD.getAThe(hv.getManguoidung());
+			model.addAttribute("certificate", certificate);
 			model.addAttribute("thongtin", hocvien);
 			model.addAttribute("the", the);
 		} else if (gv != null && hv == null) {
@@ -80,7 +84,7 @@ public class ProfileController {
 				url = "redirect:/myprofiles";
 			} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
 				RealoadKhoaHoc(model);
-				meSession="Bạn đã đổi mật khẩu thành công";
+				meSession = "Bạn đã đổi mật khẩu thành công";
 				url = "SignIn";
 			} else {
 				meSession = "Quá Trình Cập Nhật Thất Bại";
@@ -120,11 +124,23 @@ public class ProfileController {
 				url = "redirect:/homepages";
 			} else {
 				url = "redirect:/myprofiles";
-				session.setAttribute("thongbao","Quá Trình Cập Nhật Thất Bại !");
+				session.setAttribute("thongbao", "Quá Trình Cập Nhật Thất Bại !");
 			}
 		} catch (Exception e) {
-			
+
 		}
 		return url;
+	}
+
+	@RequestMapping(value = "certificate", method = RequestMethod.GET)
+	public String PrintCertificate(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc)
+			throws SQLException, ClassNotFoundException {
+		HocVien hv = (HocVien) session.getAttribute("hocvien");
+		HocVien hocvien = new HocVien();
+		KhoaHoc namekh = khD.FindTenKhoaHoc(makhoahoc);
+		hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+		model.addAttribute("khoahoc", namekh);
+		model.addAttribute("tenhocvien", hocvien);
+		return "certificate";
 	}
 }

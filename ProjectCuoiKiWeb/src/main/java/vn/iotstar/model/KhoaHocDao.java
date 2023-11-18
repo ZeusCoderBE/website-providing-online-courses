@@ -18,25 +18,48 @@ public class KhoaHocDao {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
-					rs.getInt("DanhGia"));
+					rs.getInt("DanhGia"), rs.getString("MinhHoa"));
 			danhsachkh.add(khoahoc);
 		}
 		return danhsachkh;
+	}
+
+	public KhoaHoc CountSignIn(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String query = "select *From v_xemkhoahocdangky where MaKhoaHoc=" + makhoahoc + "";
+		ResultSet rs = dbC.ExecuteQuery(query);
+		KhoaHoc khoahoc = new KhoaHoc();
+		if (rs.next()) {
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getInt("SoLuong"));
+			return khoahoc;
+		}
+		return null;
+
+	}
+
+	public List<KhoaHoc> CountSelectedCourses(List<String> selectedCourses)
+			throws NumberFormatException, ClassNotFoundException, SQLException {
+		List<KhoaHoc> selectedtemp = new ArrayList<>();
+		for (String courseId : selectedCourses) {
+			KhoaHoc course = FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
+
+			selectedtemp.add(course);
+		}
+		return selectedtemp;
 	}
 
 	public int EditACourse(KhoaHoc khoahoc) {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
 				+ khoahoc.getThoigian() + ",N'" + khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'"
-				+ ",N'" + khoahoc.getMota() + "'," + khoahoc.getDanhgia() + ",N'" + khoahoc.getTheloai() + "',N'"
-				+ khoahoc.getLinhvuc() + "'";
+				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','"
+				+ khoahoc.getMinhhoa() + "'";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
 
 	public int RemoveAcourse(KhoaHoc khoahoc) {
-		String dml="exec sp_RemoveACourse "+khoahoc.getMakhoahoc()+"";
-		int ketqua=dbC.ExecuteCommand(dml);
+		String dml = "exec sp_RemoveACourse " + khoahoc.getMakhoahoc() + "";
+		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
 
@@ -44,7 +67,8 @@ public class KhoaHocDao {
 		String dml = "exec sp_CreateACourse N'" + khoahoc.getTenkhoahoc() + "'," + khoahoc.getMatacgia() + ","
 				+ khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "'," + khoahoc.getThoigian() + ",N'"
 				+ khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'" + ",N'" + khoahoc.getMota()
-				+ "'," + khoahoc.getDanhgia() + ",N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "'";
+				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','" + khoahoc.getMinhhoa() + "'";
+		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}
@@ -56,7 +80,7 @@ public class KhoaHocDao {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
-					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"));
+					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"), rs.getString("MinhHoa"));
 
 		}
 		return khoahoc;
@@ -68,8 +92,9 @@ public class KhoaHocDao {
 		KhoaHoc khoahoc = new KhoaHoc();
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
+			System.out.println(rs.getFloat("TienDo"));
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"), rs.getDouble("TienDo"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -82,7 +107,7 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"));
+					rs.getNString("MoTa"), rs.getString("MinhHoa"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -104,5 +129,16 @@ public class KhoaHocDao {
 			return true;
 		}
 		return false;
+	}
+
+	public KhoaHoc FindTenKhoaHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String sqlStr = "select MaKhoaHoc, TenKhoaHoc from KhoaHoc where MaKhoaHoc =" + makhoahoc;
+		ResultSet rs = dbC.ExecuteQuery(sqlStr);
+		KhoaHoc kh = new KhoaHoc();
+		while (rs.next()) {
+			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"));
+			return kh;
+		}
+		return null;
 	}
 }

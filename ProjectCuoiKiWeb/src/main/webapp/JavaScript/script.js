@@ -1,7 +1,7 @@
 tinymce.init({
 	selector: 'textarea#default',
 	width: 1100,
-	height: 800,
+	height: 700,
 	plugins: [
 		'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'prewiew', 'anchor', 'pagebreak',
 		'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
@@ -39,6 +39,12 @@ tinymce.init({
 		};
 
 		input.click();
+	},
+
+	// add custom filepicker only to Image dialog
+	file_picker_types: 'media',
+	audio_template_callback: function(data) {
+		return '<audio controls>' + '\n<source src="' + data.source + '"' + (data.sourcemime ? ' type="' + data.sourcemime + '"' : '') + ' />\n' + (data.altsource ? '<source src="' + data.altsource + '"' + (data.altsourcemime ? ' type="' + data.altsourcemime + '"' : '') + ' />\n' : '') + '</audio>';
 	},
 	menu: {
 		favs: { title: 'menu', items: 'code visualaid | searchreplace | emoticons' }
@@ -92,7 +98,15 @@ function validateForm() {
 	}
 	return true;
 }
+function SelectedCourse() {
+	var count = document.getElementById("selectedCourses");
+	if (!count.checked) {
+		alert("Bạn phải chọn ít nhất một khoá học để thanh toán")
+		return false;
+	}
 
+	return true;
+}
 
 function testConfirmDialog() {
 	var result = confirm("Bạn chắc chắc có muốn đăng xuất không");
@@ -161,37 +175,34 @@ function ReloadAlert(thongBao) {
 	}
 }
 function checkKhoaHoc() {
-	var matacgia = document.getElementById("matacgia").value;
-	var giatien = document.getElementById("giatien").value;
-	var danhgia = document.getElementById("danhgia").value;
-	var thoiluong = document.getElementById("thoiluong").value;
+    // Lấy giá trị của các trường
+    var giatienValue = document.getElementById('giatien').value;
+    var thoiluongValue = document.getElementById('thoiluong').value;
+    var matacgiaValue = document.getElementById('matacgia').value;
 
-	var parsedMatacgia = parseFloat(matacgia);
-	if (isNaN(parsedMatacgia)) {
-		alert("Mã tác giả không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false;
-	}
-	var parsedGiatien = parseFloat(giatien);
-	if (isNaN(parsedGiatien)) {
-		alert("Giá tiền không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false; 
-	}
+    // Kiểm tra giá trị không chứa kí tự chữ hoặc kí tự đặc biệt
+    var regex = /^[0-9.]+$/; // Chỉ chấp nhận các kí tự số
+    if (!regex.test(giatienValue)) {
+        alert("Giá tiền không hợp lệ");
+        return false;
+    }
 
-	var parsedDanhgia = parseFloat(danhgia);
-	if (isNaN(parsedDanhgia)) {
-		alert("Đánh giá không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false; 
-	}
+    if (!regex.test(thoiluongValue)) {
+        alert("Thời lượng không hợp lệ");
+        return false;
+    }
 
-	// Kiểm tra kiểu dữ liệu của thoiluong
-	var parsedThoiluong = parseFloat(thoiluong);
-	if (isNaN(parsedThoiluong)) {
-		alert("Thời lượng không hợp lệ. Vui lòng nhập một số hợp lệ.");
-		return false; 
-	}
-	return true;
+    regex = /^[0-9]+$/; // Chỉ chấp nhận các kí tự số cho mã tác giả
+    if (!regex.test(matacgiaValue)) {
+        alert("Mã tác giả không hợp lệ.");
+        return false;
+    }
 
+    // Nếu mọi kiểm tra đều qua, cho phép form submit
+    return true;
 }
+
+
 function goToNewPage() {
 	window.location.href = "./signin.html";
 }
@@ -221,6 +232,117 @@ function createLessonFaied(warning) {
 	}
 }
 
+function TotalPay() {
+	var checkboxes = document.querySelectorAll('.checkbox-item');
+	var priceElements = document.querySelectorAll('.cart-price-current p');
+	var pricePay = document.querySelector(".cart-pay h2");
+	var prices = Array.from(priceElements).map(function(element) {
+		return element.textContent.replace("Giá Tiền: ", "").replace("$", ""); // Bỏ đi ký tự "$" ở cuối
+	});
+	checkboxes.forEach(function(checkbox, index) {
+		checkbox.addEventListener('change', function() {
+			// Nếu checkbox được chọn, thêm giá trị của p vào tổng
+			var total = 0;
+			checkboxes.forEach(function(checkbox, i) {
+				if (checkbox.checked) {
+					total += parseFloat(prices[i]);
+				}
+			});
+			pricePay.textContent = total + "$";
+		});
+	});
+}
+
+function uploadFile() {
+	var fileInput = document.getElementById('file-input');
+	var files = fileInput.files;
+
+	var formData = new FormData();
+	for (var i = 0; i < files.length; i++) {
+		formData.append('files', files[i]);
+	}
+
+	// Sử dụng AJAX để gửi FormData đến server
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', './Submit-Practice', true);
+	xhr.onload = function() {
+		if (xhr.status === 200) {
+			console.log('Files uploaded successfully!');
+		} else {
+			console.log('Error uploading files!');
+		}
+	};
+	xhr.send(formData);
+}
 
 
+function scrollToTop() {
+  console.log('Clicked on back-to-top button');
+  window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Sử dụng 'smooth' để có hiệu ứng cuộn mượt
+  });
+}
 
+function OpenCreate(name){
+  let elements = document.getElementsByClassName(name);
+    
+  // Kiểm tra xem có phần tử nào với class name đã cho hay không
+  if (elements.length > 0) {
+      let create = elements[0];
+
+      if (!create.classList.contains('active')) {
+          create.classList.add('active');
+          scrollToTop();
+      }
+
+      document.body.classList.add('create-open');
+  } else {
+      console.error('Không tìm thấy phần tử với class ' + name);
+  }
+}
+
+function CloseCreate(name){
+  let elements = document.getElementsByClassName(name);
+  if(elements.length >0){
+    let create = elements[0];
+    if(create.classList.contains('active')){
+      create.classList.remove('active');
+    }
+    document.body.classList.remove('create-open');
+  }else {
+    console.error('Không thể xóa phần tử với class ' + name);
+  }
+}
+
+function MaskDone(mabaihoc) {
+
+    let tienDo = document.querySelector('.content_progress span');
+    if (tienDo.textContent == 'Done'){
+		
+	}
+	window.location.href= 'mask-complete?mabaihoc=' + mabaihoc;
+}
+
+function ShowOption(name, ...item){
+	let tab = document.getElementsByClassName(name);
+	for(var i =0; i<item.length; i++){
+		let tabName = document.getElementsByClassName(item[i]);
+		if(!tabName[0].classList.contains('active')){	
+		    tabName[0].classList.add('active');			
+		}
+	}
+	if(tab[0].classList.contains('active')){
+		tab[0].classList.remove('active');
+	}
+}
+
+function handleCkBaiTapChange() {
+	var tghoanthanh = document.getElementById("tghoanthanh");
+	if (checkbox.id === "checkbox" && checkbox.checked) {
+		tghoanthanh.removeAttribute("disabled");
+	}
+	else if (checkbox.id === "checkbox" && !checkbox.checked) {
+		tghoanthanh.setAttribute("disabled", "disabled");
+	}
+}

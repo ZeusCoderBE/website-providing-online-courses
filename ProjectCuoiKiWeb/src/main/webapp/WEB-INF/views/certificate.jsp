@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" type="text/css" href="./templates/CSS/certificate.css">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="./templates/CSS/certificate.css">
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"
+	integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 	<div id="app">
@@ -25,9 +27,9 @@
 				</div>
 				<div class="info">
 					<span class="date_complete">Sep 15, 2023</span>
-					<h4>Trần Văn Luân</h4>
+					<h4>${tenhocvien.hoten}</h4>
 					<span>has success completed</span>
-					<h6>HTML and CSS in depth</h6>
+					<h6>${khoahoc.tenkhoahoc}</h6>
 					<span>an online none-credit course authorized by Oncourse
 						and offered throungh OnCourse</span>
 				</div>
@@ -43,8 +45,8 @@
 						ONCOURSE <br> CERTIFICATE
 					</h5>
 					<div class="site-img">
-						<img src="./templates/Images/certificate.png" width="240" height="240"
-							alt="certificate">
+						<img src="./templates/Images/certificate.png" width="240"
+							height="240" alt="certificate">
 					</div>
 				</div>
 				<div class="footer">
@@ -62,7 +64,7 @@
         let div = document.querySelector("#app");
         let btn = document.querySelector(".btn");
         btn.addEventListener('click', () => {
-            html2pdf(div) .save('Certificate.pdf');
+            html2pdf(div).save('Certificate.pdf');
         });
     </script>
 </body>

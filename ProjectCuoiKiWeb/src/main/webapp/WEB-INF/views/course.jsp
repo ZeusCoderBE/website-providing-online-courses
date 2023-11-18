@@ -9,24 +9,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trang Chủ</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
+<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="./templates/CSS/descride.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link href="./templates/CSS/main.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
-<!--  
-<link href="./templates/CSS/submitprac.css" type="text/css" rel="stylesheet">
-
--->
+<script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div class="" id="app">
@@ -103,7 +95,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -239,39 +231,50 @@
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
-										href="FindDocuments?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
-										<!-- Các nút chức năng -->
+										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"
+										onclick="ShowOption('page_study','page-forum', 'page-message', 'page-note')">
+											<span>${baihoc.tenbaihoc}</span>
+									</a> <!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
 												<div class="my-lesson__buy">
-													<a href="#" style="padding: 0 4px;" class="link-buy">Edit</a>
+													<a href="edit-lesson-info?mabaihoc=${baihoc.mabaihoc}"
+														style="padding: 0 4px;" class="link-buy">Edit</a>
 												</div>
 												<div class="my-lesson__delete" style="margin-left: 0;">
-													<a href="#" style="padding: 0 4px;">Delete</a>
+													<a href="remove-lesson?mabaihoc=${baihoc.mabaihoc}"
+														style="padding: 0 4px;">Delete</a>
 												</div>
 											</c:if>
 										</div></li>
 								</c:forEach>
 							</ul>
 						</div>
-						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
-							</a>
-						</div>
+
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
-								<a href="edit-lesson-tool?makhoahoc=${makhoahoc}"> <i
+								<a href="create-lesson-info?makhoahoc=${makhoahoc}"> <i
 									class="fa-regular fa-file"></i> <span>Create Lesson</span>
 								</a>
 							</div>
 						</c:if>
 						<div class="nav_drawer home_file">
-							<a href="upload.html"> <i class="fa-regular fa-file"></i> <span>Discussion
+							<a href="#"
+								onclick="ShowOption('page-note','page_study', 'page-message', 'page-forum')">
+								<i class="fa-regular fa-file"></i> <span>Notes</span>
+							</a>
+						</div>
+						<div class="nav_drawer home_file">
+							<a href="#"
+								onclick="ShowOption('page-forum','page_study', 'page-message', 'page-note')">
+								<i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-regular fa-file"></i> <span>Messages</span>
+							<a href="#"
+								onclick="ShowOption('page-message','page_study', 'page-note', 'page-forum')">
+								<i class="fa-regular fa-file"></i> <span>Messages</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
@@ -292,38 +295,112 @@
 											${lesson.thoigianhoanthanh} phút</span>
 									</div>
 								</div>
-								<div class="content">
+								<div class="content-course">
 									<div class="content_text">
 										<div class="content_item">
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<i class="fa-solid fa-check"></i><span>Complete</span>
+													<c:choose>
+														<c:when test="${trangthai.trangthai =='Done'}">
+														    <i class="fa-solid fa-check"></i>
+															<span>${trangthai.trangthai}</span>
+														</c:when>
+														<c:otherwise>
+														    <i class="fa-solid fa-circle-pause"></i>
+			  												<span>Pending</span>
+														</c:otherwise>
+													</c:choose>
 												</div>
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
-											</div>
-											<br><br>
-<!-- Đang làm chỗ này -->
-											<form id="upload-form" enctype="multipart/form-data"
-												action="fileuploadservlet?mabaihoc=${lesson.mabaihoc}&manguoidung=${hocvien.manguoidung}" method="post">
-												<div id="drop-area">
-													<a>${lesson.mabaihoc}</a>
-													<h1>Kéo và Thả File</h1>
-													<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
-													<input type="file" id="file-input" name="file" />
-													<ul id="file-list"></ul>
-													<input type="submit" id="submit-button" value="Submit" />
+												<div class="container_content container-file">
+													<c:if test="${not empty dstailieu}">
+														<label>Danh sách tài liệu</label>
+														<c:forEach var="tailieu" items="${dstailieu}">
+															<div class="contain-file">
+																<img class="logofile"
+																	src="https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf">
+																<a
+																	href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">${tailieu.duongdanluutru}</a>
+															</div>
+
+															<c:if test="${not empty giangvien.manguoidung}">
+																<a href="find-document?matailieu=${tailieu.matailieu}"
+																	class="btn-edit--file"> Edit</a>
+																<a href="delete-document?matailieu=${tailieu.matailieu}"
+																	class="btn-edit--file">Delete</a>
+															</c:if>
+															<c:if test="${not empty hocvien.manguoidung}">
+																<a class="submit-baitap"
+																	href="submit-baitap?makhoahoc=${lesson.makhoahoc}&mabaihoc=${lesson.mabaihoc}&manguoidung=${hocvien.manguoidung}">Submit</a>
+															</c:if>
+															<!-- Đang làm ở đây -->
+														</c:forEach>
+													</c:if>
+													<c:if test="${not empty giangvien.manguoidung}">
+														<div class="container_content">
+															<a href="create-document?mabaihoc=${lesson.mabaihoc}">
+																Create</a>
+														</div>
+													</c:if>
+													<c:if test="${not empty dslambaitap}">
+														<a>DANH SACH BAI NOP</a>
+														<c:forEach var="tailieu" items="${dslambaitap}">
+															<div>
+																<img class="logofile"
+																	src="https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf">
+																<a
+																	href="./templates/Resource/ResourceVideo/${dslambaitap}">${dslambaitap}</a>
+															</div>
+														</c:forEach>
+													</c:if>
+
+													<c:if test="${not empty dsLbt}">
+														<a>DANH SACH BAI NOP CHO GIANG VIEN</a>
+														<c:forEach var="tailieu" items="${dsLbt}">
+															<label>File:</label>
+															<a
+																href="./templates/Resource/ResourceVideo/${lbt.getFileBaiLam}">${lbt.getFileBaiLam}</a>
+														</c:forEach>
+													</c:if>
+													<c:if
+														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
+															<a href="create-document?mabaihoc=${lesson.mabaihoc}"
+																class="btn btn-outline-secondary btn-create--file">
+																Create</a>
+														
+													</c:if>
+
 												</div>
-											</form>
-<!-- Tới đây nè -->
+											</div>
+											<div class="content-complete">
+											   <button class="btn btn-primary btn-mask"
+												onclick="MaskDone(${lesson.mabaihoc})">Mask as
+												complete</button>
+												<div class="content_progress content-maskDone">
+													<c:choose>
+														<c:when test="${trangthai.trangthai =='Done'}">
+														    <i class="fa-solid fa-check"></i>
+															<span>Complete</span>
+														</c:when>
+														
+													</c:choose>
+												</div>
+											</div>
+											<c:if
+												test="${ empty giangvien.manguoidung && not empty hocvien.manguoidung}">
+												<button class="btn btn-primary btn-mask"
+													onclick="MaskDone(${lesson.mabaihoc})">Mask as
+													complete</button>
+											</c:if>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- NOTES -->
-							<div class="page-note page-common">
+							<div class="page-note page-common active">
 								<div class="page-content">
 									<h2>Notes</h2>
 									<div class="page-content-filter">
@@ -356,7 +433,7 @@
 							</div>
 
 							<!-- Forum -->
-							<div class="page-forum page-common">
+							<div class="page-forum page-common active">
 								<div class="page-content">
 									<h2>Forum</h2>
 									<div class="page-content-form">
@@ -430,9 +507,8 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-
-							<!-- Messages -->
-							<div class="page-message page-common">
+							<!-- Messages-->
+							<div class="page-message page-common active">
 								<div class="page-content">
 									<h2>Messages</h2>
 
@@ -502,17 +578,108 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
+							<footer class="footer">
+								<section class="footer_list">
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<a class="nav_item_link" href="#">
+													<div>OnCourse</div>
+												</a>
+												<h5>Dạy lập trình</h5>
+											</div>
+											<p class="footer_contact">Điện thoại: 0246.329.1102
+												Email: contact@fullstack.edu.vn Số 11D, lô A10, khu đô thị
+												Nam Trung Yên, Phường Yên Hòa, Quận Cầu Giấy, TP. Hà Nội</p>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Về Oncourse</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Giới thiệu</a></li>
+												<li><a href="#">Liên hệ</a></li>
+												<li><a href="#">Điều khoản</a></li>
+												<li><a href="#">Bảo mật</a></li>
+												<li><a href="#">Cơ hội việc làm</a></li>
+											</ul>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Sản phẩm</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Trang dạy học số</a></li>
+												<li><a href="#">Trang đăng ký tài khoản</a></li>
+												<li><a href="#">Trang giới thiệu khóa học</a></li>
+												<li><a href="#">Trang thanh toán</a></li>
+
+											</ul>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Công cụ</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Github</a></li>
+												<li><a href="#">VSCODE</a></li>
+												<li><a href="#">Tomcat</a></li>
+												<li><a href="#">Eclipse</a></li>
+												<li><a href="#">Libary</a></li>
+											</ul>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Mã số thuế: 0109922901</a></li>
+												<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
+												<li>
+													<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse
+														xây dựng và phát triển những sản phẩm mang lại giá trị cho
+														cộng đồng.</p>
+												</li>
+
+											</ul>
+										</div>
+									</section>
+
+								</section>
+								<section class="footer_nav">
+									<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền
+										tảng học lập trình hàng đầu Việt Nam</div>
+									<div class="footer_nav__icon">
+										<i class="fa-brands fa-square-youtube"></i> <i
+											class="fa-brands fa-square-facebook"></i> <i
+											class="fa-brands fa-tiktok"></i>
+									</div>
+								</section>
+							</footer>
 						</article>
 					</c:when>
 				</c:choose>
 			</div>
 		</section>
 	</div>
-	<footer class="footer"> </footer>
-	<script src="./templates/JavaScript/script.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
+	<script type="text/javascript">
+		window.onload = function() {
+			ReloadAlert("${warning}");
+			ReloadAlert("${uptailieu}");
+			ReloadAlert("${xoatailieu}");
+		}
+	</script>
+	<c:set var="warning" value="${null}"></c:set>
+	<c:set var="uptailieu" value="${null}"></c:set>
+	<c:set var="xoatailieu" value="${null}"></c:set>
 </body>
 </html>

@@ -26,12 +26,11 @@ public class CartController {
 			List<GioHang> dsgiohang;
 			dsgiohang = new ArrayList<GioHang>();
 			dsgiohang = ghD.GetMyCart(manguoidung);
-			session.setAttribute("dsgiohang", dsgiohang);
+			model.addAttribute("dsgiohang", dsgiohang);
 			GioHang gh = ghD.CountCourse(manguoidung);
 			model.addAttribute("countkhoahoc", gh);
 			// Tổng số tiền cần thanh toán
 			model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
-
 		} catch (Exception ex) {
 
 		}

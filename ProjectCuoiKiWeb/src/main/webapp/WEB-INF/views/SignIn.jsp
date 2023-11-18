@@ -9,9 +9,7 @@
 <title>Trang Đăng Nhập</title>
 <link rel="stylesheet" href="./templates/CSS/styledn.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <script type="text/javascript" src=./templates/JavaScript/script.js></script>
 </head>
 
@@ -38,12 +36,17 @@
 							<div class="form-login-input">
 								<label for="loaitk">Loại Tài Khoản </label>
 							</div>
-							<input type="checkbox" name="tkgiaovien" id="tkgiaovien"
-								name="tkgiaovien" onchange="handleCheckboxChange(this)">
-							<label for="tkgiaovien">Giáo Viên</label> <input type="checkbox"
+							<div class="form-login-type">
+								<input type="radio" class="my-checkbox" name="tkgiaovien"
+									id="tkgiaovien" name="tkgiaovien"
+									onchange="handleCheckboxChange(this)"> <label
+									for="tkgiaovien">Giáo Viên</label>
+								<input class="my-checkbox" type="radio"
 								name="tkhocvien" id="tkhocvien" name="tkhocvien"
 								onchange="handleCheckboxChange(this)"> <label
-								for="Tkhocvien">Học Viên</label>
+								for="tkhocvien">Học Viên</label>
+							</div>
+							
 							<div class="form-notice">
 								<a href="forgetpassword">Forgot Password?</a>
 							</div>

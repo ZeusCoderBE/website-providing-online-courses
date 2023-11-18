@@ -1,7 +1,7 @@
 --DROP DATABASE ONCOURSE
 create database ONCOURSE
-
 go
+
 USE ONCOURSE
 Go
 --drop database OnCourse
@@ -47,12 +47,13 @@ CREATE TABLE KHOAHOC (
     GiaTien REAL,
     NgonNgu NVARCHAR(50),
     ThoiGianHoanThanh REAL,
-    TrinhDoDauVao NVARCHAR(50),
+    TrinhDoDauVao NVARCHAR(50) ,
     NgayPhatHanh DATE,
     MoTa NTEXT,
-    DanhGia INT,
+    DanhGia INT default 5,
     TheLoai NVARCHAR(50),
     LinhVuc NVARCHAR(30),
+    MinhHoa varchar(255),
     CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
 );
@@ -86,7 +87,7 @@ CREATE TABLE BAITAP (
 GO
 
 CREATE TABLE TAILIEU (
-	MaTaiLieu INT  PRIMARY KEY,
+	MaTaiLieu INT  PRIMARY KEY IDENTITY,
 	TheLoai NVARCHAR(20),
 	DinhDangLuuTru NVARCHAR(20),
 	DuongDanLuuTru NVARCHAR(255) 
@@ -105,6 +106,7 @@ GO
 CREATE TABLE DANGKY (
 	MaNguoiDung INT,
 	MaKhoaHoc INT,
+	TienDo REAL default 0 ,
 	PRIMARY KEY (MaNguoiDung, MaKhoaHoc),
 	CONSTRAINT FK_DANGKY_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_DANGKY_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc)
@@ -127,6 +129,7 @@ CREATE TABLE HOC (
 	MaNguoiDung INT,
 	MaBaiHoc INT,
 	NgayHoanThanh DATE,
+	TrangThai varchar(10) default 'Pending' ,
 	PRIMARY KEY (MaNguoiDung, MaBaiHoc),
 	CONSTRAINT FK_HOC_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_HOC_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc)
@@ -155,7 +158,6 @@ CREATE TABLE DINHKEM (
 
 );
 GO
-
 Create TABLE BIENSOAN
 (
 	MaNguoiDung int ,
@@ -164,8 +166,7 @@ Create TABLE BIENSOAN
 	CONSTRAINT FK_BIENSOAN_GiangVien FOREIGN KEY (MaNguoiDung) REFERENCES GiangVien(MaGiangVien) ,
 	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
 )
-GO
-
+Go
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
 VALUES
@@ -185,51 +186,36 @@ VALUES (1, N'Vàng'),
 INSERT INTO  GIANGVIEN (MaGiangVien, ChuyenNganh)
 VALUES (4, N'Công Nghệ Phần Mềm'),
     (5, N'Mạng Và An Ninh Mạng')
-
 -- Chèn khóa học
-INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa, DanhGia,TheLoai,LinhVuc)
+INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, TrinhDoDauVao, NgayPhatHanh, MoTa,TheLoai,LinhVuc, MinhHoa)
 VALUES
-    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản', 4,N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin'),
-    (N'Khóa học Machine Learning', 4, 49.99, N'Tiếng Anh', 6.0, N'Nâng cao', '2023-03-10', N'Machine Learning và ứng dụng',5,N'Khoá Học Ngắn Hạn', N'Phát Triển Web'),
-    (N'Khóa học Lịch sử thế giới', 4, 39.99, N'Tiếng Việt', 5.5, N'Nâng cao', '2023-04-05', N'Lịch sử thế giới', 4,N'Khoá Học Dài Hạn',N'Dữ Liệu'),
-    (N'Khóa học Kỹ thuật điện tử', 5, 59.99, N'Tiếng Anh', 7.0, N'Cao cấp', '2023-05-01', N'Kỹ thuật điện tử và thiết kế',4,N'Khoá Học Chuyên Nghiệp', N'Trí Tệu Nhân Tạo');
+    (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản',N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin', 'js.png')
     
 INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
 VALUES
     (N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
-    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1),
-    (N'Bài học 3', 2.0, N'Nội dung bài học 1', 4.5, '2023-02-05', 'anh3.jpg', 2),
-    (N'Bài học 4', 2.5, N'Nội dung bài học 1', 5.0, '2023-02-10', 'anh4.jpg', 2),
-    (N'Bài học 5', 3.0, N'Nội dung bài học 1', 6.0, '2023-02-15', 'anh5.jpg', 3);
+    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1)
 
 INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, HinhThuc, ThoiGianHoanThanh)
 VALUES
-    (N'Bài tập 1', 1, N'Loại 1', 2.0),
-    (N'Bài tập 2', 1, N'Loại 2', 3.0),
-    (N'Bài tập 1', 2, N'Loại 1', 2.5),
-    (N'Bài tập 2', 2, N'Loại 2', 3.5),
-    (N'Bài tập 1', 3, N'Loại 1', 2.0);
+    (N'Bài tập 1', 1, N'Loại 1', 2.0, 'dap_an_1.pdf'),
+    (N'Bài tập 2', 1, N'Loại 2', 3.0, 'dap_an_2.pdf'),
+    (N'Bài tập 1', 2, N'Loại 1', 2.5, 'dap_an_3.pdf'),
+    (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf')
 
-INSERT INTO TAILIEU (MaTaiLieu,TheLoai, DinhDangLuuTru, DuongDanLuuTru)
+INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
-    (1,N'Tài liệu 1', N'PDF', 'duong_dan_1.pdf'),
-    (2,N'Tài liệu 2', N'PDF', 'duong_dan_2.pdf'),
-    (3,N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
-    (4,N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
-    (5,N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
-
-INSERT INTO GIOHANG (MaNguoiDung, MaKhoaHoc)
-VALUES
-    (1, 1),
-    (2, 1),
-    (3, 2)
+    (N'Tài liệu 1', N'PDF', 'duong_dan_1.pdf'),
+    (N'Tài liệu 2', N'PDF', 'duong_dan_2.pdf'),
+    (N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
+    (N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
+    (N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
     
 INSERT INTO DANGKY (MaNguoiDung, MaKhoaHoc)
 VALUES
     (1, 1),
-    (2, 1),
-    (3, 2)
-    
+    (2, 1)
+
 -- Chèn thẻ tài khoản
 INSERT INTO THE 
 VALUES
@@ -238,26 +224,28 @@ VALUES
 	('4567891230', 151.00, 3),
 	('3216549870', 230.00, 4),
 	('9873216540', 135.00, 5)
-INSERT INTO THANHTOAN (MaNguoiDung, MaKhoaHoc, NgayThanhToan, TienThanhToan, NoiDungThanhToan)
+
+
+INSERT INTO HOC (MaNguoiDung, MaBaiHoc)
 VALUES
-    (1, 1, '2023-01-10',29.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
-    (2, 1, '2023-01-11',49.99,N'THANH TOÁN KHÓA HỌC TOÁN CƠ BẢN'),
-    (3, 2, '2023-01-12',59.99,N'THANH TOÁN KHÓA HỌC MACHINE LEARNING')
-INSERT INTO HOC (MaNguoiDung, MaBaiHoc, NgayHoanThanh)
+    (1, 1),
+	(1, 2),
+    (2, 2)
+    
+
+INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
 VALUES
-    (1, 1, '2023-01-10'),
-    (2, 2, '2023-01-11'),
-    (3, 3, '2023-01-12')
+    (1, N'Bài tập 1', 1, 9),
+    (2, N'Bài tập 2', 2, 8)
     
 INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
 VALUES
     (1, 1),
-    (2, 2),
-    (3, 3)
+    (2, 2)
     
 INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
 VALUES
-    (4, 1),
-    (5, 1),
-    (4, 2)
-  
+    (4, 1)
+    
+
+

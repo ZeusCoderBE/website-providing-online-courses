@@ -4,11 +4,27 @@ body {
     text-align: center;
 }
 
-#app {
-    min-height: 90vh;
+body.create-open {
+    overflow: hidden;
+}
+
+.create-lesson {
+    position: absolute;
     width: 100vw;
-    background-color: #f8f9fa;
-    padding-top: 50px;
+    display: none;
+    /* top: 0; */
+    left: 0;
+    padding-top: 100px;
+    z-index: 4; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow-y: auto;
+    transition: all 0.3s ease-in 0.1s;
+    /* pointer-events: none; */
+}
+
+.active {
+    display: block;
 }
 
 .form-login-header {
@@ -21,10 +37,12 @@ body {
     background-color: white;
     width: 80%;
     margin: auto;
-    height: 100%;
-    border-radius: 20px;
+    height: auto;
+    border-radius: 6px;
     padding: 30px;
     text-align: start;
+    overflow-y: auto;
+    margin-bottom: 50px;
 }
 
 .form-login-input {
@@ -46,7 +64,7 @@ body {
 
 }
 
-.content h3 {
+.content-lesson h3 {
     margin-top: 30px;
     margin-bottom: 20px;
 }
@@ -55,8 +73,8 @@ body {
     margin-top: 20px;
 }
 .output {
+  text-align: center;
   width: 100%;
-  margin-left: 50%;
 }
 
 input[type=range] {
@@ -81,4 +99,15 @@ input[type=range]::-webkit-slider-thumb {
 
 input[type=range]:focus {
   outline: none;
+}
+
+.form-progress{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 50%;
+}
+
+.form-progress__item {
+	flex: 1;
 }

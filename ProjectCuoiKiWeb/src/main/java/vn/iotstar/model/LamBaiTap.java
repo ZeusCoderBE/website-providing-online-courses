@@ -14,6 +14,16 @@ public class LamBaiTap {
 		this.fileBaiLam = fileBaiTap;
 	}	
 	
+	public LamBaiTap(int maNguoiDung, int maBaiHoc, String fileBaiTap) {
+		this.maNguoiDung = maNguoiDung;
+		this.maBaiHoc = maBaiHoc;
+		this.fileBaiLam = fileBaiTap;
+	}	
+	
+	public LamBaiTap() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getMaNguoiDung() {
 		return maNguoiDung;
 	}

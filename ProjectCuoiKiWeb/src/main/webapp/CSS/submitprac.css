@@ -22,7 +22,7 @@
 }
 
 #file-input {
-	display: none;
+	display: block;
 }
 
 #file-list {
