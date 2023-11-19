@@ -175,31 +175,31 @@ function ReloadAlert(thongBao) {
 	}
 }
 function checkKhoaHoc() {
-    // Lấy giá trị của các trường
-    var giatienValue = document.getElementById('giatien').value;
-    var thoiluongValue = document.getElementById('thoiluong').value;
-    var matacgiaValue = document.getElementById('matacgia').value;
+	// Lấy giá trị của các trường
+	var giatienValue = document.getElementById('giatien').value;
+	var thoiluongValue = document.getElementById('thoiluong').value;
+	var matacgiaValue = document.getElementById('matacgia').value;
 
-    // Kiểm tra giá trị không chứa kí tự chữ hoặc kí tự đặc biệt
-    var regex = /^[0-9.]+$/; // Chỉ chấp nhận các kí tự số
-    if (!regex.test(giatienValue)) {
-        alert("Giá tiền không hợp lệ");
-        return false;
-    }
+	// Kiểm tra giá trị không chứa kí tự chữ hoặc kí tự đặc biệt
+	var regex = /^[0-9.]+$/; // Chỉ chấp nhận các kí tự số
+	if (!regex.test(giatienValue)) {
+		alert("Giá tiền không hợp lệ");
+		return false;
+	}
 
-    if (!regex.test(thoiluongValue)) {
-        alert("Thời lượng không hợp lệ");
-        return false;
-    }
+	if (!regex.test(thoiluongValue)) {
+		alert("Thời lượng không hợp lệ");
+		return false;
+	}
 
-    regex = /^[0-9]+$/; // Chỉ chấp nhận các kí tự số cho mã tác giả
-    if (!regex.test(matacgiaValue)) {
-        alert("Mã tác giả không hợp lệ.");
-        return false;
-    }
+	regex = /^[0-9]+$/; // Chỉ chấp nhận các kí tự số cho mã tác giả
+	if (!regex.test(matacgiaValue)) {
+		alert("Mã tác giả không hợp lệ.");
+		return false;
+	}
 
-    // Nếu mọi kiểm tra đều qua, cho phép form submit
-    return true;
+	// Nếu mọi kiểm tra đều qua, cho phép form submit
+	return true;
 }
 
 
@@ -277,72 +277,117 @@ function uploadFile() {
 
 
 function scrollToTop() {
-  console.log('Clicked on back-to-top button');
-  window.scrollTo({
-      top: 0,
-      behavior: 'smooth' // Sử dụng 'smooth' để có hiệu ứng cuộn mượt
-  });
+	console.log('Clicked on back-to-top button');
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth' // Sử dụng 'smooth' để có hiệu ứng cuộn mượt
+	});
 }
 
-function OpenCreate(name){
-  let elements = document.getElementsByClassName(name);
-    
-  // Kiểm tra xem có phần tử nào với class name đã cho hay không
-  if (elements.length > 0) {
-      let create = elements[0];
+function OpenCreate(name) {
+	let elements = document.getElementsByClassName(name);
 
-      if (!create.classList.contains('active')) {
-          create.classList.add('active');
-          scrollToTop();
-      }
+	// Kiểm tra xem có phần tử nào với class name đã cho hay không
+	if (elements.length > 0) {
+		let create = elements[0];
 
-      document.body.classList.add('create-open');
-  } else {
-      console.error('Không tìm thấy phần tử với class ' + name);
-  }
+		if (!create.classList.contains('active')) {
+			create.classList.add('active');
+			scrollToTop();
+		}
+
+		document.body.classList.add('create-open');
+	} else {
+		console.error('Không tìm thấy phần tử với class ' + name);
+	}
 }
 
-function CloseCreate(name){
-  let elements = document.getElementsByClassName(name);
-  if(elements.length >0){
-    let create = elements[0];
-    if(create.classList.contains('active')){
-      create.classList.remove('active');
-    }
-    document.body.classList.remove('create-open');
-  }else {
-    console.error('Không thể xóa phần tử với class ' + name);
-  }
+function CloseCreate(name) {
+	let elements = document.getElementsByClassName(name);
+	if (elements.length > 0) {
+		let create = elements[0];
+		if (create.classList.contains('active')) {
+			create.classList.remove('active');
+		}
+		document.body.classList.remove('create-open');
+	} else {
+		console.error('Không thể xóa phần tử với class ' + name);
+	}
 }
 
 function MaskDone(mabaihoc) {
 
-    let tienDo = document.querySelector('.content_progress span');
-    if (tienDo.textContent == 'Done'){
-		
-	}
-	window.location.href= 'mask-complete?mabaihoc=' + mabaihoc;
-}
+	let tienDo = document.querySelector('.content_progress span');
+	if (tienDo.textContent == 'Done') {
 
-function ShowOption(name, ...item){
-	let tab = document.getElementsByClassName(name);
-	for(var i =0; i<item.length; i++){
-		let tabName = document.getElementsByClassName(item[i]);
-		if(!tabName[0].classList.contains('active')){	
-		    tabName[0].classList.add('active');			
-		}
 	}
-	if(tab[0].classList.contains('active')){
-		tab[0].classList.remove('active');
-	}
+	window.location.href = 'mask-complete?mabaihoc=' + mabaihoc;
 }
 
 function handleCkBaiTapChange() {
 	var tghoanthanh = document.getElementById("tghoanthanh");
+	var theloai = document.getElementById("theloaifile");
+
 	if (checkbox.id === "checkbox" && checkbox.checked) {
 		tghoanthanh.removeAttribute("disabled");
+		theloai.value = "Bài tập";
 	}
 	else if (checkbox.id === "checkbox" && !checkbox.checked) {
 		tghoanthanh.setAttribute("disabled", "disabled");
+		theloai.value = "Tài liệu";
 	}
+}
+function ShowOption(name, ...item) {
+	let tab = document.getElementsByClassName(name);
+	for (var i = 0; i < item.length; i++) {
+		let tabName = document.getElementsByClassName(item[i]);
+		if (!tabName[0].classList.contains('active')) {
+			tabName[0].classList.add('active');
+		}
+	}
+	if (tab[0].classList.contains('active')) {
+		tab[0].classList.remove('active');
+	}
+}
+
+function AddImgDocument(duongDanTaiLieu, parentId) {
+	var phanMoRong = duongDanTaiLieu.split('.').pop().toLowerCase();
+	var hinhAnh;
+
+	switch (phanMoRong) {
+		case 'mp4':
+			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/mpeg';
+			break;
+		case 'pdf':
+			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf';
+			break;
+        case 'ppt':
+            hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/powerpoint';
+            break;
+		case 'docs':
+			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/document';
+			break;
+		case 'docx':
+            hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/document';
+            break;
+        default:
+            hinhAnh = 'https://media.istockphoto.com/id/1218713444/vi/vec-to/%C4%91%C6%B0%E1%BB%9Dng-m%C3%A0u-%C4%91en-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-l%E1%BB%87nh-b%E1%BA%AFt-gi%E1%BB%AF-%C4%91%C6%B0%E1%BB%A3c-c%C3%A1ch-ly-tr%C3%AAn-n%E1%BB%81n-trong-su%E1%BB%91t-l%E1%BB%87nh-b%E1%BA%AFt-b%C3%A1o-c%C3%A1o-c%E1%BB%A7a.jpg?s=1024x1024&w=is&k=20&c=kN07F-oza-kkEiCUd8U3X0YptObrLEbcCPwOWtXhROU=';
+            break;
+    }
+
+	var aTag = document.createElement('a');
+	aTag.setAttribute('href', duongDanTaiLieu);
+	
+	var imgTag = document.createElement('img');
+	imgTag.setAttribute('src', hinhAnh);
+    imgTag.setAttribute('alt', phanMoRong.toUpperCase() + ' file');
+   	imgTag.className = 'imgFile';
+    aTag.appendChild(imgTag);
+
+    var containerElement = document.getElementById(parentId);
+    if (containerElement) {
+        containerElement.appendChild(aTag);
+    } else {
+        console.error("Phần tử cha không tồn tại!");
+    }
 }

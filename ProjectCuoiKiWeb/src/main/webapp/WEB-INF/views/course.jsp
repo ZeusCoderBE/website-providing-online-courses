@@ -10,7 +10,8 @@
 <title>Trang Chủ</title>
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
@@ -18,6 +19,8 @@
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="./templates/CSS/submitprac.css" type="text/css"
+	rel="stylesheet">
 <script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
@@ -301,100 +304,121 @@
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<c:choose>
-														<c:when test="${trangthai.trangthai =='Done'}">
-														    <i class="fa-solid fa-check"></i>
-															<span>${trangthai.trangthai}</span>
-														</c:when>
-														<c:otherwise>
-														    <i class="fa-solid fa-circle-pause"></i>
-			  												<span>Pending</span>
-														</c:otherwise>
-													</c:choose>
+													<c:if
+														test="${empty giangvien.manguoidung && not empty hocvien.manguoidung}">
+														<c:choose>
+															<c:when test="${trangthai.trangthai eq 'Done'}">
+																<i class="fa-solid fa-check"></i>
+																<span>${trangthai.trangthai}</span>
+															</c:when>
+															<c:otherwise>
+																<i class="fa-solid fa-circle-pause"></i>
+																<span>${trangthai.trangthai}</span>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
 												</div>
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 												<div class="container_content container-file">
+													<!-- HIỂN THỊ DANH SÁCH TÀI LIỆU -->
 													<c:if test="${not empty dstailieu}">
-														<label>Danh sách tài liệu</label>
+														<a>DANH SÁCH TÀI LIỆU</a>
 														<c:forEach var="tailieu" items="${dstailieu}">
-															<div class="contain-file">
-																<img class="logofile"
-																	src="https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf">
+															</br>
+															<div id="container_${tailieu.duongdanluutru}">
+																<script>
+												                    AddImgDocument('${tailieu.duongdanluutru}', 'container_${tailieu.duongdanluutru}');
+												                </script>
 																<a
-																	href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">${tailieu.duongdanluutru}</a>
-															</div>
-
-															<c:if test="${not empty giangvien.manguoidung}">
-																<a href="find-document?matailieu=${tailieu.matailieu}"
-																	class="btn-edit--file"> Edit</a>
-																<a href="delete-document?matailieu=${tailieu.matailieu}"
-																	class="btn-edit--file">Delete</a>
-															</c:if>
-															<c:if test="${not empty hocvien.manguoidung}">
-																<a class="submit-baitap"
-																	href="submit-baitap?makhoahoc=${lesson.makhoahoc}&mabaihoc=${lesson.mabaihoc}&manguoidung=${hocvien.manguoidung}">Submit</a>
-															</c:if>
-															<!-- Đang làm ở đây -->
-														</c:forEach>
-													</c:if>
-													<c:if test="${not empty giangvien.manguoidung}">
-														<div class="container_content">
-															<a href="create-document?mabaihoc=${lesson.mabaihoc}">
-																Create</a>
-														</div>
-													</c:if>
-													<c:if test="${not empty dslambaitap}">
-														<a>DANH SACH BAI NOP</a>
-														<c:forEach var="tailieu" items="${dslambaitap}">
-															<div>
-																<img class="logofile"
-																	src="https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf">
-																<a
-																	href="./templates/Resource/ResourceVideo/${dslambaitap}">${dslambaitap}</a>
+																	href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+																	${tailieu.duongdanluutru} </a>
+																<c:if test="${not empty giangvien.manguoidung}">
+																	<a href="find-document?matailieu=${tailieu.matailieu}"
+																		class="btn-edit--file"> Edit</a>
+																	<a
+																		href="delete-document?matailieu=${tailieu.matailieu}"
+																		class="btn-edit--file">Delete</a>
+																</c:if>
+																<c:if test="${not empty hocvien.manguoidung}">
+																	<c:if test="${tailieu.theloai eq 'Bài tập'}">
+																		<a class="submit-baitap"
+																			href="submit-exercise?tentailieu=${tailieu.duongdanluutru}">Submit</a>
+																	</c:if>
+																</c:if>
 															</div>
 														</c:forEach>
-													</c:if>
-
-													<c:if test="${not empty dsLbt}">
-														<a>DANH SACH BAI NOP CHO GIANG VIEN</a>
-														<c:forEach var="tailieu" items="${dsLbt}">
-															<label>File:</label>
-															<a
-																href="./templates/Resource/ResourceVideo/${lbt.getFileBaiLam}">${lbt.getFileBaiLam}</a>
-														</c:forEach>
-													</c:if>
-													<c:if
-														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
+														<c:if test="${not empty giangvien.manguoidung}">
 															<a href="create-document?mabaihoc=${lesson.mabaihoc}"
 																class="btn btn-outline-secondary btn-create--file">
-																Create</a>
-														
+																Create </a>
+														</c:if>
 													</c:if>
+												</div>
 
+
+												<div class="container_content container-file">
+													<c:if
+														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
+														<!-- HIỂN THỊ DANH SÁCH BÀI TẬP LÊN CHO GV XEM -->
+														<a>DANH SÁCH BÀI NỘP</a>
+														<c:if test="${not empty dsLbt}">
+															<table class="table">
+																<thead>
+																	<tr>
+																		<th>Full Name</th>
+																		<th>Tên Bài Tập</th>
+																		<th>Mã Bài Học</th>
+																		<th>Tên Bài Nộp</th>
+																	</tr>
+																</thead>
+																<tbody class="table-group-divider">
+																	<c:forEach var="baitapdanop" items="${dsLbt}">
+																		<tr>
+																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
+																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
+																			<td><c:out value="${baitapdanop.getMaBaiHoc()}" /></td>
+																			<td><a
+																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
+																						value="${baitapdanop.tenbainop}"></c:out> </a>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</c:if>
+													</c:if>
+													<!-- HIỂN THỊ CÁC TÀI LIỆU MÀ HỌC VIÊN NỘP LÊN -->
+													<c:if test="${not empty hocvien.manguoidung}">
+														<c:if test="${not empty dslambaitap}">
+															<a>DANH SÁCH BÀI NỘP</a>
+															<c:forEach var="lbt" items="${dslambaitap}">
+																<a
+																	href="./templates/Resource/ResourceDocument/${lbt.getTenbainop()}">
+																	<c:out value="${lbt.getTenbainop()}"></c:out>
+																</a>
+															</c:forEach>
+														</c:if>
+													</c:if>
 												</div>
 											</div>
 											<div class="content-complete">
-											   <button class="btn btn-primary btn-mask"
-												onclick="MaskDone(${lesson.mabaihoc})">Mask as
-												complete</button>
+												<!-- LÀ HỌC VIÊN THÌ HIỂN THỊ MASK AS DONE -->
+												<c:if test="${empty giangvien.manguoidung}">
+													<button class="btn btn-primary btn-mask"
+														onclick="MaskDone(${lesson.mabaihoc})">Mask as
+														complete</button>
+												</c:if>
 												<div class="content_progress content-maskDone">
 													<c:choose>
-														<c:when test="${trangthai.trangthai =='Done'}">
-														    <i class="fa-solid fa-check"></i>
+														<c:when test="${trangthai.trangthai eq 'Done'}">
+															<i class="fa-solid fa-check"></i>
 															<span>Complete</span>
 														</c:when>
-														
 													</c:choose>
 												</div>
 											</div>
-											<c:if
-												test="${ empty giangvien.manguoidung && not empty hocvien.manguoidung}">
-												<button class="btn btn-primary btn-mask"
-													onclick="MaskDone(${lesson.mabaihoc})">Mask as
-													complete</button>
-											</c:if>
+											<br> <br>
 										</div>
 									</div>
 								</div>
@@ -418,7 +442,6 @@
 											<option value="6">Fourier Transform and Sampling</option>
 										</select>
 									</div>
-
 									<div class="page-note-icon">
 										<img
 											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
@@ -669,8 +692,11 @@
 				</c:choose>
 			</div>
 		</section>
+
 	</div>
-	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+	</script>
 	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${warning}");

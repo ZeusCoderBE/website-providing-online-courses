@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Create Document</title>
 <link rel="stylesheet" href="./templates/CSS/create_course.css">
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <script src="./templates/JavaScript/script.js"></script>
@@ -27,8 +28,8 @@
 							</div>
 							<div>
 								<label>Up bài tập</label><input type="checkbox" id="checkbox"
-									name="ckbaitap" value="ckBaiTap" onclick="handleCkBaiTapChange(this)"> <br> <label
-									for="datelesson">Thời gian hoàn thành</label>
+									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br>
+								<label for="datelesson">Thời gian hoàn thành</label>
 								<output id="Output" class="output">0</output>
 								<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
 									value="${editbaihoc.thoigianhoanthanh}" max="180" step="0.5"
@@ -36,8 +37,9 @@
 									disabled />
 							</div>
 							<div class="form-login-input">
-								<label id="theloai">Thể loại</label> <input type="text"
-									name="theloai" value="${tailieu.theloai}"><br /> <label
+								<label id="theloai">Thể loại</label> <input id="theloaifile" type="text"
+									name="theloai" value="${empty tailieu.theloai ? 'Tài liệu' : tailieu.theloai}"><br /> 
+								<label
 									id="dinhdang">Định dạng lưu trữ:</label> <input type="text"
 									name="dinhdang" value="${tailieu.dinhdangluutru}">
 							</div>
@@ -61,7 +63,7 @@
 			</form>
 		</div>
 	</div>
-	<script
-		src="./templates/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="./templates/tinymce/tinymce.min.js"
+		referrerpolicy="origin"></script>
 </body>
 </html>

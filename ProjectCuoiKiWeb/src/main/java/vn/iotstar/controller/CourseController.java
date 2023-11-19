@@ -1,15 +1,11 @@
 package vn.iotstar.controller;
 
 import vn.iotstar.model.*;
-import java.io.BufferedReader;
+
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.Date;
 import java.sql.SQLException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,7 +17,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import java.util.*;
-
 
 @Controller
 public class CourseController {
@@ -95,10 +90,10 @@ public class CourseController {
 				mul.transferTo(dest);
 			}
 
-			KhoaHoc khoahoc = new KhoaHoc(khoahocid.getMakhoahoc(), tenkhoahoc, matacgia, giatien, ngonngu, thoiluong,
-					trinhdo, ngayphathanh, mota, 0, theloai, linhvuc, originname);
+			KhoaHoc khoahoc = new KhoaHoc(khoahocid.getMakhoahoc(), tenkhoahoc, gv.getManguoidung(), giatien, ngonngu,
+					thoiluong, trinhdo, ngayphathanh, mota, 0, theloai, linhvuc, originname);
 			if (mode == 0) {
-				if (khD.CreateACourse(khoahoc) == 1 && gvD.InsertCompilation(gv.getManguoidung()) == 1) {
+				if (khD.CreateACourse(khoahoc) == 1) {
 					mess = "Chúc mừng bạn đã tạo thành công một khoá học ! ";
 					url = "redirect:/homepages";
 					session.setAttribute("thongbaotaokh", mess);
@@ -142,4 +137,5 @@ public class CourseController {
 		}
 		return url;
 	}
+
 }

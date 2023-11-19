@@ -10,7 +10,7 @@ import vn.iotstar.database.DataBaseConnection;
 
 public class ThanhToanDao {
 	DataBaseConnection dbconn = new DataBaseConnection();
-	
+
 	public void thanhToan(ThanhToan tt, The the) throws ClassNotFoundException, SQLException {
 		int check;
 		// Thanh toán khóa học
@@ -28,28 +28,33 @@ public class ThanhToanDao {
 		if (check == 0) {
 			throw new SQLException("Cập nhật số dư thẻ gặp lỗi");
 		}
+		System.out.print("Da Vao DAy");
 	}
+
 	public String DanhSachTenKH(List<KhoaHoc> dskhoahoc) {
 		String tenkh = "";
-		for (KhoaHoc kh: dskhoahoc) {
+		for (KhoaHoc kh : dskhoahoc) {
 			tenkh += kh.getTenkhoahoc() + " " + "<br>";
 		}
 		return tenkh;
 	}
+
 	public String NoiDungThanhToan(List<KhoaHoc> dskhoahoc) {
 		String ndthanhtoan = "";
-		for (KhoaHoc kh: dskhoahoc) {
+		for (KhoaHoc kh : dskhoahoc) {
 			ndthanhtoan += "Thanh Toán " + kh.getTenkhoahoc() + " " + "<br>";
 		}
 		return ndthanhtoan;
 	}
+
 	public double SumCostOfCourse(List<KhoaHoc> dskhoahoc) throws ClassNotFoundException, SQLException {
 		double sumCost = 0;
-		for (KhoaHoc kh: dskhoahoc) {
+		for (KhoaHoc kh : dskhoahoc) {
 			sumCost += kh.getGiatien();
 		}
 		return sumCost;
 	}
+
 	public boolean isEnoughMoney(ThanhToan tt, The the) {
 		if (the.getSoDu() < tt.getTienthanhtoan()) {
 			return false;

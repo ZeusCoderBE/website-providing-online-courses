@@ -71,18 +71,6 @@ begin
 	Update THE set SoDu=@sodubandau+@cost
 	where MaNguoiDung=@magiangvien
 end
-GO
- --Tạo Biên Soạn
- Create or ALter Procedure sp_CreateCompilation
-@manguoidung int
-as
-begin
-	declare @makhoahoc int 
-	set @makhoahoc = (select Top 1 MaKhoaHoc From KHOAHOC
-	order by MaKhoaHoc desc)
-	insert into BIENSOAN(MaNguoiDung,MaKhoaHoc)
-	values(@manguoidung,@makhoahoc)
-end
 Go
 --Remove course dành cho giảng viên
 Create or Alter Procedure sp_RemoveACourse
@@ -334,38 +322,36 @@ BEGIN
 END
 
 GO
-
 --Học viên nộp bài tập
-CREATE Or ALTER PROCEDURE sp_NopBaiTap @mand INT, @TenBaiTap NVARCHAR(50), @mabaihoc INT, @filebailam VARCHAR(255) 
+CREATE Or ALTER PROCEDURE sp_NopBaiTap @mand INT, @TenBaiTap NVARCHAR(100), @mabaihoc INT,@tenbainop nvarchar(50)
 as
 begin
-	INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, FileBaiLam, DiemSo)
-	VALUES (@mand, @TenBaiTap, @mabaihoc, @filebailam, null)
+	INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc,TenBaiNop)
+	VALUES (@mand, @TenBaiTap, @mabaihoc,@tenbainop)
 end
 Go
 
---Lấy danh sách bài tập đã nộp theo từng bài học của học viên
-CREATE Or ALTER PROCEDURE sp_DSBaiTap @mand INT, @mabaihoc INT
+---Lấy danh sách bài tập đã nộp theo từng bài học của học viên
+CREATE Or ALTER PROCEDURE sp_DSBaiTap @mand int, @mabaihoc INT
 as
 begin
-	SELECT MaNguoiDung, MaBaiHoc, FileBaiLam 
+	SELECT TenBaiNop, MaHocVien, MaBaiHoc, TenBaiTap
 	FROM vw_baitapsinhvien 
-	WHERE MaNguoiDung = @mand AND MaBaiHoc = @mabaihoc
+	WHERE MaHocVien = @mand AND MaBaiHoc = @mabaihoc
 end
 Go
-
 --Danh sach bai tap nop cho giang vien
 CREATE Or ALTER PROCEDURE sp_DSBaiTapGV @mabaihoc INT
 as
 begin
-	SELECT MaNguoiDung, MaBaiHoc, FileBaiLam 
+	SELECT TenBaiNop,HoTen, MaBaiHoc,TenBaiTap
 	FROM vw_baitapsinhvien 
 	WHERE MaBaiHoc = @mabaihoc
 end
 Go
 
 --Giao vien upload bai tap
-CREATE Or ALTER PROCEDURE sp_UploadBaiTap @tenbaitap NCHAR(20), @mabaihoc INT, @thoigianhoanthanh REAL
+CREATE Or ALTER PROCEDURE sp_UploadBaiTap @tenbaitap NCHAR(100), @mabaihoc INT, @thoigianhoanthanh REAL
 AS
 begin
 	INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, ThoiGianHoanThanh) VALUES (@tenbaitap, @mabaihoc, @thoigianhoanthanh)
@@ -382,4 +368,3 @@ BEGIN
    INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
-

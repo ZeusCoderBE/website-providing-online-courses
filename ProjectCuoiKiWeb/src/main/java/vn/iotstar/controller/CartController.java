@@ -31,6 +31,7 @@ public class CartController {
 			model.addAttribute("countkhoahoc", gh);
 			// Tổng số tiền cần thanh toán
 			model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
+
 		} catch (Exception ex) {
 
 		}

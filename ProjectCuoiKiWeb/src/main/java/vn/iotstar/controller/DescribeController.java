@@ -56,7 +56,7 @@ public class DescribeController {
 				demdangky=khD.CountSignIn(makhoahoc);
 				model.addAttribute("khoahoc", khoahoc);
 				model.addAttribute("dem",demdangky);
-				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung(), khoahoc.getMakhoahoc()));
+				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung()));
 			} else {
 				demdangky=khD.CountSignIn(makhoahoc);
 				khoahoc = khD.FindCourseOfCustomer(khoahoc);

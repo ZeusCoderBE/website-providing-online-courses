@@ -113,8 +113,8 @@ public class KhoaHocDao {
 		return listkh;
 	}
 
-	public boolean KhoaHocDaTao(int manguoidung, int makhoahoc) throws ClassNotFoundException, SQLException {
-		String sqlStr = "Select *From BienSoan where MaNguoiDung=" + manguoidung + " and MaKhoaHoc=" + makhoahoc + "";
+	public boolean KhoaHocDaTao(int manguoidung) throws ClassNotFoundException, SQLException {
+		String sqlStr = "Select *From KhoaHoc where MaTacGia=" + manguoidung;
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);
 		if (rs.next()) {
 			return true;

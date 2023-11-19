@@ -1,12 +1,8 @@
 package vn.iotstar.model;
 
 import java.util.*;
-
-import jakarta.servlet.jsp.jstl.sql.Result;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import vn.iotstar.database.DataBaseConnection;
 
 public class BaiHocDao {
@@ -54,10 +50,9 @@ public class BaiHocDao {
 	}
 
 	public void ThemBaiHoc(BaiHoc baihoc) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format(Locale.US, "INSERT INTO BAIHOC VALUES(N'%s', %f, N'%s', %f, GETDATE(), NULL, %d)",
+		String sqlStr = String.format(Locale.US, "INSERT INTO BAIHOC VALUES(N'%s', %f, N'%s', %f, GETDATE(), %d)",
 				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
-		System.out.print(sqlStr);		
 		int check = dbC.ExecuteCommand(sqlStr);
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");

@@ -1,7 +1,5 @@
 package vn.iotstar.model;
 
-import java.util.Date;
-
 public class BaiTap {
 	private String tenBaiTap;
 	private int maMaiHoc;

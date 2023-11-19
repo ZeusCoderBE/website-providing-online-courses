@@ -67,7 +67,6 @@ CREATE TABLE BAIHOC (
 	NoiDungBaiHoc NTEXT ,
 	MucTieuDauRa real ,
 	NgayDang DATE ,
-	AnhMinhHoa VARCHAR(255),
 	MaKhoaHoc INT,
 	CONSTRAINT FK_BAIHOC_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KHOAHOC(MaKhoaHoc) On delete set null on update cascade,
 	CONSTRAINT CHK_MUCTIEUDAURA CHECK (MucTieuDauRa BETWEEN 0.0 AND 10.0)
@@ -75,12 +74,9 @@ CREATE TABLE BAIHOC (
 GO
 
 CREATE TABLE BAITAP (
-	TenBaiTap NVARCHAR(50) NOT NULL,
+	TenBaiTap NVARCHAR(100) NOT NULL,
 	MaBaiHoc INT NOT NULL,
-	HinhThuc NVARCHAR(20) ,
 	ThoiGianHoanThanh real,
-	MaGiangVien INT,
-	CONSTRAINT FK_BAITAP_GIANGVIEN FOREIGN KEY (MaGiangVien) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
 	PRIMARY KEY (TenBaiTap, MaBaiHoc),
 	CONSTRAINT FK_BAITAP_BAIHOC FOREIGN KEY (MaBaiHoc) REFERENCES BAIHOC(MaBaiHoc) 
 );
@@ -138,14 +134,12 @@ GO
 
 CREATE TABLE LAMBAITAP (
 	MaNguoiDung INT ,
-	TenBaiTap NVARCHAR(50) ,
+	TenBaiTap NVARCHAR(100) ,
 	MaBaiHoc INT ,
-	FileBaiLam VARCHAR(255),
-	DiemSo INT ,
+	TenBaiNop Nvarchar(100),
 	PRIMARY KEY (MaNguoiDung, TenBaiTap, MaBaiHoc),
 	CONSTRAINT FK_LAMBAITAP_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_LAMBAITAP_BAITAP FOREIGN KEY (TenBaiTap, MaBaiHoc) REFERENCES BAITAP(TenBaiTap, MaBaiHoc),
-	CONSTRAINT CHK_DIEMSO CHECK (DiemSo BETWEEN 0 AND 10)
 );
 GO
 
@@ -158,15 +152,6 @@ CREATE TABLE DINHKEM (
 
 );
 GO
-Create TABLE BIENSOAN
-(
-	MaNguoiDung int ,
-	MaKhoaHoc int ,
-	primary key (MaNguoiDung,MaKhoaHoc),
-	CONSTRAINT FK_BIENSOAN_GiangVien FOREIGN KEY (MaNguoiDung) REFERENCES GiangVien(MaGiangVien) ,
-	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
-)
-Go
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
 VALUES
@@ -191,17 +176,10 @@ INSERT INTO KHOAHOC (TenKhoaHoc, MaTacGia, GiaTien, NgonNgu, ThoiGianHoanThanh, 
 VALUES
     (N'Khóa học Lập Trình Web JSP & Servlet', 4, 29.99, N'Tiếng Việt', 3.5, N'Cơ bản', '2023-01-15', N'Học Toán từ cơ bản',N'Khoá Học Làm Dự Án',N'An Toàn Thông Tin', 'js.png')
     
-INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, AnhMinhHoa, MaKhoaHoc)
+INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, NgayDang, MaKhoaHoc)
 VALUES
-    (N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 'anh1.jpg', 1),
-    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 'anh2.jpg', 1)
-
-INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, HinhThuc, ThoiGianHoanThanh)
-VALUES
-    (N'Bài tập 1', 1, N'Loại 1', 2.0, 'dap_an_1.pdf'),
-    (N'Bài tập 2', 1, N'Loại 2', 3.0, 'dap_an_2.pdf'),
-    (N'Bài tập 1', 2, N'Loại 1', 2.5, 'dap_an_3.pdf'),
-    (N'Bài tập 2', 2, N'Loại 2', 3.5, 'dap_an_4.pdf')
+    (N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 1),
+    (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 1)
 
 INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
@@ -232,20 +210,8 @@ VALUES
 	(1, 2),
     (2, 2)
     
-
-INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, DiemSo)
-VALUES
-    (1, N'Bài tập 1', 1, 9),
-    (2, N'Bài tập 2', 2, 8)
-    
 INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
 VALUES
     (1, 1),
     (2, 2)
     
-INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
-VALUES
-    (4, 1)
-    
-
-

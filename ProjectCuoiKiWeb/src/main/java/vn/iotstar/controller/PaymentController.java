@@ -77,6 +77,7 @@ public class PaymentController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		ThanhToanDao ttd = new ThanhToanDao();
 		BaiHoc baihoc = new BaiHoc();
+		System.out.print("Da qua day");
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {
@@ -92,7 +93,6 @@ public class PaymentController {
 				gvD.UpdateofCardTeacher(khoahoc);
 				
 				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
-				
 				if (baihoc != null) {
 					bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
 				}

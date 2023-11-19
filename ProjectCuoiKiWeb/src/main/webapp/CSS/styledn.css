@@ -1,18 +1,36 @@
 @charset "UTF-8";
 body {
     background-color: #e6e6e8;
+    margin: 0;
 }
 
 /* Form login */
 .container {
     width: 100%;
+    position:relative;
+    min-height: 100vh;
+    padding-top: 90px;
+    background-image: url('https://www.pluralsight.com/content/dam/pluralsight2/homepage/2023-updates/ai-home-hero.webp');
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    padding-bottom: 30px;
+}
+
+.container:before {
+	position: absolute;
+	width: 100%;
+	content: "";
+	top: 0;
+	z-index: -1;
+	height: 100%;
+	background-image: linear-gradient(to right, #242145 30%, #dd1874 70%, #8a2178);
 }
 
 #form-login {
     padding: 50px;
     padding-top: 20px;
     margin: auto;
-    margin-top: 90px;
     width: 380px;
     background-color: #ffffff;
     border-radius: 10px;
