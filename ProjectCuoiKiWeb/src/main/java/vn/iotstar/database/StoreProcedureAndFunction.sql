@@ -1,6 +1,6 @@
 --Update Document
 Create or Alter Procedure sp_EditDocument
-@matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru varchar(50)
+@matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru Nvarchar(255)
 as
 begin
 	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
@@ -71,18 +71,6 @@ begin
 	Update THE set SoDu=@sodubandau+@cost
 	where MaNguoiDung=@magiangvien
 end
-GO
- --Tạo Biên Soạn
- Create or ALter Procedure sp_CreateCompilation
-@manguoidung int
-as
-begin
-	declare @makhoahoc int 
-	set @makhoahoc = (select Top 1 MaKhoaHoc From KHOAHOC
-	order by MaKhoaHoc desc)
-	insert into BIENSOAN(MaNguoiDung,MaKhoaHoc)
-	values(@manguoidung,@makhoahoc)
-end
 Go
 --Remove course dành cho giảng viên
 Create or Alter Procedure sp_RemoveACourse
@@ -106,7 +94,7 @@ CREATE OR ALTER PROCEDURE sp_EditACourse
 @mota ntext,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30),
-@minhhoa varchar(255)
+@minhhoa Nvarchar(255)
 as
 begin
 	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
@@ -128,7 +116,7 @@ CREATE OR ALTER PROCEDURE sp_CreateACourse
 @mota ntext,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30),
-@minhhoa varchar(255)
+@minhhoa Nvarchar(255)
 as
 begin
 	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc, MinhHoa)
@@ -270,8 +258,8 @@ begin
 	where HOCVIEN.MaHocVien=@manguoidung
 end
 GO
--- So sánh giá tiền thanh toán và giá tiền khóa học
-CREATE Or ALter PROCEDURE sp_thanhtoanKH
+-- So sánh giá tiền thanh toàn và giá tiền khóa học
+CREATE or alter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -296,8 +284,9 @@ BEGIN
 	END
 END
 Go
--- Check Đăng Nhập với vai trò là học viên
-Create or Alter Procedure sp_CheckLoginHV
+
+-- Check Đăng Đăng Nhập với vai trò là học viên
+Create or alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
 as
 begin
@@ -331,7 +320,44 @@ BEGIN
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END
+
+GO
+--Học viên nộp bài tập
+CREATE Or ALTER PROCEDURE sp_NopBaiTap @mand INT, @TenBaiTap NVARCHAR(100), @mabaihoc INT,@tenbainop nvarchar(50)
+as
+begin
+	INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc,TenBaiNop)
+	VALUES (@mand, @TenBaiTap, @mabaihoc,@tenbainop)
+end
 Go
+
+---Lấy danh sách bài tập đã nộp theo từng bài học của học viên
+CREATE Or ALTER PROCEDURE sp_DSBaiTap @mand int, @mabaihoc INT
+as
+begin
+	SELECT TenBaiNop, MaHocVien, MaBaiHoc, TenBaiTap
+	FROM vw_baitapsinhvien 
+	WHERE MaHocVien = @mand AND MaBaiHoc = @mabaihoc
+end
+Go
+--Danh sach bai tap nop cho giang vien
+CREATE Or ALTER PROCEDURE sp_DSBaiTapGV @mabaihoc INT
+as
+begin
+	SELECT TenBaiNop,HoTen, MaBaiHoc,TenBaiTap
+	FROM vw_baitapsinhvien 
+	WHERE MaBaiHoc = @mabaihoc
+end
+Go
+
+--Giao vien upload bai tap
+CREATE Or ALTER PROCEDURE sp_UploadBaiTap @tenbaitap NCHAR(100), @mabaihoc INT, @thoigianhoanthanh REAL
+AS
+begin
+	INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, ThoiGianHoanThanh) VALUES (@tenbaitap, @mabaihoc, @thoigianhoanthanh)
+end
+Go
+
 --Tìm chứng chỉ
 CREATE OR ALTER PROC sp_FindCertificate @manguoidung INT
 AS
@@ -342,13 +368,14 @@ BEGIN
    INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
-GO
---Học viên nộp bài tập
-CREATE Or ALTER PROCEDURE sp_NopBaiTap @mand INT, @TenBaiTap NVARCHAR(50), @mabaihoc INT, @filebailam VARCHAR(255) 
+--Kiểm Tra tồn tại bài tập chưa nếu chưa thì mới tạo lúc edit tài liệu thành bài tạp
+Create or Alter Procedure sp_CheckTonTaiBaiTap
+@tenbaitap nvarchar(100),@mabaihoc int
 as
 begin
-	INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc, FileBaiLam)
-	VALUES (@mand, @TenBaiTap, @mabaihoc, @filebailam)
+	declare @check int
+	if exists (select 1 From BAITAP where TenBaiTap=@tenbaitap and @mabaihoc=@mabaihoc)
+		set @check=1
+	else
+		set @check=0
 end
-Go
-

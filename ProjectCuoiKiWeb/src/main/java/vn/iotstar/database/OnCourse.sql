@@ -53,7 +53,7 @@ CREATE TABLE KHOAHOC (
     DanhGia INT default 5,
     TheLoai NVARCHAR(50),
     LinhVuc NVARCHAR(30),
-    MinhHoa varchar(255),
+    MinhHoa Nvarchar(255),
     CONSTRAINT FK_KHOAHOC_GIANGVIEN FOREIGN KEY (MaTacGia) REFERENCES GIANGVIEN(MaGiangVien) ON DELETE SET NULL ON UPDATE CASCADE,
     CONSTRAINT CHK_DANHGIA CHECK (DanhGia BETWEEN 1 AND 5)
 );
@@ -74,7 +74,7 @@ CREATE TABLE BAIHOC (
 GO
 
 CREATE TABLE BAITAP (
-	TenBaiTap NVARCHAR(50) NOT NULL,
+	TenBaiTap NVARCHAR(100) NOT NULL,
 	MaBaiHoc INT NOT NULL,
 	ThoiGianHoanThanh real,
 	PRIMARY KEY (TenBaiTap, MaBaiHoc),
@@ -84,7 +84,7 @@ GO
 
 CREATE TABLE TAILIEU (
 	MaTaiLieu INT  PRIMARY KEY IDENTITY,
-	TheLoai NVARCHAR(20),
+	TheLoai NVARCHAR(50),
 	DinhDangLuuTru NVARCHAR(20),
 	DuongDanLuuTru NVARCHAR(255) 
 );
@@ -134,8 +134,9 @@ GO
 
 CREATE TABLE LAMBAITAP (
 	MaNguoiDung INT ,
-	TenBaiTap NVARCHAR(50) ,
+	TenBaiTap NVARCHAR(100) ,
 	MaBaiHoc INT ,
+	TenBaiNop Nvarchar(100),
 	PRIMARY KEY (MaNguoiDung, TenBaiTap, MaBaiHoc),
 	CONSTRAINT FK_LAMBAITAP_NGUOIDUNG FOREIGN KEY (MaNguoiDung) REFERENCES NGUOIDUNG(MaNguoiDung),
 	CONSTRAINT FK_LAMBAITAP_BAITAP FOREIGN KEY (TenBaiTap, MaBaiHoc) REFERENCES BAITAP(TenBaiTap, MaBaiHoc),
@@ -151,15 +152,6 @@ CREATE TABLE DINHKEM (
 
 );
 GO
-Create TABLE BIENSOAN
-(
-	MaNguoiDung int ,
-	MaKhoaHoc int ,
-	primary key (MaNguoiDung,MaKhoaHoc),
-	CONSTRAINT FK_BIENSOAN_GiangVien FOREIGN KEY (MaNguoiDung) REFERENCES GiangVien(MaGiangVien) ,
-	CONSTRAINT FK_BIENSOAN_KHOAHOC FOREIGN KEY (MaKhoaHoc) REFERENCES KhoaHoc(MaKhoahoc)
-)
-Go
 -- Chèn người dùng
 INSERT INTO NGUOIDUNG (HoTen, Email, Sdt, QuocGia, VungMien, DiaChi, TrinhDo,MatKhau)
 VALUES
@@ -188,13 +180,6 @@ INSERT INTO BAIHOC (TenBaiHoc, ThoiGianHoanThanh, NoiDungBaiHoc, MucTieuDauRa, N
 VALUES
     (N'Bài học 1', 2.5, N'Nội dung bài học 1', 5.0, '2023-01-10', 1),
     (N'Bài học 2', 3.0, N'Nội dung bài học 2', 6.0, '2023-01-15', 1)
-
-INSERT INTO BAITAP (TenBaiTap, MaBaiHoc ,ThoiGianHoanThanh)
-VALUES
-    (N'Bài tập 1', 1, 2.0),
-    (N'Bài tập 2', 1, 3.0),
-    (N'Bài tập 1', 2, 2.5),
-    (N'Bài tập 2', 2, 3.5)
 
 INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
@@ -225,17 +210,8 @@ VALUES
 	(1, 2),
     (2, 2)
     
-INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc)
-VALUES
-    (1, N'Bài tập 1', 1),
-    (2, N'Bài tập 2', 2)
-    
 INSERT INTO DINHKEM (MaBaiHoc, MaTaiLieu)
 VALUES
     (1, 1),
     (2, 2)
-    
-INSERT INTO BIENSOAN (MaNguoiDung, MaKhoaHoc)
-VALUES
-    (4, 1)
     

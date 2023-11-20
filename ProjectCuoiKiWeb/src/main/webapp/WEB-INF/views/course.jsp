@@ -318,39 +318,90 @@
 														</c:choose>
 													</c:if>
 												</div>
-
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 												<div class="container_content container-file">
-													<c:if test="${not empty dstailieu}">
+													<!-- HIỂN THỊ DANH SÁCH TÀI LIỆU -->
+														<a>DANH SÁCH TÀI LIỆU</a>
 														<c:forEach var="tailieu" items="${dstailieu}">
-															<label>File:</label>
-															<a
-																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
-																${tailieu.duongdanluutru}</a>
-															<c:if test="${not empty giangvien.manguoidung}">
-																<a href="find-document?matailieu=${tailieu.matailieu}"
-																	class="btn-edit--file"> Edit</a>
-																<a href="delete-document?matailieu=${tailieu.matailieu}"
-																	class="btn-edit--file">Delete</a>
-															</c:if>
+															</br>
+															<div id="container_${tailieu.duongdanluutru}">
+																<script>
+												                    AddImgDocument('${tailieu.duongdanluutru}', 'container_${tailieu.duongdanluutru}');
+												                </script>
+																<a
+																	href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+																	${tailieu.duongdanluutru} </a>
+																<c:if test="${not empty giangvien.manguoidung}">
+																	<a href="find-document?matailieu=${tailieu.matailieu}"
+																		class="btn-edit--file"> Edit</a>
+																	<a
+																		href="delete-document?matailieu=${tailieu.matailieu}"
+																		class="btn-edit--file">Delete</a>
+																</c:if>
+																<c:if test="${not empty hocvien.manguoidung}">
+																	<c:if test="${tailieu.theloai eq 'Bài Tập'}">
+																		<a class="submit-baitap"
+																			href="submit-exercise?tentailieu=${tailieu.duongdanluutru}">Submit</a>
+																	</c:if>
+																</c:if>
+															</div>
 														</c:forEach>
-													</c:if>
-													<c:if
-														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
-														<a href="create-document?mabaihoc=${lesson.mabaihoc}"
-															class="btn btn-outline-secondary btn-create--file">
-															Create</a>
-
-													</c:if>
-
+														<c:if test="${not empty giangvien.manguoidung}">
+															<a href="create-document?mabaihoc=${lesson.mabaihoc}"
+																class="btn btn-outline-secondary btn-create--file">
+																Create </a>
+														</c:if>
 												</div>
 
 
-
+												<div class="container_content container-file">
+													<c:if
+														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
+														<!-- HIỂN THỊ DANH SÁCH BÀI TẬP LÊN CHO GV XEM -->
+														<a>DANH SÁCH BÀI NỘP</a>
+														<c:if test="${not empty dsLbt}">
+															<table class="table">
+																<thead>
+																	<tr>
+																		<th>Full Name</th>
+																		<th>Tên Bài Tập</th>
+																		<th>Mã Bài Học</th>
+																		<th>Tên Bài Nộp</th>
+																	</tr>
+																</thead>
+																<tbody class="table-group-divider">
+																	<c:forEach var="baitapdanop" items="${dsLbt}">
+																		<tr>
+																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
+																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
+																			<td><c:out value="${baitapdanop.getMaBaiHoc()}" /></td>
+																			<td><a
+																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
+																						value="${baitapdanop.tenbainop}"></c:out> </a>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</c:if>
+													</c:if>
+													<!-- HIỂN THỊ CÁC TÀI LIỆU MÀ HỌC VIÊN NỘP LÊN -->
+													<c:if test="${not empty hocvien.manguoidung}">
+														<c:if test="${not empty dslambaitap}">
+															<a>DANH SÁCH BÀI NỘP</a>
+															<c:forEach var="lbt" items="${dslambaitap}">
+																<a
+																	href="./templates/Resource/ResourceDocument/${lbt.getTenbainop()}">
+																	<c:out value="${lbt.getTenbainop()}"></c:out>
+																</a>
+															</c:forEach>
+														</c:if>
+													</c:if>
+												</div>
 											</div>
 											<div class="content-complete">
+												<!-- LÀ HỌC VIÊN THÌ HIỂN THỊ MASK AS DONE -->
 												<c:if test="${empty giangvien.manguoidung}">
 													<button class="btn btn-primary btn-mask"
 														onclick="MaskDone(${lesson.mabaihoc})">Mask as
@@ -365,162 +416,10 @@
 													</c:choose>
 												</div>
 											</div>
-											<br><br>
-<!-- Đang làm chỗ này -->
-											<form id="upload-form" enctype="multipart/form-data"
-												action="fileuploadservlet?mabaihoc=${lesson.mabaihoc}&manguoidung=${hocvien.manguoidung}" method="post">
-												<div id="drop-area">
-													<a>${lesson.mabaihoc}</a>
-													<h1>Kéo và Thả File</h1>
-													<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
-													<input type="file" id="file-input" name="file" />
-													<ul id="file-list"></ul>
-													<input type="submit" id="submit-button" value="Submit" />
-												</div>
-											</form>
-<!-- Tới đây nè -->
+											<br> <br>
 										</div>
 									</div>
 								</div>
-<<<<<<< HEAD
-
-								<!-- Đang làm chỗ này -->
-								<!-- <form id="upload-form" action="Submit-Practice" method="post"
-									enctype="multipart/form-data">
-									<div id="drop-area">
-										<h1>Kéo và Thả File</h1>
-										<p>Thả file vào đây hoặc nhấn vào để chọn file.</p>
-										<input type="file" id="file-input" name="file" multiple />
-										<ul id="file-list"></ul>
-										<input type="submit" id="submit-button" value="Submit"
-											onclick="uploadFile()" />
-									</div>
-								</form>
-
-								<script>
-									$(document)
-											.ready(
-													function() {
-														var dropArea = $('#drop-area');
-														var fileList = $('#file-list');
-														var submitButton = $('#submit-button');
-
-														dropArea
-																.on(
-																		'dragover',
-																		function(
-																				e) {
-																			e
-																					.preventDefault();
-																			dropArea
-																					.addClass('drag-over');
-																		});
-
-														dropArea
-																.on(
-																		'dragleave',
-																		function(
-																				e) {
-																			e
-																					.preventDefault();
-																			dropArea
-																					.removeClass('drag-over');
-																		});
-
-														dropArea
-																.on(
-																		'drop',
-																		function(
-																				e) {
-																			e
-																					.preventDefault();
-																			dropArea
-																					.removeClass('drag-over');
-
-																			var files = e.originalEvent.dataTransfer.files;
-																			handleFiles(files);
-																		});
-
-														$('#file-input')
-																.on(
-																		'change',
-																		function() {
-																			var files = $(this)[0].files;
-																			handleFiles(files);
-																		});
-
-														submitButton
-																.on(
-																		'click',
-																		function() {
-																			// Thực hiện xử lý khi nhấn nút Submit
-																			saveFiles();
-																		});
-
-														function handleFiles(
-																files) {
-															for (var i = 0; i < files.length; i++) {
-																var file = files[i];
-																var listItem = $('<li class="file-item">'
-																		+ file.name
-																		+ '<button class="delete-button" data-index="' + i + '">Xóa</button></li>');
-																fileList
-																		.append(listItem);
-
-																// Đăng ký sự kiện xóa file khi nhấn nút Xóa
-																listItem
-																		.find(
-																				'.delete-button')
-																		.on(
-																				'click',
-																				function() {
-																					var index = $(
-																							this)
-																							.data(
-																									'index');
-																					removeFile(index);
-																				});
-															}
-														}
-
-														function removeFile(
-																index) {
-															// Xóa file khỏi danh sách
-															$('#file-list li')
-																	.eq(index)
-																	.remove();
-														}
-
-														function saveFiles() {
-															var files = $('#file-list li');
-															var formData = new FormData(
-																	$('#upload-form')[0]);
-
-															$
-																	.ajax({
-																		type : 'POST',
-																		url : '/upload/files',
-																		data : formData,
-																		contentType : false,
-																		processData : false,
-																		success : function(
-																				response) {
-																			alert(response);
-																			// Thêm code xử lý sau khi lưu thành công
-																		},
-																		error : function(
-																				error) {
-																			console
-																					.error(error);
-																			alert('Error occurred while saving files.');
-																		}
-																	});
-														}
-													});
-								</script> -->
-								<!-- Tới đây nè -->
-=======
->>>>>>> 0fb2204a3fb56f5b66809cfbc8bb297e835c9b69
 							</div>
 							<!-- NOTES -->
 							<div class="page-note page-common active">
@@ -541,7 +440,6 @@
 											<option value="6">Fourier Transform and Sampling</option>
 										</select>
 									</div>
-
 									<div class="page-note-icon">
 										<img
 											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
@@ -796,6 +694,7 @@
 	</div>
 	<script type="text/javascript"
 		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+	</script>
 	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${warning}");

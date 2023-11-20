@@ -16,8 +16,7 @@ GO
 --Xem Khoá Học Đã Tạo
 Create Or Alter View v_XemKhoaHocDaTao
 as select KHOAHOC.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa,GIANGVIEN.MaGiangVien, KHOAHOC.MinhHoa From GIANGVIEN 
-join BIENSOAN on GIANGVIEN.MaGiangVien=BIENSOAN.MaNguoiDung
-join KHOAHOC on KHOAHOC.MaKhoaHoc=BIENSOAN.MaKhoaHoc
+join KHOAHOC on KHOAHOC.MaTacGia=GIANGVIEN.MaGiangVien
 Go
 
 -- Xem Giỏ Hàng
@@ -47,3 +46,17 @@ right join BAIHOC
 on BAIHOC.MaBaiHoc=DINHKEM.MaBaiHoc
 join KHOAHOC
 on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
+GO
+
+--View xem danh sách bài tập sinh viên nộp
+CREATE OR ALTER VIEW vw_baitapsinhvien
+AS
+SELECT LamBaiTap.TenBaiNop,HOCVIEN.MaHocVien,concat(HOCVIEN.MaHocVien,'_',NGUOIDUNG.HoTen) as HoTen, BAITAP.TenBaiTap, BAITAP.MaBaiHoc, ThoiGianHoanThanh
+FROM LAMBAITAP
+INNER JOIN  BAITAP 
+ON LAMBAITAP.MaBaiHoc = BAITAP.MaBaiHoc AND LAMBAITAP.TenBaiTap = BAITAP.TenBaiTap
+INNER JOIN HOCVIEN
+on HOCVIEN.MaHocVien=LAMBAITAP.MaNguoiDung	
+join NGUOIDUNG
+on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
+GO

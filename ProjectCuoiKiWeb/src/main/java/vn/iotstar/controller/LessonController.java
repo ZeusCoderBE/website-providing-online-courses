@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +16,8 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import vn.iotstar.model.BaiHoc;
 import vn.iotstar.model.BaiHocDao;
-
+import vn.iotstar.model.BaiTap;
+import vn.iotstar.model.BaiTapDAO;
 import vn.iotstar.model.GiangVien;
 import vn.iotstar.model.HocVien;
 import vn.iotstar.model.KhoaHoc;
@@ -40,6 +40,7 @@ public class LessonController {
 	int mabaihoc;
 	int modedocument;
 	int matailieu;
+	String tentailieu;
 	@Autowired
 	ServletContext context;
 
@@ -115,23 +116,19 @@ public class LessonController {
 				List<TaiLieu> dstailieu = new ArrayList<>();
 				dstailieu = tlD.FindDocumentofMylesson(mabaihoc);
 				model.addAttribute("dstailieu", dstailieu);
-
-				// List<LamBaiTap> dsbaitapnop = new ArrayList<>();
-				if (hv != null) {
-					String dsbaitapnop = lbtD.LoadBaiTap(hv.getManguoidung(), mabaihoc);
-					model.addAttribute("dslambaitap", dsbaitapnop);
+				if (hv != null && gv == null) {
+					List<LamBaiTap> dslambaitap = lbtD.LoadBaiTap(hv.getManguoidung(), mabaihoc);
+					model.addAttribute("dslambaitap", dslambaitap);
+					BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
+					model.addAttribute("trangthai", trangthai);
 				}
-				if (gv != null) {
+				if (gv != null && hv == null) {
 					List<LamBaiTap> dsLbt = lbtD.DSNopBaiTap(mabaihoc);
 					model.addAttribute("dsLbt", dsLbt);
 				}
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
 				dsbaihoc = bhD.GetListLesson(khoahoc);
 				model.addAttribute("dsbaihoc", dsbaihoc);
-				if (gv == null && hv != null) {
-					BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
-					model.addAttribute("trangthai", trangthai);
-				}
 				url = "course";
 			} else {
 				url = "redirect:/courses";
@@ -160,36 +157,46 @@ public class LessonController {
 	}
 
 	@RequestMapping(value = "post-document", method = RequestMethod.POST)
-	public String CreateDocumentofLesson(@RequestParam("theloai") String theloai,
-			@RequestParam("dinhdang") String dinhdang,
+	public String CreateDocumentofLesson(@RequestParam("dinhdang") String dinhdang,
 			@RequestParam(value = "ckbaitap", defaultValue = "null", required = false) String ckbaitap,
-			@RequestParam("tghoanthanh") double tghoanthanh, MultipartHttpServletRequest rq, ModelMap model,
-			HttpSession session) {
+			@RequestParam(value = "tghoanthanh", defaultValue = "null", required = false) String tghoanthanh,
+			MultipartHttpServletRequest rq, ModelMap model, HttpSession session) {
 		MultipartFile mul = rq.getFile("user-file");
+		String theloai;
 		if (mul != null) {
 			String originname = mul.getOriginalFilename();
 			try {
 				String upload = context.getRealPath("Resource\\ResourceDocument\\" + originname);
 				File dest = new File(upload);
 				mul.transferTo(dest);
+				if (!ckbaitap.equals("null") && !tghoanthanh.equals("null") && Double.parseDouble(tghoanthanh) > 0) {
+					theloai = "Bài Tập";
+				} else {
+					theloai = "Tài Liệu";
+				}
 				TaiLieu tailieu = new TaiLieu(matailieu, theloai, dinhdang, originname);
+				System.out.println(ckbaitap);
+				System.out.println(tghoanthanh);
 				if (modedocument == 0) {
-					if (ckbaitap != "null") {
-						BaiTap bt = new BaiTap(originname, mabaihoc, tghoanthanh);
-						if (btD.CreateBaiTap(bt) == 1) {
-							session.setAttribute("uptailieu", "Bạn đã upload tài liệu bài tập thành công !");
-						} else {
-							session.setAttribute("uptailieu", "Có lỗi xảy ra!");
-						}
-					}
 					if (tlD.CreateDocument(tailieu) == 1 && tlD.CreateAttachment(mabaihoc) == 1) {
-
+						if (!ckbaitap.equals("null") && !tghoanthanh.equals("null")
+								&& Double.parseDouble(tghoanthanh) > 0) {
+							BaiTap bt = new BaiTap(originname, mabaihoc, Double.parseDouble(tghoanthanh));
+							btD.CreateBaiTap(bt);
+						}
 						session.setAttribute("uptailieu", "Bạn đã upload tài liệu thành công !");
 					} else {
 						session.setAttribute("uptailieu", "Có lỗi xảy ra!");
 					}
 				} else {
 					if (tlD.EditDocument(tailieu) == 1) {
+						if (!ckbaitap.equals("null") && !tghoanthanh.equals("null")
+								&& Double.parseDouble(tghoanthanh) > 0) {
+							BaiTap bt = new BaiTap(originname, mabaihoc, Double.parseDouble(tghoanthanh));
+							if (lbtD.CheckBaiTap(originname, mabaihoc) == 0) {
+								btD.CreateBaiTap(bt);
+							}
+						}
 						session.setAttribute("uptailieu", "Bạn đã cập nhật tài liệu thành công !");
 					} else {
 						session.setAttribute("uptailieu", "Có lỗi xảy ra!");
@@ -262,36 +269,30 @@ public class LessonController {
 		return "redirect:courses?makhoahoc=" + baihoc.getMakhoahoc();
 	}
 
-	@RequestMapping(value = "/fileuploadservlet", method = RequestMethod.POST)
-	public String SubmitBaiTap(ModelMap model, MultipartHttpServletRequest rq, @RequestParam("makhoahoc") int makh,
-			@RequestParam("mabaihoc") int mabaihoc, @RequestParam("manguoidung") int manguoidung, HttpSession session)
+	@RequestMapping(value = "/fileupload-exercise", method = RequestMethod.POST)
+	public String SubmitBaiTap(ModelMap model, MultipartHttpServletRequest rq, HttpSession session)
 			throws SQLException {
+		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		MultipartFile mul = rq.getFile("file");
 		if (mul != null) {
 			String originname = mul.getOriginalFilename();
 			try {
-				String upload = context.getRealPath("Resource\\ResourceVideo\\" + originname);
-				System.out.print(upload);
+				String upload = context.getRealPath("Resource\\ResourceDocument\\" + originname);
 				File dest = new File(upload);
 				mul.transferTo(dest);
-				System.out.print("Download Successfull");
-				LamBaiTap lbt = new LamBaiTap(manguoidung, "Bài tập 1", mabaihoc, originname);
+				LamBaiTap lbt = new LamBaiTap(originname, hv.getManguoidung(), mabaihoc, tentailieu);
 				lbtD.NopBaiTap(lbt);
 			} catch (Exception ex) {
 				System.out.print(ex.getMessage());
-				System.out.print("False");
 			}
 		}
 		return "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
 	}
 
-	@RequestMapping(value = "/submit-baitap", method = RequestMethod.GET)
-	public String ViewSubmitBaiTap(ModelMap model, @RequestParam("makhoahoc") int makh,
-			@RequestParam("mabaihoc") int mabaihoc, @RequestParam("manguoidung") int manguoidung, HttpSession session)
+	@RequestMapping(value = "/submit-exercise", method = RequestMethod.GET, params = "tentailieu")
+	public String ViewSubmitBaiTap(HttpSession session, @RequestParam("tentailieu") String tenbaitap)
 			throws SQLException {
-		model.addAttribute("makhoahoc", makh);
-		model.addAttribute("mabaihoc", mabaihoc);
-		model.addAttribute("manguoidung", manguoidung);
+		this.tentailieu = tenbaitap;
 		return "submit";
 	}
 

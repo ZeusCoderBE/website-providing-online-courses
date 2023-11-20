@@ -268,3 +268,8 @@ body {
 .footer {
 	width: auto;
 }
+
+.imgFile {
+	height: 25px;
+	width: 25px;
+}

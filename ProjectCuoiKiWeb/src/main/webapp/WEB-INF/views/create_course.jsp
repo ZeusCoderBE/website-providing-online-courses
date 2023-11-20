@@ -9,7 +9,8 @@
 <meta charset="UTF-8">
 <title>Create course</title>
 <link rel="stylesheet" href="./templates/CSS/create_course.css">
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <script src="./templates/JavaScript/script.js"></script>
@@ -34,10 +35,7 @@
 									required value="${findkhoahoc.theloai}" />
 							</div>
 							<div class="form-login-input">
-								<label for="gv">Mã Tác Giả</label> <input type="text"
-									id="matacgia" name="matacgia" placeholder="vd: 4" required
-									value="${findkhoahoc.matacgia}" /> <label for="price">Gia
-									tiền:</label>
+								<label for="price">Gia tiền:</label>
 								<fmt:formatNumber var="giatien" value="${findkhoahoc.giatien}"
 									type="number" maxFractionDigits="3" />
 								<input type="text" id="giatien" name="giatien"
@@ -88,8 +86,8 @@
 			</form>
 		</div>
 	</div>
-	<script
-		src="./templates/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="./templates/tinymce/tinymce.min.js"
+		referrerpolicy="origin"></script>
 	<script src="./templates/JavaScript/script.js"></script>
 	<script>
 		window.onload = function() {
