@@ -23,6 +23,10 @@ body.create-open {
     /* pointer-events: none; */
 }
 
+.form-check {
+	margin-right: 50px;
+}
+
 .active {
     display: block;
 }
@@ -80,7 +84,7 @@ body.create-open {
 input[type=range] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
   height:5px;
-  width:80%;
+  width:90%;
   cursor: pointer;
   background: #07C;
   margin-bottom: 10px;

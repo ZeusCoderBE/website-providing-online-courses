@@ -26,15 +26,23 @@
 							<div class="form-login-header">
 								<h1>Document</h1>
 							</div>
-							<div>
-								<label>Up bài tập</label><input type="checkbox" id="checkbox"
-									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br>
-								<label for="datelesson">Thời gian hoàn thành</label>
-								<output id="Output" class="output">0</output>
-								<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
-									value="${editbaihoc.thoigianhoanthanh}" max="180" step="0.5"
-									list="ticks" oninput="Output.value = tghoanthanh.value"
-									disabled />
+							<div class="form-login-input">
+								<!-- <label>Up bài tập</label><input type="checkbox" id="checkbox"
+									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br> -->
+								<div class="form-check">
+									<label class="form-check-label" for="checkbox">
+										Default checkbox </label> <input class="form-check-input"
+										type="checkbox" id="checkbox" name="ckbaitap"
+										onclick="handleCkBaiTapChange(this)">
+								</div>
+								<div style="flex: 1;">
+									<label for="datelesson">Thời gian hoàn thành</label>
+									<output id="Output" class="output">0</output>
+									<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
+										value="${editbaihoc.thoigianhoanthanh}" max="180" step="0.5"
+										list="ticks" oninput="Output.value = tghoanthanh.value"
+										disabled />
+								</div>
 							</div>
 							<div class="form-login-input">
 								<label id="dinhdang">Định dạng lưu trữ:</label> <input

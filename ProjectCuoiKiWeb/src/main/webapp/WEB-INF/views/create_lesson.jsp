@@ -26,7 +26,7 @@
 								<label for="namelesson">Tên bài học:</label> <input type="text"
 									id="namelesson" name="namelesson" placeholder="Tên bài học"
 									value="${editbaihoc.tenbaihoc}" />
-								<div>
+								<div style="width: 36%;">
 									<label for="datelesson">Thời gian hoàn thành</label>
 									<output id="Output" class="output">0</output>
 									<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
