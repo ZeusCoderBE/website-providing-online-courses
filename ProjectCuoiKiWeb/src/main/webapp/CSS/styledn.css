@@ -10,7 +10,7 @@ body {
     position:relative;
     min-height: 100vh;
     padding-top: 40px;
-    background-image: url('https://www.pluralsight.com/content/dam/pluralsight2/solutions/2023/security/BoostRiskSkills_Hero.webp');
+    background-image: url('../Images/background.webp');
     background-size: 50%;
     background-position: right;
     background-repeat: no-repeat;

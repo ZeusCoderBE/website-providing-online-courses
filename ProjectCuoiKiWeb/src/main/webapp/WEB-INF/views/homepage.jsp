@@ -14,7 +14,6 @@
 <link href="./templates/CSS/cart.css" rel="stylesheet">
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
-<link href="./templates/CSS/create_course.css" rel="stylesheet">
 <script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>

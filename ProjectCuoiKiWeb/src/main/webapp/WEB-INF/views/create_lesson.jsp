@@ -20,29 +20,39 @@
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
-								<h1>TẠO BÀI HỌC</h1>
+								<h1>CREATE LESSON</h1>
 							</div>
-							<div class="form-login-input">
-								<label for="namelesson">Tên bài học:</label> <input type="text"
-									id="namelesson" name="namelesson" placeholder="Tên bài học"
-									value="${editbaihoc.tenbaihoc}" />
-								<div style="width: 36%;">
-									<label for="datelesson">Thời gian hoàn thành</label>
-									<output id="Output" class="output">0</output>
-									<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
-										value="${editbaihoc.thoigianhoanthanh}" max="180" step="0.5"
-										list="ticks" oninput="Output.value = tghoanthanh.value" />
+							<div class="form-container">
+								<div class="form-control">
+									<div class="form-login-input">
+										<label for="namelesson">Tên bài học:</label> <input
+											type="text" id="namelesson" name="namelesson"
+											placeholder="Tên bài học" value="${editbaihoc.tenbaihoc}" />
+
+									</div>
+									<div class="form-login-input form-progress">
+										<div class="form-progress-item">
+											<label for="datelesson">Thời gian hoàn thành:</label>
+											<output id="Output" class="output">0</output>
+										</div>
+										<input name="tghoanthanh" id="tghoanthanh" type="range"
+											min="0" value="${editbaihoc.thoigianhoanthanh}" max="180"
+											step="0.5" list="ticks"
+											oninput="Output.value = tghoanthanh.value" />
+
+									</div>
+									<div class="form-login-input">
+										<label for="daura">Mục tiêu đầu ra</label> <input type="text"
+											id="daura" name="daura" value="${editbaihoc.muctieudaura}" />
+									</div>
+								</div>
+								<div class="form-control">
+									<h3>Nội dung bài học</h3>
+									<textarea name="textarea" id="default"
+										value="${editbaihoc.noidungbaihoc}"></textarea>
 								</div>
 							</div>
-							<div class="form-login-input">
-								<label for="daura">Mục tiêu đầu ra</label> <input type="text"
-									id="daura" name="daura" value="${editbaihoc.muctieudaura}" />
-							</div>
-							<div class="content">
-								<h3>Nội dung bài học</h3>
-								<textarea name="textarea" id="default"
-									value="${editbaihoc.noidungbaihoc}"></textarea>
-							</div>
+
 							<button class="btn btn-primary" type="submit">Tạo bài
 								học</button>
 						</div>

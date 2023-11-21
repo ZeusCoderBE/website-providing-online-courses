@@ -367,7 +367,7 @@
 																	<tr>
 																		<th>Full Name</th>
 																		<th>Tên Bài Tập</th>
-																		<th>Mã Bài Học</th>
+																		
 																		<th>Tên Bài Nộp</th>
 																	</tr>
 																</thead>
@@ -376,7 +376,7 @@
 																		<tr>
 																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
 																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
-																			<td><c:out value="${baitapdanop.getMaBaiHoc()}" /></td>
+																			
 																			<td><a
 																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
 																						value="${baitapdanop.tenbainop}"></c:out> </a>

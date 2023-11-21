@@ -17,40 +17,56 @@
 <body>
 
 	<div id="app">
-		<div class="form_create">
+		<div class="form_create" style="width: 50%;">
 			<form action="post-document" enctype="multipart/form-data"
 				method="post">
 				<div class="form-list">
 					<div class="form-item">
 						<div class="form-item-login">
 							<div class="form-login-header">
-								<h1>Document</h1>
+								<h1 style="font-size: 2.8rem;">Document</h1>
 							</div>
-							<div class="form-login-input">
-								<!-- <label>Up bài tập</label><input type="checkbox" id="checkbox"
+							<div class="form-container">
+								<div class="form-control">
+									<div class="form-login-input">
+										<!-- <label>Up bài tập</label><input type="checkbox" id="checkbox"
 									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br> -->
-								<div class="form-check">
-									<label class="form-check-label" for="checkbox">
-										Default checkbox </label> <input class="form-check-input"
-										type="checkbox" id="checkbox" name="ckbaitap"
-										onclick="handleCkBaiTapChange(this)">
+										<div class="form-check">
+											<label class="form-check-label" for="checkbox">
+												Bài Tập </label> <input class="form-check-input"
+												type="checkbox" id="checkbox" name="ckbaitap"
+												onclick="handleCkBaiTapChange(this)">
+										</div>
+
+									</div>
+									<div class="form-control">
+										<div class="form-login-input">
+											<!-- <label>Up bài tập</label><input type="checkbox" id="checkbox"
+									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br> -->
+
+											<div class="form-progress" style="flex: 1;">
+												<div class="form-progress-item">
+													<label for="datelesson">Thời gian hoàn thành</label>
+													<output id="Output" class="output">0</output>
+												</div>
+												<input name="tghoanthanh" id="tghoanthanh" type="range"
+													min="0" value="${editbaihoc.thoigianhoanthanh}" max="180"
+													step="0.5" list="ticks"
+													oninput="Output.value = tghoanthanh.value" disabled />
+											</div>
+										</div>
+										<div class="form-login-input">
+											<label id="dinhdang">Định dạng lưu trữ:</label> <input
+												type="text" name="dinhdang"
+												value="${tailieu.dinhdangluutru}">
+										</div>
+										<div class="form-login-input">
+											<label id="user-file">Tài liệu:</label> <input type="file"
+												name="user-file"> <br />
+										</div>
+									</div>
 								</div>
-								<div style="flex: 1;">
-									<label for="datelesson">Thời gian hoàn thành</label>
-									<output id="Output" class="output">0</output>
-									<input name="tghoanthanh" id="tghoanthanh" type="range" min="0"
-										value="${editbaihoc.thoigianhoanthanh}" max="180" step="0.5"
-										list="ticks" oninput="Output.value = tghoanthanh.value"
-										disabled />
-								</div>
-							</div>
-							<div class="form-login-input">
-								<label id="dinhdang">Định dạng lưu trữ:</label> <input
-									type="text" name="dinhdang" value="${tailieu.dinhdangluutru}">
-							</div>
-							<div class="form-login-input">
-								<label id="user-file">Tài liệu:</label> <input type="file"
-									name="user-file"> <br />
+
 							</div>
 							<div class="form-login-input">
 								<c:choose>
@@ -64,7 +80,6 @@
 							</div>
 						</div>
 					</div>
-				</div>
 			</form>
 		</div>
 	</div>
