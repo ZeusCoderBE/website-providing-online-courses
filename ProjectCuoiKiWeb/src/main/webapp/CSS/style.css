@@ -710,6 +710,11 @@
 	font-weight: bold;
 	margin-bottom: 10px;
 	font-size: 0.9rem;
+	white-space: nowrap;
+	/* Ngăn văn bản xuống dòng */
+	overflow: hidden;
+	/* Ẩn phần văn bản vượt quá độ dài */
+	text-overflow: ellipsis;
 }
 
 .progress {

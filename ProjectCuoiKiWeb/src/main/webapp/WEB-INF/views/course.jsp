@@ -424,7 +424,7 @@
 							<!-- NOTES -->
 							<div class="page-note page-common active">
 								<div class="page-content">
-									<h2>Notes</h2>
+									<h2>Notes (Comming soon)</h2>
 									<div class="page-content-filter">
 										<h5>Filter</h5>
 										<select class="form-select"
@@ -456,7 +456,7 @@
 							<!-- Forum -->
 							<div class="page-forum page-common active">
 								<div class="page-content">
-									<h2>Forum</h2>
+									<h2>Forum (Comming soon)</h2>
 									<div class="page-content-form">
 										<input class="form-control" type="text"
 											placeholder="Search Forum" />
@@ -531,7 +531,7 @@
 							<!-- Messages-->
 							<div class="page-message page-common active">
 								<div class="page-content">
-									<h2>Messages</h2>
+									<h2>Messages (Comming soon)</h2>
 
 									<div class="page-title">
 										<div class="page-title-item">
