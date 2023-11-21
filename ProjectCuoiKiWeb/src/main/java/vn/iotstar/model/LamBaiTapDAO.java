@@ -12,8 +12,12 @@ public class LamBaiTapDAO {
 	DataBaseConnection dbC = new DataBaseConnection();
 
 	public void NopBaiTap(LamBaiTap lbt) throws SQLException, ClassNotFoundException {
+<<<<<<< HEAD
 		String sqlStr = String.format(
 				"EXECUTE sp_NopBaiTap @mand = %d, " + "@TenBaiTap = N'%s', @mabaihoc = %d, @tenbainop=N'%s'",
+=======
+		String sqlStr = String.format("EXECUTE sp_NopBaiTap @mand = %d, " + "@TenBaiTap = N'%s', @mabaihoc = %d, @tenbainop=N'%s'",
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 				lbt.getMaNguoiDung(), lbt.getTenBaiTap(), lbt.getMaBaiHoc(), lbt.getTenbainop());
 		System.out.print(sqlStr);
 		dbC.ExecuteCommand(sqlStr);
@@ -25,13 +29,18 @@ public class LamBaiTapDAO {
 		LamBaiTap lbt = new LamBaiTap();
 		List<LamBaiTap> dsbaitap = new ArrayList<LamBaiTap>();
 		while (rs.next() == true) {
+<<<<<<< HEAD
 			lbt = new LamBaiTap(rs.getNString("TenBaiNop"), rs.getInt("MaHocVien"), rs.getInt("MaBaiHoc"),
 					rs.getNString("TenBaiTap"));
+=======
+			lbt = new LamBaiTap(rs.getNString("TenBaiNop"), rs.getInt("MaHocVien"), rs.getInt("MaBaiHoc"), rs.getNString("TenBaiTap"));
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 			dsbaitap.add(lbt);
 		}
 		return dsbaitap;
 	}
 
+<<<<<<< HEAD
 	public int CheckBaiTap(String tenbaitap, int mabaihoc) {
 		String dml = "sp_CheckTonTaiBaiTap N'" + tenbaitap + "'," + mabaihoc + "";
 		System.out.print(dml);
@@ -40,6 +49,8 @@ public class LamBaiTapDAO {
 		return ketqua;
 	}
 
+=======
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 	public List<LamBaiTap> DSNopBaiTap(int mabh) throws SQLException, ClassNotFoundException {
 		String sqlStr = String.format("EXECUTE sp_DSBaiTapGV %d", mabh);
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);

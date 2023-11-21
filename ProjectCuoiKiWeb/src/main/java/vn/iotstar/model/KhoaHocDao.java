@@ -51,7 +51,11 @@ public class KhoaHocDao {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
 				+ khoahoc.getThoigian() + ",N'" + khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'"
+<<<<<<< HEAD
 				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "',N'"
+=======
+				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','"
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 				+ khoahoc.getMinhhoa() + "'";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
@@ -67,7 +71,11 @@ public class KhoaHocDao {
 		String dml = "exec sp_CreateACourse N'" + khoahoc.getTenkhoahoc() + "'," + khoahoc.getMatacgia() + ","
 				+ khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "'," + khoahoc.getThoigian() + ",N'"
 				+ khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'" + ",N'" + khoahoc.getMota()
+<<<<<<< HEAD
 				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "',N'" + khoahoc.getMinhhoa() + "'";
+=======
+				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','" + khoahoc.getMinhhoa() + "'";
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
@@ -80,7 +88,11 @@ public class KhoaHocDao {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
+<<<<<<< HEAD
 					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"), rs.getNString("MinhHoa"));
+=======
+					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"), rs.getString("MinhHoa"));
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 
 		}
 		return khoahoc;
@@ -94,7 +106,11 @@ public class KhoaHocDao {
 		while (rs.next()) {
 			System.out.println(rs.getFloat("TienDo"));
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
+<<<<<<< HEAD
 					rs.getNString("MoTa"), rs.getNString("MinhHoa"), rs.getDouble("TienDo"));
+=======
+					rs.getNString("MoTa"), rs.getString("MinhHoa"), rs.getDouble("TienDo"));
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -107,7 +123,11 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
+<<<<<<< HEAD
 					rs.getNString("MoTa"), rs.getNString("MinhHoa"));
+=======
+					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 			listkh.add(khoahoc);
 		}
 		return listkh;

@@ -1,7 +1,12 @@
 tinymce.init({
 	selector: 'textarea#default',
+<<<<<<< HEAD
 	width: 900,
 	height: 500,
+=======
+	width: 1100,
+	height: 700,
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 	plugins: [
 		'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'prewiew', 'anchor', 'pagebreak',
 		'searchreplace', 'wordcount', 'visualblocks', 'code', 'fullscreen', 'insertdatetime', 'media',
@@ -361,7 +366,11 @@ function AddImgDocument(duongDanTaiLieu, parentId) {
 		case 'pdf':
 			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf';
 			break;
+<<<<<<< HEAD
         case 'pptx':
+=======
+        case 'ppt':
+>>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
             hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/powerpoint';
             break;
 		case 'docs':
