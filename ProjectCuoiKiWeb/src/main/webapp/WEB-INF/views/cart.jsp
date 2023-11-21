@@ -8,16 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Giỏ hàng</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-
+<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" href="./templates/CSS/cart.css">
 <link rel="stylesheet" href="./templates/CSS/main.css">
 <link rel="stylesheet" href="./templates/CSS/descride.css">
@@ -134,8 +127,9 @@
 									Khoá Học</h5>
 								<ul class="cart-list">
 									<c:forEach var="giohang" items="${dsgiohang}">
-										<li class="cart-item"><input class="checkbox-item" onclick="TotalPay()"
-											type="checkbox" name="selectedCourses" id="selectedCourses"
+										<li class="cart-item"><input class="checkbox-item"
+											onclick="TotalPay()" type="checkbox" name="selectedCourses"
+											id="selectedCourses"
 											value="${giohang.getKhoahoc().getMakhoahoc()}">
 											<div class="cart-item-container">
 												<div class="cart-item-info">
@@ -207,15 +201,14 @@
 												<div class="cart-item-action">
 													<div class="cart-item-delete">
 														<a
-															href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
-														<a href="#">Lưu để sau</a>
+															href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
 													</div>
 													<div class="cart-item-price">
 														<div class="cart-price-current">
 															<fmt:formatNumber var="giaTien"
 																value="${giohang.getKhoahoc().getGiatien()}"
 																type="number" maxFractionDigits="3" />
-															<p>Giá Tiền: ${giaTien}$</p>
+															<p>Giá Tiền: ${giaTien.replace(',','.')}$</p>
 														</div>
 														<div class="cart-price-old">
 															<p>10000$</p>
@@ -255,7 +248,7 @@
 					<div class="footer_column">
 						<div class="footer_header">
 							<a class="nav_item_link" href="#">
-								<div>OnCourse</div>
+								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>
 						</div>
@@ -267,7 +260,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Về Oncourse</h5>
+							<h5>Về ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Giới thiệu</a></li>
@@ -309,13 +302,13 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+							<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. ${company.getName()} xây
 									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
 									đồng.</p>
 							</li>
@@ -326,7 +319,7 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
+				<div class="footer_nav__info">© 2018 - 2023 ${company.getName()}. Nền tảng
 					học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i
@@ -336,10 +329,7 @@
 			</section>
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
 	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");

@@ -14,12 +14,6 @@ public class GiangVienDao {
 		int ketqua = dbC.ExecuteCommand(sql);
 		return ketqua;
 	}
-	public int InsertCompilation(int manguoidung)
-	{
-		String dml="exec sp_CreateCompilation "+manguoidung+"";
-		int ketqua=dbC.ExecuteCommand(dml);
-		return ketqua;
-	}
 	public int UpdateofCardTeacher(KhoaHoc khoahoc)
 	{
 		String dml="exec sp_CapNhatSoDuTKGV  "+khoahoc.getMatacgia()+","+khoahoc.getGiatien()+"";

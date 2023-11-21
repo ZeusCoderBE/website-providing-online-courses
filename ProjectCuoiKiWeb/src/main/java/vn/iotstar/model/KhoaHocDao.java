@@ -1,10 +1,5 @@
 package vn.iotstar.model;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
@@ -29,11 +24,24 @@ public class KhoaHocDao {
 		return danhsachkh;
 	}
 
+	public KhoaHoc CountSignIn(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String query = "select *From v_xemkhoahocdangky where MaKhoaHoc=" + makhoahoc + "";
+		ResultSet rs = dbC.ExecuteQuery(query);
+		KhoaHoc khoahoc = new KhoaHoc();
+		if (rs.next()) {
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getInt("SoLuong"));
+			return khoahoc;
+		}
+		return null;
+
+	}
+
 	public List<KhoaHoc> CountSelectedCourses(List<String> selectedCourses)
 			throws NumberFormatException, ClassNotFoundException, SQLException {
 		List<KhoaHoc> selectedtemp = new ArrayList<>();
 		for (String courseId : selectedCourses) {
 			KhoaHoc course = FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(courseId)));
+
 			selectedtemp.add(course);
 		}
 		return selectedtemp;
@@ -43,7 +51,7 @@ public class KhoaHocDao {
 		String dml = "exec sp_EditACourse  " + khoahoc.getMakhoahoc() + ",N'" + khoahoc.getTenkhoahoc() + "',"
 				+ khoahoc.getMatacgia() + "," + khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "',"
 				+ khoahoc.getThoigian() + ",N'" + khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'"
-				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','"
+				+ ",N'" + khoahoc.getMota() + "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "',N'"
 				+ khoahoc.getMinhhoa() + "'";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
@@ -59,7 +67,7 @@ public class KhoaHocDao {
 		String dml = "exec sp_CreateACourse N'" + khoahoc.getTenkhoahoc() + "'," + khoahoc.getMatacgia() + ","
 				+ khoahoc.getGiatien() + "" + ",N'" + khoahoc.getNgonngu() + "'," + khoahoc.getThoigian() + ",N'"
 				+ khoahoc.getTrinhdodauvao() + "','" + khoahoc.getNgayphathanh() + "'" + ",N'" + khoahoc.getMota()
-				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "','" + khoahoc.getMinhhoa() + "'";
+				+ "',N'" + khoahoc.getTheloai() + "',N'" + khoahoc.getLinhvuc() + "',N'" + khoahoc.getMinhhoa() + "'";
 		System.out.print(dml);
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
@@ -72,7 +80,7 @@ public class KhoaHocDao {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getInt("MaTacGia"),
 					rs.getDouble("GiaTien"), rs.getNString("NgonNgu"), rs.getDouble("ThoiGianHoanThanh"),
 					rs.getNString("TrinhDoDauVao"), rs.getDate("NgayPhatHanh"), rs.getNString("MoTa"),
-					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"), rs.getString("MinhHoa"));
+					rs.getInt("DanhGia"), rs.getNString("TheLoai"), rs.getNString("LinhVuc"), rs.getNString("MinhHoa"));
 
 		}
 		return khoahoc;
@@ -84,8 +92,9 @@ public class KhoaHocDao {
 		KhoaHoc khoahoc = new KhoaHoc();
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
+			System.out.println(rs.getFloat("TienDo"));
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+					rs.getNString("MoTa"), rs.getNString("MinhHoa"), rs.getDouble("TienDo"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
@@ -98,14 +107,14 @@ public class KhoaHocDao {
 		List<KhoaHoc> listkh = new ArrayList<KhoaHoc>();
 		while (rs.next()) {
 			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
-					rs.getNString("MoTa"), rs.getString("MinhHoa"));
+					rs.getNString("MoTa"), rs.getNString("MinhHoa"));
 			listkh.add(khoahoc);
 		}
 		return listkh;
 	}
 
-	public boolean KhoaHocDaTao(int manguoidung, int makhoahoc) throws ClassNotFoundException, SQLException {
-		String sqlStr = "Select *From BienSoan where MaNguoiDung=" + manguoidung + " and MaKhoaHoc=" + makhoahoc + "";
+	public boolean KhoaHocDaTao(int manguoidung) throws ClassNotFoundException, SQLException {
+		String sqlStr = "Select *From KhoaHoc where MaTacGia=" + manguoidung;
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);
 		if (rs.next()) {
 			return true;
@@ -120,5 +129,16 @@ public class KhoaHocDao {
 			return true;
 		}
 		return false;
+	}
+
+	public KhoaHoc FindTenKhoaHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String sqlStr = "select MaKhoaHoc, TenKhoaHoc from KhoaHoc where MaKhoaHoc =" + makhoahoc;
+		ResultSet rs = dbC.ExecuteQuery(sqlStr);
+		KhoaHoc kh = new KhoaHoc();
+		while (rs.next()) {
+			kh = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"));
+			return kh;
+		}
+		return null;
 	}
 }

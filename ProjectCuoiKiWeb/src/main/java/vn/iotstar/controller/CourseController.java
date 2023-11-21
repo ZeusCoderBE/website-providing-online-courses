@@ -2,6 +2,7 @@ package vn.iotstar.controller;
 
 import vn.iotstar.model.*;
 
+import java.io.File;
 import java.sql.Date;
 import java.sql.SQLException;
 
@@ -13,11 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.http.HttpSession;
 import java.util.*;
-import java.io.File;
 
 @Controller
 public class CourseController {
@@ -44,31 +43,6 @@ public class CourseController {
 		return "course";
 	}
 
-	@RequestMapping(value = "/FindDocuments", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowDocumennt(ModelMap model, @RequestParam("mabaihoc") int mabaihoc)
-			throws ClassNotFoundException, SQLException {
-		String url = "";
-		try {
-			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
-			if (baihoc != null) {
-				// tìm 1 bài học
-				model.addAttribute("lesson", baihoc);
-				model.addAttribute("makhoahoc", baihoc.getMakhoahoc());
-				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
-				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());
-				dsbaihoc = bhD.GetListLesson(khoahoc);
-				model.addAttribute("dsbaihoc", dsbaihoc);
-				url = "course";
-			} else {
-				url = "redirect:/courses";
-			}
-		} catch (Exception ex) {
-			model.addAttribute("warning", ex.getMessage());
-		}
-
-		return url;
-	}
-
 	@RequestMapping(value = "/Create-Course", method = RequestMethod.GET)
 	public String CreateCourse() {
 		mode = 0;
@@ -93,22 +67,20 @@ public class CourseController {
 		return url;
 	}
 
-	@RequestMapping(value = "/Post-Course", method = RequestMethod.POST)
+	@RequestMapping(value = "Post-Course", method = RequestMethod.POST)
 	public String EditCourse(@RequestParam("tenkhoahoc") String tenkhoahoc, @RequestParam("theloai") String theloai,
-			@RequestParam("matacgia") int matacgia, @RequestParam("giatien") double giatien,
-			@RequestParam("trinhdodauvao") String trinhdo, @RequestParam("ngonngu") String ngonngu,
-			@RequestParam("thoiluong") double thoiluong, @RequestParam("linhvuc") String linhvuc,
-			@RequestParam("ngayphathanh") Date ngayphathanh, @RequestParam("textarea") String mota,
-			@RequestParam("minhhoa") MultipartFile minhhoa, ModelMap model, HttpSession session,
-			MultipartHttpServletRequest rq) {
+			@RequestParam("giatien") double giatien, @RequestParam("trinhdodauvao") String trinhdo,
+			@RequestParam("ngonngu") String ngonngu, @RequestParam("thoiluong") double thoiluong,
+			@RequestParam("linhvuc") String linhvuc, @RequestParam("ngayphathanh") Date ngayphathanh,
+			@RequestParam("textarea") String mota, @RequestParam("minhhoa") MultipartFile minhhoa, ModelMap model,
+			HttpSession session, MultipartHttpServletRequest rq) {
 		String url = "";
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
-		System.out.print("Dang post khoa hoc");
 		try {
 			String mess = "";
 			String originname = "";
-			
-			//Lưu file ảnh thumbnail cho khóa học
+
+			// Lưu file ảnh thumbnail cho khóa học
 			MultipartFile mul = rq.getFile(minhhoa.getName());
 			if (mul != null) {
 				originname = mul.getOriginalFilename();
@@ -116,12 +88,11 @@ public class CourseController {
 				File dest = new File(upload);
 				mul.transferTo(dest);
 			}
-			
-			// Tạo thông tin khóa học
-			KhoaHoc khoahoc = new KhoaHoc(khoahocid.getMakhoahoc(), tenkhoahoc, matacgia, giatien, ngonngu, thoiluong,
-					trinhdo, ngayphathanh, mota, 0, theloai, linhvuc, originname);
+
+			KhoaHoc khoahoc = new KhoaHoc(khoahocid.getMakhoahoc(), tenkhoahoc, gv.getManguoidung(), giatien, ngonngu,
+					thoiluong, trinhdo, ngayphathanh, mota, 0, theloai, linhvuc, originname);
 			if (mode == 0) {
-				if (khD.CreateACourse(khoahoc) == 1 && gvD.InsertCompilation(gv.getManguoidung()) == 1) {
+				if (khD.CreateACourse(khoahoc) == 1) {
 					mess = "Chúc mừng bạn đã tạo thành công một khoá học ! ";
 					url = "redirect:/homepages";
 					session.setAttribute("thongbaotaokh", mess);
@@ -166,12 +137,4 @@ public class CourseController {
 		return url;
 	}
 
-	/*
-	 * public void createThumbnail(MultipartHttpServletRequest rq) {
-	 * System.out.print("Anh minh hoa"); MultipartFile mul = rq.getFile("minhhoa");
-	 * if (mul != null) { String originname = mul.getOriginalFilename(); try {
-	 * String upload = context.getRealPath("Images\\" + originname); File dest = new
-	 * File(upload); mul.transferTo(dest); } catch (Exception ex) {
-	 * System.out.print(ex.getMessage()); } } }
-	 */
 }

@@ -9,18 +9,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trang Chủ</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+	href="./templates/CSS/descride.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link href="./templates/CSS/main.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/style.css" type="text/css" rel="stylesheet">
 <link href="./templates/CSS/course.css" type="text/css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link href="./templates/CSS/submitprac.css" type="text/css"
+	rel="stylesheet">
+<script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div class="" id="app">
@@ -97,7 +98,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -216,8 +217,7 @@
 					<div class="sidebar sidebar_study">
 						<div style="justify-content: center;" class="branding-inner">
 							<a style="margin-top: 0;" href="homepages" class="site-name">
-								<img class="site-logo" src="./templates/Images/logo.png"
-								alt="UTEX-HCMUTE">
+								<img class="site-logo" src="${company.logo}" alt="UTEX-HCMUTE">
 							</a>
 						</div>
 
@@ -233,8 +233,10 @@
 							<ul class="list_timer">
 								<c:forEach var="baihoc" items="${dsbaihoc}">
 									<li class="my-lesson__detail"><a
-										href="FindDocuments?mabaihoc=${baihoc.mabaihoc}"> <span>${baihoc.tenbaihoc}</span></a>
-										<!-- Các nút chức năng -->
+										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"
+										onclick="ShowOption('page_study','page-forum', 'page-message', 'page-note')">
+											<span>${baihoc.tenbaihoc}</span>
+									</a> <!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
 												<div class="my-lesson__buy">
@@ -250,10 +252,7 @@
 								</c:forEach>
 							</ul>
 						</div>
-						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-solid fa-calendar-days"></i> <span>lịch</span>
-							</a>
-						</div>
+
 						<c:if test="${not empty giangvien.manguoidung}">
 							<div class="nav_drawer home_file">
 								<a href="create-lesson-info?makhoahoc=${makhoahoc}"> <i
@@ -262,12 +261,22 @@
 							</div>
 						</c:if>
 						<div class="nav_drawer home_file">
-							<a href="upload.html"> <i class="fa-regular fa-file"></i> <span>Discussion
+							<a href="#"
+								onclick="ShowOption('page-note','page_study', 'page-message', 'page-forum')">
+								<i class="fa-regular fa-file"></i> <span>Notes</span>
+							</a>
+						</div>
+						<div class="nav_drawer home_file">
+							<a href="#"
+								onclick="ShowOption('page-forum','page_study', 'page-message', 'page-note')">
+								<i class="fa-regular fa-file"></i> <span>Discussion
 									Forums</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
-							<a href="#"> <i class="fa-regular fa-file"></i> <span>Messages</span>
+							<a href="#"
+								onclick="ShowOption('page-message','page_study', 'page-note', 'page-forum')">
+								<i class="fa-regular fa-file"></i> <span>Messages</span>
 							</a>
 						</div>
 						<div class="nav_drawer home_file">
@@ -288,26 +297,159 @@
 											${lesson.thoigianhoanthanh} phút</span>
 									</div>
 								</div>
-								<div class="content">
+								<div class="content-course">
 									<div class="content_text">
 										<div class="content_item">
 											<div class="content_header">
 												<div>Nội dung bài học</div>
 												<div class="content_progress">
-													<i class="fa-solid fa-check"></i><span>Complete</span>
+													<c:if
+														test="${empty giangvien.manguoidung && not empty hocvien.manguoidung}">
+														<c:choose>
+															<c:when test="${trangthai.trangthai eq 'Done'}">
+																<i class="fa-solid fa-check"></i>
+																<span>${trangthai.trangthai}</span>
+															</c:when>
+															<c:otherwise>
+																<i class="fa-solid fa-circle-pause"></i>
+																<span>${trangthai.trangthai}</span>
+															</c:otherwise>
+														</c:choose>
+													</c:if>
 												</div>
 											</div>
 											<div class="content_main">
 												<div class="container_content">${lesson.noidungbaihoc}</div>
+												<div class="container_content container-file">
+													<!-- HIỂN THỊ DANH SÁCH TÀI LIỆU -->
+													<a>DANH SÁCH TÀI LIỆU</a>
+													<c:if test="${not empty dstailieu}">
+														<table class="table">
+															<thead>
+																<tr>
+																	<th>Loại</th>
+																	<th style="width: 60%;">Tên file</th>
+																	<th>Thao tác</th>
+																</tr>
+															</thead>
+															<tbody class="table-group-divider">
+																<c:forEach var="tailieu" items="${dstailieu}">
+																	<tr>
+																		<td id="container_${tailieu.duongdanluutru}"><script>
+												                    			AddImgDocument('${tailieu.duongdanluutru}', 'container_${tailieu.duongdanluutru}');
+												                			</script></td>
+																		<td><a
+																			href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">${tailieu.duongdanluutru}</a>
+																		</td>
+																		<td><c:if
+																				test="${not empty giangvien.manguoidung}">
+																				<a
+																					href="find-document?matailieu=${tailieu.matailieu}"
+																					class="btn-edit--file btn btn-outline-primary">
+																					Edit</a>
+																				<a
+																					href="delete-document?matailieu=${tailieu.matailieu}"
+																					class="btn-edit--file btn btn-outline-primary">Delete</a>
+																			</c:if> <c:if test="${not empty hocvien.manguoidung}">
+																				<c:if test="${tailieu.theloai eq 'Bài Tập'}">
+																					<a class="submit-baitap"
+																						href="submit-exercise?tentailieu=${tailieu.duongdanluutru}">Submit</a>
+																				</c:if>
+																			</c:if></td>
+																		<td></td>
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+													</c:if>
+													<c:if test="${not empty giangvien.manguoidung}">
+														<a href="create-document?mabaihoc=${lesson.mabaihoc}"
+															class="btn btn-outline-secondary btn-create--file">
+															Create </a>
+													</c:if>
+												</div>
+												<div class="container_content container-file">
+													<c:if
+														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
+														<!-- HIỂN THỊ DANH SÁCH BÀI TẬP LÊN CHO GV XEM -->
+														<a>DANH SÁCH BÀI NỘP</a>
+														<c:if test="${not empty dsLbt}">
+															<table class="table">
+																<thead>
+																	<tr>
+																		<th>Họ và tên</th>
+																		<th>Tên Bài Tập</th>
+																		<th>Tên File</th>
+																	</tr>
+																</thead>
+																<tbody class="table-group-divider">
+																	<c:forEach var="baitapdanop" items="${dsLbt}">
+																		<tr>
+																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
+																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
+
+																			<td><a
+																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
+																						value="${baitapdanop.tenbainop}"></c:out> </a></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</c:if>
+													</c:if>
+													<!-- HIỂN THỊ CÁC TÀI LIỆU MÀ HỌC VIÊN NỘP LÊN -->
+													<c:if test="${not empty hocvien.manguoidung}">
+														<a>DANH SÁCH BÀI NỘP</a>
+														<c:if test="${not empty dslambaitap}">
+															<table class="table headertable">
+																<thead>
+																	<tr>
+																		<th>Loại</th>
+																		<th style="width: 60%;">Tên File</th>
+																		<th>Thao Tác</th>
+																	</tr>
+																</thead>
+																<tbody class="table-group-divider">
+																	<c:forEach var="lbt" items="${dslambaitap}">
+																		<tr>
+																			<td id="container_${lbt.getTenbainop()}"><script>
+												                    			AddImgDocument('${lbt.getTenbainop()}', 'container_${lbt.getTenbainop()}');
+												                			</script></td>
+																			<td><a
+																				href="./templates/Resource/ResourceDocument/${lbt.getTenbainop()}">${lbt.getTenbainop()}</a></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</c:if>
+													</c:if>
+												</div>
 											</div>
+											<div class="content-complete">
+												<!-- LÀ HỌC VIÊN THÌ HIỂN THỊ MASK AS DONE -->
+												<c:if test="${empty giangvien.manguoidung}">
+													<button class="btn btn-primary btn-mask"
+														onclick="MaskDone(${lesson.mabaihoc})">Mask as
+														complete</button>
+												</c:if>
+												<div class="content_progress content-maskDone">
+													<c:choose>
+														<c:when test="${trangthai.trangthai eq 'Done'}">
+															<i class="fa-solid fa-check"></i>
+															<span>Complete</span>
+														</c:when>
+													</c:choose>
+												</div>
+											</div>
+											<br> <br>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- NOTES -->
-							<div class="page-note page-common">
+							<div class="page-note page-common active">
 								<div class="page-content">
-									<h2>Notes</h2>
+									<h2>Notes (Comming soon)</h2>
 									<div class="page-content-filter">
 										<h5>Filter</h5>
 										<select class="form-select"
@@ -323,7 +465,6 @@
 											<option value="6">Fourier Transform and Sampling</option>
 										</select>
 									</div>
-
 									<div class="page-note-icon">
 										<img
 											src="	https://coursera_assets.s3.amazonaws.com/learner/icon_note.svg"
@@ -338,9 +479,9 @@
 							</div>
 
 							<!-- Forum -->
-							<div class="page-forum page-common">
+							<div class="page-forum page-common active">
 								<div class="page-content">
-									<h2>Forum</h2>
+									<h2>Forum (Comming soon)</h2>
 									<div class="page-content-form">
 										<input class="form-control" type="text"
 											placeholder="Search Forum" />
@@ -412,11 +553,10 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
-
-							<!-- Messages -->
-							<div class="page-message page-common">
+							<!-- Messages-->
+							<div class="page-message page-common active">
 								<div class="page-content">
-									<h2>Messages</h2>
+									<h2>Messages (Comming soon)</h2>
 
 									<div class="page-title">
 										<div class="page-title-item">
@@ -484,17 +624,111 @@
 										yet. Notes can be created from video pages.</div>
 								</div>
 							</div>
+							<footer class="footer">
+								<section class="footer_list">
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<a class="nav_item_link" href="#">
+													<div>${company.getName()}</div>
+												</a>
+												<h5>Dạy lập trình</h5>
+											</div>
+											<p class="footer_contact">Điện thoại: 0246.329.1102
+												Email: contact@fullstack.edu.vn Số 11D, lô A10, khu đô thị
+												Nam Trung Yên, Phường Yên Hòa, Quận Cầu Giấy, TP. Hà Nội</p>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Về ${company.getName()}</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Giới thiệu</a></li>
+												<li><a href="#">Liên hệ</a></li>
+												<li><a href="#">Điều khoản</a></li>
+												<li><a href="#">Bảo mật</a></li>
+												<li><a href="#">Cơ hội việc làm</a></li>
+											</ul>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Sản phẩm</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Trang dạy học số</a></li>
+												<li><a href="#">Trang đăng ký tài khoản</a></li>
+												<li><a href="#">Trang giới thiệu khóa học</a></li>
+												<li><a href="#">Trang thanh toán</a></li>
+
+											</ul>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Công cụ</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Github</a></li>
+												<li><a href="#">VSCODE</a></li>
+												<li><a href="#">Tomcat</a></li>
+												<li><a href="#">Eclipse</a></li>
+												<li><a href="#">Libary</a></li>
+											</ul>
+										</div>
+									</section>
+									<section class="footer_item">
+										<div class="footer_column">
+											<div class="footer_header">
+												<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
+											</div>
+											<ul class="footer_info">
+												<li><a href="#">Mã số thuế: 0109922901</a></li>
+												<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
+												<li>
+													<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. ${company.getName()}
+														xây dựng và phát triển những sản phẩm mang lại giá trị cho
+														cộng đồng.</p>
+												</li>
+
+											</ul>
+										</div>
+									</section>
+
+								</section>
+								<section class="footer_nav">
+									<div class="footer_nav__info">© 2018 - 2023 ${company.getName()}. Nền
+										tảng học lập trình hàng đầu Việt Nam</div>
+									<div class="footer_nav__icon">
+										<i class="fa-brands fa-square-youtube"></i> <i
+											class="fa-brands fa-square-facebook"></i> <i
+											class="fa-brands fa-tiktok"></i>
+									</div>
+								</section>
+							</footer>
 						</article>
 					</c:when>
 				</c:choose>
 			</div>
 		</section>
+
 	</div>
-	<footer class="footer"> </footer>
-	<script src="./templates/JavaScript/script.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+	</script>
+	<script type="text/javascript">
+		window.onload = function() {
+			ReloadAlert("${warning}");
+			ReloadAlert("${uptailieu}");
+			ReloadAlert("${xoatailieu}");
+		}
+	</script>
+	<c:set var="warning" value="${null}"></c:set>
+	<c:set var="uptailieu" value="${null}"></c:set>
+	<c:set var="xoatailieu" value="${null}"></c:set>
 </body>
 </html>

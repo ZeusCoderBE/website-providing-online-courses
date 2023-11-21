@@ -1,18 +1,36 @@
 @charset "UTF-8";
 body {
     background-color: #e6e6e8;
+    margin: 0;
 }
 
 /* Form login */
 .container {
     width: 100%;
+    position:relative;
+    min-height: 100vh;
+    padding-top: 40px;
+    background-image: url('../Images/background.webp');
+    background-size: 50%;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding-bottom: 30px;
+}
+
+.container:before {
+	position: absolute;
+	width: 100%;
+	content: "";
+	top: 0;
+	z-index: -1;
+	height: 100%;
+	background-image: linear-gradient(to right, #242145 30%, #dd1874 70%, #8a2178);
 }
 
 #form-login {
     padding: 50px;
     padding-top: 20px;
-    margin: auto;
-    margin-top: 90px;
+    margin-left: 10%;
     width: 380px;
     background-color: #ffffff;
     border-radius: 10px;

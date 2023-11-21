@@ -7,15 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Trang Vào Một Khoá Học</title>
+<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
@@ -27,7 +21,7 @@
 			<nav class="nav">
 				<ul class="nav_item">
 					<li class="nav_link"><a class="nav_item_link" href="homepages">
-							<div>OnCourse</div>
+							<div>${company.getName()}</div>
 					</a></li>
 					<li class="nav_link nav_input">
 						<form class="d-flex" role="search">
@@ -66,7 +60,7 @@
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a
-																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}"></a>
+																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 														</div>
 
 														<div class="my_course__delete">
@@ -134,7 +128,14 @@
 
 							<div class="evaluate">
 								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i>
-								<span>(1.040 reviews)</span>
+								<c:choose>
+									<c:when test="${ not empty dem.soluong}">
+										<span>(${dem.soluong} Đăng ký)</span>
+									</c:when>
+									<c:otherwise>
+										<span>(0 Đăng ký)</span>
+									</c:otherwise>
+								</c:choose>
 								<div class="line_stand"></div>
 								<i class="fa-solid fa-thumbs-up"></i> <span>92%</span>
 							</div>
@@ -142,9 +143,8 @@
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
 							<div class="course_des">${khoahoc.trinhdodauvao}</div>
 							<fmt:formatNumber var="giatien" value="${khoahoc.giatien}"
-								type="number" maxFractionDigits="2" />
-							<h5>Giá Tiền: ${giatien}$</h5>
-
+								type="number" pattern="###0.00" />
+							<h5>Giá Tiền: ${giatien.replace(',', '.')}$</h5>
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
@@ -202,7 +202,7 @@
 					<div class="footer_column">
 						<div class="footer_header">
 							<a class="nav_item_link" href="#">
-								<div>OnCourse</div>
+								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>
 						</div>
@@ -214,7 +214,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Về Oncourse</h5>
+							<h5>Về ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Giới thiệu</a></li>
@@ -256,13 +256,13 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+							<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. ${company.getName()} xây
 									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
 									đồng.</p>
 							</li>
@@ -273,7 +273,7 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
+				<div class="footer_nav__info">© 2018 - 2023 ${company.getName()}. Nền tảng
 					học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i
@@ -283,10 +283,7 @@
 			</section>
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
 	<script>
 		window.onload = function() {
 			ReloadAlert("${xoakh}");

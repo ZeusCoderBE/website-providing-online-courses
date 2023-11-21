@@ -9,18 +9,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
-<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 <script type="text/javascript">
 	document.addEventListener('DOMContentLoaded', function() {
 		var elementId = localStorage.getItem('scrollToElement');
@@ -36,6 +30,7 @@
 		}
 	});
 </script>
+<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div class="" id="app">
@@ -152,7 +147,7 @@
 							<h6>Số dư khả dụng:</h6>
 							<fmt:formatNumber var="sodu" value="${the.getSoDu()}"
 								type="number" maxFractionDigits="3" />
-							<span>${sodu}$</span>
+							<span>${sodu.replace(',','.')}$</span>
 						</div>
 						<c:if test="${not empty hocvien.manguoidung}">
 							<a href="deposit" class="btn btn_main"> <i
@@ -285,49 +280,28 @@
 							</div>
 						</form>
 						<div class="the_line"></div>
-						<div class="profile_course">
-							<h6>Accomplishments</h6>
-							<div class="profile_my-course">
-								<div class="profile_my-course__img">
-									<img
-										src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
-										srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
-										alt="Certificate logo" style="max-height: 72px;">
-								</div>
-								<div class="profile_my-course__info">
-									<a href="#">Version Control</a>
-									<p>OnCourse</p>
-									<span>Grade Achieved: 91.25%</span>
-								</div>
+						<c:if test="${not empty hocvien.manguoidung}">
+							<div class="profile_course">
+								<h6>Accomplishments</h6>
+								<c:forEach var="certificate" items="${certificate}">
+									<div class="profile_my-course">
+										<div class="profile_my-course__img">
+											<img
+												src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
+												srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
+												alt="Certificate logo" style="max-height: 72px;">
+										</div>
+										<div class="profile_my-course__info">
+											<a href="certificate?makhoahoc=${certificate.makhoahoc}"
+												class="btn-certificate">${certificate.tenkhoahoc}</a>
+											<p>${company.getName()}</p>
+											<span>Grade Achieved: 100%</span>
+										</div>
+									</div>
+								</c:forEach>
 							</div>
-							<div class="profile_my-course">
-								<div class="profile_my-course__img">
-									<img
-										src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
-										srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
-										alt="Certificate logo" style="max-height: 72px;">
-								</div>
-								<div class="profile_my-course__info">
-									<a href="#">Version Control</a>
-									<p>OnCourse</p>
-									<span>Grade Achieved: 91.25%</span>
-								</div>
-							</div>
-							<div class="profile_my-course">
-								<div class="profile_my-course__img">
-									<img
-										src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=1&amp;w=&amp;h=72"
-										srcset="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=2&amp;w=&amp;h=72 2x, https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://d2j5ihb19pt1hq.cloudfront.net/certificates/cert-course.png?auto=format%2Ccompress&amp;dpr=3&amp;w=&amp;h=72 3x"
-										alt="Certificate logo" style="max-height: 72px;">
-								</div>
-								<div class="profile_my-course__info">
-									<a href="#">Version Control</a>
-									<p>OnCourse</p>
-									<span>Grade Achieved: 91.25%</span>
-								</div>
-							</div>
+						</c:if>
 
-						</div>
 
 					</div>
 				</article>
@@ -342,15 +316,15 @@
 				</div>
 				<a href="#">Get the mobile app</a>
 			</div>
-			<div class="footer_main_info">Copyright Oncourse © 2023</div>
+			<div class="footer_main_info">Copyright ${company.getName()} © 2023</div>
 
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
-	<script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
+	</script>
+	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${thongbao}");
 			ReloadAlert("${thongtinsai}")
@@ -360,6 +334,5 @@
 	<c:set var="thongbao" value="${null}"></c:set>
 	<c:set var="thongtinsai" value="${null}"></c:set>
 	<c:set var="thongbaotien" value="${null}"></c:set>
-
 </body>
 </html>

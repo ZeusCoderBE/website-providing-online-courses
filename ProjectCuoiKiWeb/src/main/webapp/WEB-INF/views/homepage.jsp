@@ -9,14 +9,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Trang Chủ</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link href="./templates/CSS/cart.css" rel="stylesheet">
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
@@ -97,7 +92,7 @@
 															<div class="my_course__action">
 																<div class="my_course__buy">
 																	<a
-																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Buy</a>
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 																</div>
 
 																<div class="my_course__delete">
@@ -269,6 +264,7 @@
 
 							</ul>
 							<c:if test="${not empty giangvien.manguoidung }">
+								<!--  Create-Course-->
 								<a style="height: 46px;" href="Create-Course"><i
 									class="fa-solid fa-circle-plus"></i> <span>Tạo khoá học
 								</span> </a>
@@ -282,7 +278,7 @@
 						<div class="branding">
 							<div class="branding-inner">
 								<a href="#" class="site-name"> <img class="site-logo"
-									src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
+									src="${company.getLogo()}" alt="UTEX-HCMUTE">
 								</a>
 
 								<ul class="main-nav">
@@ -410,7 +406,8 @@
 																<div class="view_content">
 																	<div class="card_item">
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
-																			<div class="card_img" style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
+																			<div class="card_img"
+																				style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
 																		</a>
 																		<div class="course_info">
 																			<span>${khoahoc.trinhdodauvao}</span>
@@ -418,6 +415,22 @@
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a> <a
 																			href="ShowInforCart"></a>
+																		<c:if test="${not empty hocvien.manguoidung }">
+																			<!--  Create-Course-->
+																			<div
+																				class="card-footer dashboard-card-footer border-0 bg-white">
+																				<div class="progress bg-white border">
+																					<div class="progress-bar bar" role="progressbar"
+																						aria-valuenow="${khoahoc.tiendo}"
+																						style="width: ${khoahoc.tiendo}%"
+																						aria-valuemin="0" aria-valuemax="100"></div>
+																				</div>
+																				<div class="small">
+																					<span class="sr-only">Course progress:</span> <strong>${khoahoc.tiendo}
+																					</strong>% complete
+																				</div>
+																			</div>
+																		</c:if>
 																	</div>
 																</div>
 															</div>
@@ -430,12 +443,15 @@
 																<div class="view_content">
 																	<div class="card_item">
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}">
-																			<div class="card_img" style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
-																			<div class="course_info">
-																				<span>${khoahoc.trinhdodauvao}</span>
-																			</div> 
-																			<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
+																			<div class="card_img"
+																				style="background-image: url('./templates/Images/${khoahoc.minhhoa}')"></div>
+																		</a>
+																		<div class="course_info">
+																			<span>${khoahoc.trinhdodauvao}</span>
+																		</div>
+																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a>
+
 																	</div>
 																</div>
 															</div>
@@ -466,12 +482,12 @@
 											</div>
 											<a href="#">Get the mobile app</a>
 										</div>
-										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright ${company.getName()} © 2023</div>
 									</c:when>
 									<c:when test="${not empty giangvien.manguoidung}">
 										<div class="footer_main_list">
 											<div class="footer_main_nav">
-												<p>Bạn đang đăng nhập với tên ,</p>
+												<p>Bạn đang đăng nhập với tên ,${thongbaotaokh}</p>
 												<c:choose>
 													<c:when test="${not empty thongtin}">
 														<a href="#">${thongtin.hoten}</a>
@@ -483,7 +499,8 @@
 											</div>
 											<a href="#">Get the mobile app</a>
 										</div>
-										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright ${company.getName()}
+											© 2023</div>
 									</c:when>
 									<c:otherwise>
 										<div class="footer_main_list">
@@ -493,7 +510,7 @@
 											</div>
 											<a href="#">Get the mobile app</a>
 										</div>
-										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright ${company.getName()} © 2023</div>
 									</c:otherwise>
 								</c:choose>
 							</footer>
@@ -503,10 +520,10 @@
 			</div>
 		</section>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
+	</script>
 	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaothanhcong}");
@@ -517,7 +534,8 @@
 			ReloadAlert("${thatbai}");
 			ReloadAlert("${thongbaoedit}");
 			ReloadAlert("${xoakh}");
-			ReloadAlert("${warning}")
+			ReloadAlert("${warning}");
+			ReloadAlert("${uptailieu}");
 		}
 	</script>
 	<c:set var="thongbaothanhcong" value="${null}"></c:set>
@@ -529,5 +547,6 @@
 	<c:set var="thongbaoedit" value="${null}"></c:set>
 	<c:set var="xoakh" value="${null}"></c:set>
 	<c:set var="warning" value="${null}"></c:set>
+	<c:set var="uptailieu" value="${null}"></c:set>
 </body>
 </html>

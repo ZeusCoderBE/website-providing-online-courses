@@ -12,9 +12,14 @@ public class BaiHoc {
 	private Date ngaydang;
 	private int makhoahoc;
 	private String duongdan;
+	private String trangthai;
 	public String getDuongdan()
 	{
 		return duongdan;
+	}
+	public String getTrangthai()
+	{
+		return trangthai;
 	}
 	public int getMakhoahoc() {
 		return makhoahoc;
@@ -54,7 +59,6 @@ public class BaiHoc {
 		this.ngaydang = date;
 		this.makhoahoc = makhoahoc;
 	}
-
 	public BaiHoc() {
 
 	}
@@ -72,5 +76,9 @@ public class BaiHoc {
 	public BaiHoc(int makhoahoc)
 	{
 		this.makhoahoc=makhoahoc;
+	}
+	public BaiHoc(String trangthai)
+	{
+		this.trangthai=trangthai;
 	}
 }

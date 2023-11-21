@@ -20,6 +20,7 @@ public class PaymentController {
 	private GioHangDao ghd = new GioHangDao();
 	GiangVienDao gvD = new GiangVienDao();
 	GioHangDao ghD = new GioHangDao();
+	BaiHocDao bhD = new BaiHocDao();
 
 	@RequestMapping(value = "/paycourseinfo", method = RequestMethod.GET)
 	public String payCourseInfo(ModelMap model,
@@ -41,13 +42,14 @@ public class PaymentController {
 			the = td.getAThe(hv.getManguoidung());
 			if (selectedCourses == null && makh.equals("null")) {
 				url = "cart";
-				model.addAttribute("thongbaott","Không có gì trong giỏ hàng để thanh toán hoặc bạn chưa chọn khoá học cần để thanh toán");
+				model.addAttribute("thongbaott",
+						"Không có gì trong giỏ hàng để thanh toán hoặc bạn chưa chọn khoá học cần để thanh toán");
 			} else if (makh.equals("null") && selectedCourses != null && !selectedCourses.isEmpty()) {
 				dsKhoahoc = khd.CountSelectedCourses(selectedCourses);
-				url="pay";
+				url = "pay";
 			} else {
 				dsKhoahoc.add(khd.FindCourseOfCustomer(new KhoaHoc(Integer.parseInt(makh))));
-				url="pay";
+				url = "pay";
 			}
 			model.addAttribute("dskhoahoc", ttd.DanhSachTenKH(dsKhoahoc));
 			model.addAttribute("tonggiatien", ttd.SumCostOfCourse(dsKhoahoc));
@@ -74,20 +76,29 @@ public class PaymentController {
 	public String payCart(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		ThanhToanDao ttd = new ThanhToanDao();
-
+		BaiHoc baihoc = new BaiHoc();
+		System.out.print("Da qua day");
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {
 				throw new OutOfMoney("Không đủ tiền để thanh toán");
 			}
 			for (KhoaHoc kh : dsKhoahoc) {
+				System.out.print("1");
 				ThanhToan tt = new ThanhToan(hv.getManguoidung(), kh.getMakhoahoc(), kh.getGiatien(),
 						String.format("Thanh toán %s", kh.getTenkhoahoc()));
 				ttd.thanhToan(tt, the);
+				
 				KhoaHoc khoahoc = new KhoaHoc(kh.getMatacgia(), kh.getGiatien());
 				gvD.UpdateofCardTeacher(khoahoc);
+				
+				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
+				if (baihoc != null) {
+					bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
+				}
 			}
 			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
+			System.out.print("Di Ngang Qua Day");
 			session.setAttribute("warning", "Thanh toán thành công!");
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {
@@ -103,7 +114,7 @@ public class PaymentController {
 			// TODO Auto-generated catch block
 			model.addAttribute("warning", e.getMessage());
 		} catch (Exception ex) {
-
+			System.out.print(ex.getMessage());
 		}
 		return "pay";
 	}

@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="5.0">
 	<display-name>ProjectCuoiKiWeb</display-name>
 	<welcome-file-list>
-		<welcome-file></welcome-file>
+		<welcome-file>/WEB-INF/views/introduction.jsp</welcome-file>
 	</welcome-file-list>
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -16,8 +16,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 		<multipart-config>
-			<max-file-size>50000000</max-file-size>
-			<max-request-size>50000000</max-request-size>
+			<max-file-size>209715200</max-file-size>
+			<max-request-size>209715200</max-request-size>
 			<file-size-threshold>0</file-size-threshold>
 		</multipart-config>
 	</servlet>
