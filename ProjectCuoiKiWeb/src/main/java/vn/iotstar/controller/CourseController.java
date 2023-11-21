@@ -69,12 +69,11 @@ public class CourseController {
 
 	@RequestMapping(value = "Post-Course", method = RequestMethod.POST)
 	public String EditCourse(@RequestParam("tenkhoahoc") String tenkhoahoc, @RequestParam("theloai") String theloai,
-			@RequestParam("matacgia") int matacgia, @RequestParam("giatien") double giatien,
-			@RequestParam("trinhdodauvao") String trinhdo, @RequestParam("ngonngu") String ngonngu,
-			@RequestParam("thoiluong") double thoiluong, @RequestParam("linhvuc") String linhvuc,
-			@RequestParam("ngayphathanh") Date ngayphathanh, @RequestParam("textarea") String mota,
-			@RequestParam("minhhoa") MultipartFile minhhoa, ModelMap model, HttpSession session,
-			MultipartHttpServletRequest rq) {
+			@RequestParam("giatien") double giatien, @RequestParam("trinhdodauvao") String trinhdo,
+			@RequestParam("ngonngu") String ngonngu, @RequestParam("thoiluong") double thoiluong,
+			@RequestParam("linhvuc") String linhvuc, @RequestParam("ngayphathanh") Date ngayphathanh,
+			@RequestParam("textarea") String mota, @RequestParam("minhhoa") MultipartFile minhhoa, ModelMap model,
+			HttpSession session, MultipartHttpServletRequest rq) {
 		String url = "";
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {

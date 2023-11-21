@@ -157,12 +157,12 @@ public class LessonController {
 	}
 
 	@RequestMapping(value = "post-document", method = RequestMethod.POST)
-	public String CreateDocumentofLesson(@RequestParam("theloai") String theloai,
-			@RequestParam("dinhdang") String dinhdang,
+	public String CreateDocumentofLesson(@RequestParam("dinhdang") String dinhdang,
 			@RequestParam(value = "ckbaitap", defaultValue = "null", required = false) String ckbaitap,
 			@RequestParam(value = "tghoanthanh", defaultValue = "null", required = false) String tghoanthanh,
 			MultipartHttpServletRequest rq, ModelMap model, HttpSession session) {
 		MultipartFile mul = rq.getFile("user-file");
+		String theloai;
 		if (mul != null) {
 			String originname = mul.getOriginalFilename();
 			try {
@@ -278,10 +278,8 @@ public class LessonController {
 			String originname = mul.getOriginalFilename();
 			try {
 				String upload = context.getRealPath("Resource\\ResourceDocument\\" + originname);
-				System.out.print(upload);
 				File dest = new File(upload);
 				mul.transferTo(dest);
-				System.out.print("Download Successfull");
 				LamBaiTap lbt = new LamBaiTap(originname, hv.getManguoidung(), mabaihoc, tentailieu);
 				lbtD.NopBaiTap(lbt);
 			} catch (Exception ex) {
@@ -291,9 +289,10 @@ public class LessonController {
 		return "redirect:/Find-Lesson?mabaihoc=" + mabaihoc;
 	}
 
-	@RequestMapping(value = "/submit-exercise", method = RequestMethod.GET,params = "tentailieu")
-	public String ViewSubmitBaiTap(HttpSession session,@RequestParam("tentailieu") String tenbaitap) throws SQLException {
-		this.tentailieu=tenbaitap;
+	@RequestMapping(value = "/submit-exercise", method = RequestMethod.GET, params = "tentailieu")
+	public String ViewSubmitBaiTap(HttpSession session, @RequestParam("tentailieu") String tenbaitap)
+			throws SQLException {
+		this.tentailieu = tenbaitap;
 		return "submit";
 	}
 

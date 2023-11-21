@@ -1,10 +1,6 @@
 --Update Document
 Create or Alter Procedure sp_EditDocument
-<<<<<<< HEAD
 @matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru Nvarchar(255)
-=======
-@matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru varchar(50)
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 as
 begin
 	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
@@ -98,11 +94,7 @@ CREATE OR ALTER PROCEDURE sp_EditACourse
 @mota ntext,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30),
-<<<<<<< HEAD
 @minhhoa Nvarchar(255)
-=======
-@minhhoa varchar(255)
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 as
 begin
 	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
@@ -124,11 +116,7 @@ CREATE OR ALTER PROCEDURE sp_CreateACourse
 @mota ntext,
 @theloai nvarchar(50),
 @linhvuc nvarchar(30),
-<<<<<<< HEAD
 @minhhoa Nvarchar(255)
-=======
-@minhhoa varchar(255)
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 as
 begin
 	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc, MinhHoa)
@@ -380,7 +368,6 @@ BEGIN
    INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
-<<<<<<< HEAD
 --Kiểm Tra tồn tại bài tập chưa nếu chưa thì mới tạo lúc edit tài liệu thành bài tạp
 Create or Alter Procedure sp_CheckTonTaiBaiTap
 @tenbaitap nvarchar(100),@mabaihoc int
@@ -392,5 +379,3 @@ begin
 	else
 		set @check=0
 end
-=======
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e

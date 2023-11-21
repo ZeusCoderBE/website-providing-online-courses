@@ -9,17 +9,10 @@ body {
     width: 100%;
     position:relative;
     min-height: 100vh;
-<<<<<<< HEAD
     padding-top: 40px;
     background-image: url('../Images/background.webp');
     background-size: 50%;
     background-position: right;
-=======
-    padding-top: 90px;
-    background-image: url('https://www.pluralsight.com/content/dam/pluralsight2/homepage/2023-updates/ai-home-hero.webp');
-    background-size: 100%;
-    background-position: bottom;
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
     background-repeat: no-repeat;
     padding-bottom: 30px;
 }
@@ -37,11 +30,7 @@ body {
 #form-login {
     padding: 50px;
     padding-top: 20px;
-<<<<<<< HEAD
     margin-left: 10%;
-=======
-    margin: auto;
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
     width: 380px;
     background-color: #ffffff;
     border-radius: 10px;

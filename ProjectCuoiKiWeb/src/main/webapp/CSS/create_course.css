@@ -8,22 +8,16 @@ body.create-open {
     overflow: hidden;
 }
 
-<<<<<<< HEAD
 #app {
     background-color: white;
     padding-top: 40px;
 }
 
-=======
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 .create-lesson {
     position: absolute;
     width: 100vw;
     display: none;
-<<<<<<< HEAD
     border: 1px solid #7d78ab;
-=======
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
     /* top: 0; */
     left: 0;
     padding-top: 100px;
@@ -66,7 +60,6 @@ body.create-open {
     text-align: start;
     overflow-y: auto;
     margin-bottom: 50px;
-<<<<<<< HEAD
     /* border: 1px solid #242145; */
     box-shadow: 0 19px 38px rgba(0,0,0,.3);
     background-color: #fafafa;
@@ -88,8 +81,6 @@ body.create-open {
     background-color: #f6f6f6;
     /* box-shadow: 0 9px 18px rgba(0,0,0,.2); */
     /* box-shadow: 0 9px 18px rgba(0,0,0,.3); */
-=======
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 }
 
 .form-login-input {
@@ -143,10 +134,6 @@ body.create-open {
 }
 .output {
   text-align: center;
-<<<<<<< HEAD
-=======
-  width: 100%;
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 }
 
 input[type=range] {
@@ -173,7 +160,6 @@ input[type=range]:focus {
   outline: none;
 }
 
-<<<<<<< HEAD
 .form-progress {
 	flex-direction: column;
 	align-items: start;
@@ -191,13 +177,6 @@ input[type=range]:focus {
 
 #tghoanthanh {
 	height: 6px;
-=======
-.form-progress{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	width: 50%;
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 }
 
 .form-progress__item {

@@ -323,7 +323,6 @@
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 												<div class="container_content container-file">
 													<!-- HIỂN THỊ DANH SÁCH TÀI LIỆU -->
-<<<<<<< HEAD
 														<a>DANH SÁCH TÀI LIỆU</a>
 														<c:forEach var="tailieu" items="${dstailieu}">
 															</br>
@@ -357,54 +356,6 @@
 												</div>
 
 
-=======
-													<c:if test="${not empty dstailieu}">
-														<a>DANH SÁCH TÀI LIỆU</a>
-
-														<table class="table">
-															<thead>
-																<tr>
-																	<th>Type</th>
-																	<th>Tên file</th>
-																	<th>Thao tác</th>
-																</tr>
-															</thead>
-															<tbody class="table-group-divider">
-																<c:forEach var="tailieu" items="${dstailieu}">
-																	<tr>
-																		<td id="container_${tailieu.duongdanluutru}"><script>
-												                    			AddImgDocument('${tailieu.duongdanluutru}', 'container_${tailieu.duongdanluutru}');
-												                			</script></td>
-																		<td><a
-																			href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">${tailieu.duongdanluutru}</a>
-																		</td>
-																		<td><c:if
-																				test="${not empty giangvien.manguoidung}">
-																				<a
-																					href="find-document?matailieu=${tailieu.matailieu}"
-																					class="btn-edit--file"> Edit</a>
-																				<a
-																					href="delete-document?matailieu=${tailieu.matailieu}"
-																					class="btn-edit--file">Delete</a>
-																			</c:if> <c:if test="${not empty hocvien.manguoidung}">
-																				<c:if test="${tailieu.theloai eq 'Bài tập'}">
-																					<a class="submit-baitap"
-																						href="submit-exercise?tentailieu=${tailieu.duongdanluutru}">Submit</a>
-																				</c:if>
-																			</c:if></td>
-																		<td></td>
-																	</tr>
-																</c:forEach>
-															</tbody>
-														</table>
-													</c:if>
-													<c:if test="${not empty giangvien.manguoidung}">
-														<a href="create-document?mabaihoc=${lesson.mabaihoc}"
-															class="btn btn-outline-secondary btn-create--file">
-															Create </a>
-													</c:if>
-												</div>
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 												<div class="container_content container-file">
 													<c:if
 														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
@@ -416,11 +367,7 @@
 																	<tr>
 																		<th>Full Name</th>
 																		<th>Tên Bài Tập</th>
-<<<<<<< HEAD
 																		
-=======
-																		<th>Mã Bài Học</th>
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 																		<th>Tên Bài Nộp</th>
 																	</tr>
 																</thead>
@@ -429,17 +376,10 @@
 																		<tr>
 																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
 																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
-<<<<<<< HEAD
 																			
 																			<td><a
 																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
 																						value="${baitapdanop.tenbainop}"></c:out> </a>
-=======
-																			<td><c:out value="${baitapdanop.getMaBaiHoc()}" /></td>
-																			<td><a
-																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
-																						value="${baitapdanop.tenbainop}"></c:out> </a></td>
->>>>>>> 791261ca3cde6348ef51143a32401a63172d582e
 																		</tr>
 																	</c:forEach>
 																</tbody>
