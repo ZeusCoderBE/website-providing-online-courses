@@ -76,6 +76,8 @@ body {
 }
 
 .content-maskDone {
+	position: absolute;
+	bottom: 22px;
 	margin-left: 160px;
 	font-size: 1.2rem;
 	background-color: transparent;
@@ -119,7 +121,8 @@ body {
 }
 
 .btn-edit--file {
-	width: 70px;
+	width: 58px;
+	padding: 0;
 }
 
 /*.container_content p,

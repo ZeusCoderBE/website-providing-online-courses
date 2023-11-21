@@ -135,7 +135,7 @@
 					</div>
 					<div class="profile_avata">
 						<div>
-							<h4>Wallet</h4>
+							<h5>Wallet</h5>
 						</div>
 						<div class="id-card">
 							<h6>Mã thẻ:</h6>
@@ -166,7 +166,7 @@
 					</div>
 					<div class="profile_avata">
 						<div>
-							<h4>Additional info</h4>
+							<h5>Additional info</h5>
 						</div>
 						<div>
 							<span>Help recruiters get to know you better by describing

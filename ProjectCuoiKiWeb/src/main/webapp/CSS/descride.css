@@ -133,8 +133,9 @@ h1,h2,h3,h4,h5 {
     justify-content: center;
     background-color: #1473e6;
     border-radius: 50%;
-    margin: 0 18px;
-    padding: 0 10px;
+    width: 50px;
+    margin: auto;
+    margin-left: 12px;
     height: 40px;
     margin-bottom: 20px;
     /* width: 52px;
@@ -277,11 +278,10 @@ h1,h2,h3,h4,h5 {
 .btn_signin__course {
     margin: auto;
     margin-top: 20px;
-    padding-left: 40px;
-    padding-right: 40px;
+    min-width: 122px;
     height: 36px;
     border: none;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .btn_signin__course + .btn_signin__course {

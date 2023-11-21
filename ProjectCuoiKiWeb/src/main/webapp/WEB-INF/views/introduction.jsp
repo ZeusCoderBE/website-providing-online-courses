@@ -9,8 +9,8 @@
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
+<link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <script type="text/javascript">
 	function redirectToLogin() {
 		window.location.href = 'login';
@@ -88,6 +88,10 @@
 					alt="">
 			</div>
 		</div>
+	</div>
+
+	<div class="info-device">
+		<h1>Trang web chưa hỗ trợ điện thoại</h1>
 	</div>
 	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
 	<script src="./templates/JavaScript/script.js">
