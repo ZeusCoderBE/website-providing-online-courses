@@ -5,6 +5,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ONCOURSE nơi cung cấp các khóa học nổi tiếng">
 <title>Trang Giới Thiệu</title>
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
@@ -91,7 +93,7 @@
 	</div>
 
 	<div class="info-device">
-		<h1>Trang web chưa hỗ trợ điện thoại</h1>
+		<h3>Trang web chưa hỗ trợ điện thoại</h3>
 	</div>
 	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
 	<script src="./templates/JavaScript/script.js">
