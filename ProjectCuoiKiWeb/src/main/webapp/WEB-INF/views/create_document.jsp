@@ -29,8 +29,6 @@
 							<div class="form-container">
 								<div class="form-control">
 									<div class="form-login-input">
-										<!-- <label>Up bài tập</label><input type="checkbox" id="checkbox"
-									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br> -->
 										<div class="form-check">
 											<label class="form-check-label" for="checkbox">
 												Bài Tập </label> <input class="form-check-input"
@@ -41,9 +39,6 @@
 									</div>
 									<div class="form-control">
 										<div class="form-login-input">
-											<!-- <label>Up bài tập</label><input type="checkbox" id="checkbox"
-									name="ckbaitap" onclick="handleCkBaiTapChange(this)"> <br> -->
-
 											<div class="form-progress" style="flex: 1;">
 												<div class="form-progress-item">
 													<label for="datelesson">Thời gian hoàn thành</label>
@@ -66,7 +61,6 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 							<div class="form-login-input">
 								<c:choose>

@@ -361,33 +361,33 @@ function AddImgDocument(duongDanTaiLieu, parentId) {
 		case 'pdf':
 			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/pdf';
 			break;
-        case 'pptx':
-            hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/powerpoint';
-            break;
+		case 'pptx':
+			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/powerpoint';
+			break;
 		case 'docs':
 			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/document';
 			break;
 		case 'docx':
-            hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/document';
-            break;
-        default:
-            hinhAnh = 'https://media.istockphoto.com/id/1218713444/vi/vec-to/%C4%91%C6%B0%E1%BB%9Dng-m%C3%A0u-%C4%91en-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-l%E1%BB%87nh-b%E1%BA%AFt-gi%E1%BB%AF-%C4%91%C6%B0%E1%BB%A3c-c%C3%A1ch-ly-tr%C3%AAn-n%E1%BB%81n-trong-su%E1%BB%91t-l%E1%BB%87nh-b%E1%BA%AFt-b%C3%A1o-c%C3%A1o-c%E1%BB%A7a.jpg?s=1024x1024&w=is&k=20&c=kN07F-oza-kkEiCUd8U3X0YptObrLEbcCPwOWtXhROU=';
-            break;
-    }
+			hinhAnh = 'https://utex.hcmute.edu.vn/theme/image.php/maker/core/1692144561/f/document';
+			break;
+		default:
+			hinhAnh = 'https://media.istockphoto.com/id/1218713444/vi/vec-to/%C4%91%C6%B0%E1%BB%9Dng-m%C3%A0u-%C4%91en-bi%E1%BB%83u-t%C6%B0%E1%BB%A3ng-l%E1%BB%87nh-b%E1%BA%AFt-gi%E1%BB%AF-%C4%91%C6%B0%E1%BB%A3c-c%C3%A1ch-ly-tr%C3%AAn-n%E1%BB%81n-trong-su%E1%BB%91t-l%E1%BB%87nh-b%E1%BA%AFt-b%C3%A1o-c%C3%A1o-c%E1%BB%A7a.jpg?s=1024x1024&w=is&k=20&c=kN07F-oza-kkEiCUd8U3X0YptObrLEbcCPwOWtXhROU=';
+			break;
+	}
 
 	var aTag = document.createElement('a');
-	aTag.setAttribute('href', duongDanTaiLieu);
-	
+	aTag.setAttribute('href', './templates/Resource/ResourceDocument/' + duongDanTaiLieu);
+
 	var imgTag = document.createElement('img');
 	imgTag.setAttribute('src', hinhAnh);
-    imgTag.setAttribute('alt', phanMoRong.toUpperCase() + ' file');
-   	imgTag.className = 'imgFile';
-    aTag.appendChild(imgTag);
+	imgTag.setAttribute('alt', phanMoRong.toUpperCase() + ' file');
+	imgTag.className = 'imgFile';
+	aTag.appendChild(imgTag);
 
-    var containerElement = document.getElementById(parentId);
-    if (containerElement) {
-        containerElement.appendChild(aTag);
-    } else {
-        console.error("Phần tử cha không tồn tại!");
-    }
+	var containerElement = document.getElementById(parentId);
+	if (containerElement) {
+		containerElement.appendChild(aTag);
+	} else {
+		console.error("Phần tử cha không tồn tại!");
+	}
 }
