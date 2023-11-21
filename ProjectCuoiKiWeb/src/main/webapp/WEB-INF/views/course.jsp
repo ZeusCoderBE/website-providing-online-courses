@@ -323,39 +323,36 @@
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 												<div class="container_content container-file">
 													<!-- HIỂN THỊ DANH SÁCH TÀI LIỆU -->
-														<a>DANH SÁCH TÀI LIỆU</a>
-														<c:forEach var="tailieu" items="${dstailieu}">
-															</br>
-															<div id="container_${tailieu.duongdanluutru}">
-																<script>
+													<a>DANH SÁCH TÀI LIỆU</a>
+													<c:forEach var="tailieu" items="${dstailieu}">
+														</br>
+														<div id="container_${tailieu.duongdanluutru}">
+															<script>
 												                    AddImgDocument('${tailieu.duongdanluutru}', 'container_${tailieu.duongdanluutru}');
 												                </script>
-																<a
-																	href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
-																	${tailieu.duongdanluutru} </a>
-																<c:if test="${not empty giangvien.manguoidung}">
-																	<a href="find-document?matailieu=${tailieu.matailieu}"
-																		class="btn-edit--file"> Edit</a>
-																	<a
-																		href="delete-document?matailieu=${tailieu.matailieu}"
-																		class="btn-edit--file">Delete</a>
+															<a
+																href="./templates/Resource/ResourceDocument/${tailieu.duongdanluutru}">
+																${tailieu.duongdanluutru} </a>
+															<c:if test="${not empty giangvien.manguoidung}">
+																<a href="find-document?matailieu=${tailieu.matailieu}"
+																	class="btn-edit--file"> Edit</a>
+																<a href="delete-document?matailieu=${tailieu.matailieu}"
+																	class="btn-edit--file">Delete</a>
+															</c:if>
+															<c:if test="${not empty hocvien.manguoidung}">
+																<c:if test="${tailieu.theloai eq 'Bài Tập'}">
+																	<a class="submit-baitap"
+																		href="submit-exercise?tentailieu=${tailieu.duongdanluutru}">Submit</a>
 																</c:if>
-																<c:if test="${not empty hocvien.manguoidung}">
-																	<c:if test="${tailieu.theloai eq 'Bài Tập'}">
-																		<a class="submit-baitap"
-																			href="submit-exercise?tentailieu=${tailieu.duongdanluutru}">Submit</a>
-																	</c:if>
-																</c:if>
-															</div>
-														</c:forEach>
-														<c:if test="${not empty giangvien.manguoidung}">
-															<a href="create-document?mabaihoc=${lesson.mabaihoc}"
-																class="btn btn-outline-secondary btn-create--file">
-																Create </a>
-														</c:if>
+															</c:if>
+														</div>
+													</c:forEach>
+													<c:if test="${not empty giangvien.manguoidung}">
+														<a href="create-document?mabaihoc=${lesson.mabaihoc}"
+															class="btn btn-outline-secondary btn-create--file">
+															Create </a>
+													</c:if>
 												</div>
-
-
 												<div class="container_content container-file">
 													<c:if
 														test="${not empty giangvien.manguoidung && empty hocvien.manguoidung}">
