@@ -1,4 +1,5 @@
-	CREATE OR ALTER TRIGGER tg_themDangKy ON THANHTOAN
+--Thêm vào bảng đăng ký
+CREATE OR ALTER TRIGGER tg_themDangKy ON THANHTOAN
 AFTER INSERT
 AS
 BEGIN
@@ -62,7 +63,21 @@ end
 GO
 
 --Xóa những tham chiếu tới bài học trước khi xóa bài học
-
+CREATE OR ALTER TRIGGER tg_xoaBaiHoc ON BAIHOC
+INSTEAD OF DELETE
+AS
+DECLARE @mabaihoc INT
+SELECT @mabaihoc=d.MaBaiHoc
+FROM deleted d
+BEGIN
+	DELETE FROM LAMBAITAP WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM BAITAP WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM HOC WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM DINHKEM WHERE MaBaiHoc = @mabaihoc
+	DELETE FROM BAIHOC WHERE MaBaiHoc = @mabaihoc
+END
+Go
+--Cập nhật tiến độ
 CREATE OR ALTER TRIGGER tg_updateTienDo ON HOC
 FOR UPDATE
 AS
@@ -108,7 +123,7 @@ BEGIN
 						  WHERE bh.MaBaiHoc = @mabaihoc)
 	   End 
 	   End
-	ELSE
+    ELSE
 	   UPDATE DANGKY SET TienDo = 0 WHERE MaNguoiDung = @manguoidung 
 	   and MaKhoaHoc=(SELECT Distinct MaKhoaHoc 
 	                      FROM BAIHOC AS bh

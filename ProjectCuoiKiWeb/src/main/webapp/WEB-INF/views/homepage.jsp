@@ -306,9 +306,9 @@
 												</div>
 											</div>
 											<div style="justify-content: center;" class="card_deck">
-												<div class="card_text" tabindex="1">
-													<div class="view_content">
-														<c:forEach var="khnoitieng" items="${dskhnoitieng}">
+												<c:forEach var="khnoitieng" items="${dskhnoitieng}">
+													<div class="card_text" tabindex="1">
+														<div class="view_content">
 															<div class="card_item">
 																<a href="describe?makhoahoc=${khnoitieng.makhoahoc}">
 																	<div class="card_img"
@@ -319,9 +319,9 @@
 																</div>
 																<a href="#" class="course_name">${khnoitieng.tenkhoahoc}</a>
 															</div>
-														</c:forEach>
+														</div>
 													</div>
-												</div>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
@@ -511,6 +511,7 @@
 	</div>
 	<script type="text/javascript"
 		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
 	</script>
 	<script>
 		window.onload = function() {

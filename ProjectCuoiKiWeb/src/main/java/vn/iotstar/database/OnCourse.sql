@@ -183,12 +183,9 @@ VALUES
 
 INSERT INTO TAILIEU (TheLoai, DinhDangLuuTru, DuongDanLuuTru)
 VALUES
-    (N'Tài liệu 1', N'PDF', 'duong_dan_1.pdf'),
-    (N'Tài liệu 2', N'PDF', 'duong_dan_2.pdf'),
-    (N'Tài liệu 3', N'Word', 'duong_dan_3.docx'),
-    (N'Tài liệu 4', N'PDF', 'duong_dan_4.pdf'),
-    (N'Tài liệu 5', N'Word', 'duong_dan_5.docx');
-    
+    (N'Tài liệu', N'dox', N'Bài tập Chương 3.docx'),
+    (N'Tài liệu', N'pptx', N'THUYẾT TRÌNH LỊCH SỬ ĐẢNG 2023.pptx'),
+    (N'Tài liệu', N'pptx', N'WEBSITE_DAY_HOC_SO.pptx')
 INSERT INTO DANGKY (MaNguoiDung, MaKhoaHoc)
 VALUES
     (1, 1),
