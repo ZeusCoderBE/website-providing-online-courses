@@ -23,12 +23,7 @@ Create or Alter Procedure sp_InsertLessonIntoHoc
 as
 begin
 	insert into HOC(MaNguoiDung,MaBaiHoc)
-	select HOCVIEN.MaHocVien,BAIHOC.MaBaiHoc From BAIHOC join
-	KHOAHOC on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
-	join DANGKY
-	on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
-	join HOCVIEN on HOCVIEN.MaHocVien=DANGKY.MaNguoiDung
-	where MaHocVien=@manguoidung and MaBaiHoc=@mabaihoc
+	values(@manguoidung,@MaBaiHoc)
 end
 go
 --Create Document
@@ -368,6 +363,7 @@ BEGIN
    INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
+GO
 --Kiểm Tra tồn tại bài tập chưa nếu chưa thì mới tạo lúc edit tài liệu thành bài tạp
 Create or Alter Procedure sp_CheckTonTaiBaiTap
 @tenbaitap nvarchar(100),@mabaihoc int

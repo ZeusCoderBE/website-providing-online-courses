@@ -21,28 +21,28 @@
 			<i class="fa-regular fa-square"></i> <i class="fa-regular fa-square"></i>
 			<div class="content">
 				<div class="header">
-					<img src="./templates/Images/logo.png" width="120" height="120"
+					<img src="${company.getLogo()}" width="120" height="120"
 						alt="logo">
-					<h1>OnCourse</h1>
+					<h1>${company.getName()}</h1>
 				</div>
 				<div class="info">
 					<span class="date_complete">Sep 15, 2023</span>
 					<h4>${tenhocvien.hoten}</h4>
 					<span>has success completed</span>
 					<h6>${khoahoc.tenkhoahoc}</h6>
-					<span>an online none-credit course authorized by Oncourse
-						and offered throungh OnCourse</span>
+					<span>an online none-credit course authorized by ${company.getName()}
+						and offered throungh ${company.getName()}</span>
 				</div>
 
 				<div class="header_footer">
-					<img src="./templates/Images/logo.png" width="100" height="100"
+					<img src="${company.getLogo()}" width="100" height="100"
 						alt="logo">
-					<h1>OnCourse</h1>
+					<h1>${company.getName()}</h1>
 				</div>
 
 				<div class="logo_certificate">
 					<h5>
-						ONCOURSE <br> CERTIFICATE
+						${company.getName()} <br> CERTIFICATE
 					</h5>
 					<div class="site-img">
 						<img src="./templates/Images/certificate.png" width="240"
@@ -50,8 +50,8 @@
 					</div>
 				</div>
 				<div class="footer">
-					<span>Verify at:</span> <a href="#">http://oncourse/verify/ABC</a>
-					<span>Oncourse has confirm the identity of this individual
+					<span>Verify at:</span> <a href="#">http://${company.getName()}/verify/ABC</a>
+					<span>${company.getName()} has confirm the identity of this individual
 						and their participation in the course</span>
 				</div>
 

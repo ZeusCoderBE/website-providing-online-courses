@@ -1,9 +1,9 @@
 --View xem các khoá học đã được đăng ký
 CREATE OR ALTER VIEW v_xemkhoahocdangky as
-select KhoaHoc.MaKhoaHoc,COUNT(DANGKY.MaNguoiDung) as[SoLuong] From DANGKY
+select KhoaHoc.MaKhoaHoc,COUNT(DANGKY.MaNguoiDung)  as[SoLuong],KHOAHOC.TenKhoaHoc,KHOAHOC.TrinhDoDauVao,KhoaHoc.MinhHoa From DANGKY
 join KHOAHOC
 on KHOAHOC.MaKhoaHoc =DANGKY.MaKhoaHoc
-group by KHOAHOC.MaKhoaHoc
+group by KHOAHOC.MaKhoaHoc,KHOAHOC.TenKhoaHoc,KHOAHOC.TrinhDoDauVao,KhoaHoc.MinhHoa
 
 Go
 --Xem Thông Tin Học Viên

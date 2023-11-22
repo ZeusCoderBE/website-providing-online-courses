@@ -21,6 +21,11 @@
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 	</bean>
+	<bean id="coursera" class="vn.iotstar.information.Company">
+		<property name="name" value="ONCOURSE" />
+		<property name="logo" value="./templates/Images/logo.png" />
+	</bean>
+
 	<mvc:resources mapping="/templates/**"
 		location="/,classpath://WEB-INF/resources/" cache-period="5000" />
 </beans>

@@ -11,13 +11,11 @@ body {
 	padding: 10px 20px;
 	align-items: center;
 }
-
 .course_name {
 	font-size: 1.5rem;
 	font-weight: 500;
 	color: black;
 	margin-bottom: 20px;
-
 }
 
 .date_course {
@@ -30,7 +28,6 @@ body {
 	border: 1px solid #929599;
 	background-color: white;
 	border-radius: 4px;
-
 }
 
 .content_text {
@@ -72,14 +69,14 @@ body {
 	display: flex;
 	align-items: center;
 	height: 37px;
-	
 }
 
 .content-maskDone {
+	position: absolute;
+	bottom: 22px;
 	margin-left: 160px;
 	font-size: 1.2rem;
 	background-color: transparent;
-	
 }
 
 .content_progress span {
@@ -119,7 +116,8 @@ body {
 }
 
 .btn-edit--file {
-	width: 100px;
+	width: 58px;
+	padding: 0;
 }
 
 /*.container_content p,
@@ -130,7 +128,6 @@ body {
     color: black;
     text-align: left;
 }*/
-
 .nav-item {
 	margin: 1px;
 }
@@ -144,7 +141,6 @@ body {
 	padding: 80px 20%;
 	color: black;
 	background-color: white;
-
 }
 
 .page-content-filter {
@@ -155,7 +151,6 @@ body {
 .form-select {
 	max-width: 400px;
 	border-radius: 10px;
-
 }
 
 .page-note-icon {
@@ -190,7 +185,9 @@ body {
 	margin-right: 10px;
 }
 
-.page-title-item h6 {}
+.page-title-item h6 {
+	
+}
 
 .page-title-list {
 	position: relative;
@@ -216,7 +213,6 @@ body {
 	font-size: 0.9rem;
 	color: white;
 	padding: 6px;
-
 }
 
 .col-lg-9 {
@@ -236,7 +232,6 @@ body {
 .page-title-action {
 	display: flex;
 	margin-top: 10px;
-
 }
 
 .page-active {
@@ -262,7 +257,6 @@ body {
 	margin-left: -20px;
 	margin-bottom: 10px;
 	color: blueviolet;
-
 }
 
 .footer {

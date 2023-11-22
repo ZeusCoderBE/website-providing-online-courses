@@ -2,11 +2,16 @@ package vn.iotstar.controller;
 
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import vn.iotstar.information.Company;
 import vn.iotstar.model.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -17,9 +22,19 @@ public class SignInController {
 	KhoaHocDao khD = new KhoaHocDao();
 	NguoiDungDao ndd = new NguoiDungDao();
 	GiangVienDao gvD = new GiangVienDao();
+	@Autowired
+	@Qualifier("coursera")
+	Company company;
+
+	@RequestMapping(value = "/")
+	public String ShowIntroduction(HttpSession session) {
+		session.setAttribute("company", company);
+		return "introduction";
+	}
 
 	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String DangNhap() {
+	public String DangNhap(HttpSession session) {
+		session.setAttribute("company", company);
 		return "SignIn";
 	}
 

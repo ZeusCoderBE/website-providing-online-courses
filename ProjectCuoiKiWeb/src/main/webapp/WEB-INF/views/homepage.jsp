@@ -10,11 +10,11 @@
 <title>Trang Chủ</title>
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link href="./templates/CSS/cart.css" rel="stylesheet">
 <link href="./templates/CSS/style.css" rel="stylesheet">
 <link href="./templates/CSS/main.css" rel="stylesheet">
-<link href="./templates/CSS/create_course.css" rel="stylesheet">
 <script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
@@ -278,7 +278,7 @@
 						<div class="branding">
 							<div class="branding-inner">
 								<a href="#" class="site-name"> <img class="site-logo"
-									src="./templates/Images/logo.png" alt="UTEX-HCMUTE">
+									src="${company.getLogo()}" alt="UTEX-HCMUTE">
 								</a>
 
 								<ul class="main-nav">
@@ -296,7 +296,7 @@
 									<div class="region_item">
 										<div class="card_body">
 											<div class="card_history">
-												<h5>Recently accessed courses</h5>
+												<h5>Các khóa học nổi tiếng</h5>
 												<div class="show_detail">
 													<a href="#" class="chevron-left"> <i
 														class="fa-solid fa-chevron-left"></i>
@@ -308,33 +308,20 @@
 											<div style="justify-content: center;" class="card_deck">
 												<div class="card_text" tabindex="1">
 													<div class="view_content">
-														<div class="card_item">
-															<a href="./course.html">
-																<div class="card_img"></div>
-															</a>
-															<div class="course_info">
-																<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
+														<c:forEach var="khnoitieng" items="${dskhnoitieng}">
+															<div class="card_item">
+																<a href="describe?makhoahoc=${khnoitieng.makhoahoc}">
+																	<div class="card_img"
+																		style="background-image: url('./templates/Images/${khnoitieng.minhhoa}')"></div>
+																</a>
+																<div class="course_info">
+																	<span>${khnoitieng.trinhdodauvao}</span>
+																</div>
+																<a href="#" class="course_name">${khnoitieng.tenkhoahoc}</a>
 															</div>
-															<a href="#" class="course_name">An toan thong tin_
-																Nhom 11</a>
-														</div>
+														</c:forEach>
 													</div>
 												</div>
-												<div class="card_text">
-													<div class="view_content">
-														<div class="card_item">
-															<a href="describe.jsp">
-																<div class="card_img"></div>
-															</a>
-															<div class="course_info">
-																<span>HK1 NĂM HỌC 2023-2024 - HỆ ĐẠI TRÀ</span>
-															</div>
-															<a href="#" class="course_name">An toan thong tin_
-																Nhom 11</a>
-														</div>
-													</div>
-												</div>
-
 											</div>
 										</div>
 									</div>
@@ -342,7 +329,7 @@
 									<div class="region_list">
 										<div class="card_body">
 											<div class="card_history">
-												<h5>Recently accessed courses</h5>
+												<h5>Danh mục các khóa học</h5>
 											</div>
 											<div class="card_setting">
 												<div class="cb_all">
@@ -451,7 +438,7 @@
 																		</div>
 																		<a href="describe?makhoahoc=${khoahoc.makhoahoc}"
 																			class="course_name">${khoahoc.tenkhoahoc}</a>
-																		
+
 																	</div>
 																</div>
 															</div>
@@ -482,7 +469,8 @@
 											</div>
 											<a href="#">Get the mobile app</a>
 										</div>
-										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright
+											${company.getName()} © 2023</div>
 									</c:when>
 									<c:when test="${not empty giangvien.manguoidung}">
 										<div class="footer_main_list">
@@ -499,7 +487,8 @@
 											</div>
 											<a href="#">Get the mobile app</a>
 										</div>
-										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright
+											${company.getName()} © 2023</div>
 									</c:when>
 									<c:otherwise>
 										<div class="footer_main_list">
@@ -509,7 +498,8 @@
 											</div>
 											<a href="#">Get the mobile app</a>
 										</div>
-										<div class="footer_main_info">Copyright Oncourse © 2023</div>
+										<div class="footer_main_info">Copyright
+											${company.getName()} © 2023</div>
 									</c:otherwise>
 								</c:choose>
 							</footer>
@@ -519,9 +509,10 @@
 			</div>
 		</section>
 	</div>
-	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
 	</script>
-	<script >
+	<script>
 		window.onload = function() {
 			ReloadAlert("${thongbaothanhcong}");
 			ReloadAlert("${thongbaokhach}");

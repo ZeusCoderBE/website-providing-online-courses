@@ -9,10 +9,10 @@ body {
     width: 100%;
     position:relative;
     min-height: 100vh;
-    padding-top: 90px;
-    background-image: url('https://www.pluralsight.com/content/dam/pluralsight2/homepage/2023-updates/ai-home-hero.webp');
-    background-size: 100%;
-    background-position: bottom;
+    padding-top: 40px;
+    background-image: url('../Images/background.webp');
+    background-size: 50%;
+    background-position: right;
     background-repeat: no-repeat;
     padding-bottom: 30px;
 }
@@ -30,7 +30,7 @@ body {
 #form-login {
     padding: 50px;
     padding-top: 20px;
-    margin: auto;
+    margin-left: 10%;
     width: 380px;
     background-color: #ffffff;
     border-radius: 10px;

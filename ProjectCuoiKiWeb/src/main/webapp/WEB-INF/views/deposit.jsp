@@ -168,7 +168,7 @@
 
 		<section class="pay-container">
 			<div class="pay-header">
-				<img src="./templates/Images/logo.png" alt="logo" height="100"
+				<img src="${company.getLogo()}" alt="logo" height="100"
 					width="100">
 				<h2>Cổng Thanh Toán Trực Tuyến</h2>
 			</div>
@@ -249,7 +249,7 @@
 					<div class="footer_column">
 						<div class="footer_header">
 							<a class="nav_item_link" href="#">
-								<div>OnCourse</div>
+								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>
 						</div>
@@ -261,7 +261,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Về Oncourse</h5>
+							<h5>Về ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Giới thiệu</a></li>
@@ -303,13 +303,13 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+							<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. ${company.getName()} xây
 									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
 									đồng.</p>
 							</li>
@@ -320,7 +320,7 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
+				<div class="footer_nav__info">© 2018 - 2023 ${company.getName()}. Nền tảng
 					học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i

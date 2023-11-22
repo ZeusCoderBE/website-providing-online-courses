@@ -91,8 +91,8 @@
  }
 
 /* // Small devices (landscape phones, 576px and up) */
-@media only screen and (min-device-width: 576px) and (max-device-width:767px){
-    .col-2 {
+@media only screen and (max-device-width:767px){
+    /*.col-2 {
         width: 30%;
     }
 
@@ -112,7 +112,14 @@
    .card_group {
     width: 300px;
     margin: 15px;
-    }
+    }*/
+    #page_container {
+		display: none;
+	}
+	
+	.info-device {
+		display: flex;
+	}
  }
  
  @keyframes headerNotifygrowth {

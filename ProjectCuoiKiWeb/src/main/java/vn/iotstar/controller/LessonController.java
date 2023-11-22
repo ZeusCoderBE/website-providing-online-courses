@@ -278,7 +278,6 @@ public class LessonController {
 			String originname = mul.getOriginalFilename();
 			try {
 				String upload = context.getRealPath("Resource\\ResourceDocument\\" + originname);
-				System.out.print(upload);
 				File dest = new File(upload);
 				mul.transferTo(dest);
 				LamBaiTap lbt = new LamBaiTap(originname, hv.getManguoidung(), mabaihoc, tentailieu);

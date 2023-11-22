@@ -217,8 +217,7 @@
 					<div class="sidebar sidebar_study">
 						<div style="justify-content: center;" class="branding-inner">
 							<a style="margin-top: 0;" href="homepages" class="site-name">
-								<img class="site-logo" src="./templates/Images/logo.png"
-								alt="UTEX-HCMUTE">
+								<img class="site-logo" src="${company.logo}" alt="UTEX-HCMUTE">
 							</a>
 						</div>
 
@@ -232,11 +231,12 @@
 									Material</div>
 							</button>
 							<ul class="list_timer">
-								<c:forEach var="baihoc" items="${dsbaihoc}">
+								<c:forEach var="baihoc" items="${dsbaihoc}"
+									varStatus="loopStatus">
 									<li class="my-lesson__detail"><a
 										href="Find-Lesson?mabaihoc=${baihoc.mabaihoc}"
 										onclick="ShowOption('page_study','page-forum', 'page-message', 'page-note')">
-											<span>${baihoc.tenbaihoc}</span>
+											<span>Bài Học ${loopStatus.index + 1}</span>
 									</a> <!-- Các nút chức năng -->
 										<div class="my-lesson-action">
 											<c:if test="${not empty giangvien.manguoidung}">
@@ -323,13 +323,13 @@
 												<div class="container_content">${lesson.noidungbaihoc}</div>
 												<div class="container_content container-file">
 													<!-- HIỂN THỊ DANH SÁCH TÀI LIỆU -->
+													<a>DANH SÁCH TÀI LIỆU</a>
 													<c:if test="${not empty dstailieu}">
-														<a>DANH SÁCH TÀI LIỆU</a>
 														<table class="table">
 															<thead>
 																<tr>
-																	<th>Type</th>
-																	<th>Tên file</th>
+																	<th>Loại</th>
+																	<th style="width: 60%;">Tên file</th>
 																	<th>Thao tác</th>
 																</tr>
 															</thead>
@@ -346,10 +346,11 @@
 																				test="${not empty giangvien.manguoidung}">
 																				<a
 																					href="find-document?matailieu=${tailieu.matailieu}"
-																					class="btn-edit--file"> Edit</a>
+																					class="btn-edit--file btn btn-outline-primary">
+																					Edit</a>
 																				<a
 																					href="delete-document?matailieu=${tailieu.matailieu}"
-																					class="btn-edit--file">Delete</a>
+																					class="btn-edit--file btn btn-outline-primary">Delete</a>
 																			</c:if> <c:if test="${not empty hocvien.manguoidung}">
 																				<c:if test="${tailieu.theloai eq 'Bài Tập'}">
 																					<a class="submit-baitap"
@@ -377,10 +378,9 @@
 															<table class="table">
 																<thead>
 																	<tr>
-																		<th>Full Name</th>
+																		<th>Họ và tên</th>
 																		<th>Tên Bài Tập</th>
-																		<th>Mã Bài Học</th>
-																		<th>Tên Bài Nộp</th>
+																		<th>Tên File</th>
 																	</tr>
 																</thead>
 																<tbody class="table-group-divider">
@@ -388,7 +388,7 @@
 																		<tr>
 																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
 																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
-																			<td><c:out value="${baitapdanop.getMaBaiHoc()}" /></td>
+
 																			<td><a
 																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
 																						value="${baitapdanop.tenbainop}"></c:out> </a></td>
@@ -400,14 +400,28 @@
 													</c:if>
 													<!-- HIỂN THỊ CÁC TÀI LIỆU MÀ HỌC VIÊN NỘP LÊN -->
 													<c:if test="${not empty hocvien.manguoidung}">
+														<a>DANH SÁCH BÀI NỘP</a>
 														<c:if test="${not empty dslambaitap}">
-															<a>DANH SÁCH BÀI NỘP</a>
-															<c:forEach var="lbt" items="${dslambaitap}">
-																<a
-																	href="./templates/Resource/ResourceDocument/${lbt.getTenbainop()}">
-																	<c:out value="${lbt.getTenbainop()}"></c:out>
-																</a>
-															</c:forEach>
+															<table class="table headertable">
+																<thead>
+																	<tr>
+																		<th>Loại</th>
+																		<th style="width: 60%;">Tên File</th>
+																		<th>Thao Tác</th>
+																	</tr>
+																</thead>
+																<tbody class="table-group-divider">
+																	<c:forEach var="lbt" items="${dslambaitap}">
+																		<tr>
+																			<td id="container_${lbt.getTenbainop()}"><script>
+												                    			AddImgDocument('${lbt.getTenbainop()}', 'container_${lbt.getTenbainop()}');
+												                			</script></td>
+																			<td><a
+																				href="./templates/Resource/ResourceDocument/${lbt.getTenbainop()}">${lbt.getTenbainop()}</a></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
 														</c:if>
 													</c:if>
 												</div>
@@ -436,7 +450,7 @@
 							<!-- NOTES -->
 							<div class="page-note page-common active">
 								<div class="page-content">
-									<h2>Notes</h2>
+									<h2>Notes (Comming soon)</h2>
 									<div class="page-content-filter">
 										<h5>Filter</h5>
 										<select class="form-select"
@@ -468,7 +482,7 @@
 							<!-- Forum -->
 							<div class="page-forum page-common active">
 								<div class="page-content">
-									<h2>Forum</h2>
+									<h2>Forum (Comming soon)</h2>
 									<div class="page-content-form">
 										<input class="form-control" type="text"
 											placeholder="Search Forum" />
@@ -543,7 +557,7 @@
 							<!-- Messages-->
 							<div class="page-message page-common active">
 								<div class="page-content">
-									<h2>Messages</h2>
+									<h2>Messages (Comming soon)</h2>
 
 									<div class="page-title">
 										<div class="page-title-item">
@@ -617,7 +631,7 @@
 										<div class="footer_column">
 											<div class="footer_header">
 												<a class="nav_item_link" href="#">
-													<div>OnCourse</div>
+													<div>${company.getName()}</div>
 												</a>
 												<h5>Dạy lập trình</h5>
 											</div>
@@ -629,7 +643,7 @@
 									<section class="footer_item">
 										<div class="footer_column">
 											<div class="footer_header">
-												<h5>Về Oncourse</h5>
+												<h5>Về ${company.getName()}</h5>
 											</div>
 											<ul class="footer_info">
 												<li><a href="#">Giới thiệu</a></li>
@@ -671,15 +685,16 @@
 									<section class="footer_item">
 										<div class="footer_column">
 											<div class="footer_header">
-												<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+												<h5>Công ty cổ phần công nghệ giáo dục
+													${company.getName()}</h5>
 											</div>
 											<ul class="footer_info">
 												<li><a href="#">Mã số thuế: 0109922901</a></li>
 												<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 												<li>
-													<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse
-														xây dựng và phát triển những sản phẩm mang lại giá trị cho
-														cộng đồng.</p>
+													<p>Lĩnh vực: Công nghệ, giáo dục, lập trình.
+														${company.getName()} xây dựng và phát triển những sản phẩm
+														mang lại giá trị cho cộng đồng.</p>
 												</li>
 
 											</ul>
@@ -688,8 +703,8 @@
 
 								</section>
 								<section class="footer_nav">
-									<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền
-										tảng học lập trình hàng đầu Việt Nam</div>
+									<div class="footer_nav__info">© 2018 - 2023
+										${company.getName()}. Nền tảng học lập trình hàng đầu Việt Nam</div>
 									<div class="footer_nav__icon">
 										<i class="fa-brands fa-square-youtube"></i> <i
 											class="fa-brands fa-square-facebook"></i> <i

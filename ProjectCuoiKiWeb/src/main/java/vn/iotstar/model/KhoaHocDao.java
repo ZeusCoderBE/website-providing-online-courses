@@ -36,6 +36,20 @@ public class KhoaHocDao {
 
 	}
 
+	public List<KhoaHoc> CountPopularCourse() throws ClassNotFoundException, SQLException {
+		String query = "select Top 2 * From v_xemkhoahocdangky order by (SoLuong) desc";
+		ResultSet rs = dbC.ExecuteQuery(query);
+		KhoaHoc khoahoc = new KhoaHoc();
+		List<KhoaHoc> listpop = new ArrayList<KhoaHoc>();
+		while (rs.next()) {
+			khoahoc = new KhoaHoc(rs.getInt("MaKhoaHoc"), rs.getNString("TenKhoaHoc"), rs.getNString("TrinhDoDauVao"),
+					rs.getNString("MinhHoa"));
+			listpop.add(khoahoc);
+		}
+		System.out.print(query);
+		return listpop;
+	}
+
 	public List<KhoaHoc> CountSelectedCourses(List<String> selectedCourses)
 			throws NumberFormatException, ClassNotFoundException, SQLException {
 		List<KhoaHoc> selectedtemp = new ArrayList<>();

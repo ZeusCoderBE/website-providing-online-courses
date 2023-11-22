@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/main.css">
 <link rel="stylesheet" type="text/css" href="./templates/CSS/style.css">
@@ -135,7 +136,7 @@
 					</div>
 					<div class="profile_avata">
 						<div>
-							<h4>Wallet</h4>
+							<h5>Wallet</h5>
 						</div>
 						<div class="id-card">
 							<h6>Mã thẻ:</h6>
@@ -166,7 +167,7 @@
 					</div>
 					<div class="profile_avata">
 						<div>
-							<h4>Additional info</h4>
+							<h5>Additional info</h5>
 						</div>
 						<div>
 							<span>Help recruiters get to know you better by describing
@@ -293,7 +294,7 @@
 										<div class="profile_my-course__info">
 											<a href="certificate?makhoahoc=${certificate.makhoahoc}"
 												class="btn-certificate">${certificate.tenkhoahoc}</a>
-											<p>OnCourse</p>
+											<p>${company.getName()}</p>
 											<span>Grade Achieved: 100%</span>
 										</div>
 									</div>
@@ -315,12 +316,15 @@
 				</div>
 				<a href="#">Get the mobile app</a>
 			</div>
-			<div class="footer_main_info">Copyright Oncourse © 2023</div>
+			<div class="footer_main_info">Copyright ${company.getName()} © 2023</div>
 
 		</footer>
 	</div>
-	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
-	<script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
+	</script>
+	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${thongbao}");
 			ReloadAlert("${thongtinsai}")
