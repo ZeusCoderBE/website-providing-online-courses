@@ -22,12 +22,15 @@ public class HomePageController {
 	@RequestMapping(value = "/homepages", method = RequestMethod.GET)
 	public String homePage(ModelMap model, HttpSession session) throws Exception {
 		List<KhoaHoc> ListKH = null;
+		List<KhoaHoc> Listkhnt = null;
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
 			if (hv == null && gv == null) {
 				ListKH = khD.GetListCourses();
 				model.addAttribute("danhsachkh", ListKH);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 				model.addAttribute("thongbaokhach",
 						"Bạn đang vào trang web này với vai trò là khách nếu bạn muốn đăng ký khóa học vui lòng tạo tài khoản !");
 			} else if (hv != null && gv == null) {
@@ -40,12 +43,16 @@ public class HomePageController {
 				model.addAttribute("thongtin", hocvien);
 				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 
 			} else if (gv != null && hv == null) {
 				GiangVien giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
 				model.addAttribute("thongtin", giangvien);
 				ListKH = khD.GetListCourses();
 				model.addAttribute("danhsachkh", ListKH);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 			}
 
 		} catch (Exception ex) {
@@ -65,6 +72,7 @@ public class HomePageController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		List<KhoaHoc> dskhoahoc = new ArrayList<KhoaHoc>();
+		List<KhoaHoc> Listkhnt = null;
 		try {
 			if (hv != null && gv == null) {
 				dskhoahoc = khD.FindMyLearning(hv.getManguoidung());
@@ -75,17 +83,20 @@ public class HomePageController {
 				GioHang gh = ghD.CountCourse(hv.getManguoidung());
 				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 			} else {
 				dskhoahoc = khD.ShowMyCreateOfCourse(gv.getManguoidung());
 				model.addAttribute("danhsachkhoahoc", dskhoahoc);
 				model.addAttribute("check", 0);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 			}
 
 		} catch (Exception ex) {
-				System.out.print(ex.getMessage());
+			System.out.print(ex.getMessage());
 		}
 		return "homepage";
 	}
 
-	
 }

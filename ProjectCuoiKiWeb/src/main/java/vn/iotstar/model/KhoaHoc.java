@@ -89,6 +89,13 @@ public class KhoaHoc {
 		this.makhoahoc = makhoahoc;
 		this.soluong = soluong;
 	}
+	public KhoaHoc(int makhoahoc, String tenkhoahoc,String trinhdodauvao,String minhhoa) {
+		this.makhoahoc = makhoahoc;
+		this.tenkhoahoc=tenkhoahoc;
+		this.trinhdodauvao=trinhdodauvao;
+		this.minhhoa=minhhoa;
+	}
+
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
 			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String minhhoa) {

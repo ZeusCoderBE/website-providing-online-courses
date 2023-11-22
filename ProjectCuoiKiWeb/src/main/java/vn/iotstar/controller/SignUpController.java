@@ -53,10 +53,10 @@ public class SignUpController {
 			int ketqua = ndD.SignUp(gv);
 			if (ketqua == 1) {
 				gvD.InsertGiangVien();
-				map.addAttribute("thongbaodkdung", "Chúc Mừng Bạn Đã Đăng Kí Thành Công !");
+				map.addAttribute("thongbaodung", " Chúc Mừng Bạn Đã Đăng Ký Thành Công !");
 				url = "SignIn";
 			} else {
-				map.addAttribute("thongbaodkgvsai", "Thất Bại !");
+				map.addAttribute("thongbaodksai", "Email Và Số Điện Thoại Đã Tồn Tại !");
 				url = "DangKy";
 			}
 		}

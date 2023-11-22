@@ -24,7 +24,7 @@
 		<header style="position: fixed; width: 100%; z-index: 100;">
 			<nav class="navbar navbar-expand-lg">
 				<div style="margin-top: 0; height: 100%;" class="container-fluid">
-					<a class="navbar-brand" href="#"> OnCourse </a>
+					<a class="navbar-brand" href="#"> ${company.getName()} </a>
 					<div style="height: 100%;" class="collapse navbar-collapse"
 						id="navbarSupportedContent">
 						<ul style="height: 100%;" class="navbar-nav me-auto mb-2 mb-lg-0">

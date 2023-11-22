@@ -24,15 +24,16 @@ public class BaiHocDao {
 		return listbaihoc;
 	}
 
-	public BaiHoc FindMaBaiHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
-		String dml = "select distinct(BAIHOC.MaBaiHoc) From BAIHOC " + "where MaKhoaHoc= " + makhoahoc + "";
+	public List<BaiHoc> FindMaBaiHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String dml = "select BAIHOC.MaBaiHoc From BAIHOC where MaKhoaHoc= " + makhoahoc + "";
 		ResultSet rs = dbC.ExecuteQuery(dml);
 		BaiHoc baihoc = new BaiHoc();
-		if (rs.next()) {
+		List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
+		while (rs.next()) {
 			baihoc = new BaiHoc(rs.getInt("MaBaiHoc"));
-			return baihoc;
+			dsbaihoc.add(baihoc);
 		}
-		return null;
+		return dsbaihoc;
 	}
 
 	public BaiHoc FindOfMyALesson(int mabaihoc) throws ClassNotFoundException, SQLException {
@@ -53,6 +54,7 @@ public class BaiHocDao {
 		String sqlStr = String.format(Locale.US, "INSERT INTO BAIHOC VALUES(N'%s', %f, N'%s', %f, GETDATE(), %d)",
 				baihoc.getTenbaihoc(), baihoc.getThoigianhoanthanh(), baihoc.getNoidungbaihoc(),
 				baihoc.getMuctieudaura(), baihoc.getMakhoahoc());
+		System.out.print(sqlStr);
 		int check = dbC.ExecuteCommand(sqlStr);
 		if (check == 0) {
 			throw new SQLException("Thêm bài học thất bại");
@@ -66,10 +68,11 @@ public class BaiHocDao {
 	}
 
 	public void CapNhatBaiHoc(BaiHoc bh) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format(
+		String sqlStr = String.format(Locale.US,
 				"UPDATE BAIHOC SET TenBaiHoc=N'%s', ThoiGianHoanThanh=%f, NoiDungBaiHoc=N'%s', MucTieuDauRa=%f WHERE MaBaiHoc=%d",
 				bh.getTenbaihoc(), bh.getThoigianhoanthanh(), bh.getNoidungbaihoc(), bh.getMuctieudaura(),
 				bh.getMabaihoc());
+		System.out.println(sqlStr);
 		dbC.ExecuteCommand(sqlStr);
 	}
 
@@ -82,6 +85,7 @@ public class BaiHocDao {
 
 	public void InsertIntoHoc(int manguoidung, int mabaihoc) {
 		String dml = "sp_InsertLessonIntoHoc " + manguoidung + "," + mabaihoc + " ";
+		System.out.print(dml);
 		dbC.ExecuteCommand(dml);
 	}
 

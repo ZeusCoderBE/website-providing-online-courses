@@ -209,6 +209,10 @@ h1,h2,h3,h4,h5 {
 
 }
 
+.course_detail {
+	padding-right: 20px;
+}
+
 .course_detail h2 {
     margin-bottom: 20px;
 }

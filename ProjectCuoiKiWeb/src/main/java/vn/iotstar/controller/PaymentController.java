@@ -76,8 +76,7 @@ public class PaymentController {
 	public String payCart(ModelMap model, HttpSession session, @RequestParam("noidungtt") String noidungtt) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		ThanhToanDao ttd = new ThanhToanDao();
-		BaiHoc baihoc = new BaiHoc();
-		System.out.print("Da qua day");
+		List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
 		try {
 			double totalCost = ttd.SumCostOfCourse(dsKhoahoc);
 			if (totalCost > the.getSoDu()) {
@@ -88,17 +87,17 @@ public class PaymentController {
 				ThanhToan tt = new ThanhToan(hv.getManguoidung(), kh.getMakhoahoc(), kh.getGiatien(),
 						String.format("Thanh toán %s", kh.getTenkhoahoc()));
 				ttd.thanhToan(tt, the);
-				
+
 				KhoaHoc khoahoc = new KhoaHoc(kh.getMatacgia(), kh.getGiatien());
 				gvD.UpdateofCardTeacher(khoahoc);
-				
-				baihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
-				if (baihoc != null) {
-					bhD.InsertIntoHoc(hv.getManguoidung(), baihoc.getMakhoahoc());
+				dsbaihoc = bhD.FindMaBaiHoc(kh.getMakhoahoc());
+				for (BaiHoc baih : dsbaihoc) {
+					if (baih != null) {
+						bhD.InsertIntoHoc(hv.getManguoidung(), baih.getMakhoahoc());
+					}
 				}
 			}
 			ghd.DeleteCoursesIntoCart(dsKhoahoc, hv.getManguoidung());
-			System.out.print("Di Ngang Qua Day");
 			session.setAttribute("warning", "Thanh toán thành công!");
 			return "redirect:/myhomepage";
 		} catch (NumberFormatException e) {

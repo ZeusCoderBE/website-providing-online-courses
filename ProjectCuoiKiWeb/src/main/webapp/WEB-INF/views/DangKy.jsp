@@ -29,11 +29,13 @@
 							</div>
 							<div class="form-login-input">
 								<label for="email">Email</label> <input type="text" id="email"
-									placeholder="VD: vana@gmail.com" name="email" required />
+									placeholder="VD: vana@gmail.com" name="email" required onchange="checkEmail()"/>
+								<p class="infomation" style="color: red;"></p>
 							</div>
 							<div class="form-login-input">
 								<label for="sdt">Số Điện Thoại:</label> <input type="text"
-									id="sdt" name="sdt" placeholder="VD:0123456789" required />
+									id="sdt" name="sdt" placeholder="VD:0123456789" required onchange="checkSdt()"/>
+								<p class="infomation-sdt" style="color: red;"></p>
 							</div>
 							<div class="form-login-input">
 								<label for="password">Mật Khẩu</label> <input type="password"

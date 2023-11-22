@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>Create course</title>
 <link rel="stylesheet" href="./templates/CSS/create_course.css">
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <script src="./templates/JavaScript/script.js"></script>
@@ -52,17 +53,24 @@
 										value="${editbaihoc.noidungbaihoc}"></textarea>
 								</div>
 							</div>
-
-							<button class="btn btn-primary" type="submit">Tạo bài
-								học</button>
+							<c:choose>
+								<c:when test="${not empty editbaihoc}">
+									<button class="btn btn-primary" type="submit">Sửa Bài
+										Học</button>
+								</c:when>
+								<c:otherwise>
+									<button class="btn btn-primary" type="submit">Tạo Bài
+										Học</button>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-	<script
-		src="./templates/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="./templates/tinymce/tinymce.min.js"
+		referrerpolicy="origin"></script>
 	<script src="./templates/JavaScript/script.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {

@@ -23,12 +23,7 @@ Create or Alter Procedure sp_InsertLessonIntoHoc
 as
 begin
 	insert into HOC(MaNguoiDung,MaBaiHoc)
-	select HOCVIEN.MaHocVien,BAIHOC.MaBaiHoc From BAIHOC join
-	KHOAHOC on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
-	join DANGKY
-	on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
-	join HOCVIEN on HOCVIEN.MaHocVien=DANGKY.MaNguoiDung
-	where MaHocVien=@manguoidung and MaBaiHoc=@mabaihoc
+	values(@manguoidung,@MaBaiHoc)
 end
 go
 --Create Document
