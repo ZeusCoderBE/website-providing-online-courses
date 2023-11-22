@@ -91,12 +91,18 @@ function handleCheckboxChange(checkbox) {
 function validateForm() {
 	var tkhocvienCheckbox = document.getElementById("tkhocvien");
 	var tkgiaovienCheckbox = document.getElementById("tkgiaovien");
-
+	var email = document.querySelector('.infomation');
+	var sdt = document.querySelector('.infomation-sdt');
 	if (!tkhocvienCheckbox.checked && !tkgiaovienCheckbox.checked) {
 		alert("Bạn phải chọn ít nhất một tùy chọn (Học viên hoặc Giáo viên) .");
 		return false;
 	}
+	if (email.innerHTML != '' && sdt.innerHTML != '') {
+		alert("Vui Lòng điền đúng thông tin");
+		return false;
+	}
 	return true;
+	
 }
 function SelectedCourse() {
 	var count = document.getElementById("selectedCourses");
@@ -397,26 +403,29 @@ function checkEmail() {
     var email = document.getElementById('email'); 
     var info = document.querySelector('.infomation');
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
-    if (!filter.test(email.value)) { 
-		     email.focus; 
-		     info.style.display = 'block';
-             info.innerHTML= 'Email không hợp lệ'
-    }
-    else{ 
-             info.style.display = 'none';
-    } 
+	if (!filter.test(email.value)) {
+		email.focus;
+		info.style.display = 'block';
+		info.innerHTML = 'Email không hợp lệ'
+	}
+	else {
+		info.innerHTML = '';
+		info.style.display = 'none';
+	}
+}
+
+function checkSdt() {
+	var email = document.getElementById('sdt');
+	var info = document.querySelector('.infomation-sdt');
+	var filter = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+	if (!filter.test(email.value)) {
+		email.focus;
+		info.style.display = 'block';
+		info.innerHTML = 'Số điện thoại không hợp lệ'
+	}
+	else {
+		info.innerHTML = '';
+		info.style.display = 'none';
+	}
 } 
 
-function checkSdt() { 
-    var email = document.getElementById('sdt'); 
-    var info = document.querySelector('.infomation-sdt');
-    var filter = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g; 
-    if (!filter.test(email.value)) { 
-		     email.focus; 
-		     info.style.display = 'block';
-             info.innerHTML= 'Số điện thoại không hợp lệ'
-    }
-    else{ 
-             info.style.display = 'none';
-    } 
-} 
