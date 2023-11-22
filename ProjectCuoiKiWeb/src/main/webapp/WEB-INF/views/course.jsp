@@ -346,8 +346,7 @@
 																				test="${not empty giangvien.manguoidung}">
 																				<a
 																					href="find-document?matailieu=${tailieu.matailieu}"
-																					class="btn-edit--file btn btn-outline-primary">
-																					Edit</a>
+																					class="btn-edit--file btn btn-outline-primary"> Edit</a>
 																				<a
 																					href="delete-document?matailieu=${tailieu.matailieu}"
 																					class="btn-edit--file btn btn-outline-primary">Delete</a>
@@ -388,7 +387,6 @@
 																		<tr>
 																			<td><c:out value="${baitapdanop.getHoten() }" /></td>
 																			<td><c:out value="${baitapdanop.getTenBaiTap()}" /></td>
-
 																			<td><a
 																				href="./templates/Resource/ResourceDocument/${baitapdanop.getTenbainop()}"><c:out
 																						value="${baitapdanop.tenbainop}"></c:out> </a></td>

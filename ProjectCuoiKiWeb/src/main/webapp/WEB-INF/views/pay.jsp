@@ -243,7 +243,7 @@
 											</ul>
 										</div>
 										<button class="btn btn-primary btn-pay" type="submit"
-											onclick="confirmPay('${the.getSoDu()-tonggiatien}')">Thanh
+											onclick="confirmPay(${the.getSoDu()-tonggiatien})">Thanh
 											toán</button>
 									</div>
 								</div>
@@ -350,7 +350,6 @@
 	<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 	<script type="text/javascript"
 		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
-		
 	</script>
 </body>
 </html>

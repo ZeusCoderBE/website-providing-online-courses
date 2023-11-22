@@ -68,10 +68,11 @@ public class BaiHocDao {
 	}
 
 	public void CapNhatBaiHoc(BaiHoc bh) throws SQLException, ClassNotFoundException {
-		String sqlStr = String.format(
+		String sqlStr = String.format(Locale.US,
 				"UPDATE BAIHOC SET TenBaiHoc=N'%s', ThoiGianHoanThanh=%f, NoiDungBaiHoc=N'%s', MucTieuDauRa=%f WHERE MaBaiHoc=%d",
 				bh.getTenbaihoc(), bh.getThoigianhoanthanh(), bh.getNoidungbaihoc(), bh.getMuctieudaura(),
 				bh.getMabaihoc());
+		System.out.println(sqlStr);
 		dbC.ExecuteCommand(sqlStr);
 	}
 
