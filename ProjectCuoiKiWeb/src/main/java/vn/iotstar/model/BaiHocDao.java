@@ -43,7 +43,7 @@ public class BaiHocDao {
 		if (rs.next() == true) {
 			baihoc = new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"),
 					rs.getDouble("MucTieuDauRa"), rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"),
-					rs.getInt("MaKhoaHoc"), rs.getNString("DuongDanLuuTru"));
+					rs.getInt("MaKhoaHoc"), rs.getNString("DuongDanLuuTru"), rs.getNString("TenKhoaHoc"));
 			return baihoc;
 		} else {
 			return null;

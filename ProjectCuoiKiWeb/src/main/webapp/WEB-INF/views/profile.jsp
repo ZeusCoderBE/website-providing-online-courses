@@ -180,6 +180,11 @@
 				</nav>
 				<article class="col-9">
 					<div class="profile_content">
+						<div style="justify-content: right;" class="branding-inner">
+							<a style="margin-top: 0;" href="homepages" class="site-name">
+								<img class="site-logo" src="${company.logo}" alt="UTEX-HCMUTE">
+							</a>
+						</div>
 						<form action="myprofiles" method="post">
 							<div class="profile_account">
 								<h6>Account</h6>
@@ -301,8 +306,6 @@
 								</c:forEach>
 							</div>
 						</c:if>
-
-
 					</div>
 				</article>
 			</div>
@@ -316,7 +319,8 @@
 				</div>
 				<a href="#">Get the mobile app</a>
 			</div>
-			<div class="footer_main_info">Copyright ${company.getName()} © 2023</div>
+			<div class="footer_main_info">Copyright ${company.getName()} ©
+				2023</div>
 
 		</footer>
 	</div>

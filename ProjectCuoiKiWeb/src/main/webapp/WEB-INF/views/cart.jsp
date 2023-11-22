@@ -8,7 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Giỏ hàng</title>
-<link rel="stylesheet" href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" href="./templates/CSS/cart.css">
@@ -308,9 +309,9 @@
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. ${company.getName()} xây
-									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
-									đồng.</p>
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình.
+									${company.getName()} xây dựng và phát triển những sản phẩm mang
+									lại giá trị cho cộng đồng.</p>
 							</li>
 
 						</ul>
@@ -319,8 +320,8 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 ${company.getName()}. Nền tảng
-					học lập trình hàng đầu Việt Nam</div>
+				<div class="footer_nav__info">© 2018 - 2023
+					${company.getName()}. Nền tảng học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i
 						class="fa-brands fa-square-facebook"></i> <i
@@ -329,8 +330,11 @@
 			</section>
 		</footer>
 	</div>
-	<script type="text/javascript" src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js" >
-	<script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
+	</script>
+	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");
 			ReloadAlert("${thongbaoxoa}");

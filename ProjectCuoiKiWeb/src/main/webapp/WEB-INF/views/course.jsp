@@ -291,6 +291,7 @@
 						<article class="col-10">
 							<div class="page_study">
 								<div class="branding-inner">
+									<div class="course_name">${lesson.tenkhoahoc}</div>
 									<div class="course_name">${lesson.tenbaihoc}</div>
 									<div class="date_course">
 										<span>Đã đăng vào :</span> <span> ${lesson.ngaydang} *
@@ -346,7 +347,8 @@
 																				test="${not empty giangvien.manguoidung}">
 																				<a
 																					href="find-document?matailieu=${tailieu.matailieu}"
-																					class="btn-edit--file btn btn-outline-primary"> Edit</a>
+																					class="btn-edit--file btn btn-outline-primary">
+																					Edit</a>
 																				<a
 																					href="delete-document?matailieu=${tailieu.matailieu}"
 																					class="btn-edit--file btn btn-outline-primary">Delete</a>

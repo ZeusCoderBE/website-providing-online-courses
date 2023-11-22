@@ -38,7 +38,7 @@ select GIANGVIEN.MaGiangVien,NGUOIDUNG.HoTen,NGUOIDUNG.Email,NGUOIDUNG.Sdt,
 Go
 -- Xem Danh Sách Tài Liệu dạng video đính kèm
 Create or Alter View v_xemdanhsachtailieu as
-select BaiHoc.*,TAILIEU.MaTaiLieu,TAILIEU.TheLoai,TAILIEU.DinhDangLuuTru,DuongDanLuuTru 
+select BaiHoc.*,TAILIEU.MaTaiLieu,TAILIEU.TheLoai,TAILIEU.DinhDangLuuTru,DuongDanLuuTru,KhoaHoc.TenKhoaHoc
 From DINHKEM
 join TAILIEU
 on TAILIEU.MaTaiLieu=DINHKEM.MaTaiLieu 

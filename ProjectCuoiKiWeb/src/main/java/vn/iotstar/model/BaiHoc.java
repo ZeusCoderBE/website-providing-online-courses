@@ -13,9 +13,14 @@ public class BaiHoc {
 	private int makhoahoc;
 	private String duongdan;
 	private String trangthai;
+	private String tenkhoahoc;
 	public String getDuongdan()
 	{
 		return duongdan;
+	}
+	public String getTenkhoahoc()
+	{
+		return tenkhoahoc;
 	}
 	public String getTrangthai()
 	{
@@ -72,6 +77,18 @@ public class BaiHoc {
 		this.noidungbaihoc=noidungbaihoc;
 		this.thoigianhoanthanh=tghoanthanh;
 		this.muctieudaura=muctieudaura;
+	}
+	public BaiHoc(int mabaihoc,String tenbaihoc, String noidungbaihoc, Double muctieudaura, Date ngaydang, double tghoanthanh,int makhoahoc,String duongdan,String tenkhoahoc)
+	{
+		this.mabaihoc=mabaihoc;
+		this.tenbaihoc=tenbaihoc;
+		this.makhoahoc=makhoahoc;
+		this.duongdan=duongdan;
+		this.ngaydang=ngaydang;
+		this.noidungbaihoc=noidungbaihoc;
+		this.thoigianhoanthanh=tghoanthanh;
+		this.muctieudaura=muctieudaura;
+		this.tenkhoahoc=tenkhoahoc;
 	}
 	public BaiHoc(int makhoahoc)
 	{
