@@ -11,6 +11,7 @@ public class NguoiDungDao {
 	public int SignUp(NguoiDung hv) {
 		String query = "exec sp_SignUp N'" + hv.getHoten() + "','" + hv.getEmail() + "',N'" + hv.getQuocgia() + "',N'"
 				+ hv.getMatkhau() + "', '" + hv.getSdt() + "'";
+		System.out.println(query);
 		int ketqua = dbconn.ExecuteCommand(query);
 		return ketqua;
 	}

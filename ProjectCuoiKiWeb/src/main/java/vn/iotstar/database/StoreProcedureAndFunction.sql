@@ -1,4 +1,123 @@
- 
+--Update Document
+Create or Alter Procedure sp_EditDocument
+@matailieu int,@theloai nvarchar(50),@dinhdangluutru varchar(50),@duongdanluutru Nvarchar(255)
+as
+begin
+	update TAILIEU set TheLoai=@theloai,DinhDangLuuTru=@dinhdangluutru,DuongDanLuuTru=@duongdanluutru
+	where MaTaiLieu=@matailieu
+end
+Go
+--Remove Document
+Create or Alter Procedure sp_DeleteDocument
+@matailieu int
+as
+begin
+	delete From TAILIEU
+	where MaTaiLieu=@matailieu
+	
+end
+Go
+--Inser dữ liệu bài học vào bảng học
+Create or Alter Procedure sp_InsertLessonIntoHoc
+@manguoidung int,@mabaihoc int
+as
+begin
+	insert into HOC(MaNguoiDung,MaBaiHoc)
+	values(@manguoidung,@MaBaiHoc)
+end
+go
+--Create Document
+Create or Alter Procedure sp_CreateDocument
+@theloai nvarchar(50),@dinhdang varchar(50),@duongdan nvarchar(255)
+as
+begin
+	Insert into TaiLieu(TheLoai,DinhDangLuuTru,DuongDanLuuTru)
+	values(@theloai,@dinhdang,@duongdan)
+end
+Go
+--Create Attach
+Create Or Alter Procedure sp_CreateAttachment
+@mabaihoc int
+as
+begin
+	--Tìm mã tài liệu mới được tạo
+	declare @matailieu int
+	set @matailieu=(select Top 1 MaTaiLieu From TAILIEU order by MaTaiLieu desc)
+	--đính kèm
+	Insert into DINHKEM(MaBaiHoc,MaTaiLieu)
+	values(@mabaihoc,@matailieu)
+end
+Go
+ --Cập nhật số dư cho người là tác giả của khoá học
+Create or ALter Procedure sp_CapNhatSoDuTKGV
+@matacgia int,@cost real
+as
+begin
+	--Tìm người giảng viên là tác giả của khoá học
+	declare @magiangvien int
+	set @magiangvien=( select distinct MaGiangVien From KHOAHOC join GIANGVIEN
+	on GIANGVIEN.MaGiangVien=KHOAHOC.MaTacGia
+	where KHOAHOC.MaTacGia=@matacgia)
+	
+	--Cập nhật tài khoản giảng viên
+	declare @sodubandau real
+	select @sodubandau=SoDu From The
+	where MaNguoiDung=@magiangvien
+	Update THE set SoDu=@sodubandau+@cost
+	where MaNguoiDung=@magiangvien
+end
+Go
+--Remove course dành cho giảng viên
+Create or Alter Procedure sp_RemoveACourse
+@makhoahoc int
+as
+begin
+	delete From KHOAHOC
+	where MaKhoaHoc=@makhoahoc
+end
+Go
+--Edit Course dành cho giảng viên
+CREATE OR ALTER PROCEDURE sp_EditACourse
+@makhoahoc int,
+@tenkhoahoc nvarchar(255),
+@matacgia int ,
+@giatien real,
+@ngonngu nvarchar(50),
+@thoigianhoanthanh real,
+@trinhdodauvao nvarchar(50),
+@ngayphathanh date,
+@mota ntext,
+@theloai nvarchar(50),
+@linhvuc nvarchar(30),
+@minhhoa Nvarchar(255)
+as
+begin
+	Update KHOAHOC set TenKhoaHoc=@tenkhoahoc ,MaTacGia=@matacgia,GiaTien=@giatien,
+	NgonNgu=@ngonngu,ThoiGianHoanThanh=@thoigianhoanthanh,TrinhDoDauVao=@trinhdodauvao,
+	NgayPhatHanh=@ngayphathanh,MoTa=@mota,TheLoai=@theloai,LinhVuc=@linhvuc, MinhHoa=@minhhoa
+	where KHOAHOC.MaKhoaHoc=@makhoahoc
+end
+Go
+
+ --Tạo khoá học dành cho giảng viên
+CREATE OR ALTER PROCEDURE sp_CreateACourse
+@tenkhoahoc nvarchar(255),
+@matacgia int ,
+@giatien real,
+@ngonngu nvarchar(50),
+@thoigianhoanthanh real,
+@trinhdodauvao nvarchar(50),
+@ngayphathanh date,
+@mota ntext,
+@theloai nvarchar(50),
+@linhvuc nvarchar(30),
+@minhhoa Nvarchar(255)
+as
+begin
+	insert into  KHOAHOC(TenKhoaHoc,MaTacGia,GiaTien,NgonNgu,ThoiGianHoanThanh,TrinhDoDauVao,NgayPhatHanh,MoTa,TheLoai,LinhVuc, MinhHoa)
+	values(@tenkhoahoc,@matacgia,@giatien,@ngonngu,@thoigianhoanthanh,@trinhdodauvao,@ngayphathanh,@mota,@theloai,@linhvuc, @minhhoa)
+end
+Go
 --Thêm Khoá Học Vào Giỏ hàng Của Tôi
 CREATE Or Alter PROCEDURE sp_InsertCourseCart
     @MaNguoiDung INT,
@@ -112,11 +231,11 @@ end
 Go
 
 --Xem Danh Sach Bai Hoc Trong 1 Khoá Học đối với khách
-CREATE OR Alter PROC sp_XemDanhSachBaiHoc
+CREATE or Alter PROC sp_XemDanhSachBaiHoc
 @makhoahoc INT
 as
 begin
-	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc From KHOAHOC
+	select BAIHOC.MaBaiHoc,BAIHOC.TenBaiHoc,BAIHOC.ThoiGianHoanThanh,BAIHOC.NoiDungBaiHoc,BaiHoc.MucTieuDauRa ,NgayDang,BaiHoc.MaKhoaHoc,KhoaHoc.TenKhoaHoc From KHOAHOC
 	join BAIHOC 
 	on BAIHOC.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	where KHOAHOC.MaKhoaHoc=@makhoahoc
@@ -124,18 +243,18 @@ end
 GO
 
 --Xem Danh Sách Của Khoá học Thuộc 1 Tài Khoản học viên
-CREATE Or ALter Procedure sp_XemKhoaHocCuaToi
+CREATE or ALter Procedure sp_XemKhoaHocCuaToi
 @manguoidung int 
 as
 begin
-	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa From KHOAHOC 
+	select  KhoaHoc.MaKhoaHoc,TenKhoaHoc,TrinhDoDauVao,MoTa, KhoaHoc.MinhHoa, DANGKY.TienDo From KHOAHOC 
 	join DANGKY on DANGKY.MaKhoaHoc=KHOAHOC.MaKhoaHoc
 	join HOCVIEN on DANGKY.MaNguoiDung=HOCVIEN.MaHocVien
 	where HOCVIEN.MaHocVien=@manguoidung
 end
 GO
 -- So sánh giá tiền thanh toàn và giá tiền khóa học
-CREATE Or ALter PROCEDURE sp_thanhtoanKH
+CREATE or alter PROCEDURE sp_thanhtoanKH
 @tienThanhToan DECIMAL, @maKhoaHoc INT,
 @soSanh INT OUTPUT, @diff DECIMAL OUTPUT
 AS
@@ -160,8 +279,9 @@ BEGIN
 	END
 END
 Go
+
 -- Check Đăng Đăng Nhập với vai trò là học viên
-Create or Alter Procedure sp_CheckLoginHV
+Create or alter Procedure sp_CheckLoginHV
 @email varchar(64),@matkhau nvarchar(30), @check int output
 as
 begin
@@ -185,12 +305,73 @@ begin
 		set @check=0
 	print @check
 end 
+
 --Update số dư thẻ
 GO
-CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap DECIMAL(18, 2)
+CREATE OR ALTER PROC sp_UpdateThe @mathe VARCHAR(10), @tiennap real
 AS
 BEGIN
-	DECLARE @sodu DECIMAL(18, 2)
+	DECLARE @sodu real
 	SELECT @sodu = SoDu FROM THE WHERE MaThe = @mathe
 	UPDATE THE SET SoDu = @sodu + @tiennap WHERE MaThe = @mathe
 END
+
+GO
+--Học viên nộp bài tập
+CREATE Or ALTER PROCEDURE sp_NopBaiTap @mand INT, @TenBaiTap NVARCHAR(100), @mabaihoc INT,@tenbainop nvarchar(50)
+as
+begin
+	INSERT INTO LAMBAITAP (MaNguoiDung, TenBaiTap, MaBaiHoc,TenBaiNop)
+	VALUES (@mand, @TenBaiTap, @mabaihoc,@tenbainop)
+end
+Go
+
+---Lấy danh sách bài tập đã nộp theo từng bài học của học viên
+CREATE Or ALTER PROCEDURE sp_DSBaiTap @mand int, @mabaihoc INT
+as
+begin
+	SELECT TenBaiNop, MaHocVien, MaBaiHoc, TenBaiTap
+	FROM vw_baitapsinhvien 
+	WHERE MaHocVien = @mand AND MaBaiHoc = @mabaihoc
+end
+Go
+--Danh sach bai tap nop cho giang vien
+CREATE Or ALTER PROCEDURE sp_DSBaiTapGV @mabaihoc INT
+as
+begin
+	SELECT TenBaiNop,HoTen, MaBaiHoc,TenBaiTap
+	FROM vw_baitapsinhvien 
+	WHERE MaBaiHoc = @mabaihoc
+end
+Go
+
+--Giao vien upload bai tap
+CREATE Or ALTER PROCEDURE sp_UploadBaiTap @tenbaitap NCHAR(100), @mabaihoc INT, @thoigianhoanthanh REAL
+AS
+begin
+	INSERT INTO BAITAP (TenBaiTap, MaBaiHoc, ThoiGianHoanThanh) VALUES (@tenbaitap, @mabaihoc, @thoigianhoanthanh)
+end
+Go
+
+--Tìm chứng chỉ
+CREATE OR ALTER PROC sp_FindCertificate @manguoidung INT
+AS
+BEGIN
+   SELECT kh.MaKhoaHoc, kh.TenKhoaHoc
+   FROM NGUOIDUNG AS nd
+   INNER JOIN DANGKY as dk ON dk.MaNguoiDung = nd.MaNguoiDung
+   INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
+   WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
+END
+GO
+--Kiểm Tra tồn tại bài tập chưa nếu chưa thì mới tạo lúc edit tài liệu thành bài tạp
+Create or Alter Procedure sp_CheckTonTaiBaiTap
+@tenbaitap nvarchar(100),@mabaihoc int
+as
+begin
+	declare @check int
+	if exists (select 1 From BAITAP where TenBaiTap=@tenbaitap and @mabaihoc=@mabaihoc)
+		set @check=1
+	else
+		set @check=0
+end

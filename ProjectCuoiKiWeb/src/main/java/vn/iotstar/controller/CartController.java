@@ -26,7 +26,7 @@ public class CartController {
 			List<GioHang> dsgiohang;
 			dsgiohang = new ArrayList<GioHang>();
 			dsgiohang = ghD.GetMyCart(manguoidung);
-			session.setAttribute("dsgiohang", dsgiohang);
+			model.addAttribute("dsgiohang", dsgiohang);
 			GioHang gh = ghD.CountCourse(manguoidung);
 			model.addAttribute("countkhoahoc", gh);
 			// Tổng số tiền cần thanh toán
@@ -50,13 +50,12 @@ public class CartController {
 				dsgiohang = ghD.GetMyCart(hv.getManguoidung());
 				model.addAttribute("dsgiohang", dsgiohang);
 				model.addAttribute("tonggiatien", ghD.SumCostOfCourse(dsgiohang));
-				throw new Exception("Khóa học này đã có trong giỏ hàng của bạn rồi");
+				model.addAttribute("thongbaothemgiohang","Khóa học này đã có trong giỏ hàng của bạn rồi");
 			} else {
 				session.setAttribute("thongbaothemtc", "Bạn đã thêm thành công vui lòng vào giỏ hàng để xem");
 				url = "redirect:/homepages";
 			}
 		} catch (Exception ex) {
-			model.addAttribute("thongbaothemgiohang", ex.getMessage());
 		}
 		return url;
 	}

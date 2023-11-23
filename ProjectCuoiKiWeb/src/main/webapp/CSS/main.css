@@ -91,8 +91,8 @@
  }
 
 /* // Small devices (landscape phones, 576px and up) */
-@media only screen and (min-device-width: 576px) and (max-device-width:767px){
-    .col-2 {
+@media only screen and (max-device-width:767px){
+    /*.col-2 {
         width: 30%;
     }
 
@@ -112,7 +112,14 @@
    .card_group {
     width: 300px;
     margin: 15px;
-    }
+    }*/
+    #page_container {
+		display: none;
+	}
+	
+	.info-device {
+		display: flex;
+	}
  }
  
  @keyframes headerNotifygrowth {
@@ -142,11 +149,11 @@ body {
     background-color: #eef2f8;
     font-family: "Roboto",-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
     /* color: #6d727c; */
-    color: black;
+  /*  color: black;*/
     font-size: 14px;
     box-sizing: border-box;
-    text-align: center;
-    width: 100vw;
+    /*text-align: center;*/
+    overflow-x: hidden;
 }
 
 ul {

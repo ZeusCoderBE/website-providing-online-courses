@@ -2,21 +2,16 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Giỏ hàng</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" href="./templates/CSS/cart.css">
 <link rel="stylesheet" href="./templates/CSS/main.css">
 <link rel="stylesheet" href="./templates/CSS/descride.css">
@@ -123,88 +118,130 @@
 		</header>
 
 		<section class="cart-container">
-			<div class="row cart-row">
-				<div class="cart-col-9 col-9">
-					<div class="cart-content">
-						<h3 class="cart-header">Giỏ hàng</h3>
-						<div class="cart-info">
-							<h5>Khóa học trong giỏ hàng:${countkhoahoc.numberofcourse} Khoá Học</h5>
-							<ul class="cart-list">
-								<c:forEach var="giohang" items="${dsgiohang}">
-									<li class="cart-item">
-										<div class="cart-item-container">
-											<div class="cart-item-info">
-												<div class="cart-item-img">
-													<a href="#"><img
-														src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-														alt="react"></a>
+			<form action="paycourseinfo" method="GET">
+				<div class="row cart-row">
+					<div class="cart-col-9 col-9">
+						<div class="cart-content">
+							<h3 class="cart-header">Giỏ hàng</h3>
+							<div class="cart-info">
+								<h5>Khóa học trong giỏ hàng: ${countkhoahoc.numberofcourse}
+									Khoá Học</h5>
+								<ul class="cart-list">
+									<c:forEach var="giohang" items="${dsgiohang}">
+										<li class="cart-item"><input class="checkbox-item"
+											onclick="TotalPay()" type="checkbox" name="selectedCourses"
+											id="selectedCourses"
+											value="${giohang.getKhoahoc().getMakhoahoc()}">
+											<div class="cart-item-container">
+												<div class="cart-item-info">
+													<div class="cart-item-img">
+														<a href="#"><img
+															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+															alt="react"></a>
+													</div>
+													<a href="#" class="cart-item-content">
+														<h6>${giohang.getKhoahoc().getTenkhoahoc()}</h6> <span>Bởi
+															giáo viên: Minh Châu</span>
+														<div class="cart-item-evaluate">
+															<div>Bán chạy nhất</div>
+															<div>Đã cập nhật gần đây</div>
+															<span>${giohang.getKhoahoc().getDanhgia()}</span>
+															<div class="cart-item-icon__start">
+																<c:choose>
+																	<c:when
+																		test="${giohang.getKhoahoc().getDanhgia() eq 5}">
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																	</c:when>
+																	<c:when
+																		test="${giohang.getKhoahoc().getDanhgia() eq 4}">
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star "></i>
+																	</c:when>
+																	<c:when
+																		test="${giohang.getKhoahoc().getDanhgia() eq 3}">
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star"></i>
+																		<i class="fa-solid fa-star "></i>
+																	</c:when>
+																	<c:when
+																		test="${giohang.getKhoahoc().getDanhgia() eq 2}">
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star"></i>
+																		<i class="fa-solid fa-star"></i>
+																		<i class="fa-solid fa-star"></i>
+																	</c:when>
+																	<c:when
+																		test="${giohang.getKhoahoc().getDanhgia() eq 1}">
+																		<i class="fa-solid fa-star start-primary"></i>
+																		<i class="fa-solid fa-star "></i>
+																		<i class="fa-solid fa-star"></i>
+																		<i class="fa-solid fa-star"></i>
+																		<i class="fa-solid fa-star"></i>
+																	</c:when>
+																</c:choose>
+															</div>
+														</div>
+														<ul class="cart-item-time">
+															<li style="list-style: none;">${giohang.getKhoahoc().getThoigian()}h</li>
+															<li>${giohang.getKhoahoc().getLinhvuc()}</li>
+															<li>${giohang.getKhoahoc().getTrinhdodauvao()}</li>
+														</ul>
+													</a>
 												</div>
-												<a href="#" class="cart-item-content">
-													<h6>${giohang.getKhoahoc().getTenkhoahoc()}</h6> <span>Bởi
-														giáo viên: Minh Châu</span>
-													<div class="cart-item-evaluate">
-														<div>Bán chạy nhất</div>
-														<div>Đã cập nhật gần đây</div>
-														<span>${gohang.getKhoahoc().ggetDanhgia()}</span>
-														<div class="cart-item-icon__start">
-															<i class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star start-primary"></i> <i
-																class="fa-solid fa-star"></i>
+
+												<div class="cart-item-action">
+													<div class="cart-item-delete">
+														<a
+															href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
+													</div>
+													<div class="cart-item-price">
+														<div class="cart-price-current">
+															<fmt:formatNumber var="giaTien"
+																value="${giohang.getKhoahoc().getGiatien()}"
+																type="number" maxFractionDigits="3" />
+															<p>Giá Tiền: ${giaTien.replace(',','.')}$</p>
+														</div>
+														<div class="cart-price-old">
+															<p>10000$</p>
 														</div>
 													</div>
-													<ul class="cart-item-time">
-														<li style="list-style: none;">${giohang.getKhoahoc().getThoigian()}h</li>
-														<li>${giohang.getKhoahoc().getLinhvuc()}</li>
-														<li>${giohang.getKhoahoc().getTrinhdodauvao()}</li>
-													</ul>
-												</a>
-											</div>
+												</div>
+											</div></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+					</div>
 
-											<div class="cart-item-action">
-												<div class="cart-item-delete">
-													<a
-														href="DeleteCourses?makhoahoc=${giohang.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Delete</a>
-													<a href="#">Lưu để sau</a>
-												</div>
-												<div class="cart-item-price">
-													<div class="cart-price-current">
-														<p>${giohang.getKhoahoc().getGiatien()}</p>
-													</div>
-													<div class="cart-price-old">
-														<p>10000$</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</li>
-								</c:forEach>
-							</ul>
+					<div class="cart-col-3 col-3">
+						<div class="cart-pay">
+							<span>Tổng:</span>
+							<h2>0$</h2>
+							<button class="btn btn-primary btn-buy" type="submit">Thanh
+								Toán</button>
+							<p>Khuyến mãi</p>
+							<div class="input-group mb-3">
+								<input type="text" class="form-control"
+									placeholder="Recipient's username"
+									aria-label="Recipient's username"
+									aria-describedby="button-addon2">
+								<button class="btn btn-outline-secondary" type="button"
+									id="button-addon2">Áp dụng</button>
+							</div>
 						</div>
 					</div>
 				</div>
-
-				<div class="cart-col-3 col-3">
-					<div class="cart-pay">
-						<span>Tổng:</span>
-						<h2>$${tonggiatien}</h2>
-						<a href="paycourseinfo">
-							<button class="btn btn-primary btn-buy" type="submit">Thanh Toán</button>
-						</a>
-						<p>Khuyến mãi</p>
-						<div class="input-group mb-3">
-							<input type="text" class="form-control"
-								placeholder="Recipient's username"
-								aria-label="Recipient's username"
-								aria-describedby="button-addon2">
-							<button class="btn btn-outline-secondary" type="button"
-								id="button-addon2">Áp dụng</button>
-						</div>
-
-					</div>
-				</div>
-			</div>
+			</form>
 		</section>
 		<footer class="footer">
 			<section class="footer_list">
@@ -212,7 +249,7 @@
 					<div class="footer_column">
 						<div class="footer_header">
 							<a class="nav_item_link" href="#">
-								<div>OnCourse</div>
+								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>
 						</div>
@@ -224,7 +261,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Về Oncourse</h5>
+							<h5>Về ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Giới thiệu</a></li>
@@ -266,15 +303,15 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+							<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây
-									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
-									đồng.</p>
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình.
+									${company.getName()} xây dựng và phát triển những sản phẩm mang
+									lại giá trị cho cộng đồng.</p>
 							</li>
 
 						</ul>
@@ -283,8 +320,8 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
-					học lập trình hàng đầu Việt Nam</div>
+				<div class="footer_nav__info">© 2018 - 2023
+					${company.getName()}. Nền tảng học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i
 						class="fa-brands fa-square-facebook"></i> <i
@@ -293,17 +330,19 @@
 			</section>
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
-	<script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
+	</script>
+	<script type="text/javascript">
 		window.onload = function() {
 			ReloadAlert("${thongbaothemgiohang}");
 			ReloadAlert("${thongbaoxoa}");
+			ReloadAlert("${thongbaott}");
 		}
 	</script>
 	<c:set var="thongbaothemgiohang" value="${null}" scope="request"></c:set>
 	<c:set var="thongbaoxoa" value="${null}" scope="request"></c:set>
+	<c:set var="thongbaott" value="${null}" scope="request"></c:set>
 </body>
 </html>

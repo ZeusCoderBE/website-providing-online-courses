@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.servlet.http.HttpSession;
+import java.sql.*;
 
 @Controller
 public class HomePageController {
@@ -18,20 +19,18 @@ public class HomePageController {
 	HocVienDao hvD = new HocVienDao();
 	GiangVienDao gvD = new GiangVienDao();
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String intro() {
-		return "introduction";
-	}
-
 	@RequestMapping(value = "/homepages", method = RequestMethod.GET)
 	public String homePage(ModelMap model, HttpSession session) throws Exception {
 		List<KhoaHoc> ListKH = null;
+		List<KhoaHoc> Listkhnt = null;
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
 			if (hv == null && gv == null) {
 				ListKH = khD.GetListCourses();
 				model.addAttribute("danhsachkh", ListKH);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 				model.addAttribute("thongbaokhach",
 						"Bạn đang vào trang web này với vai trò là khách nếu bạn muốn đăng ký khóa học vui lòng tạo tài khoản !");
 			} else if (hv != null && gv == null) {
@@ -44,12 +43,16 @@ public class HomePageController {
 				model.addAttribute("thongtin", hocvien);
 				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 
 			} else if (gv != null && hv == null) {
 				GiangVien giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
 				model.addAttribute("thongtin", giangvien);
 				ListKH = khD.GetListCourses();
 				model.addAttribute("danhsachkh", ListKH);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 			}
 
 		} catch (Exception ex) {
@@ -59,11 +62,17 @@ public class HomePageController {
 		return "homepage";
 	}
 
+	@RequestMapping(value = "introduction", method = RequestMethod.GET)
+	public String ShowIntroduction() {
+		return "introduction";
+	}
+
 	@RequestMapping(value = "/myhomepage", method = RequestMethod.GET)
 	public String FindMyLearning(HttpSession session, ModelMap model) {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		List<KhoaHoc> dskhoahoc = new ArrayList<KhoaHoc>();
+		List<KhoaHoc> Listkhnt = null;
 		try {
 			if (hv != null && gv == null) {
 				dskhoahoc = khD.FindMyLearning(hv.getManguoidung());
@@ -74,52 +83,20 @@ public class HomePageController {
 				GioHang gh = ghD.CountCourse(hv.getManguoidung());
 				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 			} else {
 				dskhoahoc = khD.ShowMyCreateOfCourse(gv.getManguoidung());
 				model.addAttribute("danhsachkhoahoc", dskhoahoc);
 				model.addAttribute("check", 0);
-			}
-
-		} catch (Exception ex) {
-
-		}
-		return "homepage";
-	}
-
-	@RequestMapping(value = "/Create-Course", method = RequestMethod.GET)
-	public String CreateCourse() {
-		return "create_course";
-	}
-
-	@RequestMapping(value = "/describe", method = RequestMethod.GET, params = "makhoahoc")
-	public String XemMotKhoaHoc(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc) {
-		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
-		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		List<BaiHoc> ListBH = new ArrayList<BaiHoc>();
-		try {
-			if (hv != null && gv == null) {
-				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				model.addAttribute("khoahoc", khoahoc);
-				ListBH = bhD.GetListLesson(khoahoc);
-				model.addAttribute("listbaihoc", ListBH);
-				List<GioHang> dsgiohang = new ArrayList<GioHang>();
-				dsgiohang = ghD.GetMyCart(hv.getManguoidung());
-				GioHang gh = ghD.CountCourse(hv.getManguoidung());
-				model.addAttribute("countkhoahoc", gh);
-				model.addAttribute("dsgiohang", dsgiohang);
-				model.addAttribute("isdangky", khD.khoahocDangKy(hv.getManguoidung(), khoahoc.getMakhoahoc()));
-			} else {
-				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				model.addAttribute("khoahoc", khoahoc);
-				ListBH = bhD.GetListLesson(khoahoc);
-				model.addAttribute("listbaihoc", ListBH);
+				Listkhnt = khD.CountPopularCourse();
+				model.addAttribute("dskhnoitieng", Listkhnt);
 			}
 
 		} catch (Exception ex) {
 			System.out.print(ex.getMessage());
 		}
-
-		return "describe";
+		return "homepage";
 	}
+
 }

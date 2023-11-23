@@ -1,18 +1,36 @@
 @charset "UTF-8";
 body {
     background-color: #e6e6e8;
+    margin: 0;
 }
 
 /* Form login */
 .container {
     width: 100%;
+    position:relative;
+    min-height: 100vh;
+    padding-top: 40px;
+    background-image: url('../Images/background.webp');
+    background-size: 50%;
+    background-position: right;
+    background-repeat: no-repeat;
+    padding-bottom: 30px;
+}
+
+.container:before {
+	position: absolute;
+	width: 100%;
+	content: "";
+	top: 0;
+	z-index: -1;
+	height: 100%;
+	background-image: linear-gradient(to right, #242145 30%, #dd1874 70%, #8a2178);
 }
 
 #form-login {
     padding: 50px;
     padding-top: 20px;
-    margin: auto;
-    margin-top: 90px;
+    margin-left: 10%;
     width: 380px;
     background-color: #ffffff;
     border-radius: 10px;
@@ -87,6 +105,20 @@ body {
     width: 100%;
     text-align: center;
     padding: 2px;
+    margin-top: 16px;
+}
+
+.form-login-type {
+	display: flex;
+	align-items: center;
+	font-size: 1.1rem;
+}
+
+.my-checkbox {
+	width: 16px;
+	height: 16px;
+	border-color: red;
+	margin: 0 6px 0 12px;
 }
 
 .form-notice a {
@@ -216,6 +248,10 @@ body {
 .logo_google a:focus{
     background-color: #d8cece;
     color: #4d4d50;
+}
+
+.infomation, .infomation-sdt {
+	display: none;
 }
 
 

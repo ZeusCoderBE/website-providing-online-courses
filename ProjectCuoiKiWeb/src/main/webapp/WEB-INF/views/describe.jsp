@@ -1,23 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Trang Vào Một Khoá Học</title>
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" type="text/css" href="./templates/CSS/cart.css">
 <link rel="stylesheet" type="text/css"
 	href="./templates/CSS/descride.css">
+<script src="./templates/JavaScript/script.js"></script>
 </head>
 <body>
 	<div id="page">
@@ -25,7 +22,7 @@
 			<nav class="nav">
 				<ul class="nav_item">
 					<li class="nav_link"><a class="nav_item_link" href="homepages">
-							<div>OnCourse</div>
+							<div>${company.getName()}</div>
 					</a></li>
 					<li class="nav_link nav_input">
 						<form class="d-flex" role="search">
@@ -64,7 +61,7 @@
 													<div class="my_course__action">
 														<div class="my_course__buy">
 															<a
-																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}"></a>
+																href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
 														</div>
 
 														<div class="my_course__delete">
@@ -111,49 +108,56 @@
 
 				<div class="container">
 					<div class="course_head">
-						<h1>${khoahoc.tenkhoahoc}</h1>
-					</div>
-					<div class="course_des">${khoahoc.mota}</div>
-					<div class="course_detail">
-						<h2>Bạn sẽ học được gì?</h2>
+						<h3>${khoahoc.tenkhoahoc}</h3>
 					</div>
 					<div class="course__content">
 						<h3>Ngôn Ngữ :${khoahoc.ngonngu}</h3>
 					</div>
-
+					<div class="course_des"></div>
+					<div class="course_detail">
+						<p>${khoahoc.mota}</p>
+					</div>
 				</div>
 
 				<div class="info">
 					<div class="course_action">
 						<div class="course_info">
-							<h3>Course</h3>
-							<div class="course_des course_des__main">Giá Tiền:
-								${khoahoc.giatien}$</div>
+							<h3>${khoahoc.tenkhoahoc}</h3>
+							<div class="course_des course_des__main">Thời gian hoàn
+								thành: ${khoahoc.thoigian} bài học</div>
 							<div class="road_line"></div>
 
 							<div class="evaluate">
 								<span>${khoahoc.danhgia}</span> <i class="fa-solid fa-star"></i>
-								<span>(1.040 reviews)</span>
+								<c:choose>
+									<c:when test="${ not empty dem.soluong}">
+										<span>(${dem.soluong} Đăng ký)</span>
+									</c:when>
+									<c:otherwise>
+										<span>(0 Đăng ký)</span>
+									</c:otherwise>
+								</c:choose>
 								<div class="line_stand"></div>
 								<i class="fa-solid fa-thumbs-up"></i> <span>92%</span>
 							</div>
 
 							<h5>Ngày Phát Hành: ${khoahoc.ngayphathanh}</h5>
-							<div class="course_des">No previous experience necessary</div>
-							<h5>Thời Gian Hoàn Thành: ${khoahoc.thoigian}</h5>
-
+							<div class="course_des">${khoahoc.trinhdodauvao}</div>
+							<fmt:formatNumber var="giatien" value="${khoahoc.giatien}"
+								type="number" pattern="###0.00" />
+							<h5>Giá Tiền: ${giatien.replace(',', '.')}$</h5>
 							<div class="road_line"></div>
 							<a class="view_course" href="#">View course modules</a>
 						</div>
 						<c:choose>
-							<c:when test="${not empty hocvien.manguoidung}">
+							<c:when
+								test="${not empty hocvien.manguoidung && empty giangvien.manguoidung}">
 								<c:choose>
 									<c:when test="${isdangky != true}">
 										<div class="btn_action">
-											<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}">
-												<button class="btn btn-success btn_signin__course">Đăng
-													ký học</button>
-											</a> <a href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
+											<a href="paycourseinfo?makhoahoc=${khoahoc.makhoahoc}"
+												class="btn btn-success btn_signin__course"> Đăng Ký </a> <a
+												href="AddCourse?makhoahoc=${khoahoc.makhoahoc}"
 												class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
 										</div>
 									</c:when>
@@ -167,15 +171,27 @@
 									</c:otherwise>
 								</c:choose>
 							</c:when>
-							<c:otherwise>
+							<c:when
+								test="${not empty giangvien.manguoidung && empty hocvien.manguoidung && istao==true}">
+								<div class="btn_action">
+									<a href="courses?makhoahoc=${khoahoc.makhoahoc}"
+										class="btn btn-success btn_signin__course">Vào</a> <a
+										href="Find-Course?makhoahoc=${khoahoc.makhoahoc} "
+										class="btn btn-primary btn_signin__course">Sửa</a> <a href="#"
+										onclick="XacNhanXoaKH(${khoahoc.makhoahoc})"
+										class="btn btn-success btn_signin__course">Xoá</a>
+
+								</div>
+							</c:when>
+							<c:when
+								test="${empty giangvien.manguoidung && empty hocvien.manguoidung && empty istao}">
 								<div class="btn_action">
 									<a href="login">
 										<button class="btn btn-success btn_signin__course">Đăng
 											ký học</button>
-									</a> <a href="login"
-										class="btn btn-primary btn_signin__course">Thêm giỏ hàng</a>
+									</a>
 								</div>
-							</c:otherwise>
+							</c:when>
 						</c:choose>
 					</div>
 				</div>
@@ -187,7 +203,7 @@
 					<div class="footer_column">
 						<div class="footer_header">
 							<a class="nav_item_link" href="#">
-								<div>OnCourse</div>
+								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>
 						</div>
@@ -199,7 +215,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Về Oncourse</h5>
+							<h5>Về ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Giới thiệu</a></li>
@@ -241,15 +257,15 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+							<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. Oncourse xây
-									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
-									đồng.</p>
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình.
+									${company.getName()} xây dựng và phát triển những sản phẩm mang
+									lại giá trị cho cộng đồng.</p>
 							</li>
 
 						</ul>
@@ -258,8 +274,8 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
-					học lập trình hàng đầu Việt Nam</div>
+				<div class="footer_nav__info">© 2018 - 2023
+					${company.getName()}. Nền tảng học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i
 						class="fa-brands fa-square-facebook"></i> <i
@@ -268,10 +284,15 @@
 			</section>
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
-
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+	<script>
+		window.onload = function() {
+			ReloadAlert("${xoakh}");
+			ReloadAlert("${thongbaoedit}");
+		}
+	</script>
+	<c:set var="thongbaoedit" value="${null}"></c:set>
+	<c:set var="xoakh" value="${null}"></c:set>
 </body>
 </html>

@@ -1,20 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Thanh Toán Khóa Học</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="./templates/bootstrap-5.3.2-dist/css/bootstrap.min.css">
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-	integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
 <link rel="stylesheet" href="./templates/CSS/cart.css">
 <link rel="stylesheet" href="./templates/CSS/main.css">
 <link rel="stylesheet" href="./templates/CSS/descride.css">
@@ -66,144 +64,102 @@
 					<div class="utilities">
 						<div class="utilities-inner">
 							<ul class="d-flex usernav p-0 ml-2 mb-0 align-items-center">
-								<li class="mr-3">
-									<div class="show_info">
-										<i class="fa-solid fa-cart-shopping"></i>
-										<div class="show_info__figure">4</div>
-										<div class="my_course">
-											<div class="pseudo_class"></div>
+								<c:if test="${not empty hocvien.manguoidung}">
+									<li class="mr-3">
+										<div class="show_info">
+											<i class="fa-solid fa-cart-shopping"></i>
+											<div class="show_info__figure">${countkhoahoc.numberofcourse}</div>
+											<div class="my_course">
+												<div class="pseudo_class"></div>
+												<div class="my_course__header">
+													<h5>Giỏ hàng của tôi</h5>
+													<a href="ShowInforCart?Id=${hocvien.manguoidung}">Xem
+														tất cả</a>
+												</div>
+												<ul class="my_course__list">
+													<c:forEach var="giohangcuatoi" items="${dsgiohang}">
+														<div class="my_course__detail">
+															<div class="my_sourse__item">
+																<a href="#"> <img
+																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+																	alt="react">
+																</a>
+															</div>
+															<div class="my_course__info">
+																<span> <a href="#">${giohangcuatoi.getKhoahoc().getTenkhoahoc()}</a>
+																</span> <span class="info_time"> Xuất bản
+																	:${giohangcuatoi.getKhoahoc().getNgayphathanh()}</span>
+															</div>
+															<div class="my_course__action">
+																<div class="my_course__buy">
+																	<a
+																		href="paycourseinfo?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()}">Mua</a>
+																</div>
 
-											<div class="my_course__header">
-												<h5>Giỏ hàng của tôi</h5>
-												<span>Xem tất cả</span>
+																<div class="my_course__delete">
+																	<a
+																		href="DeleteCourse?makhoahoc=${giohangcuatoi.getKhoahoc().getMakhoahoc()} &id=${hocvien.manguoidung}">Xoá</a>
+																</div>
+															</div>
+														</div>
+													</c:forEach>
+												</ul>
 											</div>
-											<ul class="my_course__list">
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS
-																ahdhdghdsg</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-												<div class="my_course__detail">
-													<div class="my_sourse__item">
-														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/12.png"
-															alt="react">
-														</a>
-													</div>
-													<div class="my_course__info">
-														<span> <a href="#">Xây Dựng Website với ReactJS</a>
-														</span> <span class="info_time"> Xuất bản :21-3-2022 </span>
-
-													</div>
-													<div class="my_course__action">
-														<div class="my_course__buy">
-															<a href="#">Buy</a>
-														</div>
-
-														<div class="my_course__delete">
-															<a href="#">Delete</a>
-														</div>
-													</div>
-												</div>
-											</ul>
-
 										</div>
-									</div>
-								</li>
-								<li class="mr-3">
-									<div class="">
-										<i class="fa-solid fa-bell"></i>
-									</div>
-								</li>
-								<li class="d-flex">
-									<div class="usermenu" style="display: flex;">
-										<span>Tran Van Luan</span>
-										<div class="icon_name">
-											<span>T</span>
+									</li>
+									<li class="mr-3">
+										<div class="">
+											<i class="fa-solid fa-bell"></i>
 										</div>
-										<div class="border_bottom"></div>
-										<ul class="setting my_course">
-											<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
-											<li class="setting__item"><a href="myprofiles"> <span>Hồ
-														sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
-											</a></li>
-											<li class="setting__item"><a href="#"> <span>Chứng
-														chỉ</span> <i class="fa-solid fa-award"></i>
-											</a></li>
-											<li class="setting__item"><a href="#"> <span>Cần
-														trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
-											</a></li>
-											<li class="setting__item"><a href="myprofiles"
-												onclick="scrollToElement('.personal_email')"> <span>Đổi
-														mật khẩu</span> <i class="fa-solid fa-lock"></i>
-											</a></li>
-											<li class="setting__item"><a href="#"> <span>Đăng
-														xuất</span> <i class="fa-solid fa-right-to-bracket"></i>
-											</a></li>
-										</ul>
-									</div>
-								</li>
+									</li>
+								</c:if>
+
+								<li class="d-flex"><c:choose>
+										<c:when test="${ not empty hocvien.manguoidung}">
+											<div class="usermenu">
+												<c:choose>
+													<c:when test="${not empty thongtin}">
+														<span>${thongtin.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(thongtin.hoten,0,1)}</span>
+														</div>
+													</c:when>
+													<c:otherwise>
+														<span>${hocvien.hoten}</span>
+														<div class="icon_name">
+															<span>${fn:substring(hocvien.hoten,0,1)}</span>
+														</div>
+													</c:otherwise>
+												</c:choose>
+												<div class="border_bottom"></div>
+												<ul class="setting my_course">
+													<div style="right: -20px; top: -10px;" class="pseudo_class"></div>
+													<li class="setting__item"><a href="myprofiles"> <span>Hồ
+																sơ cá nhân</span> <i class="fa-solid fa-id-card"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"> <span>Chứng
+																chỉ</span> <i class="fa-solid fa-award"></i>
+													</a></li>
+
+													<li class="setting__item"><a href="myprofiles"> <span>Cần
+																trợ giúp</span> <i class="fa-solid fa-circle-question"></i>
+													</a></li>
+													<li class="setting__item"><a href="myprofiles"
+														onclick="scrollToElement('.personal_email')"> <span>Đổi
+																mật khẩu</span> <i class="fa-solid fa-lock"></i>
+													</a></li>
+													<li class="setting__item"><a href="#"
+														onclick="testConfirmDialog()"> <span>Đăng xuất</span>
+															<i class="fa-solid fa-right-to-bracket"></i>
+													</a></li>
+												</ul>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<a href="login"><button style="display: block;"
+													class="btn btn-success login_taikhoan">Đăng Nhập</button></a>
+										</c:otherwise>
+									</c:choose></li>
 							</ul>
 						</div>
 					</div>
@@ -213,12 +169,11 @@
 
 		<section class="pay-container">
 			<div class="pay-header">
-				<img src="./templates/Images/logo.png" alt="logo" height="100"
-					width="100">
+				<img src="${company.getLogo()}" alt="logo" height="100" width="100">
 				<h2>Cổng Thanh Toán Trực Tuyến</h2>
 			</div>
 			<div class="content-pay">
-				<form action="paycourses" method="post">
+				<form action="paycourses" method="post" onsubmit="return confirmPay()">
 					<div class="row">
 						<div class="col-6">
 							<div class="form-list">
@@ -242,9 +197,11 @@
 												value="${the.getMaThe()}" />
 										</div>
 										<div class="form-pay-input">
-											<label for="price">Số tiền cần thanh toán</label> <input
-												type="text" id="price" name="price"
-												value="${tonggiatien}" />
+											<label for="price">Số tiền cần thanh toán</label>
+											<fmt:formatNumber var="giatien" value="${tonggiatien}"
+												type="number" maxFractionDigits="3" />
+											<input type="text" id="price" name="price"
+												value="${giatien.replace(',','.')}" />
 										</div>
 										<div class="form-pay-input">
 											<label for="noidungtt">Nội dung thanh toán</label> <input
@@ -285,8 +242,7 @@
 												</a></li>
 											</ul>
 										</div>
-										<button class="btn btn-primary btn-pay" type="submit"
-											onclick="confirmPay('${the.getSoDu()-tonggiatien}')">Thanh
+										<button class="btn btn-primary btn-pay" type="submit">Thanh
 											toán</button>
 									</div>
 								</div>
@@ -302,7 +258,7 @@
 					<div class="footer_column">
 						<div class="footer_header">
 							<a class="nav_item_link" href="#">
-								<div>OnCourse</div>
+								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>
 						</div>
@@ -314,7 +270,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Về Oncourse</h5>
+							<h5>Về ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Giới thiệu</a></li>
@@ -357,15 +313,15 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<h5>Công ty cổ phần công nghệ giáo dục Oncourse</h5>
+							<h5>Công ty cổ phần công nghệ giáo dục ${company.getName()}</h5>
 						</div>
 						<ul class="footer_info">
 							<li><a href="#">Mã số thuế: 0109922901</a></li>
 							<li><a href="#">Ngày thành lập: 04/03/2022</a></li>
 							<li>
-								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình. OnCourse xây
-									dựng và phát triển những sản phẩm mang lại giá trị cho cộng
-									đồng.</p>
+								<p>Lĩnh vực: Công nghệ, giáo dục, lập trình.
+									${company.getName()} xây dựng và phát triển những sản phẩm mang
+									lại giá trị cho cộng đồng.</p>
 							</li>
 
 						</ul>
@@ -374,8 +330,8 @@
 
 			</section>
 			<section class="footer_nav">
-				<div class="footer_nav__info">© 2018 - 2023 Oncourse. Nền tảng
-					học lập trình hàng đầu Việt Nam</div>
+				<div class="footer_nav__info">© 2018 - 2023
+					${company.getName()}. Nền tảng học lập trình hàng đầu Việt Nam</div>
 				<div class="footer_nav__icon">
 					<i class="fa-brands fa-square-youtube"></i> <i
 						class="fa-brands fa-square-facebook"></i> <i
@@ -384,10 +340,16 @@
 			</section>
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-		crossorigin="anonymous"></script>
-	<script src="./templates/JavaScript/script.js"></script>
+	<script>
+		window.onload = function() {
+			ReloadAlert("${warning}");
+		}
+	</script>
+	<c:set var="warning" value="${null}"></c:set>
+	<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
+	<script type="text/javascript"
+		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
+	</script>
 </body>
 </html>

@@ -225,7 +225,7 @@
 .cart-col-9 {
     background-color: white;
     padding-left: 40px;
-    
+    margin-bottom: 40px;
 }
 
 .cart-content {
@@ -257,6 +257,7 @@
 .cart-item {
     width: 100%;
     position: relative;
+    display: flex;
 }
 
 .cart-item::before {
@@ -278,8 +279,12 @@
 .cart-item-container {
     display: flex;
     justify-content: space-between;
-    
+    flex: 1;
+}
 
+.checkbox-item {
+    width: 20px;
+    margin: 0 20px;
 }
 
 .cart-item-info {
