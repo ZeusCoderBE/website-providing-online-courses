@@ -49,7 +49,7 @@
 												<div class="my_course__detail">
 													<div class="my_sourse__item">
 														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+															src="./templates/Images/${giohangcuatoi.hinhanh}"
 															alt="react">
 														</a>
 													</div>

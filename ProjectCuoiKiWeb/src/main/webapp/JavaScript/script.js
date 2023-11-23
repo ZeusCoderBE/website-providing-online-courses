@@ -68,7 +68,10 @@ function CheckPass() {
 	}
 }
 
-
+function ComeBackHomePage()
+{
+	window.location.href="homepages";
+}
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');

@@ -136,8 +136,7 @@
 												<div class="cart-item-info">
 													<div class="cart-item-img">
 														<a href="#"><img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react"></a>
+															src="./templates/Images/${giohang.hinhanh}" alt="react"></a>
 													</div>
 													<a href="#" class="cart-item-content">
 														<h6>${giohang.getKhoahoc().getTenkhoahoc()}</h6> <span>Bởi

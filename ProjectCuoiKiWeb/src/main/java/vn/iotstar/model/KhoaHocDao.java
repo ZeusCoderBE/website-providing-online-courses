@@ -24,6 +24,20 @@ public class KhoaHocDao {
 		return danhsachkh;
 	}
 
+	public KhoaHoc FindMaKhoaHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
+		String query = "select* From KhoaHoc where MaKhoaHoc=" + makhoahoc + "";
+		KhoaHoc khkq = new KhoaHoc();
+		ResultSet rs = dbC.ExecuteQuery(query);
+		System.out.println(query);
+		if (rs.next()) {
+			khkq = new KhoaHoc(makhoahoc);
+			System.out.println("1");
+			return khkq;
+		}
+		System.out.println("2");
+		return null;
+	}
+
 	public KhoaHoc CountSignIn(int makhoahoc) throws ClassNotFoundException, SQLException {
 		String query = "select *From v_xemkhoahocdangky where MaKhoaHoc=" + makhoahoc + "";
 		ResultSet rs = dbC.ExecuteQuery(query);
@@ -127,8 +141,9 @@ public class KhoaHocDao {
 		return listkh;
 	}
 
-	public boolean KhoaHocDaTao(int manguoidung) throws ClassNotFoundException, SQLException {
-		String sqlStr = "Select *From KhoaHoc where MaTacGia=" + manguoidung;
+	public boolean KhoaHocDaTao(int manguoidung, int makhoahoc) throws ClassNotFoundException, SQLException {
+		String sqlStr = "Select *From v_XemKhoaHocDaTao where MaGiangVien=" + manguoidung + "and MaKhoaHoc=" + makhoahoc
+				+ "";
 		ResultSet rs = dbC.ExecuteQuery(sqlStr);
 		if (rs.next()) {
 			return true;

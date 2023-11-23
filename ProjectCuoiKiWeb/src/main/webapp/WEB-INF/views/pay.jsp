@@ -81,7 +81,7 @@
 														<div class="my_course__detail">
 															<div class="my_sourse__item">
 																<a href="#"> <img
-																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+																	src="./templates/Images/${giohangcuatoi.hinhanh}"
 																	alt="react">
 																</a>
 															</div>
@@ -173,7 +173,8 @@
 				<h2>Cổng Thanh Toán Trực Tuyến</h2>
 			</div>
 			<div class="content-pay">
-				<form action="paycourses" method="post" onsubmit="return confirmPay()">
+				<form action="paycourses" method="post"
+					onsubmit="return confirmPay()">
 					<div class="row">
 						<div class="col-6">
 							<div class="form-list">

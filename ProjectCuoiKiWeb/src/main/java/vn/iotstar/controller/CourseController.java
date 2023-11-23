@@ -36,6 +36,7 @@ public class CourseController {
 		try {
 			dsbaihoc = bhD.GetListLesson(khoahoc);
 			model.addAttribute("dsbaihoc", dsbaihoc);
+			System.out.print("Hello Quang Huy");
 			khoahocid = khoahoc;
 		} catch (Exception ex) {
 			model.addAttribute("warning", ex.getMessage());
@@ -52,17 +53,21 @@ public class CourseController {
 	@RequestMapping(value = "Find-Course", method = RequestMethod.GET, params = "makhoahoc")
 	public String FindCourse(HttpSession session, @RequestParam("makhoahoc") int makhoahoc, ModelMap model)
 			throws ClassNotFoundException, SQLException {
-		mode = 1;
-		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		khoahocid = khoahoc;
-		KhoaHoc ketqua = khD.FindCourseOfCustomer(khoahoc);
 		String url = "";
-		if (ketqua != null) {
-			model.addAttribute("findkhoahoc", ketqua);
-			url = "create_course";
-		} else {
-			session.setAttribute("thatbai", "Không Tìm Thấy Khoá Học");
-			url = "redirect:/homepages";
+		try {
+			mode = 1;
+			KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
+			khoahocid = khoahoc;
+			KhoaHoc ketqua = khD.FindCourseOfCustomer(khoahoc);
+			if (ketqua != null) {
+				model.addAttribute("findkhoahoc", ketqua);
+				url = "create_course";
+			} else {
+				session.setAttribute("thatbai", "Không Tìm Thấy Khoá Học");
+				url = "redirect:/homepages";
+			}
+		} catch (Exception ex) {
+
 		}
 		return url;
 	}
@@ -125,14 +130,18 @@ public class CourseController {
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
 		String url = "";
 		String mess = "";
-		if (khD.RemoveAcourse(khoahoc) == 1) {
-			mess = "Bạn đã xoá thành công một khoá học ! ";
-			url = "redirect:/homepages";
-			session.setAttribute("xoakh", mess);
-		} else {
-			mess = "Bạn đã xoá thất bại";
-			url = "describe";
-			model.addAttribute("xoakh", mess);
+		try {
+			if (khD.RemoveAcourse(khoahoc) == 1) {
+				mess = "Bạn đã xoá thành công một khoá học ! ";
+				url = "redirect:/homepages";
+				session.setAttribute("xoakh", mess);
+			} else {
+				mess = "Bạn đã xoá thất bại";
+				url = "describe";
+				model.addAttribute("xoakh", mess);
+			}
+		} catch (Exception ex) {
+
 		}
 		return url;
 	}

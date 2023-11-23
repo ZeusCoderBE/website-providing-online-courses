@@ -10,23 +10,24 @@ public class BaiHoc {
 	private String noidungbaihoc;
 	private Double muctieudaura;
 	private Date ngaydang;
-	private int makhoahoc;
+	private Integer makhoahoc;
 	private String duongdan;
 	private String trangthai;
 	private String tenkhoahoc;
-	public String getDuongdan()
-	{
+
+	public String getDuongdan() {
 		return duongdan;
 	}
-	public String getTenkhoahoc()
-	{
+
+	public String getTenkhoahoc() {
 		return tenkhoahoc;
 	}
-	public String getTrangthai()
-	{
+
+	public String getTrangthai() {
 		return trangthai;
 	}
-	public int getMakhoahoc() {
+
+	public Integer getMakhoahoc() {
 		return makhoahoc;
 	}
 
@@ -64,38 +65,41 @@ public class BaiHoc {
 		this.ngaydang = date;
 		this.makhoahoc = makhoahoc;
 	}
+
 	public BaiHoc() {
 
 	}
-	public BaiHoc(int mabaihoc,String tenbaihoc, String noidungbaihoc, Double muctieudaura, Date ngaydang, double tghoanthanh,int makhoahoc,String duongdan)
-	{
-		this.mabaihoc=mabaihoc;
-		this.tenbaihoc=tenbaihoc;
-		this.makhoahoc=makhoahoc;
-		this.duongdan=duongdan;
-		this.ngaydang=ngaydang;
-		this.noidungbaihoc=noidungbaihoc;
-		this.thoigianhoanthanh=tghoanthanh;
-		this.muctieudaura=muctieudaura;
+
+	public BaiHoc(int mabaihoc, String tenbaihoc, String noidungbaihoc, Double muctieudaura, Date ngaydang,
+			double tghoanthanh, int makhoahoc, String duongdan) {
+		this.mabaihoc = mabaihoc;
+		this.tenbaihoc = tenbaihoc;
+		this.makhoahoc = makhoahoc;
+		this.duongdan = duongdan;
+		this.ngaydang = ngaydang;
+		this.noidungbaihoc = noidungbaihoc;
+		this.thoigianhoanthanh = tghoanthanh;
+		this.muctieudaura = muctieudaura;
 	}
-	public BaiHoc(int mabaihoc,String tenbaihoc, String noidungbaihoc, Double muctieudaura, Date ngaydang, double tghoanthanh,int makhoahoc,String duongdan,String tenkhoahoc)
-	{
-		this.mabaihoc=mabaihoc;
-		this.tenbaihoc=tenbaihoc;
-		this.makhoahoc=makhoahoc;
-		this.duongdan=duongdan;
-		this.ngaydang=ngaydang;
-		this.noidungbaihoc=noidungbaihoc;
-		this.thoigianhoanthanh=tghoanthanh;
-		this.muctieudaura=muctieudaura;
-		this.tenkhoahoc=tenkhoahoc;
+
+	public BaiHoc(int mabaihoc, String tenbaihoc, String noidungbaihoc, Double muctieudaura, Date ngaydang,
+			double tghoanthanh, int makhoahoc, String duongdan, String tenkhoahoc) {
+		this.mabaihoc = mabaihoc;
+		this.tenbaihoc = tenbaihoc;
+		this.makhoahoc = makhoahoc;
+		this.duongdan = duongdan;
+		this.ngaydang = ngaydang;
+		this.noidungbaihoc = noidungbaihoc;
+		this.thoigianhoanthanh = tghoanthanh;
+		this.muctieudaura = muctieudaura;
+		this.tenkhoahoc = tenkhoahoc;
 	}
-	public BaiHoc(int makhoahoc)
-	{
-		this.makhoahoc=makhoahoc;
+
+	public BaiHoc(int makhoahoc) {
+		this.makhoahoc = makhoahoc;
 	}
-	public BaiHoc(String trangthai)
-	{
-		this.trangthai=trangthai;
+
+	public BaiHoc(String trangthai) {
+		this.trangthai = trangthai;
 	}
 }

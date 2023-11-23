@@ -361,6 +361,7 @@ BEGIN
    FROM NGUOIDUNG AS nd
    INNER JOIN DANGKY as dk ON dk.MaNguoiDung = nd.MaNguoiDung
    INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
+   join HOCVIEN on HOCVIEN.MaHocVien=nd.MaNguoiDung
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
 GO

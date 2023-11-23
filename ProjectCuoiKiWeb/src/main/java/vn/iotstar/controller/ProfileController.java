@@ -25,18 +25,22 @@ public class ProfileController {
 		HocVien hocvien = new HocVien();
 		GiangVien giangvien = new GiangVien();
 		List<KhoaHoc> certificate = new ArrayList<>();
-		if (hv != null && gv == null) {
-			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-			certificate = hvD.FindCertificateHV(hocvien.getManguoidung());
-			The the = tD.getAThe(hv.getManguoidung());
-			model.addAttribute("certificate", certificate);
-			model.addAttribute("thongtin", hocvien);
-			model.addAttribute("the", the);
-		} else if (gv != null && hv == null) {
-			giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
-			The the = tD.getAThe(giangvien.getManguoidung());
-			model.addAttribute("thongtin", giangvien);
-			model.addAttribute("the", the);
+		try {
+			if (hv != null && gv == null) {
+				hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+				certificate = hvD.FindCertificateHV(hocvien.getManguoidung());
+				The the = tD.getAThe(hv.getManguoidung());
+				model.addAttribute("certificate", certificate);
+				model.addAttribute("thongtin", hocvien);
+				model.addAttribute("the", the);
+			} else if (gv != null && hv == null) {
+				giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+				The the = tD.getAThe(giangvien.getManguoidung());
+				model.addAttribute("thongtin", giangvien);
+				model.addAttribute("the", the);
+			}
+		} catch (Exception ex) {
+
 		}
 		return "profile";
 	}
@@ -58,40 +62,43 @@ public class ProfileController {
 		GiangVien giangvien = new GiangVien();
 		String url = "";
 		String meSession = "";
-		if (hv != null) {
-			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-			if (!hocvien.getMatkhau().equals(password)) {
-				meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
-				url = "redirect:/myprofiles";
-			} else if (hocvien.getMatkhau().equals(newpass)) {
-				meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
-				url = "redirect:/myprofiles";
-			} else if (ndD.UpdateMatKhau(newpass, hocvien.getManguoidung()) == 1) {
-				RealoadKhoaHoc(model);
-				url = "SignIn";
-			} else {
-				meSession = "Quá Trình Cập Nhật Thất Bại";
-				url = "redirect:/myprofiles";
-			}
+		try {
+			if (hv != null) {
+				hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+				if (!hocvien.getMatkhau().equals(password)) {
+					meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
+					url = "redirect:/myprofiles";
+				} else if (hocvien.getMatkhau().equals(newpass)) {
+					meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
+					url = "redirect:/myprofiles";
+				} else if (ndD.UpdateMatKhau(newpass, hocvien.getManguoidung()) == 1) {
+					RealoadKhoaHoc(model);
+					url = "SignIn";
+				} else {
+					meSession = "Quá Trình Cập Nhật Thất Bại";
+					url = "redirect:/myprofiles";
+				}
 
-		} else if (gv != null) {
-			giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
-			if (!giangvien.getMatkhau().equals(password)) {
-				meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
-				url = "redirect:/myprofiles";
-			} else if (giangvien.getMatkhau().equals(newpass)) {
-				meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
-				url = "redirect:/myprofiles";
-			} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
-				RealoadKhoaHoc(model);
-				meSession = "Bạn đã đổi mật khẩu thành công";
-				url = "SignIn";
-			} else {
-				meSession = "Quá Trình Cập Nhật Thất Bại";
-				url = "redirect:/myprofiles";
+			} else if (gv != null) {
+				giangvien = gvD.TimThongTinDN_id(gv.getManguoidung());
+				if (!giangvien.getMatkhau().equals(password)) {
+					meSession = "Bạn Nhập Mật Khẩu Cũ Chưa Đúng";
+					url = "redirect:/myprofiles";
+				} else if (giangvien.getMatkhau().equals(newpass)) {
+					meSession = "Mật Khẩu này bạn đã dùng cho lần cập nhật trước rồi ! Vui Lòng Sử dụng mật khẩu khác";
+					url = "redirect:/myprofiles";
+				} else if (ndD.UpdateMatKhau(newpass, giangvien.getManguoidung()) == 1) {
+					RealoadKhoaHoc(model);
+					meSession = "Bạn đã đổi mật khẩu thành công";
+					url = "SignIn";
+				} else {
+					meSession = "Quá Trình Cập Nhật Thất Bại";
+					url = "redirect:/myprofiles";
+				}
 			}
+		} catch (Exception ex) {
+			session.setAttribute("thongtinsai", meSession);
 		}
-		session.setAttribute("thongtinsai", meSession);
 		return url;
 	}
 
@@ -135,12 +142,16 @@ public class ProfileController {
 	@RequestMapping(value = "certificate", method = RequestMethod.GET)
 	public String PrintCertificate(ModelMap model, HttpSession session, @RequestParam("makhoahoc") int makhoahoc)
 			throws SQLException, ClassNotFoundException {
-		HocVien hv = (HocVien) session.getAttribute("hocvien");
-		HocVien hocvien = new HocVien();
-		KhoaHoc namekh = khD.FindTenKhoaHoc(makhoahoc);
-		hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
-		model.addAttribute("khoahoc", namekh);
-		model.addAttribute("tenhocvien", hocvien);
+		try {
+			HocVien hv = (HocVien) session.getAttribute("hocvien");
+			HocVien hocvien = new HocVien();
+			KhoaHoc namekh = khD.FindTenKhoaHoc(makhoahoc);
+			hocvien = hvD.TimThongTinDN_Id(hv.getManguoidung());
+			model.addAttribute("khoahoc", namekh);
+			model.addAttribute("tenhocvien", hocvien);
+		} catch (Exception ex) {
+
+		}
 		return "certificate";
 	}
 }

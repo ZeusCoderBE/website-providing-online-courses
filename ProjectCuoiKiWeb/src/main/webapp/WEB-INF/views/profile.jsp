@@ -37,15 +37,16 @@
 		<header class="header">
 			<div class="top_bar">
 				<div class="drawer-toggle">
-					<button style="border: none;" class="btn btn-toggle">
-						<span class="fa-solid fa-bars"></span>
+					<button onclick="ComeBackHomePage()" style="border: none;"
+						class="btn btn-toggle">
+						<span class="fa-solid fa-house"></span>
 					</button>
 				</div>
 
 				<div class="flex-wrapper">
 					<div class="intro">
 						<div class="intro_item">
-							<a href="#" class="intro_toggle"> <span> <img
+							<a href="" class="intro_toggle"> <span> <img
 									src="https://utex.hcmute.edu.vn/theme/image.php/maker/theme/1692144561/grid-icon-inverse"
 									alt="#">
 							</span> <span>
@@ -180,11 +181,6 @@
 				</nav>
 				<article class="col-9">
 					<div class="profile_content">
-						<div style="justify-content: right;" class="branding-inner">
-							<a style="margin-top: 0;" href="homepages" class="site-name">
-								<img class="site-logo" src="${company.logo}" alt="UTEX-HCMUTE">
-							</a>
-						</div>
 						<form action="myprofiles" method="post">
 							<div class="profile_account">
 								<h6>Account</h6>

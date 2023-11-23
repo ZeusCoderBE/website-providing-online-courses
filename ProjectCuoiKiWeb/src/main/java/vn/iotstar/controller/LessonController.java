@@ -35,7 +35,7 @@ public class LessonController {
 	LamBaiTapDAO lbtD = new LamBaiTapDAO();
 	BaiTapDAO btD = new BaiTapDAO();
 	BaiHoc baihoc;
-	int makhoahoc;
+	Integer makhoahoc;
 	int mode;
 	int mabaihoc;
 	int modedocument;
@@ -99,31 +99,33 @@ public class LessonController {
 	}
 
 	@RequestMapping(value = "/Find-Lesson", method = RequestMethod.GET, params = "mabaihoc")
-	public String ShowLesson(ModelMap model, @RequestParam("mabaihoc") int mabaihoc, HttpSession session)
-			throws ClassNotFoundException, SQLException {
+	public String ShowLesson(ModelMap model,
+			@RequestParam(value = "mabaihoc", defaultValue = "null", required = false) String mabaihoc,
+			HttpSession session) throws ClassNotFoundException, SQLException {
 		String url = "";
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		try {
-			BaiHoc baihoc = bhD.FindOfMyALesson(mabaihoc);
+			BaiHoc baihoc = bhD.FindOfMyALesson(Integer.parseInt(mabaihoc));
+
 			if (baihoc != null) {
 				// tìm 1 bài học
 				model.addAttribute("lesson", baihoc);
-				this.mabaihoc = mabaihoc;
+				this.mabaihoc = Integer.parseInt(mabaihoc);
 				model.addAttribute("makhoahoc", baihoc.getMakhoahoc());
 				makhoahoc = baihoc.getMakhoahoc();
 				List<BaiHoc> dsbaihoc = new ArrayList<BaiHoc>();
 				List<TaiLieu> dstailieu = new ArrayList<>();
-				dstailieu = tlD.FindDocumentofMylesson(mabaihoc);
+				dstailieu = tlD.FindDocumentofMylesson(Integer.parseInt(mabaihoc));
 				model.addAttribute("dstailieu", dstailieu);
 				if (hv != null && gv == null) {
-					List<LamBaiTap> dslambaitap = lbtD.LoadBaiTap(hv.getManguoidung(), mabaihoc);
+					List<LamBaiTap> dslambaitap = lbtD.LoadBaiTap(hv.getManguoidung(), Integer.parseInt(mabaihoc));
 					model.addAttribute("dslambaitap", dslambaitap);
-					BaiHoc trangthai = bhD.FindStatus(mabaihoc, hv.getManguoidung());
+					BaiHoc trangthai = bhD.FindStatus(Integer.parseInt(mabaihoc), hv.getManguoidung());
 					model.addAttribute("trangthai", trangthai);
 				}
 				if (gv != null && hv == null) {
-					List<LamBaiTap> dsLbt = lbtD.DSNopBaiTap(mabaihoc);
+					List<LamBaiTap> dsLbt = lbtD.DSNopBaiTap(Integer.parseInt(mabaihoc));
 					model.addAttribute("dsLbt", dsLbt);
 				}
 				KhoaHoc khoahoc = new KhoaHoc(baihoc.getMakhoahoc());

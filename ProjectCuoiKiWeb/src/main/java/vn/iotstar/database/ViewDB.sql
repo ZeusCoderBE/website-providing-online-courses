@@ -24,10 +24,11 @@ Create Or Alter View v_XemGioHang
 as 
 select NGUOIDUNG.HoTen,NGUOIDUNG.Email,KHOAHOC.TenKhoaHoc,KHOAHOC.DanhGia,KHOAHOC.MaTacGia
 ,KHOAHOC.TrinhDoDauVao,KHOAHOC.GiaTien,KHOAHOC.ThoiGianHoanThanh,
-KHOAHOC.LinhVuc,KhoaHoc.NgayPhatHanh,KhoaHoc.MaKhoaHoc,NGUOIDUNG.MaNguoiDung From NGUOIDUNG
+KHOAHOC.LinhVuc,KhoaHoc.NgayPhatHanh,KhoaHoc.MaKhoaHoc,NGUOIDUNG.MaNguoiDung,KhoaHoc.MinhHoa From NGUOIDUNG
 join GIOHANG
 on  GIOHANG.MaNguoiDung=NGUOIDUNG.MaNguoiDung
 join KHOAHOC on KHOAHOC.MaKhoaHoc= GIOHANG.MaKhoaHoc
+join HOCVIEN on HOCVIEN.MaHocVien=NGUOIDUNG.MaNguoiDung
 Go
 --Xem Thông tin giảng viên
 CREATE OR ALTER VIEW vThongTinGiangVien as
