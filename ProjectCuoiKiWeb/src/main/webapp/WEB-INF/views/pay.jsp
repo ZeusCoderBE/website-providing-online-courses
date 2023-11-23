@@ -173,7 +173,7 @@
 				<h2>Cổng Thanh Toán Trực Tuyến</h2>
 			</div>
 			<div class="content-pay">
-				<form action="paycourses" method="post">
+				<form action="paycourses" method="post" onsubmit="return confirmPay()">
 					<div class="row">
 						<div class="col-6">
 							<div class="form-list">
@@ -242,8 +242,7 @@
 												</a></li>
 											</ul>
 										</div>
-										<button class="btn btn-primary btn-pay" type="submit"
-											onclick="confirmPay(${the.getSoDu()-tonggiatien})">Thanh
+										<button class="btn btn-primary btn-pay" type="submit">Thanh
 											toán</button>
 									</div>
 								</div>
@@ -350,6 +349,7 @@
 	<script type="text/javascript" src="./templates/JavaScript/script.js"></script>
 	<script type="text/javascript"
 		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
 	</script>
 </body>
 </html>

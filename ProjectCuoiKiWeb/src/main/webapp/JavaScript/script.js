@@ -218,19 +218,13 @@ function scrollToElement(elementId) {
 	localStorage.setItem('scrollToElement', elementId);
 }
 
-function confirmPay(diff) {
-	console.log("hello");
-	if (diff < 0) {
-		var money = alert("Tiền trong thẻ không đủ thanh toán các khóa học!");
-		return "paycartinfo";
-	} else {
-		var result = confirm("Bạn sẽ thanh toán các khóa học này chứ ?");
-		if (result == true) {
-			window.location.href = "paycourses";
-		}
-		else {
-			return "redirect:/homepage";
-		}
+function confirmPay() {
+	var result = confirm("Bạn chắc chắc có muốn đăng ký");
+	if (result == true) {
+		return true;
+	}
+	else {
+		return false;
 	}
 }
 
