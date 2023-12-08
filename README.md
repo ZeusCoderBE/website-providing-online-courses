@@ -49,12 +49,14 @@
 - TinyMCE
 - Html2pdf
 ### Web Page Interface
-## About Us Page
+**About Us Page**
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/353e8aea-b68c-4961-9dd7-9645f60d0ab3)
-## Home page
+**Home page**
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/69588030-ea81-442b-ab91-f86de39272f7)
-## Learning Page
-![Uploading image.png…]()
+**Learning Page**
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/627942ed-74fe-40b9-a2f4-a48a6ff36147)
+
+
 
 
 
