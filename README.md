@@ -14,7 +14,10 @@
   - Build 2 functions
 
 - **Tran Van Luan**
-  - Design interface
+  - FontEnd
+  - Sending and Receiving API Requests in Frontend Development
+  - Handle the logic and build 2 functions
+  - Code base optimization
 
 - **Huynh Thien Nhan**
   - Create BFD
