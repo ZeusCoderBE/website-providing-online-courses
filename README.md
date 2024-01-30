@@ -78,7 +78,8 @@
 
 - **Home Page**
   
-![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/e631afd6-df6e-4808-bbbf-2d655cdc0258)
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/0efc9a3b-323a-49f0-882c-3c9203a8c650)
+
 
 - **Information User Page**
 
@@ -105,7 +106,10 @@
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/ad48346d-6fc6-4cdf-a55a-c894faea730e)
 
--**Certificate Page**
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/55b16b9d-82f7-4456-acd1-e80c879f612d)
+
+
+- **Certificate Page**
 
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/2e28a7d7-49eb-49e9-b202-09f491cb68ce)
 
