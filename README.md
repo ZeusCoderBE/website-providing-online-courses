@@ -61,10 +61,23 @@
 ### Web Page Interface
 - **About Us Page**
   
-![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/353e8aea-b68c-4961-9dd7-9645f60d0ab3)
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/da5615eb-9025-4143-9f0a-08a29d95a285)
+-**Login Page**
+
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/34884c3f-1ae1-45b4-898e-9fef83267af9)
+
+-**Forgot Password Page**
+
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/7825a037-1b28-461c-8c47-1c25dcf938d2)
+
 - **Home page**
   
-![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/69588030-ea81-442b-ab91-f86de39272f7)
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/e631afd6-df6e-4808-bbbf-2d655cdc0258)
+- **Description page **
+  
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/89c096c6-1ea5-4cd3-9d44-f0f77614676c)
+
+
 - **Learning Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/627942ed-74fe-40b9-a2f4-a48a6ff36147)
