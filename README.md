@@ -85,6 +85,9 @@
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/0efc9a3b-323a-49f0-882c-3c9203a8c650)
 
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/5ba79e18-7319-4364-95ab-560528750eea)
+
+
 
 - **Information User Page**
 
