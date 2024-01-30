@@ -62,11 +62,11 @@
 - **About Us Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/da5615eb-9025-4143-9f0a-08a29d95a285)
--**Login Page**
+- **Login Page**
 
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/34884c3f-1ae1-45b4-898e-9fef83267af9)
 
--**Forgot Password Page**
+- **Forgot Password Page**
 
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/7825a037-1b28-461c-8c47-1c25dcf938d2)
 
