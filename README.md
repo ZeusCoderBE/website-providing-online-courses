@@ -70,16 +70,19 @@
 
 - **Login Page**
 
-![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/34884c3f-1ae1-45b4-898e-9fef83267af9)
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/7ba7583e-47f1-4ded-9600-276c2974e479)
 
 - **Forgot Password Page**
 
-![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/7ba7583e-47f1-4ded-9600-276c2974e479)
-
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/8cf4d409-bb24-43ea-abb5-aa428e285f3d)
 
 - **Home Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/e631afd6-df6e-4808-bbbf-2d655cdc0258)
+
+- **Information user page**
+
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/a0d72c0e-efe6-464b-a3b7-d273f76aa5eb)
 
 - **Description Page**
   
@@ -92,6 +95,11 @@
 - **Payment Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/72ae7a8d-3c81-4754-8779-1655e3af9d5e)
+
+- **deposit page**
+
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/54717de6-6e05-4627-bbe0-3dfe03f1e2d9)
+
 
 - **Learning Page**
   
