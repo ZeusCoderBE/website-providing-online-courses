@@ -2,6 +2,14 @@ body {
 	overflow-x: hidden;
 }
 
+.course-header
+{
+	font-size: 2rem;
+	font-weight: 500;
+	color: black;
+	margin-bottom: 20px;
+	font-weight: bold;
+}
 .branding-inner {
 	margin-top: 20px;
 	background-color: white;

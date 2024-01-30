@@ -19,6 +19,7 @@ public class KhoaHoc {
 	private String linhvuc;
 	private double tiendo;
 	private int soluong;
+	private String tentacgia;
 
 	public String getLinhvuc() {
 		return linhvuc;
@@ -30,6 +31,10 @@ public class KhoaHoc {
 
 	public Double getTiendo() {
 		return tiendo;
+	}
+
+	public String getTentacgia() {
+		return tentacgia;
 	}
 
 	public String getTheloai() {
@@ -89,13 +94,13 @@ public class KhoaHoc {
 		this.makhoahoc = makhoahoc;
 		this.soluong = soluong;
 	}
-	public KhoaHoc(int makhoahoc, String tenkhoahoc,String trinhdodauvao,String minhhoa) {
-		this.makhoahoc = makhoahoc;
-		this.tenkhoahoc=tenkhoahoc;
-		this.trinhdodauvao=trinhdodauvao;
-		this.minhhoa=minhhoa;
-	}
 
+	public KhoaHoc(int makhoahoc, String tenkhoahoc, String trinhdodauvao, String minhhoa) {
+		this.makhoahoc = makhoahoc;
+		this.tenkhoahoc = tenkhoahoc;
+		this.trinhdodauvao = trinhdodauvao;
+		this.minhhoa = minhhoa;
+	}
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
 			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String minhhoa) {
@@ -114,7 +119,7 @@ public class KhoaHoc {
 
 	public KhoaHoc(int makhoahoc, String tenkhoahoc, int matacgia, double giatien, String ngonngu, double thoigian,
 			String trinhdodauvao, Date ngayphathanh, String mota, int danhgia, String theloai, String linhvuc,
-			String minhhoa) {
+			String minhhoa, String tentacgia) {
 		this.tenkhoahoc = tenkhoahoc;
 		this.matacgia = matacgia;
 		this.giatien = giatien;
@@ -128,6 +133,7 @@ public class KhoaHoc {
 		this.linhvuc = linhvuc;
 		this.makhoahoc = makhoahoc;
 		this.minhhoa = minhhoa;
+		this.tentacgia = tentacgia;
 	}
 
 	public KhoaHoc(String tenkhoahoc, int danhgia, int matacgia, String trinhdodauvao, Double giatien, Double thoigian,

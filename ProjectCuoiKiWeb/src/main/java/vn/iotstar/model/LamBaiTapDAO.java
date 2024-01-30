@@ -15,8 +15,16 @@ public class LamBaiTapDAO {
 		String sqlStr = String.format(
 				"EXECUTE sp_NopBaiTap @mand = %d, " + "@TenBaiTap = N'%s', @mabaihoc = %d, @tenbainop=N'%s'",
 				lbt.getMaNguoiDung(), lbt.getTenBaiTap(), lbt.getMaBaiHoc(), lbt.getTenbainop());
+		dbC.ExecuteCommand(sqlStr);
+	}
+
+	public int RemoveBaiTap(LamBaiTap lbt) {
+		String sqlStr = "Exec DeleteAssignments " + lbt.getMaNguoiDung() + ",'" + lbt.getTenBaiTap() + "',"
+				+ lbt.getMaBaiHoc() + "";
 		System.out.print(sqlStr);
 		dbC.ExecuteCommand(sqlStr);
+		int ketqua = dbC.ExecuteCommand(sqlStr);
+		return ketqua;
 	}
 
 	public List<LamBaiTap> LoadBaiTap(int mahv, int mabh) throws SQLException, ClassNotFoundException {

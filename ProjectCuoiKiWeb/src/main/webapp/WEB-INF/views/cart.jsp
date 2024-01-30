@@ -136,12 +136,10 @@
 												<div class="cart-item-info">
 													<div class="cart-item-img">
 														<a href="#"><img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-															alt="react"></a>
+															src="./templates/Images/${giohang.hinhanh}" alt="react"></a>
 													</div>
 													<a href="#" class="cart-item-content">
-														<h6>${giohang.getKhoahoc().getTenkhoahoc()}</h6> <span>Bởi
-															giáo viên: Minh Châu</span>
+														<h6>${giohang.getKhoahoc().getTenkhoahoc()}</h6>
 														<div class="cart-item-evaluate">
 															<div>Bán chạy nhất</div>
 															<div>Đã cập nhật gần đây</div>
@@ -192,7 +190,10 @@
 															</div>
 														</div>
 														<ul class="cart-item-time">
-															<li style="list-style: none;">${giohang.getKhoahoc().getThoigian()}h</li>
+															<fmt:formatNumber var="thoigian"
+																value="${giohang.getKhoahoc().getThoigian()}"
+																type="number" maxFractionDigits="3" />
+															<li style="list-style: none;">${thoigian}h</li>
 															<li>${giohang.getKhoahoc().getLinhvuc()}</li>
 															<li>${giohang.getKhoahoc().getTrinhdodauvao()}</li>
 														</ul>
@@ -210,9 +211,6 @@
 																value="${giohang.getKhoahoc().getGiatien()}"
 																type="number" maxFractionDigits="3" />
 															<p>Giá Tiền: ${giaTien.replace(',','.')}$</p>
-														</div>
-														<div class="cart-price-old">
-															<p>10000$</p>
 														</div>
 													</div>
 												</div>
@@ -248,7 +246,7 @@
 				<section class="footer_item">
 					<div class="footer_column">
 						<div class="footer_header">
-							<a class="nav_item_link" href="#">
+							<a class="nav_item_link" href="homepages">
 								<div>${company.getName()}</div>
 							</a>
 							<h5>Dạy lập trình</h5>

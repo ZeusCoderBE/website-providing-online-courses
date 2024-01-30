@@ -8,17 +8,23 @@ public class LamBaiTap {
 	private String tenbainop;
 
 	public LamBaiTap(String tenbainop, int maNguoiDung, int maBaiHoc, String tenBaiTap) {
-		this.tenbainop=tenbainop;
+		this.tenbainop = tenbainop;
 		this.maNguoiDung = maNguoiDung;
 		this.tenBaiTap = tenBaiTap;
 		this.maBaiHoc = maBaiHoc;
 	}
 
 	public LamBaiTap(String tenbainop, String hoten, int maBaiHoc, String tenBaiTap) {
-		this.tenbainop=tenbainop;
+		this.tenbainop = tenbainop;
 		this.hoten = hoten;
 		this.tenBaiTap = tenBaiTap;
 		this.maBaiHoc = maBaiHoc;
+	}
+
+	public LamBaiTap(String tenBaiTap, int mabaihoc, int manguoidung) {
+		this.tenBaiTap = tenBaiTap;
+		this.maBaiHoc = mabaihoc;
+		this.maNguoiDung = manguoidung;
 	}
 
 	public LamBaiTap() {

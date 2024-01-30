@@ -23,7 +23,6 @@ public class BaiHocDao {
 		}
 		return listbaihoc;
 	}
-
 	public List<BaiHoc> FindMaBaiHoc(int makhoahoc) throws ClassNotFoundException, SQLException {
 		String dml = "select BAIHOC.MaBaiHoc From BAIHOC where MaKhoaHoc= " + makhoahoc + "";
 		ResultSet rs = dbC.ExecuteQuery(dml);
@@ -40,6 +39,7 @@ public class BaiHocDao {
 		String dml = "Select *From v_xemdanhsachtailieu where MaBaiHoc=" + mabaihoc + "";
 		BaiHoc baihoc = new BaiHoc();
 		ResultSet rs = dbC.ExecuteQuery(dml);
+		System.out.print(dml);
 		if (rs.next() == true) {
 			baihoc = new BaiHoc(rs.getInt("MaBaiHoc"), rs.getNString("TenBaiHoc"), rs.getNString("NoiDungBaiHoc"),
 					rs.getDouble("MucTieuDauRa"), rs.getDate("NgayDang"), rs.getDouble("ThoiGianHoanThanh"),

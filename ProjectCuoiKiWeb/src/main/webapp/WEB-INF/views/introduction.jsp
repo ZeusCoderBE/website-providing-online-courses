@@ -6,7 +6,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ONCOURSE nơi cung cấp các khóa học nổi tiếng">
+<meta name="description"
+	content="ONCOURSE nơi cung cấp các khóa học nổi tiếng">
 <title>Trang Giới Thiệu</title>
 <link rel="stylesheet"
 	href="./templates/fontawesome-free-6.4.2-web/css/all.min.css" />
@@ -86,7 +87,7 @@
 				<p>Python ? C++? C# hay Java?</p>
 				<p>Bạn lựa chọn ngôn ngữ nào để bắt đầu chặng đường trở thành
 					lập trình viên của mình?</p>
-				<a href="#">Học Ngay</a> <img
+				<a href="homepages">Học Ngay</a> <img
 					src="https://www.pluralsight.com/content/dam/pluralsight2/homepage/2023-updates/ai-home-hero.webp"
 					alt="">
 			</div>
@@ -98,6 +99,7 @@
 	</div>
 	<script type="text/javascript"
 		src="./templates/bootstrap-5.3.2-dist/js/bootstrap.min.js">
+		
 	</script>
 </body>
 </html>

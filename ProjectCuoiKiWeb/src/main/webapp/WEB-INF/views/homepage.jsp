@@ -80,8 +80,7 @@
 														<div class="my_course__detail">
 															<div class="my_sourse__item">
 																<a href="#"> <img
-																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
-																	alt="react">
+																	src="./templates/Images/${giohangcuatoi.hinhanh}" alt="react">
 																</a>
 															</div>
 															<div class="my_course__info">
@@ -211,7 +210,7 @@
 					<div class="sidebar sidebar_home">
 						<div class="nav_drawer home_system">
 							<a href="homepages"> <i class="fa-solid fa-house"></i> <span>Trang
-									trủ hệ thống</span>
+									chủ hệ thống</span>
 							</a>
 						</div>
 						<c:choose>
@@ -525,6 +524,7 @@
 			ReloadAlert("${xoakh}");
 			ReloadAlert("${warning}");
 			ReloadAlert("${uptailieu}");
+			ReloadAlert("${tbkhongtontai}");
 		}
 	</script>
 	<c:set var="thongbaothanhcong" value="${null}"></c:set>
@@ -537,5 +537,6 @@
 	<c:set var="xoakh" value="${null}"></c:set>
 	<c:set var="warning" value="${null}"></c:set>
 	<c:set var="uptailieu" value="${null}"></c:set>
+	<c:set var="tbkhongtontai" value="${null}"></c:set>
 </body>
 </html>

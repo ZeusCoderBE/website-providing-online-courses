@@ -291,7 +291,7 @@
 						<article class="col-10">
 							<div class="page_study">
 								<div class="branding-inner">
-									<div class="course_name">${lesson.tenkhoahoc}</div>
+									<div class="course-header">${lesson.tenkhoahoc}</div>
 									<div class="course_name">${lesson.tenbaihoc}</div>
 									<div class="date_course">
 										<span>Đã đăng vào :</span> <span> ${lesson.ngaydang} *
@@ -413,12 +413,16 @@
 																<tbody class="table-group-divider">
 																	<c:forEach var="lbt" items="${dslambaitap}">
 																		<tr>
-																			<td id="container_${lbt.getTenbainop()}"><script>
-												                    			AddImgDocument('${lbt.getTenbainop()}', 'container_${lbt.getTenbainop()}');
+																			<td id="nopbaitap_${lbt.getTenbainop()}"><script>
+												                    			AddImgDocument('${lbt.getTenbainop()}', 'nopbaitap_${lbt.getTenbainop()}');
 												                			</script></td>
 																			<td><a
 																				href="./templates/Resource/ResourceDocument/${lbt.getTenbainop()}">${lbt.getTenbainop()}</a></td>
+																			<td><a
+																				href="delete-exercise?tenbaitap=${lbt.getTenBaiTap()} &mabaihoc=${lbt.getMaBaiHoc()}">Delete</a></td>
 																		</tr>
+												
+																		
 																	</c:forEach>
 																</tbody>
 															</table>

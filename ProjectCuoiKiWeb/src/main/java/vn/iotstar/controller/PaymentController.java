@@ -1,6 +1,7 @@
 package vn.iotstar.controller;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,9 @@ public class PaymentController {
 			model.addAttribute("the", the);
 			model.addAttribute("noidungtt", ttd.NoiDungThanhToan(dsKhoahoc));
 			model.addAttribute("thongtin", hocvien);
+			LocalDate currentDate = LocalDate.now();
+		    // Thêm ngày hiện tại vào mô hình
+		    model.addAttribute("currentDate", currentDate);
 			model.addAttribute("countkhoahoc", gh);
 			model.addAttribute("dsgiohang", dsgiohang);
 		} catch (ClassNotFoundException e) {

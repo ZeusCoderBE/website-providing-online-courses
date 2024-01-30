@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 import vn.iotstar.database.DataBaseConnection;
+
 public class GioHangDao {
 	DataBaseConnection dbC = new DataBaseConnection();
 
@@ -17,12 +18,11 @@ public class GioHangDao {
 			giohang = new GioHang(rs.getNString("HoTen"), rs.getString("Email"), rs.getNString("TenKhoaHoc"),
 					rs.getInt("DanhGia"), rs.getInt("MaTacGia"), rs.getNString("TrinhDoDauVao"),
 					rs.getDouble("GiaTien"), rs.getDouble("ThoiGianHoanThanh"), rs.getNString("LinhVuc"),
-					rs.getDate("NgayPhatHanh"), rs.getInt("MaKhoaHoc"));
+					rs.getDate("NgayPhatHanh"), rs.getInt("MaKhoaHoc"), rs.getNString("MinhHoa"));
 			dsgiohang.add(giohang);
 		}
 		return dsgiohang;
 	}
-
 	public GioHang CountCourse(int manguoidung) throws ClassNotFoundException, SQLException {
 		GioHang giohang = new GioHang();
 		String query = "select Count(*) as Num From v_XemGioHang where MaNguoiDung=" + manguoidung + "";
@@ -60,7 +60,7 @@ public class GioHangDao {
 			giohang = new GioHang(rs.getNString("HoTen"), rs.getString("Email"), rs.getNString("TenKhoaHoc"),
 					rs.getInt("DanhGia"), rs.getInt("MaTacGia"), rs.getNString("TrinhDoDauVao"),
 					rs.getDouble("GiaTien"), rs.getDouble("ThoiGianHoanThanh"), rs.getNString("LinhVuc"),
-					rs.getDate("NgayPhatHanh"), rs.getInt("MaKhoaHoc"));
+					rs.getDate("NgayPhatHanh"), rs.getInt("MaKhoaHoc"), rs.getNString("MinhHoa"));
 			dsgiohang.add(giohang);
 		}
 		return dsgiohang;
@@ -82,8 +82,8 @@ public class GioHangDao {
 	}
 
 	public int DeleteCourseCart(GioHang gh) {
-		String dml = "exec sp_DeleteCourseCart " + gh.getHocvien().getManguoidung() + ", " 
-	+ gh.getKhoahoc().getMakhoahoc()+"";
+		String dml = "exec sp_DeleteCourseCart " + gh.getHocvien().getManguoidung() + ", "
+				+ gh.getKhoahoc().getMakhoahoc() + "";
 		int ketqua = dbC.ExecuteCommand(dml);
 		return ketqua;
 	}

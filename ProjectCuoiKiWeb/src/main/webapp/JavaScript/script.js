@@ -68,7 +68,9 @@ function CheckPass() {
 	}
 }
 
-
+function ComeBackHomePage() {
+	window.location.href = "homepages";
+}
 function handleFocus() {
 	const page = document.querySelector('.page');
 	const sidebarHome = document.querySelector('.sidebar_home');
@@ -102,7 +104,7 @@ function validateForm() {
 		return false;
 	}
 	return true;
-	
+
 }
 function SelectedCourse() {
 	var count = document.getElementById("selectedCourses");
@@ -181,32 +183,30 @@ function ReloadAlert(thongBao) {
 	}
 }
 function checkKhoaHoc() {
-	// Lấy giá trị của các trường
-	var giatienValue = document.getElementById('giatien').value;
-	var thoiluongValue = document.getElementById('thoiluong').value;
-	var matacgiaValue = document.getElementById('matacgia').value;
+    var giatienInput = document.getElementById('giatien');
+    var giatienValue = giatienInput.value;
+    var thoiluonginput = document.getElementById("thoiluong");
+    var thoiluongvalue = thoiluonginput.value;
 
-	// Kiểm tra giá trị không chứa kí tự chữ hoặc kí tự đặc biệt
-	var regex = /^[0-9.]+$/; // Chỉ chấp nhận các kí tự số
-	if (!regex.test(giatienValue)) {
-		alert("Giá tiền không hợp lệ");
-		return false;
-	}
-
-	if (!regex.test(thoiluongValue)) {
-		alert("Thời lượng không hợp lệ");
-		return false;
-	}
-
-	regex = /^[0-9]+$/; // Chỉ chấp nhận các kí tự số cho mã tác giả
-	if (!regex.test(matacgiaValue)) {
-		alert("Mã tác giả không hợp lệ.");
-		return false;
-	}
-
-	// Nếu mọi kiểm tra đều qua, cho phép form submit
-	return true;
+    if (!isNaN(giatienValue) && parseFloat(giatienValue) > 0 &&
+        !isNaN(thoiluongvalue) && parseFloat(thoiluongvalue) > 0) {
+        // Kiểm tra nếu là kiểu double hoặc int
+        if (Number(giatienValue) === parseInt(giatienValue, 10) ||
+            giatienValue.indexOf('.') !== -1 && (Number(thoiluongvalue) === parseInt(thoiluongvalue, 10)
+                || thoiluongvalue.indexOf('.') !== -1)) {
+            // Giá trị hợp lệ
+            return true;
+        } else {
+            alert('Giá tiền hoặc thời lượng không hợp lệ !');
+            return false;
+        }
+    } else {
+        alert('Giá tiền hoặc thời lượng không hợp lệ !');
+        return false;
+    }
 }
+
+
 
 
 function goToNewPage() {
@@ -393,10 +393,10 @@ function AddImgDocument(duongDanTaiLieu, parentId) {
 	}
 }
 
-function checkEmail() { 
-    var email = document.getElementById('email'); 
-    var info = document.querySelector('.infomation');
-    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+function checkEmail() {
+	var email = document.getElementById('email');
+	var info = document.querySelector('.infomation');
+	var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 	if (!filter.test(email.value)) {
 		email.focus;
 		info.style.display = 'block';
@@ -421,5 +421,5 @@ function checkSdt() {
 		info.innerHTML = '';
 		info.style.display = 'none';
 	}
-} 
+}
 

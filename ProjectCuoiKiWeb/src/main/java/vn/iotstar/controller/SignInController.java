@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,6 +81,8 @@ public class SignInController {
 	public String DangXuat(HttpServletRequest rq) {
 		HttpSession session = rq.getSession();
 		session.invalidate();
+		HttpSession sessionduphong = rq.getSession();
+		sessionduphong.setAttribute("company", company);
 		return "introduction";
 	}
 

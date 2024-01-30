@@ -7,6 +7,16 @@ begin
 	where MaTaiLieu=@matailieu
 end
 Go
+--Xoa Bai Tap
+Create or ALter Procedure DeleteAssignments
+@mand int,@tenbaitap nvarchar(255),@mabaihoc int
+as 
+begin
+	delete From LAMBAITAP
+	where MaNguoiDung=@mand and @tenbaitap=@tenbaitap
+	and MaBaiHoc=@mabaihoc
+end
+Go
 --Remove Document
 Create or Alter Procedure sp_DeleteDocument
 @matailieu int
@@ -361,6 +371,7 @@ BEGIN
    FROM NGUOIDUNG AS nd
    INNER JOIN DANGKY as dk ON dk.MaNguoiDung = nd.MaNguoiDung
    INNER JOIN KHOAHOC as kh ON kh.MaKhoaHoc = DK.MaKhoaHoc
+   join HOCVIEN on HOCVIEN.MaHocVien=nd.MaNguoiDung
    WHERE dk.TienDo = 100 and ND.MaNguoiDung = @manguoidung
 END
 GO

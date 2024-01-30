@@ -49,7 +49,7 @@
 												<div class="my_course__detail">
 													<div class="my_sourse__item">
 														<a href="#"> <img
-															src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+															src="./templates/Images/${giohangcuatoi.hinhanh}"
 															alt="react">
 														</a>
 													</div>
@@ -123,8 +123,10 @@
 					<div class="course_action">
 						<div class="course_info">
 							<h3>${khoahoc.tenkhoahoc}</h3>
+							<fmt:formatNumber var="time" value="${khoahoc.thoigian}"
+								type="number" maxFractionDigits="3" />
 							<div class="course_des course_des__main">Thời gian hoàn
-								thành: ${khoahoc.thoigian} bài học</div>
+								thành: ${time.replace(',','.')} giờ</div>
 							<div class="road_line"></div>
 
 							<div class="evaluate">
@@ -147,7 +149,7 @@
 								type="number" pattern="###0.00" />
 							<h5>Giá Tiền: ${giatien.replace(',', '.')}$</h5>
 							<div class="road_line"></div>
-							<a class="view_course" href="#">View course modules</a>
+							<p class="view_course">Tác Giả: ${khoahoc.tentacgia}</p>
 						</div>
 						<c:choose>
 							<c:when
@@ -184,7 +186,7 @@
 								</div>
 							</c:when>
 							<c:when
-								test="${empty giangvien.manguoidung && empty hocvien.manguoidung && empty istao}">
+								test="${empty giangvien.manguoidung && empty hocvien.manguoidung}">
 								<div class="btn_action">
 									<a href="login">
 										<button class="btn btn-success btn_signin__course">Đăng

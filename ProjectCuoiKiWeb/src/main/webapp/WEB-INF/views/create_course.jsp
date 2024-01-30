@@ -55,7 +55,7 @@
 											value="${findkhoahoc.trinhdodauvao}" />
 									</div>
 									<div class="form-login-input">
-										<label for="upload">Upload file</label> <input type="file"
+										<label for="upload">Hình Ảnh</label> <input type="file"
 											class="form-control" id="upload" name="minhhoa" required />
 									</div>
 									<div class="form-login-input">
@@ -64,9 +64,12 @@
 											value="${findkhoahoc.ngonngu}" />
 									</div>
 									<div class="form-login-input">
-										<label for="gv">Thời lượng</label> <input type="text"
-											id="thoiluong" name="thoiluong" placeholder="vd: 1:00:00"
-											required value="${findkhoahoc.thoigian}" />
+										<label for="gv">Thời lượng</label>
+										<fmt:formatNumber var="time" value="${findkhoahoc.thoigian}"
+											type="number" maxFractionDigits="3" />
+										<input type="text" id="thoiluong" name="thoiluong"
+											placeholder="vd:500" required
+											value="${time.replace(',','.')}" />
 									</div>
 									<div class="form-login-input">
 										<label for="makh">Lĩnh Vực</label> <input type="text"

@@ -81,7 +81,7 @@
 														<div class="my_course__detail">
 															<div class="my_sourse__item">
 																<a href="#"> <img
-																	src="https://files.fullstack.edu.vn/f8-prod/courses/13/13.png"
+																	src="./templates/Images/${giohangcuatoi.hinhanh}"
 																	alt="react">
 																</a>
 															</div>
@@ -173,7 +173,8 @@
 				<h2>Cổng Thanh Toán Trực Tuyến</h2>
 			</div>
 			<div class="content-pay">
-				<form action="paycourses" method="post" onsubmit="return confirmPay()">
+				<form action="paycourses" method="post"
+					onsubmit="return confirmPay()">
 					<div class="row">
 						<div class="col-6">
 							<div class="form-list">
@@ -184,12 +185,12 @@
 										</div>
 										<div class="form-pay-input">
 											<label for="namekh">Tên khóa học</label> <input type="text"
-												id="namekh" value="${dskhoahoc}" />
+												id="namekh" value="${dskhoahoc}" required/>
 										</div>
 										<div class="form-pay-input">
 											<label for="date">Ngày thanh toán</label> <input type="date"
 												id="date" placeholder="yyyy/mmm/dd" name="ngayThanhToan"
-												value="${now}" />
+												value="${currentDate}" required/>
 										</div>
 										<div class="form-pay-input">
 											<label for="cardNumber">Card Number</label> <input
@@ -201,12 +202,12 @@
 											<fmt:formatNumber var="giatien" value="${tonggiatien}"
 												type="number" maxFractionDigits="3" />
 											<input type="text" id="price" name="price"
-												value="${giatien.replace(',','.')}" />
+												value="${giatien.replace(',','.')}" required />
 										</div>
 										<div class="form-pay-input">
 											<label for="noidungtt">Nội dung thanh toán</label> <input
 												type="textarea" id="noidungtt" name="noidungtt"
-												value="${noidungtt}" />
+												value="${noidungtt}" required />
 										</div>
 										<!-- <button class="btn" type="submit">pay</button> -->
 									</div>

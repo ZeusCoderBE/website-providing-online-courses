@@ -35,7 +35,7 @@ public class DescribeController {
 		HocVien hv = (HocVien) session.getAttribute("hocvien");
 		GiangVien gv = (GiangVien) session.getAttribute("giangvien");
 		KhoaHoc khoahoc = new KhoaHoc(makhoahoc);
-		KhoaHoc demdangky=new KhoaHoc();
+		KhoaHoc demdangky = new KhoaHoc();
 		List<BaiHoc> ListBH = new ArrayList<BaiHoc>();
 		try {
 			if (hv != null && gv == null) {
@@ -46,22 +46,22 @@ public class DescribeController {
 				List<GioHang> dsgiohang = new ArrayList<GioHang>();
 				dsgiohang = ghD.GetMyCart(hv.getManguoidung());
 				GioHang gh = ghD.CountCourse(hv.getManguoidung());
-				demdangky=khD.CountSignIn(makhoahoc);
+				demdangky = khD.CountSignIn(makhoahoc);
 				model.addAttribute("countkhoahoc", gh);
 				model.addAttribute("dsgiohang", dsgiohang);
-				model.addAttribute("dem",demdangky);
+				model.addAttribute("dem", demdangky);
 				model.addAttribute("isdangky", khD.khoahocDangKy(hv.getManguoidung(), khoahoc.getMakhoahoc()));
 			} else if (hv == null && gv != null) {
 				khoahoc = khD.FindCourseOfCustomer(khoahoc);
-				demdangky=khD.CountSignIn(makhoahoc);
+				demdangky = khD.CountSignIn(makhoahoc);
 				model.addAttribute("khoahoc", khoahoc);
-				model.addAttribute("dem",demdangky);
-				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung()));
+				model.addAttribute("dem", demdangky);
+				model.addAttribute("istao", khD.KhoaHocDaTao(gv.getManguoidung(), makhoahoc));
 			} else {
-				demdangky=khD.CountSignIn(makhoahoc);
+				demdangky = khD.CountSignIn(makhoahoc);
 				khoahoc = khD.FindCourseOfCustomer(khoahoc);
 				model.addAttribute("khoahoc", khoahoc);
-				model.addAttribute("dem",demdangky);
+				model.addAttribute("dem", demdangky);
 			}
 
 		} catch (Exception ex) {
