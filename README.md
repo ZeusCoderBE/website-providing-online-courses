@@ -91,7 +91,7 @@
 
 - **Cart Page**
   
-  ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/018ebab3-665f-4195-8882-4c08b70bbaab)
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/018ebab3-665f-4195-8882-4c08b70bbaab)
   
 - **Payment Page**
   
