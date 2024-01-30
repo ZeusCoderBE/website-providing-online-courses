@@ -46,7 +46,7 @@
 
 - Apache Tomcat version 10.1
 
-### Main Function:
+### Main Functions:
 #### The project has 3 main divisions:
 - Customers: view course information (price, course name, author name, lesson number, course description)
 - Students: register, log in, edit account information, view courses, participate in classes, submit assignments, receive certificates when completing the course...
