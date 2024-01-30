@@ -61,10 +61,13 @@
 - org.apache.tomcat
 - TinyMCE
 - Html2pdf
+
 ### Web Page Interface
+
 - **About Us Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/da5615eb-9025-4143-9f0a-08a29d95a285)
+
 - **Login Page**
 
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/34884c3f-1ae1-45b4-898e-9fef83267af9)
@@ -76,10 +79,10 @@
 - **Home page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/e631afd6-df6e-4808-bbbf-2d655cdc0258)
+
 - **Description page**
   
-![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/89c096c6-1ea5-4cd3-9d44-f0f77614676c)
-
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/25253c05-063c-4327-8808-dafed6cf43cc)
 
 - **Learning Page**
   
