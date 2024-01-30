@@ -44,7 +44,7 @@
 
 ### Main Funstion:
 The project has 3 main divisions:
-- Customers: view course information (price, course name, author name, number of lessons, course description)
+- Customers: view course information (price, course name, author name, lesson number, course description)
 - Students: register, log in, edit account information, view courses, participate in classes, submit assignments, receive certificates when completing the course...
 - Teachers: register, log in, edit account information, view courses, design and upload courses, upload documents, receive money when someone registers for your course...
 
