@@ -64,7 +64,7 @@
 
 ### Web Page Interface
 
-- **About Us Page**
+- **Introduction Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/da5615eb-9025-4143-9f0a-08a29d95a285)
 
@@ -76,11 +76,11 @@
 
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/7825a037-1b28-461c-8c47-1c25dcf938d2)
 
-- **Home page**
+- **Home Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/e631afd6-df6e-4808-bbbf-2d655cdc0258)
 
-- **Description page**
+- **Description Page**
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/25253c05-063c-4327-8808-dafed6cf43cc)
 
