@@ -1,5 +1,8 @@
 # Website Providing Online Courses
 
+## Description :
+
+- **Websites that offer online programming courses like Coursera and udemy**
 ## Author:
 
 - **Dang Nguyen Quang Huy**
