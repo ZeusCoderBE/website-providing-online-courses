@@ -41,7 +41,11 @@
 ### Deployment Environment:
 
 - Apache Tomcat version 10.1
-
+### Main-Function:
+Project with 3 main decentralization:
+-Customers: view course information (price, course name, author name, number of lessons, course description)
+-Students: register, log in, edit account information, view courses, participate in classes, submit assignments, receive certificates when completing the course...
+-Teachers: register, log in, edit account information, view courses, design and upload courses, upload documents, receive money when someone registers for your course...
 ### Main Libraries:
 
 - JSP - Guide to the Standard Tag Library (JSTL)
