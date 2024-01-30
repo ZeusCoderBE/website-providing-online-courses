@@ -4,8 +4,9 @@
 
 - **Dang Nguyen Quang Huy**
   - Database design
-  - Come up with ideas and build many modules
-  - Code base optimization
+  - Come up with ideas
+  - Handle logic and Build almost all functions for this project
+  - Code optimization
   - Identify and integrate suitable APIs for the Project
 
 
