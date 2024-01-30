@@ -68,6 +68,11 @@
   
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/da5615eb-9025-4143-9f0a-08a29d95a285)
 
+- **Register Page**
+
+![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/585db885-a1ef-4a59-b9c6-9bb77bd5517e)
+
+
 - **Login Page**
 
 ![image](https://github.com/ZeusCoderBE/website-providing-online-courses/assets/117000361/7ba7583e-47f1-4ded-9600-276c2974e479)
